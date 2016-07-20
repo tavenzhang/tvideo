@@ -16,7 +16,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 end
 
-target :TNetServer do
+target :TAmf3Socket do
 xcodeproj 'TNetServer/TNetServer.xcodeproj'
 pod 'BBSZLib'
 pod 'CocoaAsyncSocket', '7.4.3'
