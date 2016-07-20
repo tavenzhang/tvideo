@@ -1,0 +1,10 @@
+framework module TNetServer {
+  umbrella header "TNetServer.h"
+
+  export *
+  module * { export * }
+}
+
+module TNetServer.Swift {
+    header "TNetServer-Swift.h"
+}
