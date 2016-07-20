@@ -8,7 +8,7 @@
 
 import Foundation
 import CryptoSwift
-import TNetServer
+import TAmf3Socket
 class r_msg_noBody:R_msg_base{
     
     

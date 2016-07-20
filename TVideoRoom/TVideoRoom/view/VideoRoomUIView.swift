@@ -6,7 +6,6 @@
 //  Copyright © 2016年 张新华. All rights reserved.
 //
 import UIKit
-import TNetServer
 import TRtmpPlay
 import TChat
 

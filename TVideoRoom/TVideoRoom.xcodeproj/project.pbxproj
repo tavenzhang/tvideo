@@ -40,7 +40,6 @@
 		DE7A27A81D1AD22100DAAD8C /* NSLoggerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7A27A71D1AD22100DAAD8C /* NSLoggerSupport.swift */; };
 		DE7D6AAD1D2FEB99001FC105 /* TRtmpPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7D6AAC1D2FEB99001FC105 /* TRtmpPlay.framework */; };
 		DEA1CFA21D368C75006F290E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1CFA11D368C75006F290E /* Alamofire.framework */; };
-		DEA1CFAF1D368F3A006F290E /* Chat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEA1CFAE1D368F3A006F290E /* Chat.bundle */; };
 		DEBE43941D1EB33F00178DA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */; };
 		DEBE43961D1EB56100178DA7 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43951D1EB56100178DA7 /* GlobalConfig.swift */; };
 		DEBE439B1D1EB75F00178DA7 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE439A1D1EB75F00178DA7 /* UIExtension.swift */; };
@@ -49,6 +48,8 @@
 		DEBE43AE1D1EF15100178DA7 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43AC1D1EC05F00178DA7 /* BaseNavigationController.swift */; };
 		DEBE43B01D1EF24100178DA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBE43AF1D1EF24100178DA7 /* UIKit.framework */; };
 		DEBE43B21D1EF6C700178DA7 /* VideoRoomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43B11D1EF6C700178DA7 /* VideoRoomUIView.swift */; };
+		DEC944411D3F3042006884CF /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC944401D3F3042006884CF /* TAmf3Socket.framework */; };
+		DEC944461D3F5218006884CF /* Chat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEC944451D3F5218006884CF /* Chat.bundle */; };
 		DECECC9E1D2B4FE00030939E /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECC9C1D2B4FE00030939E /* MJRefresh.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECCBC1D2B606C0030939E /* libsqlite3.tbd */; };
 		DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C701D1A5C7C005A7AC4 /* libz.tbd */; };
@@ -89,7 +90,7 @@
 		DE36417D1D0050CA00A3FE24 /* As3MsgControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = As3MsgControl.swift; sourceTree = "<group>"; };
 		DE36417E1D0050CA00A3FE24 /* RMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMessages.swift; sourceTree = "<group>"; };
 		DE36417F1D0050CA00A3FE24 /* SMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMessages.swift; sourceTree = "<group>"; };
-		DE3641801D0050CA00A3FE24 /* EventCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollection.swift; sourceTree = "<group>"; };
+		DE3641801D0050CA00A3FE24 /* EventCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventCollection.swift; path = ../EventCollection.swift; sourceTree = "<group>"; };
 		DE3641831D0050CA00A3FE24 /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		DE48447F1D1A447400C17A5B /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = BBSZLib.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/BBSZLib.framework"; sourceTree = "<absolute>"; };
 		DE4844821D1A447400C17A5B /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/CocoaAsyncSocket.framework"; sourceTree = "<absolute>"; };
@@ -128,6 +129,8 @@
 		DEBE43AC1D1EC05F00178DA7 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseNavigationController.swift; path = ../view/BaseNavigationController.swift; sourceTree = "<group>"; };
 		DEBE43AF1D1EF24100178DA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DEBE43B11D1EF6C700178DA7 /* VideoRoomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoRoomUIView.swift; path = ../view/VideoRoomUIView.swift; sourceTree = "<group>"; };
+		DEC944401D3F3042006884CF /* TAmf3Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TAmf3Socket.framework; path = "../TNetServer/build/Debug-iphoneos/TAmf3Socket.framework"; sourceTree = "<group>"; };
+		DEC944451D3F5218006884CF /* Chat.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Chat.bundle; sourceTree = "<group>"; };
 		DECECC8E1D2B4ECA0030939E /* TChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TChat.framework; path = "../../../Library/Developer/Xcode/DerivedData/TWork-bvaedicxmznhtecvdmknxiicdypz/Build/Products/Debug-iphoneos/TChat.framework"; sourceTree = "<group>"; };
 		DECECC901D2B4F090030939E /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = BBSZLib.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-bvaedicxmznhtecvdmknxiicdypz/Build/Products/Debug-iphoneos/BBSZLib.framework"; sourceTree = "<absolute>"; };
 		DECECC931D2B4F090030939E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-bvaedicxmznhtecvdmknxiicdypz/Build/Products/Debug-iphoneos/CocoaAsyncSocket.framework"; sourceTree = "<absolute>"; };
@@ -157,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEC944411D3F3042006884CF /* TAmf3Socket.framework in Frameworks */,
 				DEA1CFA21D368C75006F290E /* Alamofire.framework in Frameworks */,
 				DE7D6AAD1D2FEB99001FC105 /* TRtmpPlay.framework in Frameworks */,
 				DE696AFD1D2D0DA2007F69F7 /* TChat.framework in Frameworks */,
@@ -223,8 +227,7 @@
 		DE3641551D004FC600A3FE24 = {
 			isa = PBXGroup;
 			children = (
-				DEA1CFAE1D368F3A006F290E /* Chat.bundle */,
-				DEA1CFA71D368D4E006F290E /* TNetServer.framework */,
+				DEC944451D3F5218006884CF /* Chat.bundle */,
 				DE3641601D004FC600A3FE24 /* TVideoRoom */,
 				DE36415F1D004FC600A3FE24 /* Products */,
 				143A64D96CC55F17043338CF /* Pods */,
@@ -282,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				DE36417C1D0050CA00A3FE24 /* amfSocket */,
-				DE3641801D0050CA00A3FE24 /* EventCollection.swift */,
 				DE3641811D0050CA00A3FE24 /* http */,
 				DE3641821D0050CA00A3FE24 /* socket */,
 				DE3641831D0050CA00A3FE24 /* SocketManager.swift */,
@@ -311,6 +313,7 @@
 		DE3641821D0050CA00A3FE24 /* socket */ = {
 			isa = PBXGroup;
 			children = (
+				DE3641801D0050CA00A3FE24 /* EventCollection.swift */,
 			);
 			path = socket;
 			sourceTree = "<group>";
@@ -350,6 +353,9 @@
 		F10C0C13BDD90EA4BB0D6ED7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEA1CFAE1D368F3A006F290E /* Chat.bundle */,
+				DEA1CFA71D368D4E006F290E /* TNetServer.framework */,
+				DEC944401D3F3042006884CF /* TAmf3Socket.framework */,
 				DEA1CFA51D368CB1006F290E /* BBSZLib.framework */,
 				DEA1CFA31D368C9F006F290E /* TNetServer.framework */,
 				DEA1CFA11D368C75006F290E /* Alamofire.framework */,
@@ -464,7 +470,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEA1CFAF1D368F3A006F290E /* Chat.bundle in Resources */,
+				DEC944461D3F5218006884CF /* Chat.bundle in Resources */,
 				DE36416C1D004FC600A3FE24 /* LaunchScreen.storyboard in Resources */,
 				DE3641691D004FC600A3FE24 /* Assets.xcassets in Resources */,
 				DE3641671D004FC600A3FE24 /* Main.storyboard in Resources */,

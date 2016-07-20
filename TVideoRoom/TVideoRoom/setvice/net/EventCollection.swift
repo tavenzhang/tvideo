@@ -40,3 +40,5 @@ let E_SOCKERT_80002:String="E_SOCKERT_80002";
 let E_SOCKERT_Chat_30001:String="E_SOCKERT_Chat_30001";
 //rtmp 通知播放
 let E_SOCKERT_2001:String="E_SOCKERT_2001";
+
+let RTMP_START_PLAY:String="let";
