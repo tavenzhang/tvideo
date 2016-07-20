@@ -1,0 +1,6 @@
+.idea
+FFmpeg
+libs
+Podfile.lock
+Pods
+.DS_Store
