@@ -3,4 +3,5 @@ FFmpeg
 libs
 Podfile.lock
 Pods
+*/.DS_Store
 .DS_Store
