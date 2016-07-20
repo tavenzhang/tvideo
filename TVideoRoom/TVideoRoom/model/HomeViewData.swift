@@ -13,10 +13,10 @@ import UIKit
 class RoomData: NSObject {
     var socketList:[String]?=["117.27.250.50:9015","117.27.250.83:9015","222.161.187.171:9015","14.29.50.69:9015","183.131.213.175:9015","116.31.99.233:9015"];
     var socketIp:String="116.31.99.233";
-    var port:Int = 9007;
+    var port:Int = 9013;
     var sid:String = "";
     var lastRtmp="";
-    var roomId:Int = 1593972
+    var roomId:Int = 1934468
     var pass:String="";
     var isPublish = false;
     var publishUrl="";
