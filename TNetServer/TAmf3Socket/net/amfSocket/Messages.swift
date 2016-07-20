@@ -32,8 +32,6 @@ public class R_msg_base:NSObject {
 }
 
 
-
-
 public class S_msg_base:NSObject {
     
    public  var cmd:Int=0;
@@ -41,8 +39,8 @@ public class S_msg_base:NSObject {
         cmd = _cmd;
     }
     
- public   func toDictionary() ->  NSDictionary {
-        // 拷贝属性列表
+ public  func toDictionary() ->  NSDictionary {
+        // 拷贝属性列表 用于转化成 dictionary
         var keyArr = getKeysArray(self.classForCoder);
         if keyArr.indexOf("cmd") == nil
         {
@@ -50,9 +48,5 @@ public class S_msg_base:NSObject {
         }
         return self.dictionaryWithValuesForKeys(keyArr);
     }
-}
-
-public class S_msg_heart_9999: S_msg_base {
-   public var msg:UInt32 = arc4random();
 }
 

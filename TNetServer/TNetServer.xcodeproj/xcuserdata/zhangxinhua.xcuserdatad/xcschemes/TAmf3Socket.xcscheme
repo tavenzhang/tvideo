@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DE8799351CFFF1D2003382BD"
-               BuildableName = "TNetServer.framework"
-               BlueprintName = "TNetServer"
+               BlueprintIdentifier = "DEC943FA1D3F2E4A006884CF"
+               BuildableName = "TAmf3Socket.framework"
+               BlueprintName = "TAmf3Socket"
                ReferencedContainer = "container:TNetServer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE36415D1D004FC600A3FE24"
-            BuildableName = "TVideoRoom.app"
-            BlueprintName = "TVideoRoom"
-            ReferencedContainer = "container:../TVideoRoom/TVideoRoom.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -54,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE8799351CFFF1D2003382BD"
-            BuildableName = "TNetServer.framework"
-            BlueprintName = "TNetServer"
+            BlueprintIdentifier = "DEC943FA1D3F2E4A006884CF"
+            BuildableName = "TAmf3Socket.framework"
+            BlueprintName = "TAmf3Socket"
             ReferencedContainer = "container:TNetServer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -72,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE8799351CFFF1D2003382BD"
-            BuildableName = "TNetServer.framework"
-            BlueprintName = "TNetServer"
+            BlueprintIdentifier = "DEC943FA1D3F2E4A006884CF"
+            BuildableName = "TAmf3Socket.framework"
+            BlueprintName = "TAmf3Socket"
             ReferencedContainer = "container:TNetServer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
