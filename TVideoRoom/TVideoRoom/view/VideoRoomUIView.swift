@@ -83,8 +83,17 @@ class VideoRoomUIView: UIViewController {
      发送聊天消息
      */
     func chatSendChatMessage(msg:String!) -> Void {
-        let chatMsg=s_msg_30001(type: 0, ruid: 0, cnt: msg);
-         SocketManager.sharedInstance.sendMessage(chatMsg);
+        if(DataCenterModel.sharedInstance.roomData?.key == "")
+        {
+            showSimplpAlertView(self, tl: "error", msg: "您还未登录不能发言", btnHiht: "登录", okHandle: {
+                self.tabBarController?.selectedIndex=3;
+            })
+        }
+        else{
+            let chatMsg=s_msg_30001(type: 0, ruid: 0, cnt: msg);
+            SocketManager.sharedInstance.sendMessage(chatMsg);
+        }
+
     }
     //测试rtmp 播放
     func rtmpStartPlay(notification:NSNotification)  {

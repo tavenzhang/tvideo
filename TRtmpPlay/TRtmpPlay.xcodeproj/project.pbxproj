@@ -31,7 +31,6 @@
 		DEDF33011D1DB9C000E55128 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF32DF1D1DB8CF00E55128 /* libavutil.a */; };
 		DEDF33021D1DB9C000E55128 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF32E01D1DB8CF00E55128 /* libcrypto.a */; };
 		DEDF33031D1DB9C000E55128 /* libfdk-aac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF32F81D1DB90700E55128 /* libfdk-aac.a */; };
-		DEDF33041D1DB9C000E55128 /* libpostproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF32F91D1DB90700E55128 /* libpostproc.a */; };
 		DEDF33051D1DB9C000E55128 /* librtmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF32E11D1DB8CF00E55128 /* librtmp.a */; };
 		DEDF33061D1DB9C000E55128 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF32E21D1DB8CF00E55128 /* libssl.a */; };
 		DEDF33071D1DB9C000E55128 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF32E31D1DB8CF00E55128 /* libswresample.a */; };
@@ -79,6 +78,7 @@
 		DEDF32F81D1DB90700E55128 /* libfdk-aac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfdk-aac.a"; path = "../libs/libfdk-aac.a"; sourceTree = "<group>"; };
 		DEDF32F91D1DB90700E55128 /* libpostproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpostproc.a; path = ../libs/libpostproc.a; sourceTree = "<group>"; };
 		DEDF33091D1DBB4200E55128 /* libx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libx264.a; path = ../libs/libx264.a; sourceTree = "<group>"; };
+		DEE870D61D57920F004103F5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,6 @@
 				DEDF33011D1DB9C000E55128 /* libavutil.a in Frameworks */,
 				DEDF33021D1DB9C000E55128 /* libcrypto.a in Frameworks */,
 				DEDF33031D1DB9C000E55128 /* libfdk-aac.a in Frameworks */,
-				DEDF33041D1DB9C000E55128 /* libpostproc.a in Frameworks */,
 				DEDF33051D1DB9C000E55128 /* librtmp.a in Frameworks */,
 				DEDF33061D1DB9C000E55128 /* libssl.a in Frameworks */,
 				DEDF33071D1DB9C000E55128 /* libswresample.a in Frameworks */,
@@ -109,6 +108,7 @@
 		DE6DEA481D1D1B0E001A72B9 = {
 			isa = PBXGroup;
 			children = (
+				DEE870D61D57920F004103F5 /* libiconv.tbd */,
 				DE6DEA7C1D1D1E7A001A72B9 /* framework */,
 				DE6DEA5D1D1D1C68001A72B9 /* kxmovie */,
 				DE6DEA541D1D1B0E001A72B9 /* TRtmpPlay */,

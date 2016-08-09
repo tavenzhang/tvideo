@@ -50,8 +50,6 @@ class MainTabBarController: UITabBarController {
         tabBarControllerAddChildViewController(getView("RankViewController"), title: "排行", imageName: "v2_order", selectedImageName: "v2_order_r", tag: 1)
         tabBarControllerAddChildViewController(getView("FindViewController"), title: "活动", imageName: "shopCart", selectedImageName: "shopCart", tag: 2)
         tabBarControllerAddChildViewController(getView("MyDetailViewController"), title: "我", imageName: "v2_my", selectedImageName: "v2_my_r", tag: 3)
-       
-
     }
     
     private func tabBarControllerAddChildViewController(childVC: UIViewController, title: String, imageName: String, selectedImageName: String, tag: Int) {

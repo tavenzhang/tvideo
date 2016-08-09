@@ -21,7 +21,7 @@ class SocketManager {
     var socketM:Amf3SocketManager?;
   
     private  init() {
-         socketM = Amf3SocketManager(heartTime: 10, msgHeadSize: 2, isByteBigEndian: true)
+        socketM = Amf3SocketManager(heartTime: 10, msgHeadSize: 2, isByteBigEndian: true)
         socketM!.onMsgResultHandle = onMsghandle;
         socketM!.onTLogHandle = self.socketlog;
     }
@@ -97,15 +97,15 @@ class SocketManager {
                 }
                 let queue = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
                 var index=0;
+                dataCenterM.roomData?.rtmpList.removeAll();
                 if (resultIpList.count > 0) {
                     for item2 in resultIpList {
                         index+=1;
                         dispatch_async(queue) {
                             let ret = KxMovieViewController.testRtmpConnect(item2);
-                            print("test connection----ret=\(ret)====item=\(item2)")
+                             LogSocket("test connection----ret=\(ret)====item=\(item2)")
                             if (ret > 0) {
                                 dataCenterM.roomData?.rtmpList.append(item2);
-                                
                                 if(dataCenterM.roomData?.rtmpList.count==1){
                                     
                                     dispatch_async(dispatch_get_main_queue()){

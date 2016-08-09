@@ -26,6 +26,7 @@
     self = [self initWithFrame:CGRectZero];
     if (self != nil) {
         faceView.block = block;
+        
     }
     return self;
 }

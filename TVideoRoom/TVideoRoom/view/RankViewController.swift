@@ -9,10 +9,11 @@
 import UIKit
 import Crashlytics
 
-class RankViewController:BaseTabViewController {
-   
-    override func viewDidLoad() {
-        super.viewDidLoad();
-    }
-   
+class RankViewController: BaseTabViewController {
+
+	override func viewDidLoad() {
+		super.viewDidLoad();
+      
+	}
+
 }

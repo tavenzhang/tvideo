@@ -32,3 +32,24 @@ func LogMessageTo(logger:COpaquePointer ,domain: String!, level: Int32, format: 
 func LogMessageToF(logger: COpaquePointer, filename: UnsafePointer<Int8>, lineNumber: Int32, functionName: UnsafePointer<Int8>, domain: String!, level: Int32, format: String!, args: CVarArgType...) {
     LogMessageToF_va(logger, filename, lineNumber, functionName, domain, level, format, getVaList(args))
 }
+
+extension String {
+    func substring(s: Int, _ e: Int? = nil) -> String {
+        let start = s >= 0 ? self.startIndex : self.endIndex
+        let startIndex = start.advancedBy(s)
+        
+        var end: String.Index
+        var endIndex: String.Index
+        if(e == nil){
+            end = self.endIndex
+            endIndex = self.endIndex
+        } else {
+            end = e >= 0 ? self.startIndex : self.endIndex
+            endIndex = end.advancedBy(e!)
+        }
+        
+        let range = Range<String.Index>(startIndex..<endIndex)
+        return self.substringWithRange(range)
+        
+    }
+}

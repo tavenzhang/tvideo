@@ -32,9 +32,7 @@
 		DE3641851D0050CA00A3FE24 /* As3MsgControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36417D1D0050CA00A3FE24 /* As3MsgControl.swift */; };
 		DE3641861D0050CA00A3FE24 /* RMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36417E1D0050CA00A3FE24 /* RMessages.swift */; };
 		DE3641871D0050CA00A3FE24 /* SMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36417F1D0050CA00A3FE24 /* SMessages.swift */; };
-		DE3641881D0050CA00A3FE24 /* EventCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3641801D0050CA00A3FE24 /* EventCollection.swift */; };
 		DE3641891D0050CA00A3FE24 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3641831D0050CA00A3FE24 /* SocketManager.swift */; };
-		DE696AF41D2CBC1F007F69F7 /* libFlurry_7.6.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE696AF31D2CBC1F007F69F7 /* libFlurry_7.6.4.a */; };
 		DE696AFD1D2D0DA2007F69F7 /* TChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE05D4901D2BE0820015FE5A /* TChat.framework */; };
 		DE696B131D2E3B66007F69F7 /* AlertViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE696B121D2E3B66007F69F7 /* AlertViewUtils.swift */; };
 		DE7A27A81D1AD22100DAAD8C /* NSLoggerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7A27A71D1AD22100DAAD8C /* NSLoggerSupport.swift */; };
@@ -48,6 +46,7 @@
 		DEBE43AE1D1EF15100178DA7 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43AC1D1EC05F00178DA7 /* BaseNavigationController.swift */; };
 		DEBE43B01D1EF24100178DA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBE43AF1D1EF24100178DA7 /* UIKit.framework */; };
 		DEBE43B21D1EF6C700178DA7 /* VideoRoomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43B11D1EF6C700178DA7 /* VideoRoomUIView.swift */; };
+		DEC8B3631D58CEFD000ACEBF /* EventCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC8B3621D58CEFD000ACEBF /* EventCollection.swift */; };
 		DEC944411D3F3042006884CF /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC944401D3F3042006884CF /* TAmf3Socket.framework */; };
 		DEC944461D3F5218006884CF /* Chat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEC944451D3F5218006884CF /* Chat.bundle */; };
 		DECECC9E1D2B4FE00030939E /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECC9C1D2B4FE00030939E /* MJRefresh.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -56,6 +55,7 @@
 		DEDF8C731D1A5C8C005A7AC4 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C721D1A5C8C005A7AC4 /* libiconv.tbd */; };
 		DEDF8C751D1A5C96005A7AC4 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C741D1A5C96005A7AC4 /* libbz2.tbd */; };
 		DEDF8C771D1A5CB4005A7AC4 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C761D1A5CB4005A7AC4 /* VideoToolbox.framework */; };
+		DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE870D81D579A3D004103F5 /* libFlurry_7.6.6.a */; };
 		DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF400B81D1D55770093A883 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,7 +90,6 @@
 		DE36417D1D0050CA00A3FE24 /* As3MsgControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = As3MsgControl.swift; sourceTree = "<group>"; };
 		DE36417E1D0050CA00A3FE24 /* RMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMessages.swift; sourceTree = "<group>"; };
 		DE36417F1D0050CA00A3FE24 /* SMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMessages.swift; sourceTree = "<group>"; };
-		DE3641801D0050CA00A3FE24 /* EventCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventCollection.swift; path = ../EventCollection.swift; sourceTree = "<group>"; };
 		DE3641831D0050CA00A3FE24 /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		DE48447F1D1A447400C17A5B /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = BBSZLib.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/BBSZLib.framework"; sourceTree = "<absolute>"; };
 		DE4844821D1A447400C17A5B /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/CocoaAsyncSocket.framework"; sourceTree = "<absolute>"; };
@@ -129,6 +128,7 @@
 		DEBE43AC1D1EC05F00178DA7 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseNavigationController.swift; path = ../view/BaseNavigationController.swift; sourceTree = "<group>"; };
 		DEBE43AF1D1EF24100178DA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DEBE43B11D1EF6C700178DA7 /* VideoRoomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoRoomUIView.swift; path = ../view/VideoRoomUIView.swift; sourceTree = "<group>"; };
+		DEC8B3621D58CEFD000ACEBF /* EventCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollection.swift; sourceTree = "<group>"; };
 		DEC944401D3F3042006884CF /* TAmf3Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TAmf3Socket.framework; path = "../TNetServer/build/Debug-iphoneos/TAmf3Socket.framework"; sourceTree = "<group>"; };
 		DEC944451D3F5218006884CF /* Chat.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Chat.bundle; sourceTree = "<group>"; };
 		DECECC8E1D2B4ECA0030939E /* TChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TChat.framework; path = "../../../Library/Developer/Xcode/DerivedData/TWork-bvaedicxmznhtecvdmknxiicdypz/Build/Products/Debug-iphoneos/TChat.framework"; sourceTree = "<group>"; };
@@ -152,6 +152,7 @@
 		DEDF8C761D1A5CB4005A7AC4 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		DEDF8C781D1ACFE7005A7AC4 /* TRtmpPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TRtmpPush.framework; path = "../../../../Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/TRtmpPush.framework"; sourceTree = "<group>"; };
 		DEDF8C7A1D1AD053005A7AC4 /* TNetServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = TNetServer.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/TNetServer.framework"; sourceTree = "<absolute>"; };
+		DEE870D81D579A3D004103F5 /* libFlurry_7.6.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_7.6.6.a; path = ../libs/libFlurry_7.6.6.a; sourceTree = "<group>"; };
 		DEF400B81D1D55770093A883 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -160,11 +161,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */,
 				DEC944411D3F3042006884CF /* TAmf3Socket.framework in Frameworks */,
 				DEA1CFA21D368C75006F290E /* Alamofire.framework in Frameworks */,
 				DE7D6AAD1D2FEB99001FC105 /* TRtmpPlay.framework in Frameworks */,
 				DE696AFD1D2D0DA2007F69F7 /* TChat.framework in Frameworks */,
-				DE696AF41D2CBC1F007F69F7 /* libFlurry_7.6.4.a in Frameworks */,
 				DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */,
 				DECECC9E1D2B4FE00030939E /* MJRefresh.framework in Frameworks */,
 				DEBE43B01D1EF24100178DA7 /* UIKit.framework in Frameworks */,
@@ -284,6 +285,7 @@
 		DE36417B1D0050CA00A3FE24 /* net */ = {
 			isa = PBXGroup;
 			children = (
+				DEC8B3621D58CEFD000ACEBF /* EventCollection.swift */,
 				DE36417C1D0050CA00A3FE24 /* amfSocket */,
 				DE3641811D0050CA00A3FE24 /* http */,
 				DE3641821D0050CA00A3FE24 /* socket */,
@@ -313,7 +315,6 @@
 		DE3641821D0050CA00A3FE24 /* socket */ = {
 			isa = PBXGroup;
 			children = (
-				DE3641801D0050CA00A3FE24 /* EventCollection.swift */,
 			);
 			path = socket;
 			sourceTree = "<group>";
@@ -353,6 +354,7 @@
 		F10C0C13BDD90EA4BB0D6ED7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEE870D81D579A3D004103F5 /* libFlurry_7.6.6.a */,
 				DEA1CFAE1D368F3A006F290E /* Chat.bundle */,
 				DEA1CFA71D368D4E006F290E /* TNetServer.framework */,
 				DEC944401D3F3042006884CF /* TAmf3Socket.framework */,
@@ -576,8 +578,8 @@
 				DE1645311D1FBE1A00E21B4A /* FreshHot.swift in Sources */,
 				DEBE43B21D1EF6C700178DA7 /* VideoRoomUIView.swift in Sources */,
 				DE1645291D1F8FDB00E21B4A /* HomeTableHeadView.swift in Sources */,
+				DEC8B3631D58CEFD000ACEBF /* EventCollection.swift in Sources */,
 				DE3641861D0050CA00A3FE24 /* RMessages.swift in Sources */,
-				DE3641881D0050CA00A3FE24 /* EventCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

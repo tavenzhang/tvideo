@@ -36,7 +36,7 @@ class DataCenterModel {
     //主页数据；
     var homeData: HomeData?;
     //房间内数据
-    var roomData:RoomData?;
+    var roomData:RoomData?=RoomData();
     
     
 }

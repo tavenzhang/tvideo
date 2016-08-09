@@ -11,22 +11,29 @@ import UIKit
 
 /// 房间内具体信息
 class RoomData: NSObject {
-    var socketList:[String]?=["117.27.250.50:9015","117.27.250.83:9015","222.161.187.171:9015","14.29.50.69:9015","183.131.213.175:9015","116.31.99.233:9015"];
-    var socketIp:String="116.31.99.233";
+    
+    var socketList:[String]?;
+    //var socketIp:String="183.131.213.175";
     var port:Int = 9013;
     var sid:String = "";
     var lastRtmp="";
-    var roomId:Int = 1934468
+    var roomId:Int = 1761828
     var pass:String="";
     var isPublish = false;
     var publishUrl="";
-    var key = "2lhppu074j7atof7kd4562u5p0";
+    var key = "";
     var aeskey = "";
     var rtmpList=[String!]();
     
     var rtmpPath:String{
         get{
             return lastRtmp+"/"+sid;
+        }
+    }
+    
+    var socketIp:String{
+        get{
+            return socketList![0];
         }
     }
 
