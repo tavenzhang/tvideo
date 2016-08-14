@@ -51,6 +51,12 @@
 		DEC944461D3F5218006884CF /* Chat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEC944451D3F5218006884CF /* Chat.bundle */; };
 		DECECC9E1D2B4FE00030939E /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECC9C1D2B4FE00030939E /* MJRefresh.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECCBC1D2B606C0030939E /* libsqlite3.tbd */; };
+		DED75C101D60264B00470CFF /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED75C0F1D60264B00470CFF /* TAmf3Socket.framework */; };
+		DED75C111D60264B00470CFF /* TAmf3Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DED75C0F1D60264B00470CFF /* TAmf3Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DED75C141D60265000470CFF /* BBSZLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED75C131D60265000470CFF /* BBSZLib.framework */; };
+		DED75C151D60265000470CFF /* BBSZLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DED75C131D60265000470CFF /* BBSZLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DED75C171D60265000470CFF /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED75C161D60265000470CFF /* CocoaAsyncSocket.framework */; };
+		DED75C181D60265000470CFF /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DED75C161D60265000470CFF /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C701D1A5C7C005A7AC4 /* libz.tbd */; };
 		DEDF8C731D1A5C8C005A7AC4 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C721D1A5C8C005A7AC4 /* libiconv.tbd */; };
 		DEDF8C751D1A5C96005A7AC4 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C741D1A5C96005A7AC4 /* libbz2.tbd */; };
@@ -58,6 +64,22 @@
 		DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE870D81D579A3D004103F5 /* libFlurry_7.6.6.a */; };
 		DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF400B81D1D55770093A883 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DED75C121D60264C00470CFF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DED75C181D60265000470CFF /* CocoaAsyncSocket.framework in Embed Frameworks */,
+				DED75C111D60264B00470CFF /* TAmf3Socket.framework in Embed Frameworks */,
+				DED75C151D60265000470CFF /* BBSZLib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3A05038CEC7076ADA61914DD /* Pods_TVideoRoom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVideoRoom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +168,12 @@
 		DECECCBA1D2B56B70030939E /* TChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TChat.framework; path = "../../../Library/Developer/Xcode/DerivedData/TWork-bvaedicxmznhtecvdmknxiicdypz/Build/Products/Debug-iphonesimulator/TChat.framework"; sourceTree = "<group>"; };
 		DECECCBC1D2B606C0030939E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DECECCBE1D2B61940030939E /* TNetServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = TNetServer.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-bvaedicxmznhtecvdmknxiicdypz/Build/Products/Debug-iphoneos/TNetServer.framework"; sourceTree = "<absolute>"; };
+		DED75C051D60215500470CFF /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Debug-iphoneos/CocoaAsyncSocket.framework"; sourceTree = "<absolute>"; };
+		DED75C091D60216800470CFF /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = BBSZLib.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Debug-iphoneos/BBSZLib.framework"; sourceTree = "<absolute>"; };
+		DED75C0C1D60235000470CFF /* TAmf3Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = TAmf3Socket.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Debug-iphoneos/TAmf3Socket.framework"; sourceTree = "<absolute>"; };
+		DED75C0F1D60264B00470CFF /* TAmf3Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = TAmf3Socket.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Release-iphoneos/TAmf3Socket.framework"; sourceTree = "<absolute>"; };
+		DED75C131D60265000470CFF /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = BBSZLib.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Release-iphoneos/BBSZLib.framework"; sourceTree = "<absolute>"; };
+		DED75C161D60265000470CFF /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Release-iphoneos/CocoaAsyncSocket.framework"; sourceTree = "<absolute>"; };
 		DEDF8C701D1A5C7C005A7AC4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DEDF8C721D1A5C8C005A7AC4 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		DEDF8C741D1A5C96005A7AC4 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
@@ -166,13 +194,16 @@
 				DEA1CFA21D368C75006F290E /* Alamofire.framework in Frameworks */,
 				DE7D6AAD1D2FEB99001FC105 /* TRtmpPlay.framework in Frameworks */,
 				DE696AFD1D2D0DA2007F69F7 /* TChat.framework in Frameworks */,
+				DED75C141D60265000470CFF /* BBSZLib.framework in Frameworks */,
 				DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */,
 				DECECC9E1D2B4FE00030939E /* MJRefresh.framework in Frameworks */,
 				DEBE43B01D1EF24100178DA7 /* UIKit.framework in Frameworks */,
+				DED75C101D60264B00470CFF /* TAmf3Socket.framework in Frameworks */,
 				DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */,
 				DEDF8C771D1A5CB4005A7AC4 /* VideoToolbox.framework in Frameworks */,
 				DEDF8C751D1A5C96005A7AC4 /* libbz2.tbd in Frameworks */,
 				DEDF8C731D1A5C8C005A7AC4 /* libiconv.tbd in Frameworks */,
+				DED75C171D60265000470CFF /* CocoaAsyncSocket.framework in Frameworks */,
 				DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */,
 				74DE4B34403B481EA6C95737 /* Pods_TVideoRoom.framework in Frameworks */,
 			);
@@ -228,6 +259,12 @@
 		DE3641551D004FC600A3FE24 = {
 			isa = PBXGroup;
 			children = (
+				DED75C161D60265000470CFF /* CocoaAsyncSocket.framework */,
+				DED75C131D60265000470CFF /* BBSZLib.framework */,
+				DED75C0F1D60264B00470CFF /* TAmf3Socket.framework */,
+				DED75C0C1D60235000470CFF /* TAmf3Socket.framework */,
+				DED75C091D60216800470CFF /* BBSZLib.framework */,
+				DED75C051D60215500470CFF /* CocoaAsyncSocket.framework */,
 				DEC944451D3F5218006884CF /* Chat.bundle */,
 				DE3641601D004FC600A3FE24 /* TVideoRoom */,
 				DE36415F1D004FC600A3FE24 /* Products */,
@@ -423,6 +460,7 @@
 				6DC4DB5F94FF043F3CE45998 /* Embed Pods Frameworks */,
 				7BB65991FC5302439623D2F9 /* Copy Pods Resources */,
 				DE05D44A1D2BAB300015FE5A /* Run Script */,
+				DED75C121D60264C00470CFF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -697,7 +735,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
