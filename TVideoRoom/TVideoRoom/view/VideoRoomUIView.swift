@@ -29,7 +29,6 @@ class VideoRoomUIView: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor=UIColor.whiteColor();
-       SocketManager.sharedInstance.startConnectSocket(DataCenterModel.sharedInstance.roomData!.socketIp, mport: DataCenterModel.sharedInstance.roomData!.port);
         addNSNotification();
         self.navigationController?.setNavigationBarHidden(true, animated: false);
           self.view.addSubview(backBtn);
@@ -59,6 +58,7 @@ class VideoRoomUIView: UIViewController {
     }
   
     override func viewDidAppear(animated: Bool) {
+        
 
     }
     override func didReceiveMemoryWarning() {
@@ -69,8 +69,38 @@ class VideoRoomUIView: UIViewController {
     func addNSNotification() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoRoomUIView.rtmpStartPlay), name: RTMP_START_PLAY, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoRoomUIView.chatReceiveMessage30001), name: E_SOCKERT_Chat_30001, object: nil);
-     
-        
+    }
+    
+    //获取socket 列表
+    func c2sGetSocket(roomId:Int){
+        let pathHttp = NSString(format: HTTP_VIDEO_ROOM,roomId,"false") as String;
+        DataCenterModel.sharedInstance.roomData?.roomId = roomId;
+        DataCenterModel.sharedInstance.roomData?.rtmpList.removeAll();
+        dispatch_async(dispatch_get_global_queue(0, 0)){
+            HttpTavenService.requestJson(pathHttp){
+                (dataResutl:HttpResult) in
+                if(dataResutl.isSuccess)
+                {
+                    if(dataResutl.dataJson!["ret"].int == 1)
+                    {
+                        let serverStr = decodeAES(dataResutl.dataJson!["server"].string!) ;
+                        let serArr = serverStr.componentsSeparatedByString("|");
+                        let port =  Int(serArr[1])!;
+                        DataCenterModel.sharedInstance.roomData?.port = port;
+                        let server = serArr[0] as String;
+                        DataCenterModel.sharedInstance.roomData?.socketList = server.componentsSeparatedByString(",");
+                        SocketManager.sharedInstance.startConnectSocket(DataCenterModel.sharedInstance.roomData!.socketIp, mport: DataCenterModel.sharedInstance.roomData!.port);
+                    }
+                    else{
+                        showSimplpAlertView(self,tl: "服务获取失败", msg:"请稍等一会再试试!");
+                    }
+                }
+                else{
+                    showSimplpAlertView(self,tl: "房间id无效", msg:"请选择其他房间试试!");
+                }
+                
+            }
+        }
     }
     /**
      接收到聊天信息

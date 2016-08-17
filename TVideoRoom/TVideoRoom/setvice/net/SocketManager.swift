@@ -107,7 +107,6 @@ class SocketManager {
                             if (ret > 0) {
                                 dataCenterM.roomData?.rtmpList.append(item2);
                                 if(dataCenterM.roomData?.rtmpList.count==1){
-                                    
                                     dispatch_async(dispatch_get_main_queue()){
                                         let msg2001 = s_msg_20001(cmd: MSG_20001,rtmpStr: item2);
                                         self.socketM!.sendMessage(msg2001);

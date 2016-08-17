@@ -345,39 +345,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         {
             itemAcive = (homeData?.tuijianList?[indexPath.row])!;
         }
-        var roomId=itemAcive.uid as! Int;
-        DataCenterModel.sharedInstance.roomData?.roomId = roomId;
+        let roomId=itemAcive.uid as! Int;
+        let roomview:VideoRoomUIView =  VideoRoomUIView();
+        roomview.c2sGetSocket(roomId);
+        self.navigationController?.pushViewController(roomview, animated: true);
         Flurry.logEvent("enter videoRoom", withParameters: ["roomId":roomId], timed: false);
-        let pathHttp = NSString(format: HTTP_VIDEO_ROOM,roomId,"false") as String;
-        dispatch_async(dispatch_get_global_queue(0, 0)){
-            HttpTavenService.requestJson(pathHttp){
-                (dataResutl:HttpResult) in
-                if(dataResutl.isSuccess)
-                {
-                    if(dataResutl.dataJson!["ret"].int == 1)
-                    {
-                        let serverStr = decodeAES(dataResutl.dataJson!["server"].string!) ;
-                        let serArr = serverStr.componentsSeparatedByString("|");
-                        let port =  Int(serArr[1])!;
-                        DataCenterModel.sharedInstance.roomData?.port = port;
-                        let server = serArr[0] as String;
-                        DataCenterModel.sharedInstance.roomData?.socketList = server.componentsSeparatedByString(",");
-                        dispatch_async(dispatch_get_main_queue()){
-                            [weak self]in
-                            let roomview:VideoRoomUIView =  VideoRoomUIView();
-                            self?.navigationController?.pushViewController(roomview, animated: true);
-                        }
-                    }
-                    else{
-                        showSimplpAlertView(self,tl: "服务获取失败", msg:"请稍等一会再试试!");
-                    }
-                }
-                else{
-                       showSimplpAlertView(self,tl: "房间id无效", msg:"请选择其他房间试试!");
-                }
-              
-            }
-        }
     }
 }
 
