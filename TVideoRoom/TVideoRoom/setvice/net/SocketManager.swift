@@ -51,7 +51,6 @@ class SocketManager {
     {
         socketM!.closeSocket();
     }
-    
 
     
     func sendMessage(message:S_msg_base) -> Void {
@@ -64,14 +63,7 @@ class SocketManager {
         let json = JSON(message);
         let cmd = json["cmd"].int!;
         let dataCenterM = DataCenterModel.sharedInstance;
-        if((streamThread == nil))
-        {
-            streamThread = NSThread.currentThread();
-            //NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(AMF3MsgControl.chooseRtmp), name: E_SOCKERT_2001, object: nil)
-        }
-        // NSLog("reve:<--cmd=%d---%s", cmd,json);
         LogSocket("reve:<--cmd=%d---%@",args: cmd,json.description);
-        // print("reve:<--cmd=\(cmd)---\(json)")
         switch cmd {
         case MSG_10000://登陆验证
             dataCenterM.roomData!.aeskey = json["limit"].string!;
