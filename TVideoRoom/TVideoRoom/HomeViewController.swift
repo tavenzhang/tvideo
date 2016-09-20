@@ -234,9 +234,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-            return CGSizeMake(ScreenWidth, HomeCollectionViewCellMargin*15)
+            return CGSizeMake(ScreenWidth, HomeCollectionViewCellMargin*15);
         } else if section == 1 {
-            return CGSizeMake(ScreenWidth, HomeCollectionViewCellMargin*3)
+            return CGSizeMake(ScreenWidth, HomeCollectionViewCellMargin*3);
         }
         
         return CGSizeZero
@@ -266,8 +266,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     private func startAnimation(view: UIView, offsetY: CGFloat, duration: NSTimeInterval) {
         
-        view.transform = CGAffineTransformMakeTranslation(0, offsetY)
-        
+        view.transform = CGAffineTransformMakeTranslation(0, offsetY);
         UIView.animateWithDuration(duration, animations: { () -> Void in
             view.transform = CGAffineTransformIdentity
         })

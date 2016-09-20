@@ -80,7 +80,6 @@ class HomeCell: UICollectionViewCell {
         addSubview(giveImageView)
         addSubview(specificsLabel)
         addSubview(nameLabel)
-        
         weak var tmpSelf = self
   
     }
@@ -89,7 +88,8 @@ class HomeCell: UICollectionViewCell {
     var activities: Activity? {
         didSet {
             self.type = .Horizontal
-            backImageView.sd_setImageWithURL(NSURL(string: activities!.hostImg!), placeholderImage: UIImage(named: "v2_placeholder_full_size"))
+            let imageUrl = NSString(format: HTTP_IMAGE,activities!.headimg!) as String;
+            backImageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "v2_placeholder_full_size"))
             nameLabel.text=activities!.username;
             nameLabel.hidden = false;
         }

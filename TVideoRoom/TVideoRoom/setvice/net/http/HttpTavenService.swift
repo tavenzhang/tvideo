@@ -8,11 +8,11 @@
 import Alamofire
 import SwiftyJSON
 //获取主播列表
-let HTTP_HOST_LIST = "http://www.d1fang.net/videolist.json?_=1466990345519sJvR";
-let HTTP_HOST_LIST2 = "http://www.521mitao.com/videoList?_=1469268972940UQCB&type=all";
-let HTTP_VIDEO_ROOM = "http://v.d1fang.net/video_gs/socketServer?rid=%d&flag=%@";
-
-let HTTP_LOGIN = "http://www.d1fang.net/login";
+let HTTP_HOST_LIST = "http://www.languifang520.com/videolist.json?_=1466990345519sJvR";
+let HTTP_HOST_LIST2 = "http://www.lgf987.com/videoList?_=1469268972940UQCB&type=all";
+let HTTP_VIDEO_ROOM = "http://v.languifang520.com/video_gs/socketServer?rid=%d&flag=%@";
+let HTTP_IMAGE = "http://p.languifang520.com/%@?w=356&h=266";
+let HTTP_LOGIN = "http://www.languifang520.com/login";
 
 class HttpResult: NSObject {
 

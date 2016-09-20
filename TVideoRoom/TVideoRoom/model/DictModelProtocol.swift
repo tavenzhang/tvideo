@@ -15,7 +15,6 @@ import Foundation
 ///  字典转模型管理器
 public class DictModelManager {
     
-    
     private static let instance = DictModelManager()
     /// 全局统一访问入口
     public class var sharedManager: DictModelManager {
@@ -37,7 +36,7 @@ public class DictModelManager {
         // 模型信息
         let infoDict = fullModelInfo(cls)
         
-        let obj: AnyObject = (cls as! NSObject.Type).init()
+        let obj: AnyObject = (cls as! NSObject.Type).init();
     
         autoreleasepool {
             // 3. 遍历模型字典

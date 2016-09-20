@@ -28,7 +28,7 @@ class MyDetailViewController: BaseTabViewController {
         HttpTavenService.requestJson(HTTP_LOGIN, isGet: false, para: paraList as? [String : AnyObject]) { (httpResult) in
             if(httpResult.isSuccess)
             {
-                if( httpResult.dataJson!["status"].int! == 1)
+                if( httpResult.dataJson?["status"].int! == 1)
                 {
                     let key = httpResult.dataJson!["msg"].string!;
                     DataCenterModel.sharedInstance.roomData?.key=key;

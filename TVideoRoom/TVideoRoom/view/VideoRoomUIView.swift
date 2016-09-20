@@ -81,7 +81,7 @@ class VideoRoomUIView: UIViewController {
                 (dataResutl:HttpResult) in
                 if(dataResutl.isSuccess)
                 {
-                    if(dataResutl.dataJson!["ret"].int == 1)
+                    if((dataResutl.dataJson != nil)  && (dataResutl.dataJson!["ret"].int == 1))
                     {
                         let serverStr = decodeAES(dataResutl.dataJson!["server"].string!) ;
                         let serArr = serverStr.componentsSeparatedByString("|");
