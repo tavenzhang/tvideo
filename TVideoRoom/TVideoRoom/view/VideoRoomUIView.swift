@@ -84,12 +84,16 @@ class VideoRoomUIView: UIViewController {
                     if((dataResutl.dataJson != nil)  && (dataResutl.dataJson!["ret"].int == 1))
                     {
                         let serverStr = decodeAES(dataResutl.dataJson!["server"].string!) ;
-                        let serArr = serverStr.componentsSeparatedByString("|");
-                        let port =  Int(serArr[1])!;
-                        DataCenterModel.sharedInstance.roomData?.port = port;
-                        let server = serArr[0] as String;
-                        DataCenterModel.sharedInstance.roomData?.socketList = server.componentsSeparatedByString(",");
-                        SocketManager.sharedInstance.startConnectSocket(DataCenterModel.sharedInstance.roomData!.socketIp, mport: DataCenterModel.sharedInstance.roomData!.port);
+                        let serverList = serverStr.componentsSeparatedByString(",");
+//                        let ipStr = serverList[0];
+//                        let serArr = ipStr.componentsSeparatedByString(":");
+//                        let port =  Int(serArr[1])!;
+//                        DataCenterModel.sharedInstance.roomData?.port = port;
+//                       // let server = serArr[0] as String;
+//                        let server = "104.250.147.122";
+//                        DataCenterModel.sharedInstance.roomData?.socketList = server.componentsSeparatedByString(",");
+                        SocketManager.sharedInstance.testFastSocket(serverList);
+                        //SocketManager.sharedInstance.startConnectSocket(DataCenterModel.sharedInstance.roomData!.socketIp, mport: DataCenterModel.sharedInstance.roomData!.port);
                     }
                     else{
                         showSimplpAlertView(self,tl: "服务获取失败", msg:"请稍等一会再试试!");

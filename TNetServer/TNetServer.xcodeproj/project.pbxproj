@@ -495,7 +495,7 @@
 				DE87993D1CFFF1D2003382BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		DEC944021D3F2E4A006884CF /* Build configuration list for PBXNativeTarget "TAmf3Socket" */ = {
 			isa = XCConfigurationList;
@@ -504,7 +504,7 @@
 				DEC944011D3F2E4A006884CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

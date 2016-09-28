@@ -12,8 +12,6 @@ import UIKit
 /// 房间内具体信息
 class RoomData: NSObject {
     
-    var socketList:[String]?;
-    //var socketIp:String="183.131.213.175";
     var port:Int = 9013;
     var sid:String = "";
     var lastRtmp="";
@@ -30,13 +28,7 @@ class RoomData: NSObject {
             return lastRtmp+"/"+sid;
         }
     }
-    
-    var socketIp:String{
-        get{
-            return socketList![0];
-        }
-    }
-
+    var socketIp:String? ;
 }
 
 

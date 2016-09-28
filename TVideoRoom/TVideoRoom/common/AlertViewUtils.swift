@@ -72,7 +72,7 @@ func showLoginlert(uiCtrol:UIViewController?,loginHandle:loginAlertHandle?=nil) 
         (textF:UITextField) in
         textF.placeholder = "密码";
         textF.secureTextEntry=true;
-        textF.text="shallay"
+        textF.text="111111"
     }
     
     let  canelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Destructive){

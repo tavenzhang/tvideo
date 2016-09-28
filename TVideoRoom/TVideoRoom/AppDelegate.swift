@@ -22,12 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
         Flurry.startSession("G5RPTXT453GYG8DK5BSD");
+        NSThread.sleepForTimeInterval(NSTimeInterval(1));
         window = UIWindow(frame: ScreenBounds)
         window!.makeKeyAndVisible();
         LoggerStart(LoggerGetDefaultLogger())
         LogMarker("strart");
        let manVc = MainTabBarController();
-
         window?.rootViewController = manVc;
      
         return true

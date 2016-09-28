@@ -25,11 +25,39 @@ class SocketManager {
         socketM!.onMsgResultHandle = onMsghandle;
         socketM!.onTLogHandle = self.socketlog;
     }
-    
-    
+
     deinit
     {
         NSNotificationCenter.defaultCenter().removeObserver(self);
+    }
+
+    //测速并选择最快的socket
+    func testFastSocket(ipList:[String])->Void
+    {
+        DataCenterModel.sharedInstance.roomData?.socketIp = nil;
+        DataCenterModel.sharedInstance.roomData?.port = 0;
+        for item in ipList{
+            let queue = dispatch_queue_create("testSocket", DISPATCH_QUEUE_CONCURRENT);
+            dispatch_async(queue) {
+                let as3Socket:Amf3SocketManager=Amf3SocketManager(heartTime: 10, msgHeadSize: 2, isByteBigEndian: true);
+                let ip = item.componentsSeparatedByString(":")[0];
+                let port = Int(item.componentsSeparatedByString(":")[1]);
+                LogSocket("test ip=\(ip)---port--\(port)---start");
+                as3Socket.onConnectSocket(ip,port: port!,timeOut: 0){
+                    as3Socket.closeSocket();
+                        dispatch_async(dispatch_get_main_queue()){
+                            [weak self] in
+                            if(DataCenterModel.sharedInstance.roomData?.socketIp == nil)
+                            {
+                                LogSocket("best choose line =\(ip)---port--\(port)---finished!");
+                                DataCenterModel.sharedInstance.roomData?.socketIp = ip;
+                                DataCenterModel.sharedInstance.roomData?.port = port!;
+                                self?.startConnectSocket(ip,mport: port!);
+                            }
+                        }
+                }
+            }
+        }
     }
     
     func socketlog(log:String) -> Void {
@@ -40,7 +68,6 @@ class SocketManager {
     {
         socketM!.onConnectSocket(host, port: mport, timeOut: timeOut){
             [weak self] in
-
             self?.sendMessage(S_msg_base(_cmd: 10000));
             self?.socketM?.heartMessage = s_msg_heart_9999(_cmd: 9999);
         }
@@ -50,6 +77,8 @@ class SocketManager {
     func closeSocket()->Void
     {
         socketM!.closeSocket();
+        DataCenterModel.sharedInstance.roomData?.socketIp = nil;
+        DataCenterModel.sharedInstance.roomData?.port = 0;
     }
 
     
@@ -68,7 +97,7 @@ class SocketManager {
         case MSG_10000://登陆验证
             dataCenterM.roomData!.aeskey = json["limit"].string!;
             //socketM.setStartHeart(true);
-            let r_msg = r_msg_10000(_data: (dataCenterM.roomData!.key + String(dataCenterM.roomData!.roomId) + "jugg123"), _aesKey: dataCenterM.roomData!.aeskey);
+            let r_msg = r_msg_10000(_data: (dataCenterM.roomData!.key + String(dataCenterM.roomData!.roomId) + "73uxh9*@(58u)fgxt"), _aesKey: dataCenterM.roomData!.aeskey);
             let s_msge = s_msg_10001(cmd: MSG_10001, _roomId: dataCenterM.roomData!.roomId, _pass: dataCenterM.roomData!.pass, _roomLimit: r_msg.getAesk(), _isPublish: dataCenterM.roomData!.isPublish, _publishUrl: dataCenterM.roomData!.publishUrl, _sid: dataCenterM.roomData!.sid, _key: dataCenterM.roomData!.key);
             socketM!.sendMessage(s_msge);
         case MSG_10002://进入房间
@@ -176,7 +205,6 @@ class SocketManager {
             
         default:
             break
-            //print("222");
         }
         
     }

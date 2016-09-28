@@ -13,9 +13,8 @@ class r_msg_noBody:R_msg_base{
     
     
 }
-func decodeAES(data:String) -> String {
+func decodeAES(data:String,aesKey:String="hg%43*&^56ig$g38") -> String {
     let IV:String = "0102030405060708";
-    let aesKey:String = "hg%43*&^56ig$g38";
     let resut = try! data.decryptBase64ToString(AES(key: aesKey, iv:IV));
     return resut;
 }
