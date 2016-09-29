@@ -1032,8 +1032,8 @@
 		DE5CCC481D275C4C005DA681 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1052,7 +1052,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = taven.TChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ce465af3-eedc-43d1-863f-c96da30d3e03";
+				PROVISIONING_PROFILE = "0cb009ff-224c-4d33-8d6d-9931a9c3e5e7";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1080,7 +1080,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = taven.TChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ce465af3-eedc-43d1-863f-c96da30d3e03";
+				PROVISIONING_PROFILE = "0cb009ff-224c-4d33-8d6d-9931a9c3e5e7";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

@@ -75,7 +75,6 @@ class VideoRoomUIView: UIViewController {
     func c2sGetSocket(roomId:Int){
         let pathHttp = NSString(format: HTTP_VIDEO_ROOM,roomId,"false") as String;
         DataCenterModel.sharedInstance.roomData?.roomId = roomId;
-        DataCenterModel.sharedInstance.roomData?.rtmpList.removeAll();
         dispatch_async(dispatch_get_global_queue(0, 0)){
             HttpTavenService.requestJson(pathHttp){
                 (dataResutl:HttpResult) in
@@ -85,15 +84,7 @@ class VideoRoomUIView: UIViewController {
                     {
                         let serverStr = decodeAES(dataResutl.dataJson!["server"].string!) ;
                         let serverList = serverStr.componentsSeparatedByString(",");
-//                        let ipStr = serverList[0];
-//                        let serArr = ipStr.componentsSeparatedByString(":");
-//                        let port =  Int(serArr[1])!;
-//                        DataCenterModel.sharedInstance.roomData?.port = port;
-//                       // let server = serArr[0] as String;
-//                        let server = "104.250.147.122";
-//                        DataCenterModel.sharedInstance.roomData?.socketList = server.componentsSeparatedByString(",");
                         SocketManager.sharedInstance.testFastSocket(serverList);
-                        //SocketManager.sharedInstance.startConnectSocket(DataCenterModel.sharedInstance.roomData!.socketIp, mport: DataCenterModel.sharedInstance.roomData!.port);
                     }
                     else{
                         showSimplpAlertView(self,tl: "服务获取失败", msg:"请稍等一会再试试!");

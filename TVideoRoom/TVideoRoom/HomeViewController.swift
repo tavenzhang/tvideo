@@ -76,14 +76,12 @@ class HomeViewController: BaseTabViewController {
         collectionView.registerClass(HomeTableHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "firstHeaderView")
         collectionView.registerClass(HomeCollectionFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
         view.addSubview(collectionView)
-        let refreshHeadView = LFBRefreshHeader(refreshingTarget: self, refreshingAction: #selector(HomeViewController.headRefresh))
-
+        let refreshHeadView = LFBRefreshHeader(refreshingTarget: self, refreshingAction: #selector(HomeViewController.headRefresh));
         collectionView.mj_header = refreshHeadView;
         let  refreshFootView=LFBRefreshFooter(refreshingTarget: self, refreshingAction: #selector(HomeViewController.getMoreFresh));
         collectionView.mj_footer = refreshFootView;
         self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0);
         self.collectionView.hidden=true;
- 
     }
     
     /**
@@ -106,7 +104,7 @@ class HomeViewController: BaseTabViewController {
                     return;
                 }
                 var data = dataResutl.dataJson!;
-                let genData = data["gen"].arrayObject ;
+                let genData = data["sls"].arrayObject ;
                 if((genData) != nil)
                 {
                      self.homeData?.tuijianList = BaseDeSerialsModel.objectsWithArray(genData!, cls: Activity.classForCoder()) as? [Activity];

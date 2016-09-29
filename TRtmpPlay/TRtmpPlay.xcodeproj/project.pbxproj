@@ -380,36 +380,7 @@
 		DE6DEA5B1D1D1B0E001A72B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = ../FFmpeg;
-				INFOPLIST_FILE = TRtmpPlay/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = ../libs;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = (
-					"-liconv",
-					"-lbz2",
-					"-lz",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = taven.TRtmpPlay;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ce465af3-eedc-43d1-863f-c96da30d3e03";
-				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "FFmpeg ../FFmpeg";
-			};
-			name = Debug;
-		};
-		DE6DEA5C1D1D1B0E001A72B9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -429,7 +400,36 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = taven.TRtmpPlay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ce465af3-eedc-43d1-863f-c96da30d3e03";
+				PROVISIONING_PROFILE = "0cb009ff-224c-4d33-8d6d-9931a9c3e5e7";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "FFmpeg ../FFmpeg";
+			};
+			name = Debug;
+		};
+		DE6DEA5C1D1D1B0E001A72B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 258333601@163.com (PQJ4GP4565)";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = ../FFmpeg;
+				INFOPLIST_FILE = TRtmpPlay/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = ../libs;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = (
+					"-liconv",
+					"-lbz2",
+					"-lz",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = taven.TRtmpPlay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0cb009ff-224c-4d33-8d6d-9931a9c3e5e7";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "FFmpeg ../FFmpeg";
 			};

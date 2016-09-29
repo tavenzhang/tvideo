@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        let manVc = MainTabBarController();
         window?.rootViewController = manVc;
      
+        
         return true
     }
 

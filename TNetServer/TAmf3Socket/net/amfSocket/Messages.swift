@@ -33,7 +33,6 @@ public class R_msg_base:NSObject {
 
 
 public class S_msg_base:NSObject {
-    
    public  var cmd:Int=0;
    public init(_cmd:Int) {
         cmd = _cmd;
