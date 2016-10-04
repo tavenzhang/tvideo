@@ -9,7 +9,7 @@
 import UIKit
 import Crashlytics
 
-class RankViewController: BaseTabViewController {
+class RankViewController:WebViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad();

@@ -29,8 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LogMarker("strart");
        let manVc = MainTabBarController();
         window?.rootViewController = manVc;
-     
-        
+        let webView = UIWebView(frame: ScreenBounds);
+        let agent = webView.stringByEvaluatingJavaScriptFromString("navigator.userAgent");
+        NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent":agent!]);
         return true
     }
 

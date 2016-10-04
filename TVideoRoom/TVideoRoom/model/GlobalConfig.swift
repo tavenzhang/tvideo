@@ -9,6 +9,9 @@
 
 import UIKit
 
+
+
+
 // MARK: - 全局常用属性
 public let NavigationH: CGFloat = 64
 public let ScreenWidth: CGFloat = UIScreen.mainScreen().bounds.size.width

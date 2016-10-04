@@ -23,24 +23,6 @@
             </objects>
             <point key="canvasLocation" x="-1006" y="-776"/>
         </scene>
-        <!--Rank View Controller-->
-        <scene sceneID="l15-Oa-YTL">
-            <objects>
-                <viewController storyboardIdentifier="RankViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VHp-jB-p5y" customClass="RankViewController" customModule="TVideoRoom" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hci-Qk-9CS"/>
-                        <viewControllerLayoutGuide type="bottom" id="mqD-ST-bNR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="v01-8c-KKd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EbX-N7-99q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-51" y="-920"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="m3u-Kk-R5x">
             <objects>
@@ -58,42 +40,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qaE-aV-IXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-37" y="-102"/>
-        </scene>
-        <!--Find View Controller-->
-        <scene sceneID="rBq-ih-7qR">
-            <objects>
-                <viewController storyboardIdentifier="FindViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MZi-NY-jbU" customClass="FindViewController" customModule="TVideoRoom" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CNK-cF-Qc9"/>
-                        <viewControllerLayoutGuide type="bottom" id="ENh-Mw-eg5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bQz-ty-fix">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ysX-Zn-KX1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="718" y="-910"/>
-        </scene>
-        <!--My Detail View Controller-->
-        <scene sceneID="1Ug-OE-zB7">
-            <objects>
-                <viewController storyboardIdentifier="MyDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oJg-N6-lRy" customClass="MyDetailViewController" customModule="TVideoRoom" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y4c-Bi-vYm"/>
-                        <viewControllerLayoutGuide type="bottom" id="Gql-5u-WIh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="PRg-Xc-Iwq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZHg-qC-n7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="801" y="-10"/>
         </scene>
     </scenes>
 </document>

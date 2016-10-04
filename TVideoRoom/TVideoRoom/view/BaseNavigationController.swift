@@ -11,18 +11,20 @@ import UIKit
 class BaseNavigationController: UINavigationController {
     
     var isAnimation = true
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         interactivePopGestureRecognizer!.delegate = nil
        // navigationBar.backgroundColor = UIColor.purpleColor();
         navigationBar.translucent = false;
+        let bar=UINavigationBar.appearance();
+        bar.setBackgroundImage(UIImage(named:"navBar_bg_414x70"), forBarMetrics: UIBarMetrics.Default);
     }
     
     lazy var backBtn: UIButton = {
         //设置返回按钮属性
         let backBtn = UIButton(type: UIButtonType.Custom)
-        backBtn.setImage(UIImage(named: "v2_goback"), forState: .Normal);
+        backBtn.setImage(UIImage(named: "back_9x16"), forState: .Normal);
         backBtn.titleLabel?.hidden = true
         backBtn.addTarget(self, action: #selector(BaseNavigationController.backBtnClick), forControlEvents: .TouchUpInside)
         backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
@@ -39,7 +41,7 @@ class BaseNavigationController: UINavigationController {
             
             UINavigationBar.appearance().backItem?.hidesBackButton = false
             
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn);
             
             viewController.hidesBottomBarWhenPushed = true
         }
@@ -47,8 +49,17 @@ class BaseNavigationController: UINavigationController {
         super.pushViewController(viewController, animated: animated)
     }
     
+    
     func backBtnClick() {
-        popViewControllerAnimated(isAnimation)
+        // 判断两种情况: push 和 present
+        if (((self.presentedViewController != nil) || (self.presentingViewController != nil)) && (self.childViewControllers.count == 1))
+        {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        else{
+                  popViewControllerAnimated(self.isAnimation)
+        }
+  
     }
     
 }

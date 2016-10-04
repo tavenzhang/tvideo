@@ -5,8 +5,8 @@ xcodeproj 'TVideoRoom/TVideoRoom.xcodeproj'
 # 该Target属于的工程
 target :TVideoRoom do
 xcodeproj 'TVideoRoom/TVideoRoom.xcodeproj'
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-pod 'CryptoSwift'
+pod 'SwiftyJSON', '~>2.4.0'
+pod 'CryptoSwift','~>0.5.2'
 pod 'NSLogger/NoStrip'
 pod 'SVProgressHUD'
 pod 'SDWebImage'
@@ -14,6 +14,7 @@ pod 'Alamofire', '~> 3.4'
 pod 'MJRefresh'
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'Masonry', '~> 1.0.1'
 end
 
 target :TAmf3Socket do

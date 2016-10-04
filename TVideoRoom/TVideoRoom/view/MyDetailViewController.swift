@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyDetailViewController: BaseTabViewController {
+class MyDetailViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
