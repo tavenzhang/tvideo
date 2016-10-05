@@ -6,13 +6,14 @@
 //  Copyright © 2016年 张新华. All rights reserved.
 //
 
-
 import UIKit
 
-
-
+// 首页的选择器的宽度
+let Home_Seleted_Item_W: CGFloat = 60.0
+let DefaultMargin: CGFloat = 10.0
 
 // MARK: - 全局常用属性
+public let StateBarH: CGFloat = UIApplication.sharedApplication().statusBarFrame.size.height;
 public let NavigationH: CGFloat = 64
 public let ScreenWidth: CGFloat = UIScreen.mainScreen().bounds.size.width
 public let ScreenHeight: CGFloat = UIScreen.mainScreen().bounds.size.height
@@ -37,7 +38,6 @@ public let GuideViewControllerDidFinish = "GuideViewControllerDidFinish"
 // MARK: - 广告页通知
 public let ADImageLoadSecussed = "ADImageLoadSecussed"
 public let ADImageLoadFail = "ADImageLoadFail"
-
 
 // MARK: - Mine属性
 public let CouponViewControllerMargin: CGFloat = 20
@@ -71,5 +71,4 @@ public let ShopCartRowHeight: CGFloat = 50
 
 // MARK: - 搜索ViewController
 public let LFBSearchViewControllerHistorySearchArray = "LFBSearchViewControllerHistorySearchArray"
-
 

@@ -50,8 +50,8 @@ class MainTabBarController: UITabBarController {
 	}
 
 	private func buildMainTabBarChildViewController() {
-		var hotView = HotViewController();
-		tabBarControllerAddChildViewController(HotViewController(), title: "大厅", imageName: "v2_home", selectedImageName: "v2_home_r", tag: 0)
+		var manView = MainPageViewController();
+		tabBarControllerAddChildViewController(manView, title: "大厅", imageName: "v2_home", selectedImageName: "v2_home_r", tag: 0)
 		tabBarControllerAddChildViewController(RankViewController(navigationTitle: "排行", urlStr: HTTP_RANK_PAGE), title: "排行", imageName: "v2_order", selectedImageName: "v2_order_r", tag: 1)
 		tabBarControllerAddChildViewController(ActiveViewController(navigationTitle: "活动", urlStr: HTTP_ACITVE_PAGE), title: "活动", imageName: "shopCart", selectedImageName: "shopCart", tag: 2)
 		tabBarControllerAddChildViewController(MyDetailViewController(), title: "我", imageName: "v2_my", selectedImageName: "v2_my_r", tag: 3);

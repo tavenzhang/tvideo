@@ -97,9 +97,12 @@
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jyj-99-zlI">
                         <rect key="frame" x="0.0" y="57" width="320" height="383"/>
+                        <color key="backgroundColor" red="0.82459377566471614" green="0.71948758126965073" blue="0.18197031669090494" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_live_43x22" translatesAutoresizingMaskIntoConstraints="NO" id="g0k-DF-9GL">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_live_43x22" translatesAutoresizingMaskIntoConstraints="NO" id="g0k-DF-9GL">
                         <rect key="frame" x="267" y="65" width="43" height="22"/>
+                        <color key="backgroundColor" red="1" green="0.40672381571560523" blue="0.43814574978967613" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="43" id="0gQ-Dn-fhd"/>
                             <constraint firstAttribute="height" constant="22" id="mIF-B4-lUC"/>
@@ -116,7 +119,7 @@
                     <constraint firstItem="g0k-DF-9GL" firstAttribute="top" secondItem="B2p-5o-GPY" secondAttribute="bottom" constant="10" id="r4Z-Sf-Pce"/>
                     <constraint firstItem="jyj-99-zlI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rLp-d1-kzS"/>
                     <constraint firstAttribute="trailing" secondItem="B2p-5o-GPY" secondAttribute="trailing" id="wJx-Ym-s1N"/>
-                    <constraint firstAttribute="bottom" secondItem="jyj-99-zlI" secondAttribute="bottom" constant="10" id="z9L-ss-a1y"/>
+                    <constraint firstAttribute="bottom" secondItem="jyj-99-zlI" secondAttribute="bottom" constant="1" id="z9L-ss-a1y"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

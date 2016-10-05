@@ -26,7 +26,7 @@
         <!--Home View Controller-->
         <scene sceneID="m3u-Kk-R5x">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ln6-Ta-Rw6" customClass="HomeViewController" customModule="TVideoRoom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ln6-Ta-Rw6" customClass="VideoListViewController" customModule="TVideoRoom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fZV-tS-Ly8"/>
                         <viewControllerLayoutGuide type="bottom" id="2n8-nK-Zto"/>

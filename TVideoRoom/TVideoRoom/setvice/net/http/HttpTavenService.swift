@@ -7,9 +7,36 @@ import SwiftyJSON
 var domain = "www.lgfxiu.com";
 var vdomain = "v.lgfxiu.com";
 var pdomain = "p.lgfxiu.com";
-var HTTP_HOST_LIST: String {
+
+//原始老接口
+let HTTP_HOST_LIST: String = "http://%@/videolist.json?_=1466990345519sJvR";
+//获取大厅
+var HTTP_HOME_LIST: String = "http://%@/videolistall.json";
+//一对一
+var HTTP_ONEBYONE_LIST: String = "http://%@/videolistord.json";
+//每日精选
+var HTTP_HOT_LIST: String = "http://%@/videolistrec.json";
+//大秀场
+var HTTP_BIG_SHOW_LIST: String = "http://%@/videolistsls.json";
+
+func getWWWHttp(src: String) -> String {
+	return NSString(format: src, domain) as String;
+}
+
+//{
+//	get {
+//		return "http://\(domain)/videolist.json?_=1466990345519sJvR";
+//	}
+//}
+//var HTTP_HOME_LIST: String {
+//	get {
+//		return "http://\(domain)/videolistall.json";
+//	}
+//}
+
+var HTTP_ONBYONE_LIST: String {
 	get {
-		return "http://\(domain)/videolist.json?_=1466990345519sJvR";
+		return "http://\(domain)/videolistord/json";
 	}
 }
 
@@ -32,24 +59,19 @@ var HTTP_IMAGE: String {
 
 var HTTP_RANK_PAGE: String {
 	get {
-		return "http://\(domain)";
+		// return "http://\(domain)";
+		return "http://www.baidu.com"
 
 	}
 }
 
 var HTTP_ACITVE_PAGE: String {
-    get {
-        //return "http://www.baidu.com";
-        return "http://orchidf.com:12315/app.html";
-        //return "http://\(domain)/%@?w=356&h=266";
-    }
+	get {
+		// return "http://www.baidu.com";
+		return "http://orchidf.com:12315/app.html";
+		// return "http://\(domain)/%@?w=356&h=266";
+	}
 }
-
-//http
-//let HTTP_HOST_LIST = "http://www.languifangxiu.com/videolist.json?_=1466990345519sJvR";
-//let HTTP_HOST_LIST2 = "http://www.lgf987.com/videoList?_=1469268972940UQCB&type=all";
-//let HTTP_VIDEO_ROOM = "http://v.languifang520.com/video_gs/socketServer?rid=%d&flag=%@";
-//let HTTP_IMAGE = "http://p.languifang520.com/%@?w=356&h=266";
 
 class HttpResult: NSObject {
 

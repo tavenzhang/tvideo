@@ -24,6 +24,8 @@ class WebViewController: UIViewController {
         fatalError("init(coder:) has not been implemented");
     }
     
+    
+    
     convenience init(navigationTitle: String, urlStr: String) {
     
         self.init(nibName: nil, bundle: nil)

@@ -31,7 +31,7 @@ class MyDetailViewController: BaseUIViewController {
                 if( httpResult.dataJson?["status"].int! == 1)
                 {
                     let key = httpResult.dataJson!["msg"].string!;
-                    DataCenterModel.sharedInstance.roomData?.key=key;
+                    DataCenterModel.sharedInstance.roomData.key=key;
                     showSimplpAlertView(self, tl: "登陆成功", msg: "", btnHiht: "确定", okHandle: {
                         [weak self] in
                         self!.tabBarController?.selectedIndex = 0;

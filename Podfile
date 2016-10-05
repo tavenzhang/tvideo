@@ -15,6 +15,8 @@ pod 'MJRefresh'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'Masonry', '~> 1.0.1'
+pod 'SnapKit', '~> 0.22.0'
+
 end
 
 target :TAmf3Socket do

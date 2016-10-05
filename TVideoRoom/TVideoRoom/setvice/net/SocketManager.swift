@@ -34,8 +34,8 @@ class SocketManager {
     //测速并选择最快的socket
     func testFastSocket(ipList:[String])->Void
     {
-        DataCenterModel.sharedInstance.roomData?.socketIp = nil;
-        DataCenterModel.sharedInstance.roomData?.port = 0;
+        DataCenterModel.sharedInstance.roomData.socketIp = nil;
+        DataCenterModel.sharedInstance.roomData.port = 0;
         for item in ipList{
             let queue = dispatch_queue_create("testSocket", DISPATCH_QUEUE_CONCURRENT);
             dispatch_async(queue) {
@@ -47,11 +47,11 @@ class SocketManager {
                     as3Socket.closeSocket();
                         dispatch_async(dispatch_get_main_queue()){
                             [weak self] in
-                            if(DataCenterModel.sharedInstance.roomData?.socketIp == nil)
+                            if(DataCenterModel.sharedInstance.roomData.socketIp == nil)
                             {
                                 LogSocket("best choose line =\(ip)---port--\(port)---finished!");
-                                DataCenterModel.sharedInstance.roomData?.socketIp = ip;
-                                DataCenterModel.sharedInstance.roomData?.port = port!;
+                                DataCenterModel.sharedInstance.roomData.socketIp = ip;
+                                DataCenterModel.sharedInstance.roomData.port = port!;
                                 self?.startConnectSocket(ip,mport: port!);
                             }
                         }
@@ -77,8 +77,8 @@ class SocketManager {
     func closeSocket()->Void
     {
         socketM!.closeSocket();
-        DataCenterModel.sharedInstance.roomData?.socketIp = nil;
-        DataCenterModel.sharedInstance.roomData?.port = 0;
+        DataCenterModel.sharedInstance.roomData.socketIp = nil;
+        DataCenterModel.sharedInstance.roomData.port = 0;
     }
 
     
@@ -95,10 +95,10 @@ class SocketManager {
         LogSocket("reve:<--cmd=%d---%@",args: cmd,json.description);
         switch cmd {
         case MSG_10000://登陆验证
-            dataCenterM.roomData!.aeskey = json["limit"].string!;
+            dataCenterM.roomData.aeskey = json["limit"].string!;
             //socketM.setStartHeart(true);
-            let r_msg = r_msg_10000(_data: (dataCenterM.roomData!.key + String(dataCenterM.roomData!.roomId) + "73uxh9*@(58u)fgxt"), _aesKey: dataCenterM.roomData!.aeskey);
-            let s_msge = s_msg_10001(cmd: MSG_10001, _roomId: dataCenterM.roomData!.roomId, _pass: dataCenterM.roomData!.pass, _roomLimit: r_msg.getAesk(), _isPublish: dataCenterM.roomData!.isPublish, _publishUrl: dataCenterM.roomData!.publishUrl, _sid: dataCenterM.roomData!.sid, _key: dataCenterM.roomData!.key);
+            let r_msg = r_msg_10000(_data: (dataCenterM.roomData.key + String(dataCenterM.roomData.roomId) + "73uxh9*@(58u)fgxt"), _aesKey: dataCenterM.roomData.aeskey);
+            let s_msge = s_msg_10001(cmd: MSG_10001, _roomId: dataCenterM.roomData.roomId, _pass: dataCenterM.roomData.pass, _roomLimit: r_msg.getAesk(), _isPublish: dataCenterM.roomData.isPublish, _publishUrl: dataCenterM.roomData.publishUrl, _sid: dataCenterM.roomData.sid, _key: dataCenterM.roomData.key);
             socketM!.sendMessage(s_msge);
         case MSG_10002://进入房间
             let s_8002 = s_msg_noBody(_cmd: MSG_80002);
@@ -118,7 +118,7 @@ class SocketManager {
                 }
                 let queue = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
                 var index=0;
-                dataCenterM.roomData?.rtmpList.removeAll();
+                dataCenterM.roomData.rtmpList.removeAll();
                 if (resultIpList.count > 0) {
                     for item2 in resultIpList {
                         index+=1;
@@ -126,8 +126,8 @@ class SocketManager {
                             let ret = KxMovieViewController.testRtmpConnect(item2);
                              LogSocket("test connection----ret=\(ret)====item=\(item2)")
                             if (ret > 0) {
-                                dataCenterM.roomData?.rtmpList.append(item2);
-                                if(dataCenterM.roomData?.rtmpList.count==1){
+                                dataCenterM.roomData.rtmpList.append(item2);
+                                if(dataCenterM.roomData.rtmpList.count==1){
                                     dispatch_async(dispatch_get_main_queue()){
                                         let msg2001 = s_msg_20001(cmd: MSG_20001,rtmpStr: item2);
                                         self.socketM!.sendMessage(msg2001);
@@ -143,9 +143,9 @@ class SocketManager {
             var itemInfo = json["items"][0];
             if(itemInfo != nil)
             {
-                dataCenterM.roomData?.lastRtmp = itemInfo["rtmp"].string!;
-                dataCenterM.roomData?.sid = itemInfo["sid"].string!;
-                let rtmpPath =  (dataCenterM.roomData?.lastRtmp)!+"/"+(dataCenterM.roomData?.sid)!
+                dataCenterM.roomData.lastRtmp = itemInfo["rtmp"].string!;
+                dataCenterM.roomData.sid = itemInfo["sid"].string!;
+                let rtmpPath =  (dataCenterM.roomData.lastRtmp)+"/"+(dataCenterM.roomData.sid)
                 dispatch_async(dispatch_get_main_queue()){
                      NSNotificationCenter.defaultCenter().postNotificationName(RTMP_START_PLAY, object: rtmpPath);
                 };
@@ -197,10 +197,9 @@ class SocketManager {
             }
             if((msgVo) != nil)
             {
-                dispatch_async(dispatch_get_main_queue()){
-                        NSNotificationCenter.defaultCenter().postNotificationName(E_SOCKERT_Chat_30001, object: msgVo!);
+                dispatch_async(dispatch_get_main_queue()) {
+                    NSNotificationCenter.defaultCenter().postNotificationName(E_SOCKERT_Chat_30001, object: msgVo!);
                 }
-         
             }
             
         default:
