@@ -34,15 +34,9 @@ class HomeCell: UICollectionViewCell {
 		return nameLabel
 	}()
 
-//    private lazy var fineImageView: UIImageView = {
-//        let fineImageView = UIImageView()
-//        fineImageView.image = UIImage(named: "home_live_43x22")
-//        return fineImageView
-//    }()
-
 	private lazy var giveImageView: UIImageView = {
 		let giveImageView = UIImageView()
-		giveImageView.image = UIImage(named: "home_live_43x22");
+		giveImageView.image = UIImage(named: r_home_live_img);
 		giveImageView.backgroundColor = UIColor.colorWithCustom(212, g: 84, b: 91);
 		return giveImageView
 	}()
@@ -58,11 +52,6 @@ class HomeCell: UICollectionViewCell {
 	private var type: HomeCellTyep? {
 		didSet {
 			backImageView.hidden = !(type == HomeCellTyep.Horizontal)
-			// goodsImageView.hidden = (type == HomeCellTyep.Horizontal)
-			// nameLabel.hidden = (type == HomeCellTyep.Horizontal)
-			// fineImageView.hidden = (type == HomeCellTyep.Horizontal)
-			// giveImageView.hidden = (type == HomeCellTyep.Horizontal)
-			// specificsLabel.hidden = (type == HomeCellTyep.Horizontal)
 		}
 	}
 
@@ -84,7 +73,7 @@ class HomeCell: UICollectionViewCell {
 		didSet {
 			self.type = .Horizontal
 			let imageUrl = NSString(format: HTTP_IMAGE, activities!.headimg!) as String;
-			backImageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "v2_placeholder_full_size"))
+			backImageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: r_home_videoImgPlaceholder))
 			nameLabel.text = activities!.username;
 			nameLabel.hidden = false;
 			giveImageView.hidden = activities!.live_status == 0;
@@ -100,9 +89,9 @@ class HomeCell: UICollectionViewCell {
 		super.layoutSubviews()
 		backImageView.frame = bounds
 		// goodsImageView.frame = CGRectMake(0, 0, width, width)
-        nameLabel.frame = CGRectMake(5, height - nameLabel.height - 20, 100, 20);
-		//giveImageView.frame = CGRectMake(width-30,6, 44, 32);
-        giveImageView.frame = CGRectMake(width-32,6, 25, 16);
+		nameLabel.frame = CGRectMake(5, height - nameLabel.height - 20, 100, 20);
+		// giveImageView.frame = CGRectMake(width-30,6, 44, 32);
+		giveImageView.frame = CGRectMake(width - 32, 6, 25, 16);
 	}
 
 }

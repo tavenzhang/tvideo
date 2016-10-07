@@ -33,7 +33,7 @@ class DataCenterModel {
 
 	internal static let sharedInstance = DataCenterModel()
 	private init() { }
-
+	var isOneRoom: Bool = true;
 	// 主页数据；
 	var homeData: HomeData = HomeData();
 	// 房间内数据

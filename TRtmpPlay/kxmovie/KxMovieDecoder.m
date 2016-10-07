@@ -786,7 +786,7 @@ static int interrupt_callback(void *ctx);
     AVDictionary* options = NULL;
     formatCtx->max_analyze_duration =5000;
     formatCtx->probesize=10000;
-    av_dict_set(&options, "live", "1", 0);
+  //  av_dict_set(&options, "live", "1", 0);
     av_dict_set(&options, "rtmp_transport", "tcp", 0);
     if (avformat_open_input(&formatCtx, [path cStringUsingEncoding: NSUTF8StringEncoding], NULL, &options) < 0) {
         

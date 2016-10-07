@@ -2,32 +2,31 @@
 //  VideoRoomUIView.swift
 //  TVideoRoom
 //
-//  Created by 张新华 on 16/6/26.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
 import UIKit
 import TRtmpPlay
 import TChat
 
-class VideoRoomUIView: UIViewController {
+class VideoRoomUIViewVC: UIViewController {
 	private var vc: KxMovieViewController?;
 	private var chatVc: ChatViewController?;
 	private var _uiChatView: UIView?;
 	private var ges: UITapGestureRecognizer?;
 	var roomId: Int = 0;
-
+	var lastRtmpUrl: String = "";
 	lazy var backBtn: UIButton = {
 		// 设置返回按钮属性
 		let backBtn2 = UIButton(type: UIButtonType.Custom)
-		backBtn2.setImage(UIImage(named: "v2_goback"), forState: .Normal);
+		backBtn2.setImage(UIImage(named: r_nav_btnBack_9x16), forState: .Normal);
 		backBtn2.titleLabel?.hidden = true
-		backBtn2.addTarget(self, action: #selector(VideoRoomUIView.backBtnClick), forControlEvents: .TouchUpInside)
+		backBtn2.addTarget(self, action: #selector(VideoRoomUIViewVC.backBtnClick), forControlEvents: .TouchUpInside)
 		backBtn2.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
 		backBtn2.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0)
 		let btnW: CGFloat = ScreenWidth > 375.0 ? 50 : 44
 		backBtn2.frame = CGRectMake(20, 10, btnW, 40);
 		return backBtn2
-	}()
+	}();
+
+	var changeLineBtn: UIButton?;
 
 	override func viewDidLoad() {
 		self.view.backgroundColor = UIColor.whiteColor();
@@ -45,7 +44,47 @@ class VideoRoomUIView: UIViewController {
 		self.view.addSubview(_uiChatView!);
 		ges = UITapGestureRecognizer(target: self, action: #selector(onTableVieo));
 		c2sGetSocket(roomId);
+		changeLineBtn = UIButton.BtnSimple("切换线路", titleColor: UIColor.purpleColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.changeLine));
+		changeLineBtn?.frame = CGRectMake(10, 10, 50, 30);
+		_uiChatView?.addSubview(changeLineBtn!);
+	}
 
+	func changeLine()
+	{
+		let alert = UIAlertController(title: "视频卡顿 请换线试试", message: nil, preferredStyle: .ActionSheet);
+		alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: self.selectNewLine));
+		let rtmpList = DataCenterModel.sharedInstance.roomData.rtmpList;
+		for item in rtmpList
+		{
+
+			let isNow = lastRtmpUrl.containsString(item.rtmpUrl);
+			if (isNow)
+			{
+				LogHttp("item.rtmpUrl=\(lastRtmpUrl)");
+				LogHttp("item.rtmpUrl contian=\(lastRtmpUrl.containsString(item.rtmpUrl))--name\(item.rtmpName)");
+				continue;
+			}
+			if (item.isEnable && !isNow)
+			{
+				alert.addAction(UIAlertAction(title: item.rtmpName, style: .Default, handler: selectNewLine));
+			}
+
+		}
+		presentViewController(alert, animated: true, completion: nil);
+	}
+
+	// 最终选择线路
+	func selectNewLine(action: UIAlertAction) {
+		let rtmpList = DataCenterModel.sharedInstance.roomData.rtmpList;
+		for item in rtmpList
+		{
+			if (action.title! == item.rtmpName)
+			{
+				let ns = NSNotification(name: RTMP_START_PLAY, object: item.rtmpUrl);
+				rtmpStartPlay(ns);
+				return;
+			}
+		}
 	}
 
 	// 隐藏状态栏
@@ -57,6 +96,7 @@ class VideoRoomUIView: UIViewController {
 	deinit {
 		SocketManager.sharedInstance.closeSocket();
 		NSNotificationCenter.defaultCenter().removeObserver(self);
+		vc?.close()
 		vc = nil;
 	}
 
@@ -69,8 +109,8 @@ class VideoRoomUIView: UIViewController {
 	}
 
 	func addNSNotification() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoRoomUIView.rtmpStartPlay), name: RTMP_START_PLAY, object: nil);
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoRoomUIView.chatReceiveMessage30001), name: E_SOCKERT_Chat_30001, object: nil);
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoRoomUIViewVC.rtmpStartPlay), name: RTMP_START_PLAY, object: nil);
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoRoomUIViewVC.chatReceiveMessage30001), name: E_SOCKERT_Chat_30001, object: nil);
 	}
 
 	// 获取socket 列表
@@ -85,7 +125,17 @@ class VideoRoomUIView: UIViewController {
 					if ((dataResutl.dataJson != nil) && (dataResutl.dataJson!["ret"].int == 1))
 					{
 						let serverStr = decodeAES(dataResutl.dataJson!["server"].string!) ;
-						let serverList = serverStr.componentsSeparatedByString(",");
+						var serverList = serverStr.componentsSeparatedByString(",");
+						if (DataCenterModel.sharedInstance.isOneRoom)
+						{
+							let port: Int = Int(serverStr.componentsSeparatedByString("|")[1])!;
+							let str = serverStr.componentsSeparatedByString("|")[0];
+							let ipList = str.componentsSeparatedByString(",");
+							serverList = [String]();
+							for item in ipList {
+								serverList.append("\(item):\(port)") ;
+							}
+						}
 						SocketManager.sharedInstance.testFastSocket(serverList);
 					}
 					else {
@@ -95,7 +145,6 @@ class VideoRoomUIView: UIViewController {
 				else {
 					showSimplpAlertView(self, tl: "房间id无效", msg: "请选择其他房间试试!");
 				}
-
 			}
 		}
 	}
@@ -120,29 +169,28 @@ class VideoRoomUIView: UIViewController {
 			let chatMsg = s_msg_30001(type: 0, ruid: 0, cnt: msg);
 			SocketManager.sharedInstance.sendMessage(chatMsg);
 		}
-
 	}
+
 	// 测试rtmp 播放
 	func rtmpStartPlay(notification: NSNotification) {
 		// [-] 正常播放模式 式正常播放模式 30043581144191618|15526D99B51B7DAA0CF99539B82F013B rtmp://119.63.47.233:9945/proxypublish
-		let path = notification.object as? String;
-		let filePath = path! + " live=1";
-		print("rtmp filepath=\(filePath)");
-		let parametersD = NSMutableDictionary();
-		parametersD[KxMovieParameterMinBufferedDuration] = 2;
-		parametersD[KxMovieParameterMaxBufferedDuration] = 10;
-
-		if ((vc) != nil)
+		let roomData = DataCenterModel.sharedInstance.roomData;
+		roomData.lastRtmpUrl = notification.object as! String;
+		lastRtmpUrl = roomData.rtmpPath;
+		if (vc != nil)
 		{
 			vc?.close();
-			vc!.view.removeGestureRecognizer(ges!);
-			vc!.view.removeFromSuperview();
+			vc?.view.removeFromSuperview();
+			vc?.view.removeGestureRecognizer(ges!);
 			vc = nil;
 		}
-		if ((path != nil) && (path != ""))
+		if (lastRtmpUrl.containsString("rtmp"))
 		{
-			vc = KxMovieViewController.movieViewControllerWithContentPath(filePath, parameters: parametersD as [NSObject: AnyObject]) as? KxMovieViewController ;
-
+			print("rtmp filepath=\(lastRtmpUrl)");
+			let parametersD = NSMutableDictionary();
+			parametersD[KxMovieParameterMinBufferedDuration] = 2;
+			parametersD[KxMovieParameterMaxBufferedDuration] = 10;
+			vc = KxMovieViewController.movieViewControllerWithContentPath(lastRtmpUrl, parameters: parametersD as [NSObject: AnyObject]) as? KxMovieViewController ;
 			vc!.view.frame = CGRectMake(0, 0, self.view.width, self.view.width * 3 / 4)
 			self.view.addSubview(vc!.view);
 			self.view.bringSubviewToFront(vc!.view);
@@ -152,7 +200,6 @@ class VideoRoomUIView: UIViewController {
 		else {
 			showSimplpAlertView(self, tl: "主播已停止直播", msg: "请选择其他房间试试！", btnHiht: "了解");
 		}
-
 	}
 
 	// 隐藏聊天输入内容

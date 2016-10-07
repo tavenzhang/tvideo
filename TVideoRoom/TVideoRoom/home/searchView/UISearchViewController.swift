@@ -8,45 +8,42 @@
 
 import UIKit
 
-class UISearchViewController: UIViewController, UISearchResultsUpdating,UISearchBarDelegate,UISearchControllerDelegate {
+class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
 
-    
 	var dataActives: [Activity] = [];
 	weak var parentNVC: UINavigationController?;
 	private var flag: Int = -1
 	private var collectionView: LFBCollectionView!;
 	private var lastContentOffsetY: CGFloat = 0
 	private var isAnimation: Bool = false;
-    var resultSrarchController = UISearchController(searchResultsController: nil);
+	var resultSrarchController = UISearchController(searchResultsController: nil);
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        resultSrarchController.delegate = self;
-        resultSrarchController.searchBar.delegate = self;
-        resultSrarchController.searchResultsUpdater = self;
-       resultSrarchController.searchBar.sizeToFit();
-        resultSrarchController.hidesNavigationBarDuringPresentation = false;
-        resultSrarchController.dimsBackgroundDuringPresentation = false;
-       
-        resultSrarchController.searchBar.searchBarStyle = .Default;
-        resultSrarchController.searchBar.placeholder="请输入主播名字"
-        self.view.backgroundColor = UIColor.whiteColor();
-        self.definesPresentationContext = true;
+		resultSrarchController.delegate = self;
+		resultSrarchController.searchBar.delegate = self;
+		resultSrarchController.searchResultsUpdater = self;
+		resultSrarchController.searchBar.sizeToFit();
+		resultSrarchController.hidesNavigationBarDuringPresentation = false;
+		resultSrarchController.dimsBackgroundDuringPresentation = false;
+
+		resultSrarchController.searchBar.searchBarStyle = .Default;
+		resultSrarchController.searchBar.placeholder = "请输入主播名字"
+		self.view.backgroundColor = UIColor.whiteColor();
+		self.definesPresentationContext = true;
 		buildCollectionView();
 		// Do any additional setup after loading the view.
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated);
-        resultSrarchController.searchBar.text="";
+		resultSrarchController.searchBar.text = "";
 		dataActives.removeAll();
 		collectionView.reloadData();
-        resultSrarchController.searchBar.becomeFirstResponder();
-        self.view.addSubview(resultSrarchController.searchBar);
+		resultSrarchController.searchBar.becomeFirstResponder();
+		self.view.addSubview(resultSrarchController.searchBar);
 
 	}
-    
-    
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
@@ -74,7 +71,6 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating,UISearch
 		view.addSubview(collectionView)
 		self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
 	}
-    
 
 	func updateSearchResultsForSearchController(searchController: UISearchController) {
 
@@ -93,18 +89,17 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating,UISearch
 		}
 		collectionView.reloadData();
 	}
-    
-     func searchBarCancelButtonClicked(searchBar: UISearchBar) // called when
-     {
-        self.view.removeFromSuperview();
-     }
-    
-    
-   func willDismissSearchController(searchController: UISearchController)
-    {
-         self.view.removeFromSuperview();
-    }
-    
+
+	func searchBarCancelButtonClicked(searchBar: UISearchBar) // called when
+	{
+		self.view.removeFromSuperview();
+	}
+
+	func willDismissSearchController(searchController: UISearchController)
+	{
+		self.view.removeFromSuperview();
+	}
+
 }
 
 extension UISearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -122,7 +117,6 @@ extension UISearchViewController: UICollectionViewDelegate, UICollectionViewData
 	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
 		return 1
 	}
-
 
 	// 设置item 宽
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -177,14 +171,14 @@ extension UISearchViewController: UICollectionViewDelegate, UICollectionViewData
 		var itemAcive: Activity;
 		itemAcive = dataActives[indexPath.row];
 		let roomId = itemAcive.uid as! Int;
-		let roomview: VideoRoomUIView = VideoRoomUIView();
+		let roomview: VideoRoomUIViewVC = VideoRoomUIViewVC();
 		roomview.roomId = roomId;
-        self.view.removeFromSuperview();
-        resultSrarchController.searchBar.resignFirstResponder();
-        resultSrarchController.searchBar.removeFromSuperview();
+		self.view.removeFromSuperview();
+		resultSrarchController.searchBar.resignFirstResponder();
+		resultSrarchController.searchBar.removeFromSuperview();
 		parentNVC?.pushViewController(roomview, animated: true);
 		Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
-     
+
 	}
 }
 

@@ -85,9 +85,9 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 	}
 
 	func setup() {
-		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "search_15x14")!, style: .Done, target: self, action: #selector(self.searchHostVideo));
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "head_crown_24x24")!, style: .Done, target: self, action: #selector(self.rankCrown));
-		self.setupTopMenu()
+		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: r_home_btnSrarch)!, style: .Done, target: self, action: #selector(self.searchHostVideo));
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: r_home_btnRank)!, style: .Done, target: self, action: #selector(self.rankCrown));
+        self.setupTopMenu();
 	}
 
 	func rankCrown() {

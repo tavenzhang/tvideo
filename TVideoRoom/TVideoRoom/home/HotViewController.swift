@@ -197,7 +197,7 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
 		var itemAcive: Activity;
 		itemAcive = (hotList?[indexPath.row])!;
 		let roomId = itemAcive.uid as! Int;
-		let roomview: VideoRoomUIView = VideoRoomUIView();
+		let roomview = VideoRoomUIViewVC();
 		roomview.roomId = roomId;
 		self.navigationController?.pushViewController(roomview, animated: true);
 		Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);

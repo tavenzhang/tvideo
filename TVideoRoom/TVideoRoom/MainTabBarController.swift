@@ -18,7 +18,7 @@ class MainTabBarController: UITabBarController {
 			adImageView!.image = adImage!
 			self.view.addSubview(adImageView!)
 
-			UIImageView.animateWithDuration(2.0, animations: { () -> Void in
+			UIImageView.animateWithDuration(3, animations: { () -> Void in
 				tmpSelf!.adImageView!.transform = CGAffineTransformMakeScale(1.2, 1.2)
 				tmpSelf!.adImageView!.alpha = 0
 			}) { (finsch) -> Void in
@@ -50,11 +50,11 @@ class MainTabBarController: UITabBarController {
 	}
 
 	private func buildMainTabBarChildViewController() {
-		var manView = MainPageViewController();
-		tabBarControllerAddChildViewController(manView, title: "大厅", imageName: "v2_home", selectedImageName: "v2_home_r", tag: 0)
-		tabBarControllerAddChildViewController(RankViewController(navigationTitle: "排行", urlStr: HTTP_RANK_PAGE), title: "排行", imageName: "v2_order", selectedImageName: "v2_order_r", tag: 1)
-		tabBarControllerAddChildViewController(ActiveViewController(navigationTitle: "活动", urlStr: HTTP_ACITVE_PAGE), title: "活动", imageName: "shopCart", selectedImageName: "shopCart", tag: 2)
-		tabBarControllerAddChildViewController(MyDetailViewController(), title: "我", imageName: "v2_my", selectedImageName: "v2_my_r", tag: 3);
+		let manView = MainPageViewController();
+        tabBarControllerAddChildViewController(manView, title: "大厅", imageName: r_tabBtn_home, selectedImageName: r_tabBtn_home_r, tag: 0)
+		tabBarControllerAddChildViewController(RankViewController(navigationTitle: "排行", urlStr: HTTP_RANK_PAGE), title: "排行", imageName: r_tabBtn_rank, selectedImageName: r_tabBtn_rank_r, tag: 1)
+        tabBarControllerAddChildViewController(ActiveViewController(navigationTitle: "活动", urlStr: HTTP_ACITVE_PAGE), title: "活动", imageName:r_tabBtn_active, selectedImageName: r_tabBtn_active_r, tag: 2)
+        tabBarControllerAddChildViewController(MyDetailViewController(), title: "我", imageName: r_btn_me, selectedImageName: r_btn_me_r, tag: 3);
 	}
 
 	private func tabBarControllerAddChildViewController(childVC: UIViewController, title: String, imageName: String, selectedImageName: String, tag: Int) {

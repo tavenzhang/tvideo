@@ -27,7 +27,7 @@ class AdBannerView: UICollectionReusableView {
 	// MARK: 初始化子控件
 	func buildPageScrollView() {
 		weak var tmpSelf = self
-		pageScrollView = PageScrollView(frame: CGRectZero, placeholder: UIImage(named: "v2_placeholder_full_size")!, focusImageViewClick: { (index) -> Void in
+		pageScrollView = PageScrollView(frame: CGRectZero, placeholder: UIImage(named: r_home_videoImgPlaceholder)!, focusImageViewClick: { (index) -> Void in
 			tmpSelf?.delegate?.tableHeadView?(tmpSelf!, focusImageViewClick: index);
 		})
 		addSubview(pageScrollView!)

@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-1006" y="-776"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Video List View Controller-->
         <scene sceneID="m3u-Kk-R5x">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ln6-Ta-Rw6" customClass="VideoListViewController" customModule="TVideoRoom" customModuleProvider="target" sceneMemberID="viewController">

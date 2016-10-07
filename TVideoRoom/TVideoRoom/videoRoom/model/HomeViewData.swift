@@ -14,25 +14,27 @@ class RoomData: NSObject {
 
 	var port: Int = 9013;
 	var sid: String = "";
-	var lastRtmp = "";
 	var roomId: Int = 1761828
 	var pass: String = "";
 	var isPublish = false;
 	var publishUrl = "";
-	var key = "";
+	var key = "d382538698b6e79c7d2ea8914e12e623";
 	var aeskey = "";
-	var rtmpList = [String!]();
-
+	var rtmpList = [RtmpInfo]();
+	var lastRtmpUrl: String = "";
 	var rtmpPath: String {
 		get {
-			return lastRtmp + "/" + sid;
+			return lastRtmpUrl + "/" + sid + " live=1";
 		}
 	}
 	var socketIp: String? ;
+	var isVideoPlaying: Bool = false;
 }
 
-class HotCellData: NSObject {
-
+class RtmpInfo {
+	var rtmpUrl: String = "";
+	var rtmpName: String = "";
+	var isEnable: Bool = false;
 }
 
 class HomeData: NSObject {

@@ -4,8 +4,9 @@
 import Alamofire
 import SwiftyJSON
 
-var domain = "www.lgfxiu.com";
-var vdomain = "v.lgfxiu.com";
+//var domain = "www.lgfxiu.com";
+var domain = "www.kiynd.net";
+var vdomain = "v.kiynd.net";
 var pdomain = "p.lgfxiu.com";
 
 //原始老接口
@@ -16,28 +17,18 @@ var HTTP_HOME_LIST: String = "http://%@/videolistall.json";
 var HTTP_ONEBYONE_LIST: String = "http://%@/videolistord.json";
 //每日精选
 var HTTP_HOT_LIST: String = "http://%@/videolistrec.json";
+
 //大秀场
 var HTTP_BIG_SHOW_LIST: String = "http://%@/videolistsls.json";
 
+//获取个人数据 getUserInfo: { url : SERVERADDR + "/indexinfo", type : 'GET'},//用户数据
+var HTTP_GETUSR_INFO = "http://%@/indexinfo";
+
+//login
+var HTTP_LOGIN = "http://%@/login";
+
 func getWWWHttp(src: String) -> String {
 	return NSString(format: src, domain) as String;
-}
-
-//{
-//	get {
-//		return "http://\(domain)/videolist.json?_=1466990345519sJvR";
-//	}
-//}
-//var HTTP_HOME_LIST: String {
-//	get {
-//		return "http://\(domain)/videolistall.json";
-//	}
-//}
-
-var HTTP_ONBYONE_LIST: String {
-	get {
-		return "http://\(domain)/videolistord/json";
-	}
 }
 
 var HTTP_VIDEO_ROOM: String {
@@ -45,15 +36,11 @@ var HTTP_VIDEO_ROOM: String {
 		return "http://\(vdomain)/video_gs/socketServer?rid=%d&flag=%@";
 	}
 }
-var HTTP_LOGIN: String {
-	get {
-		return "http://\(domain)/login";
-	}
-}
 
 var HTTP_IMAGE: String {
 	get {
-		return "http://\(pdomain)/%@?w=356&h=266";
+		//return "http://\(pdomain)/%@?w=356&h=266";
+        return "http://\(vdomain)/%@";
 	}
 }
 

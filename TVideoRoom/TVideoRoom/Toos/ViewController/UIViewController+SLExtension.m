@@ -9,7 +9,7 @@
 #import "UIViewController+SLExtension.h"
 #import "UIImageView+Extension.h"
 #import <objc/message.h>
-
+#import <Masonry/Masonry.h>
 
 static const void *GifKey = &GifKey;
 @implementation UIViewController (SLExtension)

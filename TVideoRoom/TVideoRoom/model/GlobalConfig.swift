@@ -19,6 +19,7 @@ public let ScreenWidth: CGFloat = UIScreen.mainScreen().bounds.size.width
 public let ScreenHeight: CGFloat = UIScreen.mainScreen().bounds.size.height
 public let ScreenBounds: CGRect = UIScreen.mainScreen().bounds
 public let ShopCarRedDotAnimationDuration: NSTimeInterval = 0.2
+
 public let LFBNavigationBarWhiteBackgroundColor = UIColor.colorWithCustom(249, g: 250, b: 253)
 
 // MARK: - Home 属性

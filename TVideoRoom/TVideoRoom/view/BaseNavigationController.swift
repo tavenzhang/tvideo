@@ -15,16 +15,17 @@ class BaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactivePopGestureRecognizer!.delegate = nil
-       // navigationBar.backgroundColor = UIColor.purpleColor();
         navigationBar.translucent = false;
         let bar=UINavigationBar.appearance();
-        bar.setBackgroundImage(UIImage(named:"navBar_bg_414x70"), forBarMetrics: UIBarMetrics.Default);
+        bar.titleTextAttributes =  [NSForegroundColorAttributeName:UIColor.whiteColor()];
+        bar.setBackgroundImage(UIImage(named: r_nav_barbg_414x70), forBarMetrics: UIBarMetrics.Default);
+       
     }
     
     lazy var backBtn: UIButton = {
         //设置返回按钮属性
         let backBtn = UIButton(type: UIButtonType.Custom)
-        backBtn.setImage(UIImage(named: "back_9x16"), forState: .Normal);
+        backBtn.setImage(UIImage(named: r_nav_btnBack_9x16), forState: .Normal);
         backBtn.titleLabel?.hidden = true
         backBtn.addTarget(self, action: #selector(BaseNavigationController.backBtnClick), forControlEvents: .TouchUpInside)
         backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left

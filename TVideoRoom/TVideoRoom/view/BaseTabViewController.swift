@@ -20,29 +20,19 @@ class BaseUIViewController: UIViewController {
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-
-//        if UserInfo.sharedUserInfo.hasDefaultAdress() {
-//            let titleView = AdressTitleView(frame: CGRectMake(0, 0, 0, 30))
-//            titleView.setTitle(UserInfo.sharedUserInfo.defaultAdress()!.address!)
-//            titleView.frame = CGRectMake(0, 0, titleView.adressWidth, 30)
-//            navigationItem.titleView = titleView
-//
-//            let tap = UITapGestureRecognizer(target: self, action: #selector(SelectedAdressViewController.titleViewClick))
-//            navigationItem.titleView?.addGestureRecognizer(tap)
-//        }
 	}
 
 	// MARK: - Build UI
-	private func buildNavigationItem() {
-
-		navigationItem.leftBarButtonItem = UIBarButtonItem.barButton("扫一扫", titleColor: UIColor.blackColor(),
-			image: UIImage(named: "icon_black_scancode")!, hightLightImage: nil,
-			target: self, action: #selector(BaseUIViewController.leftItemClick), type: ItemButtonType.Left)
-
-		navigationItem.rightBarButtonItem = UIBarButtonItem.barButton("搜 索", titleColor: UIColor.blackColor(),
-			image: UIImage(named: "icon_search")!, hightLightImage: nil,
-			target: self, action: #selector(BaseUIViewController.rightItemClick), type: ItemButtonType.Right) // navigationItem.title="hello!"
-	}
+//	private func buildNavigationItem() {
+//
+//		navigationItem.leftBarButtonItem = UIBarButtonItem.barButton("扫一扫", titleColor: UIColor.blackColor(),
+//			image: UIImage(named: "icon_black_scancode")!, hightLightImage: nil,
+//			target: self, action: #selector(BaseUIViewController.leftItemClick), type: ItemButtonType.Left)
+//
+//		navigationItem.rightBarButtonItem = UIBarButtonItem.barButton("搜 索", titleColor: UIColor.blackColor(),
+//			image: UIImage(named: "icon_search")!, hightLightImage: nil,
+//			target: self, action: #selector(BaseUIViewController.rightItemClick), type: ItemButtonType.Right) // navigationItem.title="hello!"
+//	}
 
 	// MARK:- Action
 	// MARK: 扫一扫和搜索Action

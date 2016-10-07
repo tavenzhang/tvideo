@@ -21,9 +21,7 @@ class VideoListViewController: BaseUIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		buildCollectionView()
-		buildTableData()
-		// ProgressHUDManager.setBackgroundColor(UIColor.colorWithCustom(240, g: 240, b: 240))
-		// ProgressHUDManager.setFont(UIFont.systemFontOfSize(16));
+        buildTableData();
 	}
 
 	deinit {
@@ -219,8 +217,9 @@ extension VideoListViewController: UICollectionViewDelegate, UICollectionViewDat
 		let roomId = itemAcive.uid as! Int;
 		if (roomId > 0)
 		{
-			let roomview: VideoRoomUIView = VideoRoomUIView();
+			let roomview: VideoRoomUIViewVC = VideoRoomUIViewVC();
 			roomview.roomId = roomId;
+            self.navigationController?.pushViewController(roomview, animated: true);
 			Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
 		}
 		else {

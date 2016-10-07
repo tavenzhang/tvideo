@@ -22,6 +22,7 @@ extern NSString * const KxMovieParameterDisableDeinterlacing;   // BOOL
 
 + (id) movieViewControllerWithContentPath: (NSString *) path
                                parameters: (NSDictionary *) parameters;
+
 +(int)testRtmpConnect:(NSString*)path;
 
 

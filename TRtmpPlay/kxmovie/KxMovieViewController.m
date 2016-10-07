@@ -176,36 +176,34 @@ static NSMutableDictionary * gHistory;
     
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        
+
         _moviePosition = 0;
 //        self.wantsFullScreenLayout = YES;
 
         _parameters = parameters;
-        
+
         __weak KxMovieViewController *weakSelf = self;
-        
+
         KxMovieDecoder *decoder = [[KxMovieDecoder alloc] init];
-        
+
         decoder.interruptCallback = ^BOOL(){
-            
+
             __strong KxMovieViewController *strongSelf = weakSelf;
             return strongSelf ? [strongSelf interruptDecoder] : YES;
         };
-        
+
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-    
             NSError *error = nil;
             NSLog(@"1");
             NSDate *start = [NSDate date];
             //call method here to measure the its time profile
-          
             [decoder openFile:path error:&error];
             NSDate *methodFinish = [NSDate date];
             NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
             NSLog(@"openFile Time: %f", executionTime);
             __strong KxMovieViewController *strongSelf = weakSelf;
             if (strongSelf) {
-                
+
                 dispatch_sync(dispatch_get_main_queue(), ^{
                   //  NSLog(@"main");
                    //  NSDate *start = [NSDate date];
@@ -219,6 +217,8 @@ static NSMutableDictionary * gHistory;
     }
     return self;
 }
+
+
 
 - (void) dealloc
 {
@@ -441,7 +441,6 @@ _messageLabel.hidden = YES;
 
         [_activityIndicatorView startAnimating];
     }
-   
         
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationWillResignActive:)
@@ -566,7 +565,6 @@ _messageLabel.hidden = YES;
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self tick];
     });
-
     if (_decoder.validAudio)
         [self enableAudio:YES];
 
@@ -1040,7 +1038,7 @@ _messageLabel.hidden = YES;
     
     self.decoding = YES;
     dispatch_async(_dispatchQueue, ^{
-        
+
         {
             __strong KxMovieViewController *strongSelf = weakSelf;
             if (!strongSelf.playing)
@@ -1152,7 +1150,7 @@ _messageLabel.hidden = YES;
     //if ((_tickCounter % 200) == 0)
     //    LoggerStream(1, @"tick correction %.4f", correction);
     
-    if (correction > 1.f || correction < -1.f) {
+    if (correction > 2.f || correction < -2.f) {
         
         LoggerStream(1, @"tick correction reset %.2f", correction);
         correction = 0;
