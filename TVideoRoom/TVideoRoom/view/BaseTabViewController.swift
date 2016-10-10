@@ -18,6 +18,7 @@ class BaseUIViewController: UIViewController {
 		self.view.addSubview(loadProgressAnimationView);
 	}
 
+
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 	}

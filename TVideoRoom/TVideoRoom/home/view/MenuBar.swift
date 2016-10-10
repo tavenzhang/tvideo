@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 
-typealias tabClickBlock = (tag: Int) -> Void;
 
 class MenuBarView: UIView {
 
@@ -62,6 +61,10 @@ class MenuBarView: UIView {
 		self.layoutIfNeeded();
 		// 默认选中最热
 		self.click(hotBtn);
+	}
+
+	override class func layerClass() -> AnyClass {
+		return super.layerClass()
 	}
 
 	func createBtn(title: String, tag: Int) -> UIButton {

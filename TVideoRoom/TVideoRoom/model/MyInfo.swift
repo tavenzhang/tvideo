@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MyInfo: BaseDeSerialsModel {
+class MyInfo: NSObject {
 	var userId: String?
 	var sex: String?
 	var area: String?

@@ -51,6 +51,7 @@ class MainTabBarController: UITabBarController {
 
 	private func buildMainTabBarChildViewController() {
 		let manView = MainPageViewController();
+       //let manView = GiftViewControl();
         tabBarControllerAddChildViewController(manView, title: "大厅", imageName: r_tabBtn_home, selectedImageName: r_tabBtn_home_r, tag: 0)
 		tabBarControllerAddChildViewController(RankViewController(navigationTitle: "排行", urlStr: HTTP_RANK_PAGE), title: "排行", imageName: r_tabBtn_rank, selectedImageName: r_tabBtn_rank_r, tag: 1)
         tabBarControllerAddChildViewController(ActiveViewController(navigationTitle: "活动", urlStr: HTTP_ACITVE_PAGE), title: "活动", imageName:r_tabBtn_active, selectedImageName: r_tabBtn_active_r, tag: 2)

@@ -87,7 +87,7 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 	func setup() {
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: r_home_btnSrarch)!, style: .Done, target: self, action: #selector(self.searchHostVideo));
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: r_home_btnRank)!, style: .Done, target: self, action: #selector(self.rankCrown));
-        self.setupTopMenu();
+		self.setupTopMenu();
 	}
 
 	func rankCrown() {
@@ -113,29 +113,36 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 			LogHttp("open---getData");
 			HttpTavenService.requestJson(getWWWHttp(HTTP_HOME_LIST)) {
 				(dataResutl: HttpResult) in
+				let homeData = DataCenterModel.sharedInstance.homeData;
 				if (dataResutl.dataJson == nil || !dataResutl.isSuccess)
 				{
-					return;
+					homeData.totalList = [Activity]();
+					homeData.homeList = [Activity]();
+					homeData.hotList = [Activity]();
+					homeData.oneByOneList = [Activity]();
 				}
-				var data = dataResutl.dataJson!;
-				let genData = data["rooms"].arrayObject ;
-				let homeData = DataCenterModel.sharedInstance.homeData;
-				if ((genData) != nil)
-				{
-					homeData.totalList = BaseDeSerialsModel.objectsWithArray(genData!, cls: Activity.classForCoder()) as? [Activity];
-					homeData.totalList = homeData.totalList?.sort({ Int($0.total!) > Int($1.total!) });
-                    homeData.homeList  = homeData.totalList?.sort({ Int($0.live_status!) > Int($1.live_status!) });
-                    //大厅在线主播
-					homeData.hotList = homeData.homeList?.filter({ (item: Activity) -> Bool in
-						return item.live_status != 0;
-					})
-					
-                    homeData.oneByOneList = homeData.homeList?.filter({ (item: Activity) -> Bool in
-                        return (item.lv_type == 3)&&(item.live_status != 0);
-                    })
+				else {
+					var data = dataResutl.dataJson!;
+					let genData = data["rooms"].arrayObject ;
+
+					if ((genData) != nil)
+					{
+						homeData.totalList = deserilObjectsWithArray(genData!, cls: Activity.classForCoder()) as? [Activity];
+						homeData.totalList = homeData.totalList?.sort({ Int($0.total!) > Int($1.total!) });
+						homeData.homeList = homeData.totalList?.sort({ Int($0.live_status!) > Int($1.live_status!) });
+						// 大厅在线主播
+						homeData.hotList = homeData.homeList?.filter({ (item: Activity) -> Bool in
+							return item.live_status != 0;
+						})
+
+						homeData.oneByOneList = homeData.homeList?.filter({ (item: Activity) -> Bool in
+							return (item.lv_type == 3) && (item.live_status != 0);
+						})
+					}
 				}
+
 				dispatch_async(dispatch_get_main_queue()) {
-                    let homeData = DataCenterModel.sharedInstance.homeData;
+					let homeData = DataCenterModel.sharedInstance.homeData;
 					self.hotliveVC?.loadDataFinished(homeData.hotList!);
 					self.careVC?.loadDataFinished(homeData.oneByOneList!);
 					self.homeVC?.loadDataFinished(homeData.homeList!);

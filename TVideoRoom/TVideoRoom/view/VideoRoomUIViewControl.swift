@@ -5,14 +5,27 @@
 import UIKit
 import TRtmpPlay
 import TChat
+import SnapKit
 
-class VideoRoomUIViewVC: UIViewController {
-	private var vc: KxMovieViewController?;
-	private var chatVc: ChatViewController?;
-	private var _uiChatView: UIView?;
+class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
+
+	private var uiVideoControl: UIVideoPlayControl?;
+
+	var menuBar: RoomMenuBar?;
 	private var ges: UITapGestureRecognizer?;
 	var roomId: Int = 0;
 	var lastRtmpUrl: String = "";
+	// 滚动ui
+	var scrollView: UIScrollView?;
+
+	var changeLineBtn: UIButton?;
+
+	var uiChatVC: UIChatControl?;
+
+	var giftControl: GiftViewControl?;
+
+	var rankViewControl: RankGiftViewControl?;
+
 	lazy var backBtn: UIButton = {
 		// 设置返回按钮属性
 		let backBtn2 = UIButton(type: UIButtonType.Custom)
@@ -26,78 +39,92 @@ class VideoRoomUIViewVC: UIViewController {
 		return backBtn2
 	}();
 
-	var changeLineBtn: UIButton?;
-
 	override func viewDidLoad() {
-		self.view.backgroundColor = UIColor.whiteColor();
 		addNSNotification();
+		self.view.frame = ScreenBounds;
+		self.view.backgroundColor = UIColor.whiteColor();
 		self.navigationController?.setNavigationBarHidden(true, animated: false);
+		let height = self.view.width * 3 / 4;
+		let vWidth = self.view.width;
+
+		scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds);
+		self.automaticallyAdjustsScrollViewInsets = false;
+		scrollView!.contentSize = CGSizeMake(ScreenWidth * 3, 0);
+		scrollView!.backgroundColor = UIColor.whiteColor()
+		// 去掉滚动条
+		scrollView!.showsVerticalScrollIndicator = false
+		scrollView!.showsHorizontalScrollIndicator = false
+        // 去掉滚动条
+        
+		// 设置分页
+		scrollView!.pagingEnabled = true
+		// 设置代理
+		scrollView!.delegate = self
+		// 去掉弹簧效果
+		scrollView!.bounces = false
+
+		uiVideoControl = UIVideoPlayControl();
+		self.addChildViewController(uiVideoControl!);
+		menuBar = RoomMenuBar(frame: CGRectMake(0, 0, self.view.width, 30));
+		menuBar?.regMenuTabClick({ [weak self](type: Int) -> Void in
+			self?.scrollView!.setContentOffset(CGPointMake(CGFloat(type) * ScreenWidth, 0), animated: true)
+		})
+		self.view.addSubview(uiVideoControl!.view);
+		self.view.addSubview(menuBar!);
 		self.view.addSubview(backBtn);
-		chatVc = ChatViewController();
-		_uiChatView = UIView();
-		let height = (self.view.height - self.view.width * 3 / 4);
-		_uiChatView?.frame = CGRect(x: 0, y: self.view.width * 3 / 4, width: self.view.width, height: height);
-		chatVc!.adjust(self.view.width, h: height);
-		chatVc?.view.backgroundColor = UIColor.clearColor();
-		chatVc?.sendBlock = chatSendChatMessage;
-		_uiChatView?.addSubview(chatVc!.view);
-		self.view.addSubview(_uiChatView!);
+		self.view.addSubview(scrollView!);
+		uiVideoControl!.view.snp_makeConstraints { (make) in
+			make.width.equalTo(vWidth);
+			make.height.equalTo(height);
+			make.top.equalTo(self.view.snp_top);
+		}
+		menuBar?.snp_makeConstraints { (make) in
+			make.width.equalTo(vWidth);
+			make.height.equalTo(30);
+			make.top.equalTo(uiVideoControl!.view.snp_bottom);
+		}
+		scrollView!.snp_makeConstraints { (make) in
+			make.top.equalTo((menuBar?.snp_bottom)!);
+			make.bottom.equalTo(self.view.snp_bottom);
+			make.width.equalTo(vWidth);
+		}
+
+		menuBar?.changeBtnClick = uiVideoControl?.showChangSheetView;
 		ges = UITapGestureRecognizer(target: self, action: #selector(onTableVieo));
+		//self.view.addGestureRecognizer(ges!);
+
+		uiChatVC = UIChatControl();
+		self.addChildViewController(uiChatVC!);
+		// var frme =  scrollView!.frame;
+		uiChatVC?.view.frame = scrollView!.frame;
+		scrollView!.addSubview((uiChatVC?.view)!);
+		uiChatVC?.view.frame = scrollView!.frame;
+		uiChatVC?.view.x = 0;
+
+		giftControl = GiftViewControl();
+		self.addChildViewController(giftControl!);
+		scrollView!.addSubview((giftControl?.view)!);
+		giftControl?.view.frame = scrollView!.frame;
+		giftControl?.view.x = ScreenWidth;
+
+		rankViewControl = RankGiftViewControl();
+		self.addChildViewController(rankViewControl!);
+		scrollView!.addSubview((rankViewControl?.view)!);
+		rankViewControl?.view.frame = scrollView!.frame;
+		rankViewControl?.view.x = ScreenWidth * 2;
 		c2sGetSocket(roomId);
-		changeLineBtn = UIButton.BtnSimple("切换线路", titleColor: UIColor.purpleColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.changeLine));
-		changeLineBtn?.frame = CGRectMake(10, 10, 50, 30);
-		_uiChatView?.addSubview(changeLineBtn!);
-	}
-
-	func changeLine()
-	{
-		let alert = UIAlertController(title: "视频卡顿 请换线试试", message: nil, preferredStyle: .ActionSheet);
-		alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: self.selectNewLine));
-		let rtmpList = DataCenterModel.sharedInstance.roomData.rtmpList;
-		for item in rtmpList
-		{
-
-			let isNow = lastRtmpUrl.containsString(item.rtmpUrl);
-			if (isNow)
-			{
-				LogHttp("item.rtmpUrl=\(lastRtmpUrl)");
-				LogHttp("item.rtmpUrl contian=\(lastRtmpUrl.containsString(item.rtmpUrl))--name\(item.rtmpName)");
-				continue;
-			}
-			if (item.isEnable && !isNow)
-			{
-				alert.addAction(UIAlertAction(title: item.rtmpName, style: .Default, handler: selectNewLine));
-			}
-
-		}
-		presentViewController(alert, animated: true, completion: nil);
-	}
-
-	// 最终选择线路
-	func selectNewLine(action: UIAlertAction) {
-		let rtmpList = DataCenterModel.sharedInstance.roomData.rtmpList;
-		for item in rtmpList
-		{
-			if (action.title! == item.rtmpName)
-			{
-				let ns = NSNotification(name: RTMP_START_PLAY, object: item.rtmpUrl);
-				rtmpStartPlay(ns);
-				return;
-			}
-		}
-	}
-
-	// 隐藏状态栏
-	override func prefersStatusBarHidden() -> Bool {
-
-		return true;
 	}
 
 	deinit {
 		SocketManager.sharedInstance.closeSocket();
 		NSNotificationCenter.defaultCenter().removeObserver(self);
-		vc?.close()
-		vc = nil;
+		uiVideoControl = nil;
+	}
+
+// 隐藏状态栏
+	override func prefersStatusBarHidden() -> Bool {
+
+		return true;
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -109,11 +136,10 @@ class VideoRoomUIViewVC: UIViewController {
 	}
 
 	func addNSNotification() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoRoomUIViewVC.rtmpStartPlay), name: RTMP_START_PLAY, object: nil);
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoRoomUIViewVC.chatReceiveMessage30001), name: E_SOCKERT_Chat_30001, object: nil);
+
 	}
 
-	// 获取socket 列表
+// 测速并连接socket
 	private func c2sGetSocket(roomId: Int) {
 		let pathHttp = NSString(format: HTTP_VIDEO_ROOM, roomId, "false") as String;
 		DataCenterModel.sharedInstance.roomData.roomId = roomId;
@@ -148,73 +174,28 @@ class VideoRoomUIViewVC: UIViewController {
 			}
 		}
 	}
-	/**
-     接收到聊天信息
-     */
-	func chatReceiveMessage30001(notification: NSNotification) {
-		let message = notification.object as! ChatMessage;
-		chatVc?.receiveMessage(message);
-	}
-	/**
-     发送聊天消息
-     */
-	func chatSendChatMessage(msg: String!) -> Void {
-		if (DataCenterModel.sharedInstance.roomData.key == "")
-		{
-			showSimplpAlertView(self, tl: "error", msg: "您还未登录不能发言", btnHiht: "登录", okHandle: {
-				self.tabBarController?.selectedIndex = 3;
-			})
-		}
-		else {
-			let chatMsg = s_msg_30001(type: 0, ruid: 0, cnt: msg);
-			SocketManager.sharedInstance.sendMessage(chatMsg);
-		}
-	}
 
-	// 测试rtmp 播放
-	func rtmpStartPlay(notification: NSNotification) {
-		// [-] 正常播放模式 式正常播放模式 30043581144191618|15526D99B51B7DAA0CF99539B82F013B rtmp://119.63.47.233:9945/proxypublish
-		let roomData = DataCenterModel.sharedInstance.roomData;
-		roomData.lastRtmpUrl = notification.object as! String;
-		lastRtmpUrl = roomData.rtmpPath;
-		if (vc != nil)
-		{
-			vc?.close();
-			vc?.view.removeFromSuperview();
-			vc?.view.removeGestureRecognizer(ges!);
-			vc = nil;
-		}
-		if (lastRtmpUrl.containsString("rtmp"))
-		{
-			print("rtmp filepath=\(lastRtmpUrl)");
-			let parametersD = NSMutableDictionary();
-			parametersD[KxMovieParameterMinBufferedDuration] = 2;
-			parametersD[KxMovieParameterMaxBufferedDuration] = 10;
-			vc = KxMovieViewController.movieViewControllerWithContentPath(lastRtmpUrl, parameters: parametersD as [NSObject: AnyObject]) as? KxMovieViewController ;
-			vc!.view.frame = CGRectMake(0, 0, self.view.width, self.view.width * 3 / 4)
-			self.view.addSubview(vc!.view);
-			self.view.bringSubviewToFront(vc!.view);
-			self.view.bringSubviewToFront(backBtn);
-			vc!.view.addGestureRecognizer(ges!);
-		}
-		else {
-			showSimplpAlertView(self, tl: "主播已停止直播", msg: "请选择其他房间试试！", btnHiht: "了解");
-		}
-	}
-
-	// 隐藏聊天输入内容
+// 隐藏聊天输入内容
 	func onTableVieo()
 	{
-		chatVc?.cancelFocus();
+		uiChatVC?.chatVc?.cancelFocus();
 	}
 
 	func backBtnClick() {
 		self.navigationController?.popViewControllerAnimated(true);
 		self.navigationController?.setNavigationBarHidden(false, animated: false);
-		chatVc?.sendBlock = nil;
 	}
 
-	@IBAction func obClick(sender: AnyObject) {
+// 滚动scrollview
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+
+		let page: CGFloat = scrollView.contentOffset.x / ScreenWidth
+		if ((self.menuBar) != nil)
+		{
+			self.menuBar!.movebtnByTag(Int(page + 0.5)) ;
+			// let offsetX: CGFloat = scrollView.contentOffset.x / ScreenWidth * (self.menuBar!.width * 0.5 - Home_Seleted_Item_W * 0.5 - 15)
+			// self.menuBar!.setSelectedType(Int(page + 0.5)) ;
+		}
 
 	}
 

@@ -23,7 +23,6 @@ class AdBannerView: UICollectionReusableView {
 			pageScrollView?.data = data;
 		}
 	}
-
 	// MARK: 初始化子控件
 	func buildPageScrollView() {
 		weak var tmpSelf = self

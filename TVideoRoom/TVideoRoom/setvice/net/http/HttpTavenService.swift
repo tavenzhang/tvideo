@@ -5,9 +5,26 @@ import Alamofire
 import SwiftyJSON
 
 //var domain = "www.lgfxiu.com";
-var domain = "www.kiynd.net";
-var vdomain = "v.kiynd.net";
-var pdomain = "p.lgfxiu.com";
+//var domain = "www.kiynd.net";
+//var vdomain = "v.kiynd.net";
+//var pdomain = "p.lgfxiu.com";
+
+var domain: String {
+	get {
+		return DataCenterModel.sharedInstance.isOneRoom ? "www.kiynd.net" : "www.lgfxiu.com";
+	}
+}
+var vdomain: String {
+	get {
+		return DataCenterModel.sharedInstance.isOneRoom ? "v.kiynd.net" : "v.lgfxiu.com";
+	}
+}
+
+var pdomain: String {
+	get {
+		return DataCenterModel.sharedInstance.isOneRoom ? "v.kiynd.net" : "p.lgfxiu.com";
+	}
+}
 
 //原始老接口
 let HTTP_HOST_LIST: String = "http://%@/videolist.json?_=1466990345519sJvR";
@@ -27,8 +44,18 @@ var HTTP_GETUSR_INFO = "http://%@/indexinfo";
 //login
 var HTTP_LOGIN = "http://%@/login";
 
+//获取礼物数据
+var HTTP_GIFT_Table = "http://%@/video_gs/conf";
+//获取礼物ico
+var HTTP_GIFT_ICO_URL = "http://%@/flash/image/gift_material/";
+//http: // www.lgfxiu.com/flash/image/gift_material/310014.png
+
 func getWWWHttp(src: String) -> String {
 	return NSString(format: src, domain) as String;
+}
+
+func getVHttp(src: String) -> String {
+	return NSString(format: src, vdomain) as String;
 }
 
 var HTTP_VIDEO_ROOM: String {
@@ -39,8 +66,7 @@ var HTTP_VIDEO_ROOM: String {
 
 var HTTP_IMAGE: String {
 	get {
-		//return "http://\(pdomain)/%@?w=356&h=266";
-        return "http://\(vdomain)/%@";
+		return DataCenterModel.sharedInstance.isOneRoom ? "http://\(vdomain)/%@" : "http://\(pdomain)/%@?w=356&h=266";
 	}
 }
 
@@ -105,7 +131,7 @@ class HttpTavenService {
 				}
 			case .Failure(let error):
 				LogHttp("http  recive<------Request failed with error: %@", args: error);
-				reulstH = HttpResult(dataR: nil, reuslt: true)
+				reulstH = HttpResult(dataR: nil, reuslt: false)
 			}
 			completionHadble(reulstH!);
 		}

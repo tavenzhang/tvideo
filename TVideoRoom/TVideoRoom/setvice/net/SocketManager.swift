@@ -34,8 +34,8 @@ class SocketManager {
 	// 测速并选择最快的socket
 	func testFastSocket(ipList: [String]) -> Void
 	{
-		// DataCenterModel.sharedInstance.roomData.socketIp = nil;
-		// DataCenterModel.sharedInstance.roomData.port = 0;
+		DataCenterModel.sharedInstance.roomData.socketIp = nil;
+		DataCenterModel.sharedInstance.roomData.port = 0;
 		for item in ipList {
 			let queue = dispatch_queue_create("testSocket", DISPATCH_QUEUE_CONCURRENT);
 			dispatch_async(queue) {
@@ -93,15 +93,52 @@ class SocketManager {
 		switch cmd {
 		case MSG_10000: // 登陆验证
 			dataCenterM.roomData.aeskey = json["limit"].string!;
-			// socketM.setStartHeart(true);
-			// let r_msg = r_msg_10000(_data: (dataCenterM.roomData.key + String(dataCenterM.roomData.roomId) + "73uxh9*@(58u)fgxt"), _aesKey: dataCenterM.roomData.aeskey);
-			let r_msg = r_msg_10000(_data: ("d:87568799b3e29j7d2ea8914e12e623" + String(dataCenterM.roomData.roomId) + "juggg123"), _aesKey: dataCenterM.roomData.aeskey);
-			let s_msge = s_msg_10001(cmd: MSG_10001, _roomId: dataCenterM.roomData.roomId, _pass: dataCenterM.roomData.pass, _roomLimit: r_msg.getAesk(), _isPublish: dataCenterM.roomData.isPublish, _publishUrl: dataCenterM.roomData.publishUrl, _sid: dataCenterM.roomData.sid, _key: dataCenterM.roomData.key);
+			var r_msg: r_msg_10000?;
+			var s_msge: s_msg_10001?;
+			if (dataCenterM.isOneRoom)
+			{
+				r_msg = r_msg_10000(_data: ("d:87568799b3e29j7d2ea8914e12e623" + String(dataCenterM.roomData.roomId) + "juggg123"), _aesKey: dataCenterM.roomData.aeskey);
+				s_msge = s_msg_10001(cmd: MSG_10001, _roomId: dataCenterM.roomData.roomId, _pass: dataCenterM.roomData.pass, _roomLimit: r_msg!.getAesk(), _isPublish: dataCenterM.roomData.isPublish, _publishUrl: dataCenterM.roomData.publishUrl, _sid: dataCenterM.roomData.sid, _key: "d382538698b6e79c7d2ea8914e12e623");
+			}
+			else {
+				let r_msg = r_msg_10000(_data: (dataCenterM.roomData.key + String(dataCenterM.roomData.roomId) + "73uxh9*@(58u)fgxt"), _aesKey: dataCenterM.roomData.aeskey);
+				s_msge = s_msg_10001(cmd: MSG_10001, _roomId: dataCenterM.roomData.roomId, _pass: dataCenterM.roomData.pass, _roomLimit: r_msg.getAesk(), _isPublish: dataCenterM.roomData.isPublish, _publishUrl: dataCenterM.roomData.publishUrl, _sid: dataCenterM.roomData.sid, _key: dataCenterM.roomData.key);
+			}
+
 			socketM!.sendMessage(s_msge);
 		case MSG_10002: // 进入房间
 			let s_8002 = s_msg_noBody(_cmd: MSG_80002);
 			socketM!.sendMessage(s_8002);
+			let s_15001 = s_msg_noBody(_cmd: MSG_15001);
+			socketM!.sendMessage(s_15001);
 			break
+		case MSG_15001:
+			dataCenterM.roomData.rankGifList.removeAll();
+			fallthrough;
+		case MSG_15002:
+			let dataList = json["items"].arrayObject;
+			if (dataList != nil)
+			{
+				let newModeList = deserilObjectsWithArray(dataList!, cls: RankGiftModel.classForCoder()) as? [RankGiftModel];
+				for newItem in newModeList! {
+					var isAdd = true;
+					for data in dataCenterM.roomData.rankGifList {
+						if (data.uid == newItem.uid)
+						{
+							data.score = NSNumber(int: (data.score?.intValue)! + (newItem.score?.intValue)!);
+							isAdd = false;
+							break;
+						}
+					}
+					if (isAdd) {
+						dataCenterM.roomData.rankGifList.append(newItem);
+					}
+				}
+			}
+
+			dispatch_async(dispatch_get_main_queue()) {
+				NSNotificationCenter.defaultCenter().postNotificationName(RANK_GIft_UPTA, object: dataCenterM.roomData.rankGifList);
+			};
 		case MSG_80002: // 获取到播放列表
 			let rtmpListStr = json["userrtmp"].string;
 			if (rtmpListStr != "") {
@@ -128,12 +165,15 @@ class SocketManager {
 							LogSocket("test connection----ret=\(ret)====item=\(rtmpData.rtmpUrl)")
 							if (ret > 0) {
 								rtmpData.isEnable = true;
-								dataCenterM.roomData.rtmpList.append(rtmpData);
-								if (dataCenterM.roomData.rtmpList.count <= 1) {
-									dispatch_async(dispatch_get_main_queue()) {
+
+								// if (dataCenterM.roomData.rtmpList.count <= 1) {
+								dispatch_async(dispatch_get_main_queue()) {
+									dataCenterM.roomData.rtmpList.append(rtmpData);
+									if (dataCenterM.roomData.rtmpList.count <= 1) {
 										let msg2001 = s_msg_20001(cmd: MSG_20001, rtmpStr: dataCenterM.roomData.rtmpList[0].rtmpUrl);
 										self.socketM!.sendMessage(msg2001);
 									}
+									// }
 								}
 							}
 						}

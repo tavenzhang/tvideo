@@ -43,6 +43,18 @@ extension NSData {
 	}
 }
 
+extension UILabel {
+	class func lableSimple(title: String, corlor: UIColor, size: CGFloat, align: NSTextAlignment = .Left) -> UILabel {
+		let lb = UILabel();
+		lb.textColor = corlor;
+		lb.text = title;
+		lb.font = UIFont.boldSystemFontOfSize(size);
+		lb.textAlignment = align;
+		lb.adjustsFontSizeToFitWidth = true;
+		return lb;
+	}
+
+}
 extension UIColor {
 
 	class func colorWithCustom(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
@@ -79,17 +91,17 @@ extension UIButton {
 		else {
 			btn = UIButton()
 		}
-		btn!.setTitle(title, forState: .Normal)
-        if(image != nil)
-        {
-            btn!.setImage(image!, forState: .Normal)
-        }
+		if (image != nil)
+		{
+			btn!.setImage(image!, forState: .Normal)
+		}
+        btn?.setTitle(title, forState: .Normal);
 		btn!.setTitleColor(titleColor, forState: .Normal)
-        if(hightLightImage != nil)
-        {
-            btn!.setImage(hightLightImage, forState: .Highlighted);
-        }
-	
+        btn!.setTitleColor(titleColor.colorWithAlphaComponent(0.6), forState: .Highlighted);
+		if (hightLightImage != nil)
+		{
+			btn!.setImage(hightLightImage, forState: .Highlighted);
+		}
 		btn!.addTarget(target, action: action, forControlEvents: .TouchUpInside)
 		btn!.frame = CGRectMake(0, 0, 60, 44)
 		btn!.titleLabel?.font = UIFont.systemFontOfSize(10);

@@ -9,34 +9,6 @@
 import Foundation
 import UIKit
 
-/// 房间内具体信息
-class RoomData: NSObject {
-
-	var port: Int = 9013;
-	var sid: String = "";
-	var roomId: Int = 1761828
-	var pass: String = "";
-	var isPublish = false;
-	var publishUrl = "";
-	var key = "d382538698b6e79c7d2ea8914e12e623";
-	var aeskey = "";
-	var rtmpList = [RtmpInfo]();
-	var lastRtmpUrl: String = "";
-	var rtmpPath: String {
-		get {
-			return lastRtmpUrl + "/" + sid + " live=1";
-		}
-	}
-	var socketIp: String? ;
-	var isVideoPlaying: Bool = false;
-}
-
-class RtmpInfo {
-	var rtmpUrl: String = "";
-	var rtmpName: String = "";
-	var isEnable: Bool = false;
-}
-
 class HomeData: NSObject {
 	var AdList: [Activity]?;
 	var hotList: [Activity]?;
@@ -45,7 +17,16 @@ class HomeData: NSObject {
 	var totalList: [Activity]?;
 }
 
-class Activity: BaseDeSerialsModel {
+class RankGiftModel: NSObject {
+	// // 本场贡献  {"cmd":15001,"items":[{"uid":2228479,"hidden":0,"name":"糖糖的小鱼","score":50,"richLv":5,"vip":0,"num":0,"car":0}]}
+	var score: NSNumber?;
+	var name: String?;
+	var uid: NSNumber?;
+	var hidden: NSNumber?;
+	var rankStr: String?;
+}
+
+class Activity: NSObject {
 	var headimg: String?;
 	var live_time: String?;
 	var username: String? ;
