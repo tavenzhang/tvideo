@@ -48,3 +48,5 @@ let E_SOCKERT_2001: String = "E_SOCKERT_2001";
 let RTMP_START_PLAY: String = "rtmp start play";
 //更新贡献榜
 let RANK_GIft_UPTA: String = "rRANK_GIft_UPTA";
+//收到礼物播放特效
+let GIFT_EFFECT_START: String = "GIFT_EFFECT_START";

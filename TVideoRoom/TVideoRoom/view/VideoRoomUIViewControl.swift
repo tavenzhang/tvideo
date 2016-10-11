@@ -54,8 +54,8 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		// 去掉滚动条
 		scrollView!.showsVerticalScrollIndicator = false
 		scrollView!.showsHorizontalScrollIndicator = false
-        // 去掉滚动条
-        
+		// 去掉滚动条
+
 		// 设置分页
 		scrollView!.pagingEnabled = true
 		// 设置代理
@@ -91,7 +91,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 
 		menuBar?.changeBtnClick = uiVideoControl?.showChangSheetView;
 		ges = UITapGestureRecognizer(target: self, action: #selector(onTableVieo));
-		//self.view.addGestureRecognizer(ges!);
+		// self.view.addGestureRecognizer(ges!);
 
 		uiChatVC = UIChatControl();
 		self.addChildViewController(uiChatVC!);
@@ -136,6 +136,13 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 	}
 
 	func addNSNotification() {
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onGiftEffectStart), name: GIFT_EFFECT_START, object: nil);
+	}
+
+	func onGiftEffectStart(notice: NSNotification) {
+		let data = notice.object as! [String: Int];
+		// let data = ["gid": Int((curSelectGift?.gid)!), "num": curShopNum];
+		LogHttp("收到gid=\(data["gid"])---num=\(data["num"])");
 
 	}
 

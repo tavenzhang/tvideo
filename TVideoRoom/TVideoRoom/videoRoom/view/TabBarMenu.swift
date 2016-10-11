@@ -26,6 +26,7 @@ class TabBarMenu: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame);
+
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -35,6 +36,7 @@ class TabBarMenu: UIView {
 	deinit
 	{
 		selectedBlock = nil;
+
 	}
 
 	/// 注册点击回调
@@ -44,6 +46,7 @@ class TabBarMenu: UIView {
 	}
 
 	func creatBtnByList(btnNameList: [String], txtSize: CGFloat, color: UIColor, underLinColor: UIColor = UIColor.purpleColor()) {
+		// self.backgroundColor = UIColor.redColor();
 		btnList.removeAll();
 		let count: CGFloat = CGFloat(btnNameList.count);
 		itemSize = self.width / count;
@@ -51,11 +54,11 @@ class TabBarMenu: UIView {
 		{
 			let btn = createBtn(title, tag: index, size: txtSize, color: color);
 			btn.frame = CGRectMake(CGFloat(index) * itemSize, 0, itemSize, self.height);
-			btn.centerY = self.centerY;
+			//btn.centenY = 0;
 			btnList.append(btn);
-			self.addSubview(btn)
-		}
+			self.addSubview(btn);
 
+		}
 		underLine = UIView(frame: CGRect(x: 15.0, y: self.height - 4, width: itemSize / 2, height: 2.0));
 		underLine!.backgroundColor = UIColor.purpleColor();
 		self.addSubview(underLine!);
@@ -75,7 +78,7 @@ class TabBarMenu: UIView {
 		return btn
 	}
 
-	// 点击事件
+// 点击事件
 	func click(btn: UIButton) {
 		self.selectedBtn?.selected = false
 		btn.selected = true
@@ -88,14 +91,14 @@ class TabBarMenu: UIView {
 	}
 
 	func moveBtn(btn: UIButton) {
-			UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-				() -> Void in
-				self.underLine!.x = CGFloat(btn.tag) * (self.itemSize) + self.itemSize / 4;
-				}, completion: {
-				(bool) -> Void in
-				self.isBtnClickAnimation = false;
-				}
-			);
+		UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+			() -> Void in
+			self.underLine!.x = CGFloat(btn.tag) * (self.itemSize) + self.itemSize / 4;
+			}, completion: {
+			(bool) -> Void in
+			self.isBtnClickAnimation = false;
+			}
+		);
 	}
 
 	func setSelectedType(selectedType: Int) {
@@ -114,11 +117,11 @@ class TabBarMenu: UIView {
 		{
 			if (btn.tag == selectedType)
 			{
-                if(!isBtnClickAnimation)
-                {
-                    setSelectedType(selectedType);
-                    moveBtn(selectedBtn!);
-                }
+				if (!isBtnClickAnimation)
+				{
+					setSelectedType(selectedType);
+					moveBtn(selectedBtn!);
+				}
 				return;
 			}
 		}

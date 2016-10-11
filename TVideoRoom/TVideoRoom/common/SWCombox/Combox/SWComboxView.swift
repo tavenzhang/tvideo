@@ -258,6 +258,7 @@ class SWComboxView: UIView, UITableViewDataSource, UITableViewDelegate
     private func getTableFrame() -> CGRect
     {
         var frame  = tableView.frame
+        tableView.backgroundColor = UIColor.redColor();
         let countNumber = self.list.count > 4 ? 4.5 : CGFloat(self.list.count)
         frame.size.height = self.contentView.frame.height * countNumber
         let fullHeight = UIScreen.mainScreen().bounds.size.height

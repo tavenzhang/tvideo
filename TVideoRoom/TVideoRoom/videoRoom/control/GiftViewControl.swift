@@ -9,25 +9,27 @@
 import UIKit
 import SnapKit;
 
-class GiftViewControl: BaseUIViewController, SWComboxViewDelegate {
+class GiftViewControl: BaseUIViewController {
 
-	private var flag: Int = -1
-	private var collectionView: LFBCollectionView!
-	private var lastContentOffsetY: CGFloat = 0;
-	// 热播列表
-	var dataRoom: RoomData?;
+	private var giftCollectionView: LFBCollectionView!;
 	var giftDataList: [GiftInfoModel] = [];
-
+	var dataRoom: RoomData?;
+	// 礼物数量选择
+	var chooseView: GiftNumChooseViewController?;
+	var curShopNum: Int = 1;
+	var curSelectGift: GiftInfoModel?;
+	var giftMenuBar: TabBarMenu?;
 	override func viewDidLoad() {
 		dataRoom = DataCenterModel.sharedInstance.roomData;
 		buildCollectionView();
+		buildGiftSendBar();
 		prepareData();
 		self.view.backgroundColor = UIColor.whiteColor();
-
+		self.view.height = 20;
 	}
 
 	deinit {
-
+		giftMenuBar = nil;
 	}
 
 	func prepareData() {
@@ -46,109 +48,174 @@ class GiftViewControl: BaseUIViewController, SWComboxViewDelegate {
 								self!.dataRoom?.giftDataManager.append(model);
 							}
 						}
-
 					}
 				}
-				self?.giftDataList = (self!.dataRoom?.giftDataManager[0].items)!;
-				self?.collectionView.reloadData();
+				self?.buildGiftMenuBar();
 			})
 		}
 		else {
-			self.giftDataList = (self.dataRoom?.giftDataManager[0].items)!;
-			self.collectionView.reloadData();
+			buildGiftMenuBar()
 		}
+	}
+
+	// 建立菜单
+	func buildGiftMenuBar() {
+		var menuNameList = [String]();
+		for item in (dataRoom?.giftDataManager)!
+		{
+			menuNameList.append(item.name);
+		}
+		giftMenuBar = TabBarMenu();
+		self.view.addSubview(giftMenuBar!);
+		giftMenuBar?.snp_makeConstraints(closure: { (make) in
+			make.bottom.equalTo(giftCollectionView.snp_top);
+			make.height.equalTo(25);
+			make.width.equalTo(self.view.width * 3 / 4);
+		})
+		self.view.layoutIfNeeded();
+		giftMenuBar?.creatBtnByList(menuNameList, txtSize: 14, color: UIColor.colorWithCustom(225, g: 50, b: 125), underLinColor: UIColor.grayColor());
+		giftMenuBar?.regClickHandle({ [weak self](tag) in
+			let index = Int(tag);
+			self?.giftDataList = (self?.dataRoom?.giftDataManager[index].items)!;
+			LogHttp("giftDataList------\(self!.giftDataList)");
+			self?.giftCollectionView.reloadData();
+			let attStr = NSMutableAttributedString(string: "礼物: ");
+			self?.txtChangeLB?.attributedText = attStr;
+			self?.curSelectGift = nil;
+		})
+		self.giftDataList = (self.dataRoom?.giftDataManager[0].items)!;
+		self.giftCollectionView.reloadData();
+
+	}
+
+	// 建立集合
+	func buildCollectionView() -> Void {
+		let layout = UICollectionViewFlowLayout()
+		layout.scrollDirection = .Horizontal;
+		layout.minimumInteritemSpacing = 0;
+		layout.minimumLineSpacing = -1;
+		layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
+		giftCollectionView = LFBCollectionView(frame: CGRectMake(0, self.view.width, self.view.width, 140), collectionViewLayout: layout)
+		giftCollectionView.delegate = self
+		giftCollectionView.dataSource = self
+		giftCollectionView.showsHorizontalScrollIndicator = false;
+		giftCollectionView.backgroundColor = LFBGlobalBackgroundColor;
+		giftCollectionView.registerClass(GiftShopCell.self, forCellWithReuseIdentifier: "Cell");
+		view.addSubview(giftCollectionView);
+
+		giftCollectionView.snp_makeConstraints { (make) in
+			make.bottom.equalTo(self.view.snp_bottom).offset(-35);
+			make.width.equalTo(self.view.width);
+			make.height.equalTo(140);
+			make.left.equalTo(self.view.snp_left);
+		}
+
 	}
 
 	var btnSend: UIButton?;
 	var btnMoney: UIButton?;
 	var txtChangeLB: UILabel?;
-	var containner1: UIView = UIView();
-	// 建立集合
-	func buildCollectionView() -> Void {
-		let layout = UICollectionViewFlowLayout()
-		layout.scrollDirection = .Horizontal;
-		layout.minimumInteritemSpacing = -1;
-		layout.minimumLineSpacing = -2;
-		layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
-		// layout.headerReferenceSize = CGSizeMake(0, 22);
-		collectionView = LFBCollectionView(frame: CGRectMake(0, self.view.width, self.view.width, 140), collectionViewLayout: layout)
-		collectionView.delegate = self
-		collectionView.dataSource = self
-		collectionView.showsHorizontalScrollIndicator = false;
-		collectionView.backgroundColor = LFBGlobalBackgroundColor;
-		collectionView.registerClass(GiftShopCell.self, forCellWithReuseIdentifier: "Cell");
-		view.addSubview(collectionView);
+	var btnNum: UIButton?;
 
-		collectionView.snp_makeConstraints { (make) in
-			make.bottom.equalTo(self.view.snp_bottom).offset(-35);
-			make.width.equalTo(self.view.width);
-			make.height.equalTo(140);
-		}
-		// self.view.layoutIfNeeded();
-		// self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0);
-
-		btnMoney = UIButton.BtnSimple("充值", titleColor: UIColor.whiteColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.addMoneyClick));
+	func buildGiftSendBar() {
+		btnMoney = UIButton.BtnSimple("充值", titleColor: UIColor.whiteColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sAddMoneyClick));
 		btnMoney!.backgroundColor = UIColor.colorWithCustom(0, g: 181, b: 219);
 		btnMoney!.layer.cornerRadius = 10;
 		btnMoney!.layer.masksToBounds = true;
 		view.addSubview(btnMoney!);
 		btnMoney!.snp_makeConstraints { (make) in
 			make.bottom.equalTo(self.view.snp_bottom).offset(-5);
-			make.right.equalTo(self.view.snp_right).offset(-5);
+			make.left.equalTo(self.view.snp_left).offset(5);
 			make.width.equalTo(60);
 		}
-		btnSend = UIButton.BtnSimple("赠送", titleColor: UIColor.whiteColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.sendGift));
+		btnSend = UIButton.BtnSimple("赠送", titleColor: UIColor.whiteColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sSendGift));
 		btnSend!.backgroundColor = UIColor.colorWithCustom(225, g: 50, b: 125);
 		btnSend!.layer.cornerRadius = 10;
 		btnSend!.layer.masksToBounds = true;
 		view.addSubview(btnSend!);
 		btnSend!.snp_makeConstraints { (make) in
 			make.centerY.equalTo(btnMoney!.snp_centerY);
-			make.right.equalTo(btnMoney!.snp_left).offset(-5);
+			make.right.equalTo(self.view.snp_right).offset(-5);
 			make.width.equalTo(60);
 		}
+
+		btnNum = UIButton.BtnSimple("X1  >", titleColor: UIColor.brownColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.showChooseView));
+		// btnSend!.backgroundColor = UIColor.colorWithCustom(225, g: 50, b: 125);
+		btnNum!.layer.borderWidth = 1;
+		btnNum!.layer.borderColor = UIColor.grayColor().CGColor;
+		btnNum!.layer.cornerRadius = 10;
+		btnNum!.layer.masksToBounds = true;
+
+		view.addSubview(btnNum!);
+		btnNum!.snp_makeConstraints { (make) in
+			make.centerY.equalTo(btnSend!.snp_centerY);
+			make.right.equalTo(btnSend!.snp_left).offset(-5);
+			make.width.equalTo(60);
+		}
+
 		txtChangeLB = UILabel.lableSimple("礼物:", corlor: UIColor.blackColor(), size: 12);
 		view.addSubview(txtChangeLB!);
 		txtChangeLB!.snp_makeConstraints { (make) in
 			make.centerY.equalTo(btnMoney!.snp_centerY);
-			make.left.equalTo(self.view.snp_left).offset(10);
+			make.left.equalTo((self.btnMoney?.snp_right)!).offset(10);
 			// make.width.equalTo(60);
 		}
-		var helper: SWComboxTitleHelper
-		helper = SWComboxTitleHelper()
+		chooseNumLB(1);
+	}
 
-		let list = ["good", "middle", "bad"]
-		view.addSubview(containner1);
+	func c2sSendGift() {
+		if (curSelectGift != nil && curShopNum > 0)
+		{
 
-		containner1.snp_makeConstraints { (make) in
-			make.centerY.equalTo(0);
-			make.right.equalTo((btnSend?.snp_left)!).offset(-10);
-			make.width.equalTo(100);
-			make.height.equalTo(20);
+			// let msg = s_msg_40001(gid: Int((curSelectGift?.gid)!), uid: DataCenterModel.sharedInstance.roomData.uid, gnum: curShopNum);
+			// SocketManager.sharedInstance.socketM!.sendMessage(msg);
+			let data = ["gid": Int((curSelectGift?.gid)!), "num": curShopNum];
+			NSNotificationCenter.defaultCenter().postNotificationName(GIFT_EFFECT_START, object: data);
+			LogHttp("送礼物");
 		}
-		self.view.layoutIfNeeded();
-        var frame = self.containner1.frame;
-		var comboxView: SWComboxView;
-		comboxView = SWComboxView.loadInstanceFromNibNamedToContainner(self.containner1)!
-		comboxView.bindData(list, comboxHelper: helper, seletedIndex: 1, comboxDelegate: self, containnerView: self.view);
+		else {
+			showSimplpAlertView(self, tl: "", msg: "请先选择礼物！")
+		}
 	}
 
-	func sendGift() {
-		LogHttp("sendGift");
+	func c2sAddMoneyClick() {
+		showSimplpAlertView(self, tl: "", msg: "手机充值暂未开放！")
 	}
 
-	func addMoneyClick() {
-		LogHttp("addMoneyClick");
+	func showChooseView() {
+		if (chooseView == nil)
+		{
+			chooseView = GiftNumChooseViewController();
+			chooseView?.callFun = chooseNumFuc;
+		};
+		chooseView!.preferredContentSize = CGSizeMake(150, 300)
+		chooseView!.modalPresentationStyle = .Popover;
+		let pvc = chooseView!.popoverPresentationController! as UIPopoverPresentationController;
+		pvc.permittedArrowDirections = .Up;
+		pvc.sourceView = btnNum;
+		pvc.sourceRect = btnNum!.bounds;
+		pvc.delegate = self;
+		presentViewController(chooseView!, animated: true, completion: nil);
 	}
 
-	// MARK: delegate
-	func selectedAtIndex(index: Int, withCombox: SWComboxView)
+	func chooseNumFuc(data: AnyObject?) {
+		let model = data as! GiftChooseModel;
+		chooseNumLB(model.data);
+	}
+
+	func chooseNumLB(num: Int) {
+		curShopNum = num;
+		btnNum?.setTitle("X\(num)  >", forState: .Normal);
+	}
+}
+
+extension GiftViewControl: UIPopoverPresentationControllerDelegate
+{
+	func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
 	{
+		return UIModalPresentationStyle.None;
 	}
-	func tapComboxToOpenTable(combox: SWComboxView)
-	{
 
-	}
 }
 
 extension GiftViewControl: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -176,26 +243,18 @@ extension GiftViewControl: UICollectionViewDelegate, UICollectionViewDataSource,
 	}
 
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-//		if section == 0 {
-//			return CGSizeMake(ScreenWidth, HomeCollectionViewCellMargin)
-//		} else if section == 1 {
-//			// return CGSizeMake(ScreenWidth, HomeCollectionViewCellMargin*2)
-//		}
 		return CGSizeZero
-	}
-
-	func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-		return true;
 	}
 
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 		let shopGiftModel = giftDataList[indexPath.row];
+		curSelectGift = shopGiftModel;
 		let attStr = NSMutableAttributedString(string: "礼物: ");
 		let attrDic = [NSForegroundColorAttributeName: UIColor.purpleColor()];
-		// let nameStr = NSAttributedString(string: "\(shopGiftModel.name!)(\(shopGiftModel.price!)钻)", attributes: attrDic);
-		let nameStr = NSAttributedString(string: shopGiftModel.name!, attributes: attrDic);
+		let nameStr = NSAttributedString(string: "\(shopGiftModel.name!)(\(shopGiftModel.price!)钻)", attributes: attrDic);
+		// let nameStr = NSAttributedString(string: shopGiftModel.name!, attributes: attrDic);
 		attStr.appendAttributedString(nameStr);
-		txtChangeLB?.attributedText = attStr;
+		self.txtChangeLB?.attributedText = attStr;
 		// txtChangeLB?.text = "赠送: \(shopGiftModel.name)";
 		LogHttp("click");
 		LogHttp("collectionView");

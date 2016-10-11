@@ -29,8 +29,7 @@ class r_msg_10000:r_msg_noBody {
         aesKey = _aesKey;
        // aesKey="1464762374145000";
     }
-    
-    
+
     func getAesk() -> String {
         // var aes3=RNCryptor.EncryptorV3
         let IV:String = "0102030405060708";

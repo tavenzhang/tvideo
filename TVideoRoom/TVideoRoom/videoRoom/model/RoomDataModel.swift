@@ -23,7 +23,7 @@ class RoomData: NSObject {
 	var socketIp: String? ;
 	var isVideoPlaying: Bool = false;
 	var rankGifList: [RankGiftModel] = [];
-
+	var uid:String = "0";
 	// 礼物数据集合
 	var giftDataManager: [GiftCateoryModel] = [];
 
@@ -33,6 +33,20 @@ class RtmpInfo {
 	var rtmpUrl: String = "";
 	var rtmpName: String = "";
 	var isEnable: Bool = false;
+}
+
+class GiftChooseModel {
+
+	init(lb: String, num: Int, isVip: Bool)
+	{
+		label = lb;
+		data = num;
+		vip = isVip;
+	}
+
+	var label: String = "";
+	var data: Int = 0;
+	var vip: Bool = false;
 }
 
 class GiftCateoryModel: NSObject, DictModelProtocol {
