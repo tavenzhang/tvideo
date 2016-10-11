@@ -89,7 +89,6 @@ class GiftEffectVC: UIView {
 		// 初始化礼物赠送条
 		let giftShowInfoStructure = giftStructureArray[0];
 		giftStructureArray.removeAtIndex(0);
-
 		var yPos: CGFloat = 0
 		yPos = ScreenHeight - 200 - 75 - 10
 		let giftsendbar = GiftSendBar(frame: CGRectMake(10 - ScreenWidth, yPos, ScreenWidth - 20, 75))
@@ -97,19 +96,19 @@ class GiftEffectVC: UIView {
 			self.giftSendBarOne = giftsendbar
 			self.gifsendBarOneUid = giftShowInfoStructure.send_user_id
 			self.gifsendBarOneUid_giftid = giftShowInfoStructure.gift_uid
-			self.addSubview(giftSendBarOne!)
+			self.addSubview(giftSendBarOne!);
 		}
 		else if tag == 1 {
 			self.giftSendBarTwo = giftsendbar
 			self.gifsendBarTWoUid = giftShowInfoStructure.send_user_id
 			self.gifsendBarTWoUid_giftid = giftShowInfoStructure.gift_uid
-			self.addSubview(giftSendBarTwo!)
+			self.addSubview(giftSendBarTwo!);
 		}
 		else if tag == 2 {
 			self.giftSendBarThree = giftsendbar
 			self.gifsendBarThreeUid = giftShowInfoStructure.send_user_id
 			self.gifsendBarThreeUid_giftid = giftShowInfoStructure.gift_uid
-			self.addSubview(giftSendBarThree!)
+			self.addSubview(giftSendBarThree!);
 		}
 		giftsendbar.setSendGiftBarUsername(giftShowInfoStructure.senderNickString, giftnumString: "\(giftShowInfoStructure.giftCounts)", withgiftname: giftShowInfoStructure.giftNameString, withgiftpath: giftShowInfoStructure.giftThumbnailPath)
 		giftsendbar.setImageViewimagefromStr(giftShowInfoStructure.selfIconStr);

@@ -20,14 +20,12 @@
    NSMutableArray* faceDataList = [FaceData faceDataList];
     //2、通过正则表达式来匹配字符串
     NSString *regex_emoji = @"\\{\\/[a-zA-Z0-9\\/\\u4e00-\\u9fa5]+\\}"; //匹配表情
-    
     NSError *error = nil;
     NSRegularExpression *re = [NSRegularExpression regularExpressionWithPattern:regex_emoji options:NSRegularExpressionCaseInsensitive error:&error];
     if (!re) {
         NSLog(@"%@", [error localizedDescription]);
         return attributeString;
     }
-    
     NSArray *resultArray = [re matchesInString:text options:0 range:NSMakeRange(0, text.length)];
     //3、获取所有的表情以及位置
     //用来存放字典，字典中存储的是图片和图片对应的位置

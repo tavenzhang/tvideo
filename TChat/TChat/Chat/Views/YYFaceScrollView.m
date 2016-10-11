@@ -1,13 +1,6 @@
-//
-//  YYFaceScrollView.m
-//  ismarter2.0_sz
-//
-//  Created by zx_04 on 15/6/15.
-//
-//
+
 
 #import "YYFaceScrollView.h"
-//#import "TChat-pch.h"
 #import <UIKit/UIKit.h>
 
 @implementation YYFaceScrollView

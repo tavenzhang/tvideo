@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1EE51636E91B2F4B8703063A /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE51C86D797FB3333564E44 /* HomeCell.swift */; };
+		1EE51DAA5201BBDF214D96ED /* GiftEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE51B3F6D104878284E83C0 /* GiftEffectView.swift */; };
 		74DE4B34403B481EA6C95737 /* Pods_TVideoRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A05038CEC7076ADA61914DD /* Pods_TVideoRoom.framework */; };
 		DE09BF081DA8B9E7002D85B6 /* RankGiftViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE09BF071DA8B9E7002D85B6 /* RankGiftViewControl.swift */; };
 		DE09BF0C1DA8F04E002D85B6 /* GiftRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE09BF0B1DA8F04E002D85B6 /* GiftRankCell.swift */; };
@@ -64,7 +65,6 @@
 		DEA7D8AD1DA4920F00978ECA /* UISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7D8AC1DA4920F00978ECA /* UISearchViewController.swift */; };
 		DEAC0DB21DAC6EBB0069DDF9 /* GiftInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DAF1DAC6EBB0069DDF9 /* GiftInfoModel.m */; };
 		DEAC0DB31DAC6EBB0069DDF9 /* GiftSendBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DB11DAC6EBB0069DDF9 /* GiftSendBar.m */; };
-		DEAC0DB51DAC82BA0069DDF9 /* GiftEffectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DB41DAC82BA0069DDF9 /* GiftEffectVC.swift */; };
 		DEBE43941D1EB33F00178DA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */; };
 		DEBE43961D1EB56100178DA7 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43951D1EB56100178DA7 /* GlobalConfig.swift */; };
 		DEBE439B1D1EB75F00178DA7 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE439A1D1EB75F00178DA7 /* UIExtension.swift */; };
@@ -91,6 +91,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EE51B3F6D104878284E83C0 /* GiftEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftEffectView.swift; sourceTree = "<group>"; };
 		1EE51C86D797FB3333564E44 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCell.swift; path = TVideoRoom/videoRoom/HomeCell.swift; sourceTree = SOURCE_ROOT; };
 		3A05038CEC7076ADA61914DD /* Pods_TVideoRoom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVideoRoom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB479574F5ACCE894A1A69B /* Pods-TVideoRoom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVideoRoom.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TVideoRoom/Pods-TVideoRoom.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,7 +199,6 @@
 		DEAC0DAF1DAC6EBB0069DDF9 /* GiftInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftInfoModel.m; sourceTree = "<group>"; };
 		DEAC0DB01DAC6EBB0069DDF9 /* GiftSendBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftSendBar.h; sourceTree = "<group>"; };
 		DEAC0DB11DAC6EBB0069DDF9 /* GiftSendBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftSendBar.m; sourceTree = "<group>"; };
-		DEAC0DB41DAC82BA0069DDF9 /* GiftEffectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftEffectVC.swift; sourceTree = "<group>"; };
 		DEB6F09A1D0133D400C7DD6C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DEBE43951D1EB56100178DA7 /* GlobalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
@@ -430,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				DE7B34AA1DAA7EFB00562AA2 /* GiftShopCell.swift */,
+				1EE51B3F6D104878284E83C0 /* GiftEffectView.swift */,
 			);
 			path = giftView;
 			sourceTree = "<group>";
@@ -466,7 +467,6 @@
 				DEE647A81DA7EF530096201A /* GiftViewControl.swift */,
 				DE09BF071DA8B9E7002D85B6 /* RankGiftViewControl.swift */,
 				DE32A2DB1DAB8E0100A97020 /* GiftNumChooseViewController.swift */,
-				DEAC0DB41DAC82BA0069DDF9 /* GiftEffectVC.swift */,
 			);
 			path = control;
 			sourceTree = "<group>";
@@ -908,7 +908,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE7DAEF31DA29E6400AB51FC /* HotViewController.swift in Sources */,
-				DEAC0DB51DAC82BA0069DDF9 /* GiftEffectVC.swift in Sources */,
 				DE7B34AB1DAA7EFB00562AA2 /* GiftShopCell.swift in Sources */,
 				DEBE439D1D1EB80B00178DA7 /* CustomButton.swift in Sources */,
 				DE32A2E21DABCBE500A97020 /* GiftMenuBar.swift in Sources */,
@@ -967,6 +966,7 @@
 				DE3641861D0050CA00A3FE24 /* RMessages.swift in Sources */,
 				1EE51636E91B2F4B8703063A /* HomeCell.swift in Sources */,
 				DEE0F0E91DA77D3300BE806B /* UIVideoPlayerControl.swift in Sources */,
+				1EE51DAA5201BBDF214D96ED /* GiftEffectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
