@@ -53,19 +53,19 @@ class GiftShopCell: UICollectionViewCell {
 	override var selected: Bool {
 		didSet {
 			super.selected = selected;
-            self.backgroundColor = selected ? UIColor.redColor().colorWithAlphaComponent(0.5):UIColor.whiteColor();
+			self.backgroundColor = selected ? UIColor.redColor().colorWithAlphaComponent(0.5) : UIColor.whiteColor();
 		}
 	}
-    
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		// Initialization code
 	}
 	// MARK: - 模型set方法
-	var shopGiftModel: GiftInfoModel? {
+	var shopGiftModel: GiftDetailModel? {
 		didSet {
 			let gidId = shopGiftModel!.gid!.intValue;
-			let imageUrl = getWWWHttp(HTTP_GIFT_ICO_URL) + gidId.description + ".png";
+			let imageUrl = getGiftImagUrl(gidId.description);
 			backImageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: r_home_videoImgPlaceholder));
 			nameLabel.text = shopGiftModel?.name;
 			priceLabel.text = (shopGiftModel?.price?.description)! + "钻石";

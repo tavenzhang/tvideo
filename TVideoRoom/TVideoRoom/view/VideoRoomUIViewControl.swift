@@ -26,6 +26,8 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 
 	var rankViewControl: RankGiftViewControl?;
 
+	var giftEffectView: GiftEffectVC?;
+
 	lazy var backBtn: UIButton = {
 		// 设置返回按钮属性
 		let backBtn2 = UIButton(type: UIButtonType.Custom)
@@ -113,6 +115,12 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		rankViewControl?.view.frame = scrollView!.frame;
 		rankViewControl?.view.x = ScreenWidth * 2;
 		c2sGetSocket(roomId);
+		giftEffectView = GiftEffectVC();
+		self.view.addSubview(giftEffectView!);
+		giftEffectView?.snp_makeConstraints(closure: { (make) in
+			make.edges.equalTo(self.view);
+		})
+
 	}
 
 	deinit {
@@ -139,11 +147,10 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onGiftEffectStart), name: GIFT_EFFECT_START, object: nil);
 	}
 
+	// 开始播放动画
 	func onGiftEffectStart(notice: NSNotification) {
-		let data = notice.object as! [String: Int];
-		// let data = ["gid": Int((curSelectGift?.gid)!), "num": curShopNum];
-		LogHttp("收到gid=\(data["gid"])---num=\(data["num"])");
-
+		let data = notice.object as! GiftInfoModel;
+		giftEffectView?.addEffectGift(data);
 	}
 
 // 测速并连接socket

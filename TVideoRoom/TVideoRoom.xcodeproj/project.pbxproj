@@ -27,25 +27,10 @@
 		DE1645391D20C7EC00E21B4A /* HttpTavenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1645381D20C7EC00E21B4A /* HttpTavenService.swift */; };
 		DE1AE8941DA38F6D009661F2 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1AE8931DA38F6D009661F2 /* MainPageViewController.swift */; };
 		DE238AC21DA679920086437A /* TRtmpPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE238AC11DA679920086437A /* TRtmpPlay.framework */; };
-		DE32A2CB1DAB707C00A97020 /* icn-dropdown.pdf in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2B71DAB707C00A97020 /* icn-dropdown.pdf */; };
-		DE32A2CC1DAB707C00A97020 /* SWComboxCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2B81DAB707C00A97020 /* SWComboxCountry.swift */; };
-		DE32A2CD1DAB707C00A97020 /* SWComboxCountry.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2B91DAB707C00A97020 /* SWComboxCountry.xib */; };
-		DE32A2CE1DAB707C00A97020 /* SWComboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2BA1DAB707C00A97020 /* SWComboxHelper.swift */; };
-		DE32A2CF1DAB707C00A97020 /* SWComboxTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2BB1DAB707C00A97020 /* SWComboxTitle.swift */; };
-		DE32A2D01DAB707C00A97020 /* SWComboxTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2BC1DAB707C00A97020 /* SWComboxTitle.xib */; };
-		DE32A2D11DAB707C00A97020 /* SWComboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2BD1DAB707C00A97020 /* SWComboxView.swift */; };
-		DE32A2D21DAB707C00A97020 /* SWComboxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2BE1DAB707C00A97020 /* SWComboxView.xib */; };
-		DE32A2D31DAB707C00A97020 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2BF1DAB707C00A97020 /* UIViewEx.swift */; };
-		DE32A2D41DAB707C00A97020 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2C01DAB707C00A97020 /* Images.xcassets */; };
-		DE32A2D51DAB707C00A97020 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2C11DAB707C00A97020 /* Info.plist */; };
-		DE32A2D61DAB707C00A97020 /* square-CN.png in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2C21DAB707C00A97020 /* square-CN.png */; };
-		DE32A2D71DAB707C00A97020 /* square-JP.png in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2C31DAB707C00A97020 /* square-JP.png */; };
-		DE32A2D81DAB707C00A97020 /* square-US.png in Resources */ = {isa = PBXBuildFile; fileRef = DE32A2C41DAB707C00A97020 /* square-US.png */; };
-		DE32A2D91DAB707C00A97020 /* SWCombox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2C51DAB707C00A97020 /* SWCombox.xcdatamodeld */; };
-		DE32A2DA1DAB707C00A97020 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2C71DAB707C00A97020 /* ViewController.swift */; };
 		DE32A2DC1DAB8E0100A97020 /* GiftNumChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2DB1DAB8E0100A97020 /* GiftNumChooseViewController.swift */; };
 		DE32A2DE1DAB944400A97020 /* GiftChooseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2DD1DAB944400A97020 /* GiftChooseCell.swift */; };
 		DE32A2E21DABCBE500A97020 /* GiftMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2E11DABCBE500A97020 /* GiftMenuBar.swift */; };
+		DE32A2E41DAC6D2200A97020 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE32A2E31DAC6D2200A97020 /* UIViewEx.swift */; };
 		DE3641621D004FC600A3FE24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3641611D004FC600A3FE24 /* AppDelegate.swift */; };
 		DE3641641D004FC600A3FE24 /* VideoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3641631D004FC600A3FE24 /* VideoListController.swift */; };
 		DE3641671D004FC600A3FE24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3641651D004FC600A3FE24 /* Main.storyboard */; };
@@ -77,6 +62,9 @@
 		DE9D50E91DA637850029C06E /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D50E81DA637850029C06E /* MyInfo.swift */; };
 		DEA01EC41DA5DAE60075411D /* ResourceString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA01EC31DA5DAE60075411D /* ResourceString.swift */; };
 		DEA7D8AD1DA4920F00978ECA /* UISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7D8AC1DA4920F00978ECA /* UISearchViewController.swift */; };
+		DEAC0DB21DAC6EBB0069DDF9 /* GiftInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DAF1DAC6EBB0069DDF9 /* GiftInfoModel.m */; };
+		DEAC0DB31DAC6EBB0069DDF9 /* GiftSendBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DB11DAC6EBB0069DDF9 /* GiftSendBar.m */; };
+		DEAC0DB51DAC82BA0069DDF9 /* GiftEffectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DB41DAC82BA0069DDF9 /* GiftEffectVC.swift */; };
 		DEBE43941D1EB33F00178DA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */; };
 		DEBE43961D1EB56100178DA7 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43951D1EB56100178DA7 /* GlobalConfig.swift */; };
 		DEBE439B1D1EB75F00178DA7 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE439A1D1EB75F00178DA7 /* UIExtension.swift */; };
@@ -135,25 +123,10 @@
 		DE1AE8931DA38F6D009661F2 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		DE1AE89D1DA3E889009661F2 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SVProgressHUD.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<absolute>"; };
 		DE238AC11DA679920086437A /* TRtmpPlay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TRtmpPlay.framework; path = "../TRtmpPlay/build/Debug-iphoneos/TRtmpPlay.framework"; sourceTree = "<group>"; };
-		DE32A2B71DAB707C00A97020 /* icn-dropdown.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icn-dropdown.pdf"; sourceTree = "<group>"; };
-		DE32A2B81DAB707C00A97020 /* SWComboxCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWComboxCountry.swift; sourceTree = "<group>"; };
-		DE32A2B91DAB707C00A97020 /* SWComboxCountry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWComboxCountry.xib; sourceTree = "<group>"; };
-		DE32A2BA1DAB707C00A97020 /* SWComboxHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWComboxHelper.swift; sourceTree = "<group>"; };
-		DE32A2BB1DAB707C00A97020 /* SWComboxTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWComboxTitle.swift; sourceTree = "<group>"; };
-		DE32A2BC1DAB707C00A97020 /* SWComboxTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWComboxTitle.xib; sourceTree = "<group>"; };
-		DE32A2BD1DAB707C00A97020 /* SWComboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWComboxView.swift; sourceTree = "<group>"; };
-		DE32A2BE1DAB707C00A97020 /* SWComboxView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWComboxView.xib; sourceTree = "<group>"; };
-		DE32A2BF1DAB707C00A97020 /* UIViewEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
-		DE32A2C01DAB707C00A97020 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DE32A2C11DAB707C00A97020 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE32A2C21DAB707C00A97020 /* square-CN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-CN.png"; sourceTree = "<group>"; };
-		DE32A2C31DAB707C00A97020 /* square-JP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-JP.png"; sourceTree = "<group>"; };
-		DE32A2C41DAB707C00A97020 /* square-US.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-US.png"; sourceTree = "<group>"; };
-		DE32A2C61DAB707C00A97020 /* SWCombox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SWCombox.xcdatamodel; sourceTree = "<group>"; };
-		DE32A2C71DAB707C00A97020 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DE32A2DB1DAB8E0100A97020 /* GiftNumChooseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftNumChooseViewController.swift; sourceTree = "<group>"; };
 		DE32A2DD1DAB944400A97020 /* GiftChooseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GiftChooseCell.swift; path = ../giftView/GiftChooseCell.swift; sourceTree = "<group>"; };
 		DE32A2E11DABCBE500A97020 /* GiftMenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftMenuBar.swift; sourceTree = "<group>"; };
+		DE32A2E31DAC6D2200A97020 /* UIViewEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
 		DE36415E1D004FC600A3FE24 /* TVideoRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVideoRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3641611D004FC600A3FE24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE3641631D004FC600A3FE24 /* VideoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoListController.swift; path = ../../VideoListController.swift; sourceTree = "<group>"; };
@@ -221,6 +194,11 @@
 		DEA1CFA71D368D4E006F290E /* TNetServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TNetServer.framework; sourceTree = "<group>"; };
 		DEA1CFAE1D368F3A006F290E /* Chat.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Chat.bundle; sourceTree = "<group>"; };
 		DEA7D8AC1DA4920F00978ECA /* UISearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISearchViewController.swift; sourceTree = "<group>"; };
+		DEAC0DAE1DAC6EBB0069DDF9 /* GiftInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftInfoModel.h; sourceTree = "<group>"; };
+		DEAC0DAF1DAC6EBB0069DDF9 /* GiftInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftInfoModel.m; sourceTree = "<group>"; };
+		DEAC0DB01DAC6EBB0069DDF9 /* GiftSendBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftSendBar.h; sourceTree = "<group>"; };
+		DEAC0DB11DAC6EBB0069DDF9 /* GiftSendBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftSendBar.m; sourceTree = "<group>"; };
+		DEAC0DB41DAC82BA0069DDF9 /* GiftEffectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftEffectVC.swift; sourceTree = "<group>"; };
 		DEB6F09A1D0133D400C7DD6C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DEBE43951D1EB56100178DA7 /* GlobalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
@@ -326,7 +304,6 @@
 		DE1645201D1F7D1D00E21B4A /* common */ = {
 			isa = PBXGroup;
 			children = (
-				DE32A2B01DAB707C00A97020 /* SWCombox */,
 				DEBE439E1D1EBA0500178DA7 /* BaseTabViewController.swift */,
 				DEBE43AC1D1EC05F00178DA7 /* BaseNavigationController.swift */,
 				DE1645211D1F8B1000E21B4A /* ProgressHUDManager.swift */,
@@ -348,37 +325,6 @@
 			name = videoRoom;
 			path = TVideoRoom/videoRoom;
 			sourceTree = SOURCE_ROOT;
-		};
-		DE32A2B01DAB707C00A97020 /* SWCombox */ = {
-			isa = PBXGroup;
-			children = (
-				DE32A2B61DAB707C00A97020 /* Combox */,
-				DE32A2C01DAB707C00A97020 /* Images.xcassets */,
-				DE32A2C11DAB707C00A97020 /* Info.plist */,
-				DE32A2C21DAB707C00A97020 /* square-CN.png */,
-				DE32A2C31DAB707C00A97020 /* square-JP.png */,
-				DE32A2C41DAB707C00A97020 /* square-US.png */,
-				DE32A2C51DAB707C00A97020 /* SWCombox.xcdatamodeld */,
-				DE32A2C71DAB707C00A97020 /* ViewController.swift */,
-			);
-			path = SWCombox;
-			sourceTree = "<group>";
-		};
-		DE32A2B61DAB707C00A97020 /* Combox */ = {
-			isa = PBXGroup;
-			children = (
-				DE32A2B71DAB707C00A97020 /* icn-dropdown.pdf */,
-				DE32A2B81DAB707C00A97020 /* SWComboxCountry.swift */,
-				DE32A2B91DAB707C00A97020 /* SWComboxCountry.xib */,
-				DE32A2BA1DAB707C00A97020 /* SWComboxHelper.swift */,
-				DE32A2BB1DAB707C00A97020 /* SWComboxTitle.swift */,
-				DE32A2BC1DAB707C00A97020 /* SWComboxTitle.xib */,
-				DE32A2BD1DAB707C00A97020 /* SWComboxView.swift */,
-				DE32A2BE1DAB707C00A97020 /* SWComboxView.xib */,
-				DE32A2BF1DAB707C00A97020 /* UIViewEx.swift */,
-			);
-			path = Combox;
-			sourceTree = "<group>";
 		};
 		DE3641551D004FC600A3FE24 = {
 			isa = PBXGroup;
@@ -520,6 +466,7 @@
 				DEE647A81DA7EF530096201A /* GiftViewControl.swift */,
 				DE09BF071DA8B9E7002D85B6 /* RankGiftViewControl.swift */,
 				DE32A2DB1DAB8E0100A97020 /* GiftNumChooseViewController.swift */,
+				DEAC0DB41DAC82BA0069DDF9 /* GiftEffectVC.swift */,
 			);
 			path = control;
 			sourceTree = "<group>";
@@ -595,6 +542,7 @@
 		DE7DAF2D1DA377C300AB51FC /* Toos */ = {
 			isa = PBXGroup;
 			children = (
+				DEAC0DAD1DAC6E530069DDF9 /* giftEffect */,
 				DE7DAF511DA3795400AB51FC /* Network */,
 				DE7DAF2E1DA377C300AB51FC /* Device */,
 				DE7DAF391DA377C300AB51FC /* UIImage */,
@@ -706,9 +654,21 @@
 			path = searchView;
 			sourceTree = "<group>";
 		};
+		DEAC0DAD1DAC6E530069DDF9 /* giftEffect */ = {
+			isa = PBXGroup;
+			children = (
+				DEAC0DAE1DAC6EBB0069DDF9 /* GiftInfoModel.h */,
+				DEAC0DAF1DAC6EBB0069DDF9 /* GiftInfoModel.m */,
+				DEAC0DB01DAC6EBB0069DDF9 /* GiftSendBar.h */,
+				DEAC0DB11DAC6EBB0069DDF9 /* GiftSendBar.m */,
+			);
+			path = giftEffect;
+			sourceTree = "<group>";
+		};
 		DEBE43991D1EB72D00178DA7 /* extension */ = {
 			isa = PBXGroup;
 			children = (
+				DE32A2E31DAC6D2200A97020 /* UIViewEx.swift */,
 				DE7A27A71D1AD22100DAAD8C /* NSLoggerSupport.swift */,
 				DEBE439A1D1EB75F00178DA7 /* UIExtension.swift */,
 			);
@@ -872,17 +832,8 @@
 				DEC944461D3F5218006884CF /* Chat.bundle in Resources */,
 				DE7DAE981DA0FFBF00AB51FC /* Assets2.xcassets in Resources */,
 				DE7DAEEE1DA280CC00AB51FC /* HotLiveCell.xib in Resources */,
-				DE32A2D41DAB707C00A97020 /* Images.xcassets in Resources */,
-				DE32A2D01DAB707C00A97020 /* SWComboxTitle.xib in Resources */,
-				DE32A2D51DAB707C00A97020 /* Info.plist in Resources */,
-				DE32A2D81DAB707C00A97020 /* square-US.png in Resources */,
-				DE32A2CB1DAB707C00A97020 /* icn-dropdown.pdf in Resources */,
-				DE32A2D71DAB707C00A97020 /* square-JP.png in Resources */,
-				DE32A2D21DAB707C00A97020 /* SWComboxView.xib in Resources */,
-				DE32A2CD1DAB707C00A97020 /* SWComboxCountry.xib in Resources */,
 				DE36416C1D004FC600A3FE24 /* LaunchScreen.storyboard in Resources */,
 				DE3641691D004FC600A3FE24 /* Assets.xcassets in Resources */,
-				DE32A2D61DAB707C00A97020 /* square-CN.png in Resources */,
 				DE3641671D004FC600A3FE24 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -957,6 +908,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE7DAEF31DA29E6400AB51FC /* HotViewController.swift in Sources */,
+				DEAC0DB51DAC82BA0069DDF9 /* GiftEffectVC.swift in Sources */,
 				DE7B34AB1DAA7EFB00562AA2 /* GiftShopCell.swift in Sources */,
 				DEBE439D1D1EB80B00178DA7 /* CustomButton.swift in Sources */,
 				DE32A2E21DABCBE500A97020 /* GiftMenuBar.swift in Sources */,
@@ -969,20 +921,17 @@
 				DE09BF0C1DA8F04E002D85B6 /* GiftRankCell.swift in Sources */,
 				DEBE43941D1EB33F00178DA7 /* MainTabBarController.swift in Sources */,
 				DE16451F1D1F7C7F00E21B4A /* MyDetailViewController.swift in Sources */,
-				DE32A2D31DAB707C00A97020 /* UIViewEx.swift in Sources */,
 				DE3641791D00507A00A3FE24 /* DataCenter.swift in Sources */,
 				DE7DAE9C1DA150D900AB51FC /* HomeViewModel.swift in Sources */,
+				DEAC0DB31DAC6EBB0069DDF9 /* GiftSendBar.m in Sources */,
 				DE1645271D1F8F4000E21B4A /* PageScrollView.swift in Sources */,
 				DE9655A01DA6264400095146 /* InfoView.swift in Sources */,
 				DE7DAF001DA3426E00AB51FC /* HotLiveCell.swift in Sources */,
 				DE32A2DC1DAB8E0100A97020 /* GiftNumChooseViewController.swift in Sources */,
-				DE32A2D11DAB707C00A97020 /* SWComboxView.swift in Sources */,
 				DE1645371D1FC55900E21B4A /* LFBRefreshHeader.swift in Sources */,
 				DE1645331D1FBF8700E21B4A /* WebViewController.swift in Sources */,
 				DE7DAF481DA377C300AB51FC /* UIDevice+SLExtension.m in Sources */,
 				DEBE439F1D1EBA0500178DA7 /* BaseTabViewController.swift in Sources */,
-				DE32A2D91DAB707C00A97020 /* SWCombox.xcdatamodeld in Sources */,
-				DE32A2CF1DAB707C00A97020 /* SWComboxTitle.swift in Sources */,
 				DE7DAF4D1DA377C300AB51FC /* UIImageView+Extension.m in Sources */,
 				DEBE43AE1D1EF15100178DA7 /* BaseNavigationController.swift in Sources */,
 				DE7A27A81D1AD22100DAAD8C /* NSLoggerSupport.swift in Sources */,
@@ -997,11 +946,9 @@
 				DEE0F0EB1DA7985700BE806B /* TabBarMenu.swift in Sources */,
 				DE9D50E91DA637850029C06E /* MyInfo.swift in Sources */,
 				DEE647A91DA7EF530096201A /* GiftViewControl.swift in Sources */,
-				DE32A2DA1DAB707C00A97020 /* ViewController.swift in Sources */,
 				DEBE439B1D1EB75F00178DA7 /* UIExtension.swift in Sources */,
 				DEE0F0E21DA771E200BE806B /* UIChatControl.swift in Sources */,
 				DE3641871D0050CA00A3FE24 /* SMessages.swift in Sources */,
-				DE32A2CE1DAB707C00A97020 /* SWComboxHelper.swift in Sources */,
 				DE3641621D004FC600A3FE24 /* AppDelegate.swift in Sources */,
 				DE7DAF4C1DA377C300AB51FC /* UIImage+ALinExtension.m in Sources */,
 				DE16451D1D1F7C5F00E21B4A /* ActiveViewController.swift in Sources */,
@@ -1009,12 +956,13 @@
 				DEA01EC41DA5DAE60075411D /* ResourceString.swift in Sources */,
 				DEE0F0E41DA7758C00BE806B /* RoomMenuBar.swift in Sources */,
 				DE7DAF5B1DA3810100AB51FC /* MenuBar.swift in Sources */,
-				DE32A2CC1DAB707C00A97020 /* SWComboxCountry.swift in Sources */,
+				DE32A2E41DAC6D2200A97020 /* UIViewEx.swift in Sources */,
 				DEBE43B21D1EF6C700178DA7 /* VideoRoomUIViewControl.swift in Sources */,
 				DE1645291D1F8FDB00E21B4A /* AdBannerView.swift in Sources */,
 				DEC8B3631D58CEFD000ACEBF /* EventCollection.swift in Sources */,
 				DE7DAF571DA3795400AB51FC /* Reachability.m in Sources */,
 				DE1AE8941DA38F6D009661F2 /* MainPageViewController.swift in Sources */,
+				DEAC0DB21DAC6EBB0069DDF9 /* GiftInfoModel.m in Sources */,
 				DEA7D8AD1DA4920F00978ECA /* UISearchViewController.swift in Sources */,
 				DE3641861D0050CA00A3FE24 /* RMessages.swift in Sources */,
 				1EE51636E91B2F4B8703063A /* HomeCell.swift in Sources */,
@@ -1254,19 +1202,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		DE32A2C51DAB707C00A97020 /* SWCombox.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DE32A2C61DAB707C00A97020 /* SWCombox.xcdatamodel */,
-			);
-			currentVersion = DE32A2C61DAB707C00A97020 /* SWCombox.xcdatamodel */;
-			path = SWCombox.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = DE3641561D004FC600A3FE24 /* Project object */;
 }

@@ -54,6 +54,11 @@ func getWWWHttp(src: String) -> String {
 	return NSString(format: src, domain) as String;
 }
 
+func getGiftImagUrl(gidStr: String) -> String {
+	let imageUrl = getWWWHttp(HTTP_GIFT_ICO_URL) + gidStr + ".png";
+	return imageUrl;
+}
+
 func getVHttp(src: String) -> String {
 	return NSString(format: src, vdomain) as String;
 }

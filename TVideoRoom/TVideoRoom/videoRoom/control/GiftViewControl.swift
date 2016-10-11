@@ -12,12 +12,12 @@ import SnapKit;
 class GiftViewControl: BaseUIViewController {
 
 	private var giftCollectionView: LFBCollectionView!;
-	var giftDataList: [GiftInfoModel] = [];
+	var giftDataList: [GiftDetailModel] = [];
 	var dataRoom: RoomData?;
 	// 礼物数量选择
 	var chooseView: GiftNumChooseViewController?;
 	var curShopNum: Int = 1;
-	var curSelectGift: GiftInfoModel?;
+	var curSelectGift: GiftDetailModel?;
 	var giftMenuBar: TabBarMenu?;
 	override func viewDidLoad() {
 		dataRoom = DataCenterModel.sharedInstance.roomData;
@@ -169,8 +169,13 @@ class GiftViewControl: BaseUIViewController {
 
 			// let msg = s_msg_40001(gid: Int((curSelectGift?.gid)!), uid: DataCenterModel.sharedInstance.roomData.uid, gnum: curShopNum);
 			// SocketManager.sharedInstance.socketM!.sendMessage(msg);
-			let data = ["gid": Int((curSelectGift?.gid)!), "num": curShopNum];
-			NSNotificationCenter.defaultCenter().postNotificationName(GIFT_EFFECT_START, object: data);
+			let giftInfo = GiftInfoModel();
+			giftInfo.senderNickString = "taven";
+			giftInfo.giftNameString = curSelectGift?.name;
+			giftInfo.giftCounts = UInt32(curShopNum);
+			giftInfo.giftThumbnailPath = getGiftImagUrl((curSelectGift?.gid)!.description);
+			// let data = ["gid": Int((curSelectGift?.gid)!), "num": curShopNum];
+			NSNotificationCenter.defaultCenter().postNotificationName(GIFT_EFFECT_START, object: giftInfo);
 			LogHttp("送礼物");
 		}
 		else {

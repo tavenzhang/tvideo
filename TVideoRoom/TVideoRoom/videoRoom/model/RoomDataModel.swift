@@ -53,15 +53,15 @@ class GiftCateoryModel: NSObject, DictModelProtocol {
 	// {"category":2,"name":"贵族","items":...
 	var category: NSNumber?;
 	var name: String = "";
-	var items: [GiftInfoModel]?
+	var items: [GiftDetailModel]?
 
 	static func customClassMapping() -> [String: String]? {
-		return ["items": "\(GiftInfoModel.self)"]
+		return ["items": "\(GiftDetailModel.self)"]
 	}
 }
 
 //详细礼物信息
-class GiftInfoModel: NSObject {
+class GiftDetailModel: NSObject {
 	// {"gid":310031,"price":1,"category":1,"name":"七彩魅瑰","desc":"","sort":"1","isNew":"0"},
 	var gid: NSNumber?;
 	var price: NSNumber?;

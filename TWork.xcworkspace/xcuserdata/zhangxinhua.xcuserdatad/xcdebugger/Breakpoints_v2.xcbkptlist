@@ -3648,15 +3648,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/TVideoRoom-Bridging-Header.h"
-            timestampString = "497251455.764538"
+            timestampString = "497840050.944608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6"
-            endingLineNumber = "6">
+            startingLineNumber = "7"
+            endingLineNumber = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4034,11 +4034,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/setvice/net/http/HttpTavenService.swift"
-            timestampString = "497714281.472214"
+            timestampString = "497861016.510145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "HttpTavenService"
             landmarkType = "3">
          </BreakpointContent>
@@ -4050,11 +4050,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/setvice/net/http/HttpTavenService.swift"
-            timestampString = "497714281.472214"
+            timestampString = "497861016.510145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "requestJson(_:isGet:para:completionHadble:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -4399,22 +4399,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TVideoRoom/TVideoRoom/videoRoom/view/giftView/GiftShopCell.swift"
-            timestampString = "497766566.045585"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "GiftShopCell"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/common/SWCombox/Combox/SWComboxView.swift"
             timestampString = "497778603.117081"
             startingColumnNumber = "9223372036854775807"
@@ -4615,38 +4599,6 @@
             endingLineNumber = "222"
             landmarkName = "openCurrentCombox()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TVideoRoom.SWComboxView.(openCurrentCombox in _196D2D6B52092E5F1960E44122A37A73) () -&gt; ()"
-                  moduleName = "TVideoRoom"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhangxinhua/Desktop/video/webWork/tvideo/TVideoRoom/TVideoRoom/common/SWCombox/Combox/SWComboxView.swift"
-                  timestampString = "497837816.28051"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "222"
-                  endingLineNumber = "222"
-                  offsetFromSymbolStart = "49">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TVideoRoom.SWComboxView.((openCurrentCombox in _196D2D6B52092E5F1960E44122A37A73) () -&gt; ()).(closure #1)"
-                  moduleName = "TVideoRoom"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhangxinhua/Desktop/video/webWork/tvideo/TVideoRoom/TVideoRoom/common/SWCombox/Combox/SWComboxView.swift"
-                  timestampString = "497837816.280645"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "223"
-                  endingLineNumber = "223"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4822,6 +4774,148 @@
             startingLineNumber = "69"
             endingLineNumber = "69"
             landmarkName = "buildGiftMenuBar()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/TVideoRoom-Bridging-Header.h"
+            timestampString = "497840042.897518"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/view/VideoRoomUIViewControl.swift"
+            timestampString = "497861016.510145"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/Toos/giftEffect/GiftSendBar.m"
+            timestampString = "497865569.063447"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-setImageViewimagefromStr:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/videoRoom/control/GiftEffectVC.swift"
+            timestampString = "497864282.217618"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "giftSendBarAppear(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TVideoRoom.GiftEffectVC.giftSendBarAppear (__ObjC.GiftSendBar) -&gt; ()"
+                  moduleName = "TVideoRoom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangxinhua/Desktop/video/webWork/tvideo/TVideoRoom/TVideoRoom/videoRoom/control/GiftEffectVC.swift"
+                  timestampString = "497863902.393741"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "208"
+                  endingLineNumber = "208"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TVideoRoom.GiftEffectVC.(giftSendBarAppear (__ObjC.GiftSendBar) -&gt; ()).(closure #1)"
+                  moduleName = "TVideoRoom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangxinhua/Desktop/video/webWork/tvideo/TVideoRoom/TVideoRoom/videoRoom/control/GiftEffectVC.swift"
+                  timestampString = "497863902.393896"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/videoRoom/control/GiftEffectVC.swift"
+            timestampString = "497864196.603529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "giftAnimationSHow()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/videoRoom/control/GiftEffectVC.swift"
+            timestampString = "497864282.217618"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "giftSendBarAppear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/videoRoom/control/GiftEffectVC.swift"
+            timestampString = "497864282.217618"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "giftSendBarAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
