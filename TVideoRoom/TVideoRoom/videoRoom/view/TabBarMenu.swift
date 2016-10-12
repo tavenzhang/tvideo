@@ -54,7 +54,7 @@ class TabBarMenu: UIView {
 		{
 			let btn = createBtn(title, tag: index, size: txtSize, color: color);
 			btn.frame = CGRectMake(CGFloat(index) * itemSize, 0, itemSize, self.height);
-			//btn.centenY = 0;
+			// btn.centenY = 0;
 			btnList.append(btn);
 			self.addSubview(btn);
 
@@ -62,7 +62,10 @@ class TabBarMenu: UIView {
 		underLine = UIView(frame: CGRect(x: 15.0, y: self.height - 4, width: itemSize / 2, height: 2.0));
 		underLine!.backgroundColor = UIColor.purpleColor();
 		self.addSubview(underLine!);
-		click(btnList[0]);
+		if (btnList.count > 0)
+		{
+			click(btnList[0]);
+		}
 		self.layoutIfNeeded();
 	}
 

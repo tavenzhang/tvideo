@@ -10,6 +10,7 @@ import UIKit;
 import SnapKit;
 
 typealias SendMessageBlock = (msg: String) -> Void
+typealias ChatGiftBlock = () -> Void
 
 enum KeyBoardType: Int {
 	case txtBoard
@@ -41,21 +42,33 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 
 	var curKeyBordType: KeyBoardType = .txtBoard;
 
+	var chatGiftBlock: ChatGiftBlock?;
+
+	var chatCancelBlock: ChatGiftBlock?;
+
 	override func viewDidLoad() {
 		self.view.autoresizesSubviews = false
 		initView();
 		self.view.backgroundColor = UIColor.whiteColor();
+	}
+	deinit {
+		chatGiftBlock = nil;
+		chatCancelBlock = nil;
+
 	}
 
 	func initView() {
 		// 加载历史聊天记录
 		self.bottomView = UIView();
 		self.view.addSubview(bottomView!);
+		self.bottomView!.layer.borderWidth = 1;
+		self.bottomView!.layer.borderColor = UIColor.grayColor().CGColor;
 		bottomView?.snp_makeConstraints { (make) in
-			make.width.equalTo(self.view.snp_width);
+			// make.width.equalTo(self.view.snp_width).offset(2);
 			make.height.equalTo(40);
 			make.bottom.equalTo(self.view.snp_bottom);
-			make.left.equalTo(0);
+			make.left.equalTo(-1);
+			make.right.equalTo(self.view.snp_right).offset(1);
 		}
 		self.tableView = UITableView();
 		self.tableView?.delegate = self;
@@ -66,7 +79,7 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		self.tableView!.showsVerticalScrollIndicator = false
 		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.cancelFocus))
 		self.tableView!.addGestureRecognizer(tapGesture);
-		self.tableView!.backgroundColor = UIColor.grayColor();
+		self.tableView!.backgroundColor = UIColor.clearColor();
 		self.view.addSubview(self.tableView!);
 		self.tableView!.snp_makeConstraints { (make) in
 			make.width.equalTo(self.view.width);
@@ -119,7 +132,10 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 	}
 
 	func giftClick() {
-		LogHttp("giftClick");
+		if (chatGiftBlock != nil)
+		{
+			chatGiftBlock!();
+		}
 	}
 
 	override func viewWillDisappear(animated: Bool) {
@@ -156,6 +172,7 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 			self.tableViewScrollToBottom()
 		}
 		self.textField!.text = nil
+		cancelFocus();
 	}
 
 	/** 取消事件的焦点 */
@@ -163,6 +180,10 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		self.textField!.resignFirstResponder()
 		self.textField!.inputView = nil;
 		self.faceTield.resignFirstResponder();
+		if (chatCancelBlock != nil)
+		{
+			chatCancelBlock!();
+		}
 	}
 	/**滚动table 到底部*/
 	func tableViewScrollToBottom() {

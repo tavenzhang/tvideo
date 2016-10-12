@@ -22,6 +22,8 @@ public let ShopCarRedDotAnimationDuration: NSTimeInterval = 0.2
 
 public let LFBNavigationBarWhiteBackgroundColor = UIColor.colorWithCustom(249, g: 250, b: 253)
 
+public let ROOM_SCROOL_BG_COLOR = UIColor.colorWithCustom(240, g: 240, b: 240, a: 1)
+
 // MARK: - Home 属性
 public let HotViewMargin: CGFloat = 10
 public let HomeCollectionViewCellMargin: CGFloat = 10
@@ -29,7 +31,6 @@ public let HomeCollectionTextFont = UIFont.systemFontOfSize(14)
 public let HomeCollectionCellAnimationDuration: NSTimeInterval = 1.0
 
 /****************************** 颜色 ********************************/
-
 
 // MARK: - 通知
 /// 首页headView高度改变

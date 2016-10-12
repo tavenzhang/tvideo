@@ -21,7 +21,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 
 	var uiChatVC: UIChatControl?;
 
-	var giftControl: GiftViewControl?;
+	var giftControl: RankGiftViewControl?;
 
 	var rankViewControl: RankGiftViewControl?;
 
@@ -102,7 +102,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		uiChatVC?.view.frame = scrollView!.frame;
 		uiChatVC?.view.x = 0;
 
-		giftControl = GiftViewControl();
+		giftControl = RankGiftViewControl();
 		self.addChildViewController(giftControl!);
 		scrollView!.addSubview((giftControl?.view)!);
 		giftControl?.view.frame = scrollView!.frame;
@@ -191,7 +191,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 // 隐藏聊天输入内容
 	func onTableVieo()
 	{
-		//uiChatVC?.chatVc?.cancelFocus();
+		uiChatVC?.chatVc?.cancelFocus();
 	}
 
 	func backBtnClick() {

@@ -195,45 +195,43 @@ class SocketManager {
 		case MSG_11002:
 			if (json["richLv"].int >= 2)
 			{
-
-//				var msgVo: ChatMessage?;
-//				msgVo = ChatMessage();
-//				msgVo?.sendName = "欢迎 [" + json["name"].string! + "] 进入直播间!";
-//				msgVo?.content = "";
-//				msgVo?.isSender = false;
-//				msgVo?.messageType = MessageType(.MessageTypeText);
-//				dispatch_async(dispatch_get_main_queue()) {
-//					NSNotificationCenter.defaultCenter().postNotificationName(E_SOCKERT_Chat_30001, object: msgVo!);
-//				}
+				var msgVo: ChatMessage?;
+				msgVo = ChatMessage();
+				msgVo?.sendName = "欢迎 [" + json["name"].string! + "] 进入直播间!";
+				msgVo?.content = "";
+				msgVo?.isSender = false;
+				msgVo?.messageType = .Text;
+				dispatch_async(dispatch_get_main_queue()) {
+					NSNotificationCenter.defaultCenter().postNotificationName(E_SOCKERT_Chat_30001, object: msgVo!);
+				}
 			}
 			break
-//
-//		case MSG_30001:
-//			let type = json["type"].int;
-//			var msgVo: ChatMessage?;
-//			var semdName = json["sendName"].string! + ":";
-//			switch type! {
-//			case 8:
-//				break;
-//			case 3:
-//				semdName = "[系统消息]"
-//				fallthrough
-//			case 6:
-//				semdName = "[系统消息]"
-//				fallthrough
-//			default:
-//				msgVo = ChatMessage();
-//				msgVo?.sendName = semdName;
-//				msgVo?.content = json["content"].string;
-//				msgVo?.isSender = false;
-//				msgVo?.messageType = MessageTypeText;
-//			}
-//			if ((msgVo) != nil)
-//			{
-//				dispatch_async(dispatch_get_main_queue()) {
-//					NSNotificationCenter.defaultCenter().postNotificationName(E_SOCKERT_Chat_30001, object: msgVo!);
-//				}
-//			}
+		case MSG_30001:
+			let type = json["type"].int;
+			var msgVo: ChatMessage?;
+			var semdName = json["sendName"].string! + ":";
+			switch type! {
+			case 8:
+				break;
+			case 3:
+				semdName = "[系统消息]"
+				fallthrough
+			case 6:
+				semdName = "[系统消息]"
+				fallthrough
+			default:
+				msgVo = ChatMessage();
+				msgVo?.sendName = semdName;
+				msgVo?.content = json["content"].string!;
+				msgVo?.isSender = false;
+				msgVo?.messageType = .Text;
+			}
+			if ((msgVo) != nil)
+			{
+				dispatch_async(dispatch_get_main_queue()) {
+					NSNotificationCenter.defaultCenter().postNotificationName(E_SOCKERT_Chat_30001, object: msgVo!);
+				}
+			}
 
 		default:
 			break

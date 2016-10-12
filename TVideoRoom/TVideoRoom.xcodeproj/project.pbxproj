@@ -128,7 +128,6 @@
 		DEC726931DAE856500C5E5A5 /* ScreenShot3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC726611DAE856500C5E5A5 /* ScreenShot3.png */; };
 		DEC726951DAE889300C5E5A5 /* 05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC726941DAE889300C5E5A5 /* 05@2x.png */; };
 		DEC8B3631D58CEFD000ACEBF /* EventCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC8B3621D58CEFD000ACEBF /* EventCollection.swift */; };
-		DEC944461D3F5218006884CF /* Chat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEC944451D3F5218006884CF /* Chat.bundle */; };
 		DECECC9E1D2B4FE00030939E /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECC9C1D2B4FE00030939E /* MJRefresh.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECCBC1D2B606C0030939E /* libsqlite3.tbd */; };
 		DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C701D1A5C7C005A7AC4 /* libz.tbd */; };
@@ -464,11 +463,11 @@
 				DE36417A1D0050CA00A3FE24 /* setvice */,
 				DE3641771D00507A00A3FE24 /* model */,
 				DE1645201D1F7D1D00E21B4A /* common */,
-				DE3641651D004FC600A3FE24 /* Main.storyboard */,
+				DE7DAF2D1DA377C300AB51FC /* Toos */,
 				DE3641681D004FC600A3FE24 /* Assets.xcassets */,
 				DE3641611D004FC600A3FE24 /* AppDelegate.swift */,
+				DE3641651D004FC600A3FE24 /* Main.storyboard */,
 				DE36416A1D004FC600A3FE24 /* LaunchScreen.storyboard */,
-				DE7DAF2D1DA377C300AB51FC /* Toos */,
 				DE36416D1D004FC600A3FE24 /* Info.plist */,
 				DE7DAE971DA0FFBF00AB51FC /* Assets2.xcassets */,
 				DE7A27A91D1AD7B900DAAD8C /* TVideoRoom-Bridging-Header.h */,
@@ -1053,7 +1052,6 @@
 				DEC726761DAE856500C5E5A5 /* 21@2x.png in Resources */,
 				DEC726901DAE856500C5E5A5 /* 50@2x.png in Resources */,
 				DEC726931DAE856500C5E5A5 /* ScreenShot3.png in Resources */,
-				DEC944461D3F5218006884CF /* Chat.bundle in Resources */,
 				DEC726711DAE856500C5E5A5 /* 16@2x.png in Resources */,
 				DE7DAE981DA0FFBF00AB51FC /* Assets2.xcassets in Resources */,
 				DEC7268B1DAE856500C5E5A5 /* 42@2x.png in Resources */,

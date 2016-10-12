@@ -12,8 +12,8 @@ class RankGiftViewControl: UITableViewController {
 	override func viewDidLoad() {
 		self.tableView.separatorStyle = .None;
 		addNotifycation();
-		self.tableView.rowHeight = self.view.width/10;
-        self.tableView.backgroundColor = UIColor.colorWithCustom(240, g: 240, b: 240, a: 1)
+		self.tableView.rowHeight = self.view.width / 10;
+		self.tableView.backgroundColor = ROOM_SCROOL_BG_COLOR;
 
 	}
 

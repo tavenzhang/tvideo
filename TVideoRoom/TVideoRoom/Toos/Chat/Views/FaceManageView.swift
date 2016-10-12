@@ -36,7 +36,6 @@ class YYFaceView: UIView {
 
 		self.initData()
 		self.backgroundColor = UIColor.clearColor()
-
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -121,8 +120,8 @@ class YYFaceView: UIView {
 
 	func touchFace(point: CGPoint) {
 		// 页数
-		let page = point.x / kWidth
-		let x: CGFloat = point.x - (page * kWidth) - startPostionX;
+		let page: Int = Int(point.x / kWidth);
+		let x: CGFloat = point.x - (page.toCGFloat() * kWidth) - startPostionX;
 		let y: CGFloat = point.y - startPostionY
 		// 计算列与行
 		var colum = Int(x / (item_width + item_h_dim));
@@ -141,27 +140,26 @@ class YYFaceView: UIView {
 			row = 0
 		}
 		// 计算选中表情的索引
-		let index = colum + (row * maxCellCount)
-		// let item2D = faceDataList[index];
-//		if index >= item2D.count {
-//			self.selectedFaceName = ""
-//			return
-//		}tem2D[index] as! FaceData;
-		let item = faceDataList[index] as? FaceData ;
-		if (item != nil)
-		{
-			let faceName = item!.faceName;
+		let index = colum + (row * maxCellCount) + page * PAGE_SIZE
 
-			if !(self.selectedFaceName == faceName) {
+		if (faceDataList.count > index)
+		{
+			let item = faceDataList[index];
+			let faceName = item.faceName;
+			// self.selectedFaceName = faceName
+			if (self.selectedFaceName != faceName) {
 				// 给放大镜添加上表情
-				let imageName = item!.faceIco
+				let imageName = item.faceIco
 				let image = UIImage.bundleImageName(imageName)
 				let faceItem = (magnifierView.viewWithTag(2013)! as! UIImageView)
 				faceItem.image = image
-				magnifierView.left = (page * kWidth) + CGFloat(colum * Int(item_width + item_h_dim));
+				magnifierView.left = (page.toCGFloat() * kWidth) + CGFloat(colum * Int(item_width + item_h_dim));
 				magnifierView.bottom = CGFloat(row) * item_height + 30;
 				self.selectedFaceName = faceName
 			}
+		}
+		else {
+			self.selectedFaceName = "";
 		}
 
 	}
@@ -264,18 +262,18 @@ class YYFaceScrollView: UIView, UIScrollViewDelegate {
 		bottomView = UIView(frame: CGRectMake(0, scrollView.frame.origin.y + scrollView.frame.size.height + 20, kWidth, 35))
 		bottomView.backgroundColor = UIColor.clearColor()
 		self.addSubview(bottomView)
-		let topLine = UIView(frame: CGRectMake(0, 0, bottomView.width, 0.5))
+		let topLine = UIView(frame: CGRectMake(0, 6, bottomView.width, 0.5))
 		topLine.backgroundColor = UIColor.grayColor()
 		bottomView.addSubview(topLine)
-		let smallemoBtn = UIButton(frame: CGRectMake(0, 0, bottomView.height, bottomView.height))
-		smallemoBtn.backgroundColor = UIColor.clearColor()
-		smallemoBtn.setImage(UIImage.bundleImageName("emotion"), forState: .Normal)
-		smallemoBtn.addTarget(self, action: #selector(self.changeForEmotion), forControlEvents: .TouchUpInside)
-		bottomView.addSubview(smallemoBtn)
-		let lineView = UIView(frame: CGRectMake(smallemoBtn.right + 2, 3, 1, smallemoBtn.height - 6));
-		bottomView.addSubview(lineView)
-		let sendBtn = UIButton(frame: CGRectMake(kWidth - 60, 0, 60, bottomView.height))
-		sendBtn.backgroundColor = UIColor.colorWithCustom(0, g: 122, b: 255, a: 1) ;
+//		let smallemoBtn = UIButton(frame: CGRectMake(0, 0, bottomView.height, bottomView.height))
+//		smallemoBtn.backgroundColor = UIColor.clearColor()
+//		smallemoBtn.setImage(UIImage.bundleImageName("emotion"), forState: .Normal)
+//		smallemoBtn.addTarget(self, action: #selector(self.changeForEmotion), forControlEvents: .TouchUpInside)
+//		bottomView.addSubview(smallemoBtn)
+//		let lineView = UIView(frame: CGRectMake(smallemoBtn.right + 2, 10, 1, smallemoBtn.height - 6));
+//		bottomView.addSubview(lineView)
+		let sendBtn = UIButton(frame: CGRectMake(kWidth - 70, 10, 60, bottomView.height))
+		sendBtn.backgroundColor = UIColor.colorWithCustom(122, g: 122, b: 255, a: 1) ;
 		sendBtn.setTitle("发送", forState: .Normal);
 		sendBtn.cornRadius(10);
 		sendBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)

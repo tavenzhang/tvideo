@@ -26,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window!.makeKeyAndVisible();
 		LoggerStart(LoggerGetDefaultLogger())
 		LogMarker("strart");
-		// let manVc = MainTabBarController();
-		// manVc.adImage = UIImage(named:"LaunchImage");
-		let manVc = TChatViewControl();
+		let manVc = MainTabBarController();
+		manVc.adImage = UIImage(named: "LaunchImage");
+		// let manVc = TChatViewControl();
 		window?.rootViewController = manVc;
 		let webView = UIWebView(frame: ScreenBounds);
 		let agent = webView.stringByEvaluatingJavaScriptFromString("navigator.userAgent");

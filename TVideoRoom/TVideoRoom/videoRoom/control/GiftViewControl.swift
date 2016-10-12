@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit;
 
-class GiftViewControl: BaseUIViewController {
+class GiftViewControl: UIViewController {
 
 	private var giftCollectionView: LFBCollectionView!;
 	var giftDataList: [GiftDetailModel] = [];
