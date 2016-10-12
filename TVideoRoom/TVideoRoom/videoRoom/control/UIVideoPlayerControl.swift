@@ -8,7 +8,7 @@
 
 import UIKit
 import TRtmpPlay
-import TChat
+
 
 class UIVideoPlayControl: UIViewController {
 

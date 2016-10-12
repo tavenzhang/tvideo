@@ -20,7 +20,6 @@ let r_btn_me_r = "v2_my_r";
 
 
 
-
 /// NavigationController bar
 let r_nav_barbg_414x70 = "navBar_bg_414x70";
 let r_nav_btnBack_9x16 = "back_9x16";

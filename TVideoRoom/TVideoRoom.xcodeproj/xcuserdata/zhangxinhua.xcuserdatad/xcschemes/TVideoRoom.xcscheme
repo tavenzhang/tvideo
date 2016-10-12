@@ -28,38 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DE5CCDA21D2776CF005DA681"
-               BuildableName = "Chat.bundle"
-               BlueprintName = "Chat"
-               ReferencedContainer = "container:../TChat/TChat.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "DEC943FA1D3F2E4A006884CF"
                BuildableName = "TAmf3Socket.framework"
                BlueprintName = "TAmf3Socket"
                ReferencedContainer = "container:../TNetServer/TNetServer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DE5CCC3E1D275C4C005DA681"
-               BuildableName = "TChat.framework"
-               BlueprintName = "TChat"
-               ReferencedContainer = "container:../TChat/TChat.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry

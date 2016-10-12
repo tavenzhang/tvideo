@@ -2,6 +2,10 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
+//#import "ChatMessage.h"
+//#import "ChatViewController.h"
+
+
 #import "Flurry/Flurry.h"
 #import "UIImage+ALinExtension.h"
 #import "GiftInfoModel.h"

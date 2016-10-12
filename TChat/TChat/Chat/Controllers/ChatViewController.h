@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChatMessage.h"
+
+
 typedef void(^SendMessageBlock)(NSString*);
 
 @class YYFaceScrollView;

@@ -48,7 +48,7 @@ extension UIView {
 			let width = scrollView.bounds.width
 			var frame = instance!.frame
 			let ratio = CGFloat(frame.width) / CGFloat(frame.height)
-			var screenWidth = UIScreen.mainScreen().bounds.size.width
+			let screenWidth = UIScreen.mainScreen().bounds.size.width
 			frame.size = CGSizeMake(width, width / ratio)
 			instance!.frame = frame
 			instance!.setNeedsUpdateConstraints()
@@ -88,6 +88,10 @@ extension UIView {
 		}
 	}
 
+	func scale(xSclae: CGFloat, ySclae: CGFloat) {
+		self.transform = CGAffineTransformScale(CGAffineTransformIdentity, xSclae, ySclae);
+	}
+
 	var width: CGFloat {
 		get {
 			return self.frame.size.width
@@ -109,6 +113,50 @@ extension UIView {
 			var frame = self.frame
 			frame.size.height = height
 			self.frame = frame
+		}
+	}
+	var top: CGFloat {
+		get {
+			return self.frame.origin.y;
+		}
+
+		set(top) {
+			var newframe = self.frame
+			newframe.origin.y = top
+			self.frame = newframe
+		}
+	}
+
+	var left: CGFloat {
+		get {
+			return self.frame.origin.x;
+		}
+		set(left) {
+			var newframe = self.frame
+			newframe.origin.x = left;
+			self.frame = newframe;
+		}
+	}
+
+	var bottom: CGFloat {
+		get {
+			return self.frame.origin.y + self.frame.size.height;
+		}
+		set(newbottom) {
+			var newframe = self.frame
+			newframe.origin.y = newbottom - self.frame.size.height
+			self.frame = newframe
+		}
+	}
+	var right: CGFloat {
+		get {
+			return self.frame.origin.y + self.frame.size.height;
+		}
+		set(newright) {
+			let delta: CGFloat = newright - (self.frame.origin.x + self.frame.size.width)
+			var newframe = self.frame
+			newframe.origin.x += delta
+			self.frame = newframe
 		}
 	}
 
@@ -232,6 +280,13 @@ extension UIView {
 		let line = UIView(frame: frameLine)
 		line.backgroundColor = color
 		addSubview(line)
+	}
+
+	func cornRadius(radiuns: CGFloat, bordWidth: CGFloat = 1, boderColodr: UIColor = UIColor.grayColor()) {
+		self.layer.cornerRadius = radiuns;
+		self.layer.borderWidth = 1;
+		self.layer.borderColor = boderColodr.CGColor;
+		self.layer.masksToBounds = true;
 	}
 
 }

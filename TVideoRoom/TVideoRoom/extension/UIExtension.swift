@@ -1,39 +1,43 @@
 //
 //  UIExtension.swift
 //  TVideoRoom
-//
-//  Created by 张新华 on 16/6/25.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
 
 import UIKit
 /// 对UIView的扩展
-extension UIView {
-//	/// X值
-//	var x: CGFloat {
-//		return self.frame.origin.x
-//	}
-//	/// Y值
-//	var y: CGFloat {
-//		return self.frame.origin.y
-//	}
-//	/// 宽度
-//	var width: CGFloat {
-//		return self.frame.size.width
-//	}
-//	/// 高度
-//	var height: CGFloat {
-//		return self.frame.size.height
-//	}
-//	var size: CGSize {
-//		return self.frame.size
-//	}
-//	var point: CGPoint {
-//		return self.frame.origin
-//	}
-	func scale(xSclae: CGFloat, ySclae: CGFloat) {
-		self.transform = CGAffineTransformScale(CGAffineTransformIdentity, xSclae, ySclae);
+extension Int
+{
+	func toCGFloat() -> CGFloat {
+		return CGFloat(self);
 	}
+}
+extension CGFloat
+{
+	func toInt() -> Int {
+		return Int(self);
+	}
+}
+extension UIImage {
+
+	class func resizableImageWithName(imageName: String) -> UIImage {
+		// 加载原有图片
+		let norImage = UIImage(named: imageName);
+		// 获取原有图片的宽高的一半
+		let w: CGFloat = norImage!.size.width * 0.5
+		let top: CGFloat = norImage!.size.height * 0.5
+		let bottom: CGFloat = norImage!.size.height - top
+		// 生成可以拉伸指定位置的图片
+		let newImage = norImage!.resizableImageWithCapInsets(UIEdgeInsetsMake(top, w, bottom, w), resizingMode: .Stretch)
+		return newImage
+	}
+
+	class func bundleImageName(imageName: String) -> UIImage {
+//		let bundlePath = NSURL(fileURLWithPath: NSBundle.mainBundle().resourcePath!).URLByAppendingPathComponent("Chat.bundle").absoluteString
+//		let nsBund = NSBundle(path: bundlePath)
+		// let img = UIImage(named: imageName, inBundle: nsBund, compatibleWithTraitCollection: nil)!
+		let img = UIImage(named: imageName);
+		return img!
+	}
+
 }
 
 extension NSData {
@@ -95,9 +99,9 @@ extension UIButton {
 		{
 			btn!.setImage(image!, forState: .Normal)
 		}
-        btn?.setTitle(title, forState: .Normal);
+		btn?.setTitle(title, forState: .Normal);
 		btn!.setTitleColor(titleColor, forState: .Normal)
-        btn!.setTitleColor(titleColor.colorWithAlphaComponent(0.6), forState: .Highlighted);
+		btn!.setTitleColor(titleColor.colorWithAlphaComponent(0.6), forState: .Highlighted);
 		if (hightLightImage != nil)
 		{
 			btn!.setImage(hightLightImage, forState: .Highlighted);

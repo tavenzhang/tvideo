@@ -10,7 +10,6 @@ import UIKit
 import TAmf3Socket
 import TRtmpPlay
 import SwiftyJSON
-import TChat
 
 class HotViewController: BaseUIViewController {
 
@@ -80,21 +79,21 @@ class HotViewController: BaseUIViewController {
      */
 	func headRefresh() {
 		loadProgressAnimationView.startLoadProgressAnimation();
-        loadProgressAnimationView.startLoadProgressAnimation();
-        if (loadFunHandl != nil)
-        {
-            loadFunHandl?();
-        }
+		loadProgressAnimationView.startLoadProgressAnimation();
+		if (loadFunHandl != nil)
+		{
+			loadFunHandl?();
+		}
 	}
-    
-    // 数据加载完成刷新
-    func loadDataFinished(dataList: [Activity]) -> Void {
-        self.collectionView.mj_header.endRefreshing();
-        self.collectionView.hidden = false;
-        self.loadProgressAnimationView.endLoadProgressAnimation();
-        hotList = dataList;
-        self.collectionView.reloadData();
-    }
+
+	// 数据加载完成刷新
+	func loadDataFinished(dataList: [Activity]) -> Void {
+		self.collectionView.mj_header.endRefreshing();
+		self.collectionView.hidden = false;
+		self.loadProgressAnimationView.endLoadProgressAnimation();
+		hotList = dataList;
+		self.collectionView.reloadData();
+	}
 
 	// 建立集合
 	func buildCollectionView() -> Void {

@@ -6,7 +6,6 @@ import UIKit
 import TAmf3Socket
 import TRtmpPlay
 import SwiftyJSON
-import TChat
 
 class VideoListViewController: BaseUIViewController {
 
@@ -21,7 +20,7 @@ class VideoListViewController: BaseUIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		buildCollectionView()
-        buildTableData();
+		buildTableData();
 	}
 
 	deinit {
@@ -88,7 +87,6 @@ class VideoListViewController: BaseUIViewController {
 		videoList = dataList;
 		self.collectionView.reloadData();
 	}
-
 
 	/**
      下拉获取
@@ -177,7 +175,7 @@ extension VideoListViewController: UICollectionViewDelegate, UICollectionViewDat
 
 	func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
 		// if indexPath.section == 1 && headData != nil && freshHot != nil && isAnimation {
-		if videoList?.count>0 && isAnimation {
+		if videoList?.count > 0 && isAnimation {
 			startAnimation(view, offsetY: 60, duration: 0.2)
 		}
 	}
@@ -219,7 +217,7 @@ extension VideoListViewController: UICollectionViewDelegate, UICollectionViewDat
 		{
 			let roomview: VideoRoomUIViewVC = VideoRoomUIViewVC();
 			roomview.roomId = roomId;
-            self.navigationController?.pushViewController(roomview, animated: true);
+			self.navigationController?.pushViewController(roomview, animated: true);
 			Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
 		}
 		else {

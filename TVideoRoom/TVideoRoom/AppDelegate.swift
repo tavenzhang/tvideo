@@ -17,7 +17,6 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-    
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
@@ -27,8 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window!.makeKeyAndVisible();
 		LoggerStart(LoggerGetDefaultLogger())
 		LogMarker("strart");
-		let manVc = MainTabBarController();
-		manVc.adImage = UIImage(named:"LaunchImage");
+		// let manVc = MainTabBarController();
+		// manVc.adImage = UIImage(named:"LaunchImage");
+		let manVc = TChatViewControl();
 		window?.rootViewController = manVc;
 		let webView = UIWebView(frame: ScreenBounds);
 		let agent = webView.stringByEvaluatingJavaScriptFromString("navigator.userAgent");

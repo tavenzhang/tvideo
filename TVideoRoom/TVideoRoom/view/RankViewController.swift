@@ -13,6 +13,7 @@ class RankViewController:WebViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad();
+        
       
 	}
 

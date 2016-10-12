@@ -28,6 +28,9 @@ public let HomeCollectionViewCellMargin: CGFloat = 10
 public let HomeCollectionTextFont = UIFont.systemFontOfSize(14)
 public let HomeCollectionCellAnimationDuration: NSTimeInterval = 1.0
 
+/****************************** 颜色 ********************************/
+
+
 // MARK: - 通知
 /// 首页headView高度改变
 public let HomeTableHeadViewHeightDidChange = "HomeTableHeadViewHeightDidChange"

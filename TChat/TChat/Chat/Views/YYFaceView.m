@@ -115,6 +115,8 @@
             }
         }
     }
+
+
 }
 
 - (void)touchFace:(CGPoint)point

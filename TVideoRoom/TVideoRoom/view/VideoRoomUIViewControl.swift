@@ -4,7 +4,6 @@
 //
 import UIKit
 import TRtmpPlay
-import TChat
 import SnapKit
 
 class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
@@ -192,7 +191,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 // 隐藏聊天输入内容
 	func onTableVieo()
 	{
-		uiChatVC?.chatVc?.cancelFocus();
+		//uiChatVC?.chatVc?.cancelFocus();
 	}
 
 	func backBtnClick() {
