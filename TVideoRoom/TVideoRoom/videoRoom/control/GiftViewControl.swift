@@ -20,6 +20,7 @@ class GiftViewControl: UIViewController {
 	var curSelectGift: GiftDetailModel?;
 	var giftMenuBar: TabBarMenu?;
 	override func viewDidLoad() {
+		addNSNotification();
 		dataRoom = DataCenterModel.sharedInstance.roomData;
 		buildCollectionView();
 		buildGiftSendBar();
@@ -30,6 +31,11 @@ class GiftViewControl: UIViewController {
 
 	deinit {
 		giftMenuBar = nil;
+		NSNotificationCenter.defaultCenter().removeObserver(self);
+	}
+
+	func addNSNotification() {
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.moneyChangeHandle), name: MONEY_CHANGE, object: nil);
 	}
 
 	func prepareData() {
@@ -116,12 +122,13 @@ class GiftViewControl: UIViewController {
 	var btnMoney: UIButton?;
 	var txtChangeLB: UILabel?;
 	var btnNum: UIButton?;
+	var icoMoneImg: UIImageView?;
 
 	func buildGiftSendBar() {
-		btnMoney = UIButton.BtnSimple("充值", titleColor: UIColor.whiteColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sAddMoneyClick));
-		btnMoney!.backgroundColor = UIColor.colorWithCustom(0, g: 181, b: 219);
-		btnMoney!.layer.cornerRadius = 10;
-		btnMoney!.layer.masksToBounds = true;
+		btnMoney = UIButton.BtnSimple("充值 |", titleColor: UIColor.colorWithCustom(225, g: 50, b: 125), image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sAddMoneyClick));
+		// btnMoney!.backgroundColor = UIColor.colorWithCustom(225, g: 50, b: 125);
+		// btnMoney!.layer.cornerRadius = 10;
+		// btnMoney!.layer.masksToBounds = true;
 		view.addSubview(btnMoney!);
 		btnMoney!.snp_makeConstraints { (make) in
 			make.bottom.equalTo(self.view.snp_bottom).offset(-5);
@@ -153,12 +160,19 @@ class GiftViewControl: UIViewController {
 			make.width.equalTo(60);
 		}
 
-		txtChangeLB = UILabel.lableSimple("礼物:", corlor: UIColor.blackColor(), size: 12);
+		txtChangeLB = UILabel.lableSimple("余额:", corlor: UIColor.blackColor(), size: 10);
 		view.addSubview(txtChangeLB!);
 		txtChangeLB!.snp_makeConstraints { (make) in
 			make.centerY.equalTo(btnMoney!.snp_centerY);
-			make.left.equalTo((self.btnMoney?.snp_right)!).offset(10);
+			make.left.equalTo((self.btnMoney?.snp_right)!).offset(2);
 			// make.width.equalTo(60);
+		}
+		icoMoneImg = UIImageView(image: UIImage(named: "money"));
+		icoMoneImg?.scale(2, ySclae: 2);
+		view.addSubview(icoMoneImg!);
+		icoMoneImg!.snp_makeConstraints { (make) in
+			make.centerY.equalTo(btnMoney!.snp_centerY);
+			make.left.equalTo((txtChangeLB?.snp_right)!).offset(9);
 		}
 		chooseNumLB(1);
 	}
@@ -166,16 +180,14 @@ class GiftViewControl: UIViewController {
 	func c2sSendGift() {
 		if (curSelectGift != nil && curShopNum > 0)
 		{
-
-			// let msg = s_msg_40001(gid: Int((curSelectGift?.gid)!), uid: DataCenterModel.sharedInstance.roomData.uid, gnum: curShopNum);
-			// SocketManager.sharedInstance.socketM!.sendMessage(msg);
-			let giftInfo = GiftInfoModel();
-			giftInfo.senderNickString = "taven";
-			giftInfo.giftNameString = curSelectGift?.name;
-			giftInfo.giftCounts = UInt32(curShopNum);
-			giftInfo.giftThumbnailPath = getGiftImagUrl((curSelectGift?.gid)!.description);
-			// let data = ["gid": Int((curSelectGift?.gid)!), "num": curShopNum];
-			NSNotificationCenter.defaultCenter().postNotificationName(GIFT_EFFECT_START, object: giftInfo);
+			let totalMoney = (curSelectGift?.price?.integerValue)! * curShopNum;
+			if (totalMoney > DataCenterModel.sharedInstance.roomData.myMoney) {
+				showSimplpAlertView(self, tl: "", msg: "您的余额不足无法赠送该礼物！")
+			}
+			else {
+				let msg = s_msg_40001(gid: Int((curSelectGift?.gid)!), uid: DataCenterModel.sharedInstance.roomData.roomId, gnum: curShopNum);
+				SocketManager.sharedInstance.socketM!.sendMessage(msg);
+			}
 			LogHttp("送礼物");
 		}
 		else {
@@ -211,6 +223,15 @@ class GiftViewControl: UIViewController {
 	func chooseNumLB(num: Int) {
 		curShopNum = num;
 		btnNum?.setTitle("X\(num)  >", forState: .Normal);
+	}
+
+	func moneyChangeHandle(notice: NSNotification?) {
+		let moneyNum = DataCenterModel.sharedInstance.roomData.myMoney;
+		let attStr = NSMutableAttributedString(string: "余额: ");
+		let attrDic = [NSForegroundColorAttributeName: UIColor.purpleColor()];
+		let nameStr = NSAttributedString(string: moneyNum.description, attributes: attrDic);
+		attStr.appendAttributedString(nameStr);
+		self.txtChangeLB?.attributedText = attStr;
 	}
 }
 
@@ -254,15 +275,6 @@ extension GiftViewControl: UICollectionViewDelegate, UICollectionViewDataSource,
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 		let shopGiftModel = giftDataList[indexPath.row];
 		curSelectGift = shopGiftModel;
-		let attStr = NSMutableAttributedString(string: "礼物: ");
-		let attrDic = [NSForegroundColorAttributeName: UIColor.purpleColor()];
-		let nameStr = NSAttributedString(string: "\(shopGiftModel.name!)(\(shopGiftModel.price!)钻)", attributes: attrDic);
-		// let nameStr = NSAttributedString(string: shopGiftModel.name!, attributes: attrDic);
-		attStr.appendAttributedString(nameStr);
-		self.txtChangeLB?.attributedText = attStr;
-		// txtChangeLB?.text = "赠送: \(shopGiftModel.name)";
-		LogHttp("click");
-		LogHttp("collectionView");
 	}
 
 }

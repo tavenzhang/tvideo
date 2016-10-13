@@ -9,7 +9,26 @@
 import Foundation
 import SwiftyJSON
 
+enum icoLvType: Int {
+	case HostIcoLV;
+	case UserIcoLv;
+	case VipIcoLv;
+}
 
+func lvIcoNameGet(ico: Int32, type: icoLvType) -> String
+{
+	var resultStr: String = "";
+	switch type
+	{
+	case .HostIcoLV:
+		resultStr = "hlvr\(ico)";
+	case .UserIcoLv:
+		resultStr = "rlv\(ico)";
+		case.VipIcoLv:
+		resultStr = "vip\(ico)";
+	}
+	return resultStr;
+}
 
 func deserilObjectWithDictonary(json: NSDictionary, cls: AnyClass) -> AnyObject?
 {
@@ -30,7 +49,7 @@ class DataCenterModel {
 
 	internal static let sharedInstance = DataCenterModel()
 	private init() { }
-	var isOneRoom: Bool = true;
+	var isOneRoom: Bool = false;
 	// 主页数据；
 	var homeData: HomeData = HomeData();
 	// 房间内数据

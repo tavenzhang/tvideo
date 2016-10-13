@@ -9,12 +9,11 @@
 import UIKit
 import Crashlytics
 
-class RankViewController:WebViewController {
+class RankViewController: WebViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad();
-        
-      
+
 	}
 
 }

@@ -34,7 +34,7 @@ class PlayeListViewControl: UIViewController, UITableViewDelegate, UITableViewDa
 		self.view.addSubview(tableView);
 		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
-		self.tableView.rowHeight = self.view.width / 10;
+		self.tableView.rowHeight = self.view.width / 9;
 		self.tableView.backgroundColor = UIColor.clearColor();
 		self.tableView.allowsSelection = false;
 		segmentVC = TSegmentedControl(items: ["观众", "管理员"], didSelectedIndex: { [weak self](index) -> () in
@@ -102,7 +102,7 @@ class PlayeListViewControl: UIViewController, UITableViewDelegate, UITableViewDa
 				{
 					result = true;
 				}
-				else if (a.vip?.intValue < b.vip?.intValue) {
+				else if (a.ruled?.intValue < b.ruled?.intValue) {
 
 					result = false;
 				}

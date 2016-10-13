@@ -1,5 +1,4 @@
-//
-//  RoomDataModel.swift
+
 
 /// 房间内具体信息
 class RoomData: NSObject {
@@ -10,11 +9,13 @@ class RoomData: NSObject {
 	var pass: String = "";
 	var isPublish = false;
 	var publishUrl = "";
+	var myMoney = 0;
 	// var key = "d382538698b6e79c7d2ea8914e12e623";
 	var key = "";
 	var aeskey = "";
 	var rtmpList = [RtmpInfo]();
 	var lastRtmpUrl: String = "";
+	var uid: String = "0";
 	var rtmpPath: String {
 		get {
 			return lastRtmpUrl + "/" + sid + " live=1";
@@ -23,7 +24,7 @@ class RoomData: NSObject {
 	var socketIp: String? ;
 	var isVideoPlaying: Bool = false;
 	var rankGifList: [RankGiftModel] = [];
-	var uid: String = "0";
+
 	// 礼物数据集合
 	var giftDataManager: [GiftCateoryModel] = [];
 	var playerList = [playInfoModel]();
@@ -51,6 +52,23 @@ class RoomData: NSObject {
 			}
 		}
 	}
+
+	// 登陆失效以后
+	func reset() {
+		port = 9013;
+		sid = "";
+		roomId = 0;
+		pass = "";
+		isPublish = false;
+		publishUrl = "";
+		myMoney = 0;
+		key = "";
+		aeskey = "";
+		rtmpList.removeAll();
+		lastRtmpUrl = "";
+		uid = ""
+	}
+
 }
 
 class RtmpInfo {

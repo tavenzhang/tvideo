@@ -75,8 +75,8 @@ class s_msg_30001: s_msg_noBody {
 class s_msg_40001: S_msg_base {
 	var gid: Int = 0;
 	var gnum: Int = 0
-	var uid: String = "";
-	init(gid: Int, uid: String, gnum: Int)
+	var uid: Int = 0;
+	init(gid: Int, uid: Int, gnum: Int)
 	{
 		super.init(_cmd: 40001);
 		self.gid = gid;

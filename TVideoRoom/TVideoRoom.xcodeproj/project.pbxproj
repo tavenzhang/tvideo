@@ -52,7 +52,6 @@
 		DE77865E1DAD0BB20004AB29 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE77865D1DAD0BB20004AB29 /* ChatModel.swift */; };
 		DE7A27A81D1AD22100DAAD8C /* NSLoggerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7A27A71D1AD22100DAAD8C /* NSLoggerSupport.swift */; };
 		DE7B34AB1DAA7EFB00562AA2 /* GiftShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B34AA1DAA7EFB00562AA2 /* GiftShopCell.swift */; };
-		DE7DAE981DA0FFBF00AB51FC /* Assets2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE7DAE971DA0FFBF00AB51FC /* Assets2.xcassets */; };
 		DE7DAE9C1DA150D900AB51FC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7DAE9B1DA150D900AB51FC /* HomeViewModel.swift */; };
 		DE7DAEEE1DA280CC00AB51FC /* HotLiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE7DAEED1DA280CC00AB51FC /* HotLiveCell.xib */; };
 		DE7DAEF31DA29E6400AB51FC /* HotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7DAEF21DA29E6400AB51FC /* HotViewController.swift */; };
@@ -223,7 +222,6 @@
 		DE7DAE8E1DA0F2F200AB51FC /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwiftyJSON.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Release-iphoneos/SwiftyJSON.framework"; sourceTree = "<absolute>"; };
 		DE7DAE911DA0F31B00AB51FC /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Alamofire.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Release-iphoneos/Alamofire.framework"; sourceTree = "<absolute>"; };
 		DE7DAE941DA0F32D00AB51FC /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SDWebImage.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Release-iphoneos/SDWebImage.framework"; sourceTree = "<absolute>"; };
-		DE7DAE971DA0FFBF00AB51FC /* Assets2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets2.xcassets; sourceTree = "<group>"; };
 		DE7DAE9B1DA150D900AB51FC /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DE7DAEA21DA25D4300AB51FC /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Alamofire.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<absolute>"; };
 		DE7DAEA91DA25D4300AB51FC /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CryptoSwift.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/TWork-eguxgfstqnkzcbcdzgnmpjnqfahq/Build/Products/Debug-iphoneos/CryptoSwift.framework"; sourceTree = "<absolute>"; };
@@ -476,7 +474,6 @@
 				DE3641651D004FC600A3FE24 /* Main.storyboard */,
 				DE36416A1D004FC600A3FE24 /* LaunchScreen.storyboard */,
 				DE36416D1D004FC600A3FE24 /* Info.plist */,
-				DE7DAE971DA0FFBF00AB51FC /* Assets2.xcassets */,
 				DE7A27A91D1AD7B900DAAD8C /* TVideoRoom-Bridging-Header.h */,
 				DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */,
 			);
@@ -1070,7 +1067,6 @@
 				DEC726901DAE856500C5E5A5 /* 50@2x.png in Resources */,
 				DEC726931DAE856500C5E5A5 /* ScreenShot3.png in Resources */,
 				DEC726711DAE856500C5E5A5 /* 16@2x.png in Resources */,
-				DE7DAE981DA0FFBF00AB51FC /* Assets2.xcassets in Resources */,
 				DEC7268B1DAE856500C5E5A5 /* 42@2x.png in Resources */,
 				DEC726801DAE856500C5E5A5 /* 31@2x.png in Resources */,
 				DE7DAEEE1DA280CC00AB51FC /* HotLiveCell.xib in Resources */,

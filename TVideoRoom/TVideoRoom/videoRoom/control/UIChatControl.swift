@@ -61,8 +61,8 @@ class UIChatControl: UIViewController {
 	}
 
 	func adjust(w: CGFloat, h: CGFloat) -> Void {
-		chatVc?.view.width = w;
-		chatVc?.view.height = h;
+//		chatVc?.view.width = w;
+//		chatVc?.view.height = h;
 	}
 
 	/**
@@ -77,20 +77,20 @@ class UIChatControl: UIViewController {
      发送聊天消息
      */
 	func chatSendChatMessage(msg: String!) -> Void {
-		let mees = ChatMessage();
-		mees.messageType = .Text;
-		mees.content = msg;
-		chatVc?.receiveMessage(mees);
-//		if (DataCenterModel.sharedInstance.roomData.key == "")
-//		{
-//			showSimplpAlertView(self, tl: "error", msg: "您还未登录不能发言", btnHiht: "登录", okHandle: {
-//				self.tabBarController?.selectedIndex = 3;
-//			})
-//		}
-//		else {
-//			let chatMsg = s_msg_30001(type: 0, ruid: 0, cnt: msg);
-//			SocketManager.sharedInstance.sendMessage(chatMsg);
-//		}
+//		let mees = ChatMessage();
+//		mees.messageType = .Text;
+//		mees.content = msg;
+//		chatVc?.receiveMessage(mees);
+		if (DataCenterModel.sharedInstance.roomData.key == "")
+		{
+			showSimplpAlertView(self, tl: "error", msg: "您还未登录不能发言", btnHiht: "登录", okHandle: {
+				self.tabBarController?.selectedIndex = 3;
+			})
+		}
+		else {
+			let chatMsg = s_msg_30001(type: 0, ruid: 0, cnt: msg);
+			SocketManager.sharedInstance.sendMessage(chatMsg);
+		}
 	}
 
 }

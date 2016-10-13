@@ -23,6 +23,7 @@ class GiftNumChooseViewController: UITableViewController {
 		self.view.frame = CGRectMake(0, 0, 150, 300)
 		addGiftDetail("随机", 1, false);
 		addGiftDetail("随机", 5, false);
+		addGiftDetail("随机", 10, false);
 		addGiftDetail("亲吻", 50, false);
 		addGiftDetail("笑脸", 99, false);
 		addGiftDetail("心", 188, false);
@@ -34,7 +35,7 @@ class GiftNumChooseViewController: UITableViewController {
 		addGiftDetail("心门钥匙", 66, true);
 		addGiftDetail("蝴蝶", 366, true);
 		addGiftDetail("丘比特之箭", 666, true);
-		dataList = dataList?.sort({ $0.data > $1.data });
+		dataList = dataList?.sort({ $0.data < $1.data });
 		self.tableView.registerClass(GiftChooseCell.self, forCellReuseIdentifier: "cell");
 		self.tableView.reloadData();
 	}

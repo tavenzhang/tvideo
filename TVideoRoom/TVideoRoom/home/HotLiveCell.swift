@@ -37,8 +37,8 @@ class HotLiveCell: UICollectionViewCell {
 			self.imgBigView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "v2_placeholder_full_size"));
 			imglive.hidden = (hotData?.live_status == 0);
 			btnLocation.setTitle("来自神秘花园", forState: .Normal);
-			let ico = "hlvr\(hotData!.lv_exp!.intValue)";
-			imgLv.image = UIImage(named: ico);
+			// let ico = "hlvr\(hotData!.lv_exp!.intValue)";
+			imgLv.image = UIImage(named: lvIcoNameGet(hotData!.lv_exp!.intValue, type: .HostIcoLV));
 
 		}
 	}

@@ -90,10 +90,10 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		let giftImage = UIImage.resizableImageWithName("giftBtnNew");
 		btnGift = UIButton.BtnSimple("", titleColor: UIColor.clearColor(), image: giftImage, hightLightImage: giftImage, target: self, action: #selector(self.giftClick));
 
-		self.btnGift?.scale(1.8, ySclae: 1.8);
+		self.btnGift?.scale(2, ySclae: 2);
 		self.bottomView!.addSubview(btnGift!);
 		self.btnGift?.snp_makeConstraints(closure: { (make) in
-			make.right.equalTo(self.bottomView!.snp_right).offset(-5);
+			make.right.equalTo(self.bottomView!.snp_right).offset(-10);
 			make.centerY.equalTo(self.bottomView!);
 		})
 		let faceImage = UIImage(named: "facebtn");
@@ -102,7 +102,7 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		// 强制先渲染一下
 		self.view.layoutIfNeeded()
 		btnFace?.snp_makeConstraints(closure: { (make) in
-			make.left.equalTo(self.bottomView!.snp_left).offset(2);
+			make.left.equalTo(self.bottomView!.snp_left).offset(10);
 			make.centerY.equalTo(self.bottomView!);
 		})
 
@@ -121,9 +121,9 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		self.bottomView!.addSubview(textField!);
 		faceTield.hidden = true;
 		textField?.snp_makeConstraints(closure: { (make) in
-			make.left.equalTo((btnFace?.snp_right)!).offset(5);
+			make.left.equalTo((btnFace?.snp_right)!).offset(12);
 			make.centerY.equalTo(0);
-			make.right.equalTo((btnGift?.snp_left)!).offset(-15);
+			make.right.equalTo((btnGift?.snp_left)!).offset(-20);
 			make.height.equalTo(30);
 		})
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil);

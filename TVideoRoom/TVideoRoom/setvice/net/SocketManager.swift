@@ -15,7 +15,6 @@ class SocketManager {
 		socketM!.onMsgResultHandle = onMsghandle;
 		socketM!.onTLogHandle = self.socketlog;
 	}
-
 	deinit
 	{
 		NSNotificationCenter.defaultCenter().removeObserver(self);
@@ -62,7 +61,6 @@ class SocketManager {
 			self?.socketM?.heartMessage = s_msg_heart_9999(_cmd: 9999);
 		}
 	}
-
 	// 关闭socket 连接
 	func closeSocket() -> Void
 	{
@@ -95,6 +93,9 @@ class SocketManager {
 				s_msge = s_msg_10001(cmd: MSG_10001, _roomId: dataCenterM.roomData.roomId, _pass: dataCenterM.roomData.pass, _roomLimit: r_msg.getAesk(), _isPublish: dataCenterM.roomData.isPublish, _publishUrl: dataCenterM.roomData.publishUrl, _sid: dataCenterM.roomData.sid, _key: dataCenterM.roomData.key);
 			}
 			socketM!.sendMessage(s_msge);
+		case MSG_10001:
+			dataCenterM.roomData.myMoney = json["points"].int!;
+			noticeMsgMianThread(MONEY_CHANGE, nil);
 		case MSG_10002: // 进入房间
 			let s_8002 = s_msg_noBody(_cmd: MSG_80002);
 			socketM!.sendMessage(s_8002);
@@ -104,11 +105,13 @@ class SocketManager {
 			let s_11008 = s_msg_noBody(_cmd: MSG_11008);
 			socketM!.sendMessage(s_10001);
 			socketM!.sendMessage(s_11008);
-
 			break
+		case MSG_10009: // 钻石金额变化
+			dataCenterM.roomData.myMoney = json["points"].int!;
+			noticeMsgMianThread(MONEY_CHANGE, nil);
 		case MSG_11002: // 进入房间
-			LogHttp("MSG_11002---data=\(json)");
 			LogHttp("MSG_11002---dictionaryObject=\(json.dictionaryObject)");
+			DataCenterModel.sharedInstance.roomData.uid = (json["uid"].int32?.description)!;
 			let playerMode = deserilObjectWithDictonary(json.dictionaryObject!, cls: playInfoModel.self) as! playInfoModel! ;
 			dataCenterM.roomData.changPlayerList([playerMode]);
 			noticeMsgMianThread(PlayLIST_CHANGE, nil);
@@ -116,14 +119,16 @@ class SocketManager {
 			let playerMode = deserilObjectWithDictonary(json.dictionaryObject!, cls: playInfoModel.self) as! playInfoModel! ;
 			dataCenterM.roomData.changPlayerList([playerMode], isDelete: true);
 			noticeMsgMianThread(PlayLIST_CHANGE, nil);
-
 		case MSG_11008: // 获取管理员列表
 			fallthrough;
 		case MSG_11001: // 获取用户列表
-			let dataList: [playInfoModel] = deserilObjectsWithArray(json["items"].arrayObject! as NSArray, cls: playInfoModel.self) as! [playInfoModel];
-			dataCenterM.roomData.changPlayerList(dataList);
-			noticeMsgMianThread(PlayLIST_CHANGE, nil);
-
+			var sarray = json["items"].arrayObject as? NSArray;
+			if (sarray != nil) && (sarray?.count > 0)
+			{
+				let dataList: [playInfoModel] = deserilObjectsWithArray(json["items"].arrayObject! as NSArray, cls: playInfoModel.self) as! [playInfoModel];
+				dataCenterM.roomData.changPlayerList(dataList);
+				noticeMsgMianThread(PlayLIST_CHANGE, nil);
+			}
 		case MSG_15001:
 			dataCenterM.roomData.rankGifList.removeAll();
 			fallthrough;
@@ -243,11 +248,22 @@ class SocketManager {
 			{
 				noticeMsgMianThread(E_SOCKERT_Chat_30001, msgVo!)
 			}
+		case MSG_40001:
+			let giftInfo = GiftInfoModel();
+			giftInfo.senderNickString = json["sendName"].string!;
+			giftInfo.giftNameString = "";
+			giftInfo.giftCounts = json["gnum"].uInt32!;
+			giftInfo.giftThumbnailPath = getGiftImagUrl(json["gid"].int32!.description);
+			noticeMsgMianThread(GIFT_EFFECT_START, giftInfo);
+		case MSG_500: // 多处登陆。
+			dispatch_async(dispatch_get_main_queue()) {
+                dataCenterM.roomData
+					NSNotificationCenter.defaultCenter().postNotificationName(msg, object: data);
+			}
 
 		default:
 			break
 		}
-
 	}
 
 	func noticeMsgMianThread(msg: String, _ data: AnyObject?) {
