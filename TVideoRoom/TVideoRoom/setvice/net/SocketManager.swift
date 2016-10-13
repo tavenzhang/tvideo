@@ -94,14 +94,36 @@ class SocketManager {
 				let r_msg = r_msg_10000(_data: (dataCenterM.roomData.key + String(dataCenterM.roomData.roomId) + "73uxh9*@(58u)fgxt"), _aesKey: dataCenterM.roomData.aeskey);
 				s_msge = s_msg_10001(cmd: MSG_10001, _roomId: dataCenterM.roomData.roomId, _pass: dataCenterM.roomData.pass, _roomLimit: r_msg.getAesk(), _isPublish: dataCenterM.roomData.isPublish, _publishUrl: dataCenterM.roomData.publishUrl, _sid: dataCenterM.roomData.sid, _key: dataCenterM.roomData.key);
 			}
-
 			socketM!.sendMessage(s_msge);
 		case MSG_10002: // 进入房间
 			let s_8002 = s_msg_noBody(_cmd: MSG_80002);
 			socketM!.sendMessage(s_8002);
 			let s_15001 = s_msg_noBody(_cmd: MSG_15001);
 			socketM!.sendMessage(s_15001);
+			let s_10001 = s_msg_11001(s: 0, e: 20);
+			let s_11008 = s_msg_noBody(_cmd: MSG_11008);
+			socketM!.sendMessage(s_10001);
+			socketM!.sendMessage(s_11008);
+
 			break
+		case MSG_11002: // 进入房间
+			LogHttp("MSG_11002---data=\(json)");
+			LogHttp("MSG_11002---dictionaryObject=\(json.dictionaryObject)");
+			let playerMode = deserilObjectWithDictonary(json.dictionaryObject!, cls: playInfoModel.self) as! playInfoModel! ;
+			dataCenterM.roomData.changPlayerList([playerMode]);
+			noticeMsgMianThread(PlayLIST_CHANGE, nil);
+		case MSG_11003: // 退出房间
+			let playerMode = deserilObjectWithDictonary(json.dictionaryObject!, cls: playInfoModel.self) as! playInfoModel! ;
+			dataCenterM.roomData.changPlayerList([playerMode], isDelete: true);
+			noticeMsgMianThread(PlayLIST_CHANGE, nil);
+
+		case MSG_11008: // 获取管理员列表
+			fallthrough;
+		case MSG_11001: // 获取用户列表
+			let dataList: [playInfoModel] = deserilObjectsWithArray(json["items"].arrayObject! as NSArray, cls: playInfoModel.self) as! [playInfoModel];
+			dataCenterM.roomData.changPlayerList(dataList);
+			noticeMsgMianThread(PlayLIST_CHANGE, nil);
+
 		case MSG_15001:
 			dataCenterM.roomData.rankGifList.removeAll();
 			fallthrough;
@@ -125,10 +147,7 @@ class SocketManager {
 					}
 				}
 			}
-
-			dispatch_async(dispatch_get_main_queue()) {
-				NSNotificationCenter.defaultCenter().postNotificationName(RANK_GIft_UPTA, object: dataCenterM.roomData.rankGifList);
-			};
+			noticeMsgMianThread(RANK_GIft_UPTA, dataCenterM.roomData.rankGifList);
 		case MSG_80002: // 获取到播放列表
 			let rtmpListStr = json["userrtmp"].string;
 			if (rtmpListStr != "") {
@@ -177,16 +196,12 @@ class SocketManager {
 			{
 				dataCenterM.roomData.lastRtmpUrl = itemInfo["rtmp"].string!;
 				dataCenterM.roomData.sid = itemInfo["sid"].string!;
-				dispatch_async(dispatch_get_main_queue()) {
-					NSNotificationCenter.defaultCenter().postNotificationName(RTMP_START_PLAY, object: dataCenterM.roomData.lastRtmpUrl);
-				};
+				noticeMsgMianThread(RTMP_START_PLAY, dataCenterM.roomData.lastRtmpUrl);
 			}
 			else {
 				dataCenterM.roomData.lastRtmpUrl = "";
 				dataCenterM.roomData.sid = "";
-				dispatch_async(dispatch_get_main_queue()) {
-					NSNotificationCenter.defaultCenter().postNotificationName(RTMP_START_PLAY, object: "");
-				};
+				noticeMsgMianThread(RTMP_START_PLAY, "");
 			}
 			break;
 		case MSG_500: // break
@@ -201,9 +216,7 @@ class SocketManager {
 				msgVo?.content = "";
 				msgVo?.isSender = false;
 				msgVo?.messageType = .Text;
-				dispatch_async(dispatch_get_main_queue()) {
-					NSNotificationCenter.defaultCenter().postNotificationName(E_SOCKERT_Chat_30001, object: msgVo!);
-				}
+				noticeMsgMianThread(E_SOCKERT_Chat_30001, msgVo!)
 			}
 			break
 		case MSG_30001:
@@ -228,15 +241,19 @@ class SocketManager {
 			}
 			if ((msgVo) != nil)
 			{
-				dispatch_async(dispatch_get_main_queue()) {
-					NSNotificationCenter.defaultCenter().postNotificationName(E_SOCKERT_Chat_30001, object: msgVo!);
-				}
+				noticeMsgMianThread(E_SOCKERT_Chat_30001, msgVo!)
 			}
 
 		default:
 			break
 		}
 
+	}
+
+	func noticeMsgMianThread(msg: String, _ data: AnyObject?) {
+		dispatch_async(dispatch_get_main_queue()) {
+			NSNotificationCenter.defaultCenter().postNotificationName(msg, object: data);
+		}
 	}
 
 }

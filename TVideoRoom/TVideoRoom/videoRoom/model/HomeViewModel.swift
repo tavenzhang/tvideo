@@ -27,6 +27,7 @@ class RankGiftModel: NSObject {
 }
 
 class Activity: NSObject {
+    
 	var headimg: String?;
 	var live_time: String?;
 	var username: String? ;
@@ -34,6 +35,8 @@ class Activity: NSObject {
 	var live_status: NSNumber?;
 	var total: NSNumber?;
 	var lv_type: NSNumber?;
+	var lv_exp: NSNumber?;
+
 	var img: String? {
 		get {
 			return headimg;

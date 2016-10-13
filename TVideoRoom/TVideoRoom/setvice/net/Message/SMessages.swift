@@ -84,3 +84,25 @@ class s_msg_40001: S_msg_base {
 		self.uid = uid;
 	}
 }
+//获取用户列表
+class s_msg_11001: S_msg_base {
+	var start: Int = 0;
+	var end: Int = 20
+	init(s: Int, e: Int)
+	{
+		super.init(_cmd: 11001);
+		start = s;
+		end = e;
+	}
+}
+
+class s_msg_11008: S_msg_base {
+	var start: Int = 0;
+	var end: Int = 20
+	init(s: Int, e: Int)
+	{
+		super.init(_cmd: 40001);
+		start = s;
+		end = e;
+	}
+}

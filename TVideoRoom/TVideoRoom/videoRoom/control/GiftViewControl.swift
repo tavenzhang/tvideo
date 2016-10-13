@@ -95,7 +95,7 @@ class GiftViewControl: UIViewController {
 		layout.minimumInteritemSpacing = 0;
 		layout.minimumLineSpacing = -1;
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
-		giftCollectionView = LFBCollectionView(frame: CGRectMake(0, self.view.width, self.view.width, 140), collectionViewLayout: layout)
+		giftCollectionView = LFBCollectionView(frame: CGRectMake(0, self.view.width, self.view.width, 150), collectionViewLayout: layout)
 		giftCollectionView.delegate = self
 		giftCollectionView.dataSource = self
 		giftCollectionView.showsHorizontalScrollIndicator = false;
@@ -106,7 +106,7 @@ class GiftViewControl: UIViewController {
 		giftCollectionView.snp_makeConstraints { (make) in
 			make.bottom.equalTo(self.view.snp_bottom).offset(-35);
 			make.width.equalTo(self.view.width);
-			make.height.equalTo(140);
+			make.height.equalTo(141);
 			make.left.equalTo(self.view.snp_left);
 		}
 

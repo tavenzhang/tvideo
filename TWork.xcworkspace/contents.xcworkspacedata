@@ -5,9 +5,6 @@
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:TChat/TChat.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:TRtmpPlay/TRtmpPlay.xcodeproj">
    </FileRef>
    <FileRef

@@ -39,10 +39,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl_star1_40x19" translatesAutoresizingMaskIntoConstraints="NO" id="1Xd-ou-YsO">
-                                <rect key="frame" x="112" y="4" width="40" height="19"/>
+                                <rect key="frame" x="112" y="5.5" width="30" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="Eet-jU-hRo"/>
-                                    <constraint firstAttribute="height" constant="19" id="kEm-lH-B7F"/>
+                                    <constraint firstAttribute="width" constant="30" id="Eet-jU-hRo"/>
+                                    <constraint firstAttribute="height" constant="16" id="kEm-lH-B7F"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeX-dQ-MBX">

@@ -1,9 +1,6 @@
 //
 //  RankViewControl.swift
 //  TVideoRoom
-//
-
-import UIKit
 
 class RankGiftViewControl: UITableViewController {
 
@@ -14,7 +11,6 @@ class RankGiftViewControl: UITableViewController {
 		addNotifycation();
 		self.tableView.rowHeight = self.view.width / 10;
 		self.tableView.backgroundColor = ROOM_SCROOL_BG_COLOR;
-
 	}
 
 	deinit {
@@ -23,8 +19,6 @@ class RankGiftViewControl: UITableViewController {
 
 	func addNotifycation() {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updataListView), name: RANK_GIft_UPTA, object: nil);
-		self.tableView.registerClass(RankGiftCell.self, forCellReuseIdentifier: "cell");
-
 		self.tableView.reloadData();
 	}
 
@@ -46,8 +40,9 @@ class RankGiftViewControl: UITableViewController {
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! RankGiftCell ;
+		let cell = RankGiftCell.cellFormTablView(tableView, indexPath) ;
 		cell.dataModel = dataList?[indexPath.row];
+
 		return cell;
 	}
 

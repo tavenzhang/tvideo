@@ -43,6 +43,9 @@
 		DE3641861D0050CA00A3FE24 /* RMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36417E1D0050CA00A3FE24 /* RMessages.swift */; };
 		DE3641871D0050CA00A3FE24 /* SMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36417F1D0050CA00A3FE24 /* SMessages.swift */; };
 		DE3641891D0050CA00A3FE24 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3641831D0050CA00A3FE24 /* SocketManager.swift */; };
+		DE383B921DAF254900EFB767 /* PlayeListViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE383B911DAF254900EFB767 /* PlayeListViewControl.swift */; };
+		DE383B951DAF2DFA00EFB767 /* playListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE383B941DAF2DFA00EFB767 /* playListCell.swift */; };
+		DE383B971DAF36F600EFB767 /* TSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE383B961DAF36F600EFB767 /* TSegmentedControl.swift */; };
 		DE68250B1DAD178000930197 /* StringUitls.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68250A1DAD178000930197 /* StringUitls.swift */; };
 		DE696B131D2E3B66007F69F7 /* AlertViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE696B121D2E3B66007F69F7 /* AlertViewUtils.swift */; };
 		DE77865C1DAD0B7C0004AB29 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE77865B1DAD0B7C0004AB29 /* ChatView.swift */; };
@@ -194,6 +197,9 @@
 		DE36417E1D0050CA00A3FE24 /* RMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMessages.swift; sourceTree = "<group>"; };
 		DE36417F1D0050CA00A3FE24 /* SMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMessages.swift; sourceTree = "<group>"; };
 		DE3641831D0050CA00A3FE24 /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		DE383B911DAF254900EFB767 /* PlayeListViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayeListViewControl.swift; sourceTree = "<group>"; };
+		DE383B941DAF2DFA00EFB767 /* playListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playListCell.swift; sourceTree = "<group>"; };
+		DE383B961DAF36F600EFB767 /* TSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSegmentedControl.swift; sourceTree = "<group>"; };
 		DE48447F1D1A447400C17A5B /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = BBSZLib.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/BBSZLib.framework"; sourceTree = "<absolute>"; };
 		DE4844821D1A447400C17A5B /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/CocoaAsyncSocket.framework"; sourceTree = "<absolute>"; };
 		DE4844861D1A44C400C17A5B /* Pods_TNetServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Pods_TNetServer.framework; path = "/Users/zhangxinhua/Library/Developer/Xcode/DerivedData/My-dtqmqojntoofsheudqnkusrwdgtp/Build/Products/Debug-iphoneos/Pods_TNetServer.framework"; sourceTree = "<absolute>"; };
@@ -419,6 +425,7 @@
 				DE1645341D1FBFD200E21B4A /* LoadProgressAnimationView.swift */,
 				DE1645361D1FC55900E21B4A /* LFBRefreshHeader.swift */,
 				DE696B121D2E3B66007F69F7 /* AlertViewUtils.swift */,
+				DE383B961DAF36F600EFB767 /* TSegmentedControl.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -524,6 +531,14 @@
 			path = http;
 			sourceTree = "<group>";
 		};
+		DE383B931DAF2DA900EFB767 /* playListView */ = {
+			isa = PBXGroup;
+			children = (
+				DE383B941DAF2DFA00EFB767 /* playListCell.swift */,
+			);
+			path = playListView;
+			sourceTree = "<group>";
+		};
 		DE48447E1D1A437100C17A5B /* framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +561,7 @@
 		DE7DAE991DA1508100AB51FC /* view */ = {
 			isa = PBXGroup;
 			children = (
+				DE383B931DAF2DA900EFB767 /* playListView */,
 				DE7B34A91DAA677300562AA2 /* giftView */,
 				DE09BF0A1DA8EFD9002D85B6 /* rankView */,
 				DEBE439C1D1EB80B00178DA7 /* CustomButton.swift */,
@@ -575,6 +591,7 @@
 				DEE647A81DA7EF530096201A /* GiftViewControl.swift */,
 				DE09BF071DA8B9E7002D85B6 /* RankGiftViewControl.swift */,
 				DE32A2DB1DAB8E0100A97020 /* GiftNumChooseViewController.swift */,
+				DE383B911DAF254900EFB767 /* PlayeListViewControl.swift */,
 			);
 			path = control;
 			sourceTree = "<group>";
@@ -1185,6 +1202,7 @@
 				DEAC0DB31DAC6EBB0069DDF9 /* GiftSendBar.m in Sources */,
 				DE1645271D1F8F4000E21B4A /* PageScrollView.swift in Sources */,
 				DE9655A01DA6264400095146 /* InfoView.swift in Sources */,
+				DE383B971DAF36F600EFB767 /* TSegmentedControl.swift in Sources */,
 				DE7DAF001DA3426E00AB51FC /* HotLiveCell.swift in Sources */,
 				DE32A2DC1DAB8E0100A97020 /* GiftNumChooseViewController.swift in Sources */,
 				DE1645371D1FC55900E21B4A /* LFBRefreshHeader.swift in Sources */,
@@ -1192,6 +1210,7 @@
 				DE7DAF481DA377C300AB51FC /* UIDevice+SLExtension.m in Sources */,
 				DEBE439F1D1EBA0500178DA7 /* BaseTabViewController.swift in Sources */,
 				DE7DAF4D1DA377C300AB51FC /* UIImageView+Extension.m in Sources */,
+				DE383B951DAF2DFA00EFB767 /* playListCell.swift in Sources */,
 				DEBE43AE1D1EF15100178DA7 /* BaseNavigationController.swift in Sources */,
 				DE7A27A81D1AD22100DAAD8C /* NSLoggerSupport.swift in Sources */,
 				DE16451B1D1F7C2D00E21B4A /* RankViewController.swift in Sources */,
@@ -1228,6 +1247,7 @@
 				DEA7D8AD1DA4920F00978ECA /* UISearchViewController.swift in Sources */,
 				DE3641861D0050CA00A3FE24 /* RMessages.swift in Sources */,
 				1EE51636E91B2F4B8703063A /* HomeCell.swift in Sources */,
+				DE383B921DAF254900EFB767 /* PlayeListViewControl.swift in Sources */,
 				DEE0F0E91DA77D3300BE806B /* UIVideoPlayerControl.swift in Sources */,
 				1EE51DAA5201BBDF214D96ED /* GiftEffectView.swift in Sources */,
 				DE77865C1DAD0B7C0004AB29 /* ChatView.swift in Sources */,

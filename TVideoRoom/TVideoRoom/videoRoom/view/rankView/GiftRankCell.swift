@@ -10,22 +10,34 @@ import SnapKit
 
 class RankGiftCell: UITableViewCell {
 
+	class func cellFormTablView(tableView: UITableView, _ indexPath: NSIndexPath) -> RankGiftCell {
+
+		var cell = tableView.dequeueReusableCellWithIdentifier("cell") as? RankGiftCell ;
+		if (cell == nil)
+		{
+			tableView.registerClass(RankGiftCell.self, forCellReuseIdentifier: "cell");
+			cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? RankGiftCell ;
+		}
+		return cell!;
+
+	}
+
 	override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier);
 		self.backgroundColor = UIColor.clearColor();
 		self.accessoryType = .None;
 		self.txtRank.snp_makeConstraints { (make) in
-            make.top.equalTo(10);
+			make.top.equalTo(10);
 			make.left.equalTo(self.snp_left).offset(20);
 		}
 		self.txtName.snp_makeConstraints { (make) in
-                make.top.equalTo(10);
+			make.top.equalTo(10);
 			make.centerX.equalTo(0);
 			// make.left.equalTo(self.width / 2 - 50);
 		}
 
 		self.txtMoeny.snp_makeConstraints { (make) in
-                make.top.equalTo(10);
+			make.top.equalTo(10);
 			make.right.equalTo(self.snp_right).offset(-20);
 		}
 	}

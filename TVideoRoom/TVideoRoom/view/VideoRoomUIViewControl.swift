@@ -21,7 +21,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 
 	var uiChatVC: UIChatControl?;
 
-	var giftControl: RankGiftViewControl?;
+	var giftControl: PlayeListViewControl?;
 
 	var rankViewControl: RankGiftViewControl?;
 
@@ -102,7 +102,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		uiChatVC?.view.frame = scrollView!.frame;
 		uiChatVC?.view.x = 0;
 
-		giftControl = RankGiftViewControl();
+		giftControl = PlayeListViewControl();
 		self.addChildViewController(giftControl!);
 		scrollView!.addSubview((giftControl?.view)!);
 		giftControl?.view.frame = scrollView!.frame;

@@ -13,8 +13,14 @@ let MSG_10000 = 10000;
 /// login
 let MSG_10001 = 10001;
 
-/// 进入房间
+/// 房间信息
 let MSG_10002 = 10002;
+
+/// 获取管理列表
+let MSG_11008 = 11008;
+
+/// 获取用户列表
+let MSG_11001 = 11001;
 
 /// 获取贡献排行
 let MSG_15001 = 15001;
@@ -28,6 +34,9 @@ let MSG_30001 = 30001
 
 //玩家进入
 let MSG_11002 = 11002
+
+//玩家退出
+let MSG_11003 = 11003
 
 ///下拉播放列表
 let MSG_80001 = 80001;
@@ -50,3 +59,6 @@ let RTMP_START_PLAY: String = "rtmp start play";
 let RANK_GIft_UPTA: String = "rRANK_GIft_UPTA";
 //收到礼物播放特效
 let GIFT_EFFECT_START: String = "GIFT_EFFECT_START";
+
+//用户人数改变
+let PlayLIST_CHANGE: String = "PlayLIST_CHANGE";

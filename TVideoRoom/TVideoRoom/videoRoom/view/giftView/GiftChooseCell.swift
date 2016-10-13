@@ -10,6 +10,18 @@ import UIKit
 
 class GiftChooseCell: UITableViewCell {
 
+	class func cellFormTablView(tableView: UITableView, _ indexPath: NSIndexPath) -> GiftChooseCell {
+
+		var cell = tableView.dequeueReusableCellWithIdentifier("cell") as? GiftChooseCell ;
+		if (cell == nil)
+		{
+			tableView.registerClass(RankGiftCell.self, forCellReuseIdentifier: "cell");
+			cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? GiftChooseCell ;
+		}
+		return cell!;
+
+	}
+
 	override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier);
 		self.backgroundColor = UIColor.clearColor();

@@ -34,6 +34,7 @@ class UIChatControl: UIViewController {
 		chatVc?.view.backgroundColor = ROOM_SCROOL_BG_COLOR;
 		giftVc = GiftViewControl();
 		view?.addSubview(giftVc!.view);
+		// giftVc?.view.frame = CGRectMake(0, self.view.height, self.view.width, 200)
 		giftVc?.view.snp_makeConstraints(closure: { (make) in
 			make.bottom.equalTo(self.view.snp_bottom);
 			make.width.equalTo(self.view);
@@ -42,15 +43,21 @@ class UIChatControl: UIViewController {
 		chatVc?.chatGiftBlock = clickGiftBtnHandle;
 		chatVc?.chatCancelBlock = chatCancel;
 		giftVc?.view.hidden = true;
-		// view?.backgroundColor = UIColor.blueColor();
 	}
 
 	func clickGiftBtnHandle() {
 		giftVc?.view.hidden = false;
+		self.giftVc?.view.top = self.view.height;
+		UIView.animateWithDuration(0.3) {
+			self.giftVc?.view.top = self.view.height - (self.giftVc?.view.height)!;
+		}
 	}
 
 	func chatCancel() {
-		giftVc?.view.hidden = true;
+		// giftVc?.view.hidden = true;
+		UIView.animateWithDuration(0.3) {
+			self.giftVc?.view.top = self.view.height;
+		}
 	}
 
 	func adjust(w: CGFloat, h: CGFloat) -> Void {

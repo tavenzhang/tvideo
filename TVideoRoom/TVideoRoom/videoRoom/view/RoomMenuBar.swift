@@ -46,7 +46,7 @@ class RoomMenuBar: UIView {
 		})
 		// 强制更新一次
 		self.layoutIfNeeded();
-		menuBar?.creatBtnByList(["聊天", "礼物", "贡献榜"], txtSize: 16, color: UIColor.brownColor());
+		menuBar?.creatBtnByList(["聊天", "在线", "贡献榜"], txtSize: 16, color: UIColor.brownColor());
 		menuBar!.regClickHandle(tabBtnClikc);
 		changeLineBtn.snp_makeConstraints { (make) in
 			make.centerY.equalTo(self);

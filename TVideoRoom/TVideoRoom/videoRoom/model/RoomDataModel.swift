@@ -23,10 +23,34 @@ class RoomData: NSObject {
 	var socketIp: String? ;
 	var isVideoPlaying: Bool = false;
 	var rankGifList: [RankGiftModel] = [];
-	var uid:String = "0";
+	var uid: String = "0";
 	// 礼物数据集合
 	var giftDataManager: [GiftCateoryModel] = [];
+	var playerList = [playInfoModel]();
 
+	// 调整用户主播列表数据
+	func changPlayerList(newList: [playInfoModel], isDelete: Bool = false) -> Void {
+
+		for item in newList {
+			var isNew: Bool = true;
+			for oldItem in playerList
+			{
+				if (item.uid?.intValue == oldItem.uid?.intValue)
+				{
+					isNew = false;
+					if (isDelete)
+					{
+						playerList.removeAtIndex(playerList.indexOf(oldItem)!);
+					}
+					break;
+				}
+			}
+			if (isNew && !isDelete)
+			{
+				playerList.append(item);
+			}
+		}
+	}
 }
 
 class RtmpInfo {
@@ -71,4 +95,14 @@ class GiftDetailModel: NSObject {
 	var sort: String?;
 	var isNew: String?;
 }
-
+//用户列表个人信息
+//{"vip":0,"hidden":0,"sex":0,"ruled":3,"richLv":1,"lv":0,"name":"倾城古娘","icon":0,"uid":1011095,"car":0}
+class playInfoModel: NSObject {
+	var ruled: NSNumber?;
+	var name: String?;
+	var icon: NSNumber?;
+	var uid: NSNumber?;
+	var richLv: NSNumber = 0.0;
+	var lv: NSNumber?;
+	var vip: NSNumber?;
+}

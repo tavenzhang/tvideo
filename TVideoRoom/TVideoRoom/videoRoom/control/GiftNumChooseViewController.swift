@@ -67,8 +67,8 @@ class GiftNumChooseViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! GiftChooseCell ;
-		cell.dataModel = (dataList?[indexPath.row])!;
+		let cell = GiftChooseCell.cellFormTablView(tableView, indexPath) ;
+		cell.dataModel = dataList?[indexPath.row];
 		return cell;
 	}
 
