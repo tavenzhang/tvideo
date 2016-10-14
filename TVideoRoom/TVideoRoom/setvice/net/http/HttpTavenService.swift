@@ -48,6 +48,10 @@ var HTTP_LOGIN = "http://%@/login";
 var HTTP_GIFT_Table = "http://%@/video_gs/conf";
 //获取礼物ico
 var HTTP_GIFT_ICO_URL = "http://%@/flash/image/gift_material/";
+
+//获取排行榜数据
+var HTTP_RANK_DATA: String = "http://%@/videolist.json";
+
 //http: // www.lgfxiu.com/flash/image/gift_material/310014.png
 
 func getWWWHttp(src: String) -> String {
@@ -74,6 +78,11 @@ var HTTP_IMAGE: String {
 		return DataCenterModel.sharedInstance.isOneRoom ? "http://\(vdomain)/%@" : "http://\(pdomain)/%@?w=356&h=266";
 	}
 }
+var HTTP_SMALL_IMAGE: String {
+	get {
+		return DataCenterModel.sharedInstance.isOneRoom ? "http://\(vdomain)/%@" : "http://\(pdomain)/%@?w=40&h=40";
+	}
+}
 
 var HTTP_RANK_PAGE: String {
 	get {
@@ -85,9 +94,8 @@ var HTTP_RANK_PAGE: String {
 
 var HTTP_ACITVE_PAGE: String {
 	get {
-		// return "http://www.baidu.com";
-		return "http://orchidf.com:12315/app.html";
-		// return "http://\(domain)/%@?w=356&h=266";
+
+		return "http://%@/act";
 	}
 }
 

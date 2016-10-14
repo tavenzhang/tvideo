@@ -106,13 +106,13 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		self.addChildViewController(giftControl!);
 		scrollView!.addSubview((giftControl?.view)!);
 		giftControl?.view.frame = scrollView!.frame;
-		giftControl?.view.x = ScreenWidth;
+		giftControl?.view.x = ScreenWidth*2;
 
 		rankViewControl = RankGiftViewControl();
 		self.addChildViewController(rankViewControl!);
 		scrollView!.addSubview((rankViewControl?.view)!);
 		rankViewControl?.view.frame = scrollView!.frame;
-		rankViewControl?.view.x = ScreenWidth * 2;
+		rankViewControl?.view.x = ScreenWidth ;
 		c2sGetSocket(roomId);
 		giftEffectView = GiftEffectVC();
 		self.view.addSubview(giftEffectView!);

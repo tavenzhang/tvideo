@@ -1,7 +1,4 @@
-//
-//  playListCell.swift
-//  TVideoRoom
-//
+
 
 class playListCell: UITableViewCell {
 

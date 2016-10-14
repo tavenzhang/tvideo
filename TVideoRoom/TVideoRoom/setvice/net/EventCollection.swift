@@ -51,7 +51,8 @@ let MSG_80002 = 80002;
 /// 选择播放地址
 let MSG_20001 = 20001;
 
-
+///  服务器错误提醒 alert
+let MSG_15555 = 15555;
 
 let E_SOCKERT_CONNECT_SUCCESS: String = "SOCKERT_CONNECT_SUCCESS";
 ///
@@ -72,3 +73,6 @@ let MONEY_CHANGE: String = "MoneyChange_START";
 
 //用户人数改变
 let PlayLIST_CHANGE: String = "PlayLIST_CHANGE";
+
+//登陆异常 重新登陆
+let LOGIN_ERROR_SOCET: String = "LOGIN_ERROR_SOCET";

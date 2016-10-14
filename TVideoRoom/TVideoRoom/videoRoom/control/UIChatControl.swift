@@ -83,7 +83,7 @@ class UIChatControl: UIViewController {
 //		chatVc?.receiveMessage(mees);
 		if (DataCenterModel.sharedInstance.roomData.key == "")
 		{
-			showSimplpAlertView(self, tl: "error", msg: "您还未登录不能发言", btnHiht: "登录", okHandle: {
+			showSimplpAlertView(self, tl: "", msg: "您还未登录不能发言", btnHiht: "登录", okHandle: {
 				self.tabBarController?.selectedIndex = 3;
 			})
 		}

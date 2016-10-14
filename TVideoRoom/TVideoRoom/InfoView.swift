@@ -1,10 +1,5 @@
 //
 //  InfoView.swift
-//  TVideoRoom
-//
-//  Created by 张新华 on 16/10/6.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
 
 import UIKit
 import SnapKit
@@ -107,11 +102,11 @@ class InfoView: UIView {
 			make.top.equalTo ((txtSex?.snp_top)!);
 			make.left.equalTo((txtSex?.snp_right)!).offset(20);
 		}
-        
-        txtLv?.snp_makeConstraints { (make) in
-            make.top.equalTo ((txtTitle?.snp_top)!);
-            make.left.equalTo((txtTitle?.snp_right)!).offset(20);
-        }
+
+		txtLv?.snp_makeConstraints { (make) in
+			make.top.equalTo ((txtTitle?.snp_top)!);
+			make.left.equalTo((txtTitle?.snp_right)!).offset(20);
+		}
 		updateMyInfo(defaultInfo);
 	}
 
@@ -161,13 +156,13 @@ class InfoView: UIView {
 				{
 					let key = httpResult.dataJson!["msg"].string!;
 					DataCenterModel.sharedInstance.roomData.key = key;
-//					showSimplpAlertView(self.myVC!, tl: "登陆成功", msg: "", btnHiht: "确定", okHandle: {
-//						[weak self] in
-//						self?.myVC!.tabBarController?.selectedIndex = 0;
-//					});
-					HttpTavenService.requestJson(getWWWHttp(HTTP_GETUSR_INFO), completionHadble: { (httpResult) in
-						LogHttp("get info");
-					})
+					showSimplpAlertView(self.myVC!, tl: "登陆成功", msg: "", btnHiht: "确定", okHandle: {
+						[weak self] in
+						self?.myVC!.tabBarController?.selectedIndex = 0;
+					});
+//					HttpTavenService.requestJson(getWWWHttp(HTTP_GETUSR_INFO), completionHadble: { (httpResult) in
+//						LogHttp("get info");
+//					})
 				}
 				else {
 					showSimplpAlertView(self.myVC!, tl: "登陆失败", msg: "用户名密码错误", btnHiht: "重试", okHandle: {

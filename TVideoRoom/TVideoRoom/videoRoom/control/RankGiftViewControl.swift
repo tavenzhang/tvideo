@@ -11,6 +11,7 @@ class RankGiftViewControl: UITableViewController {
 		addNotifycation();
 		self.tableView.rowHeight = self.view.width / 10;
 		self.tableView.backgroundColor = ROOM_SCROOL_BG_COLOR;
+		self.tableView.allowsSelection = false;
 	}
 
 	deinit {

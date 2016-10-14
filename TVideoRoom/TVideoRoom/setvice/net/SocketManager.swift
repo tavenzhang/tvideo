@@ -256,16 +256,20 @@ class SocketManager {
 			giftInfo.giftThumbnailPath = getGiftImagUrl(json["gid"].int32!.description);
 			noticeMsgMianThread(GIFT_EFFECT_START, giftInfo);
 		case MSG_500: // 多处登陆。
-			dispatch_async(dispatch_get_main_queue()) {
-                dataCenterM.roomData
-					NSNotificationCenter.defaultCenter().postNotificationName(msg, object: data);
-			}
-
+			dataCenterM.roomData.reset();
+			showMainThreatAlert("", content: "账号登陆异常，请退出房间重新登陆!");
+		case MSG_15555: // 各种错误提醒
+			let msg = ErrAlertManger.instance.getDescByError(json["errorCode"].intValue);
+			showMainThreatAlert("", content: msg);
 		default:
 			break
 		}
 	}
-
+	func showMainThreatAlert(title: String, content: String) {
+		dispatch_async(dispatch_get_main_queue()) {
+			showSimplpAlertView(UIApplication.sharedApplication().keyWindow?.rootViewController, tl: title, msg: content);
+		}
+	}
 	func noticeMsgMianThread(msg: String, _ data: AnyObject?) {
 		dispatch_async(dispatch_get_main_queue()) {
 			NSNotificationCenter.defaultCenter().postNotificationName(msg, object: data);

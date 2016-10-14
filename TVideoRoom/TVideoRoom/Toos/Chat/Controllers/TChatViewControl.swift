@@ -65,7 +65,7 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		self.bottomView!.layer.borderColor = UIColor.grayColor().CGColor;
 		bottomView?.snp_makeConstraints { (make) in
 			// make.width.equalTo(self.view.snp_width).offset(2);
-			make.height.equalTo(40);
+			make.height.equalTo(45);
 			make.bottom.equalTo(self.view.snp_bottom);
 			make.left.equalTo(-1);
 			make.right.equalTo(self.view.snp_right).offset(1);

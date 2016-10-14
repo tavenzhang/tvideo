@@ -2079,6 +2079,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = taven.TRtmpPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "96c7ed66-197f-48dc-bb6e-5e3934ac9fb1";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "FFmpeg ../FFmpeg";
 			};
@@ -2087,6 +2088,7 @@
 		DEDF8C531D1A4D5F005A7AC4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2107,6 +2109,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = taven.TRtmpPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "96c7ed66-197f-48dc-bb6e-5e3934ac9fb1";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "FFmpeg ../FFmpeg";
 			};
