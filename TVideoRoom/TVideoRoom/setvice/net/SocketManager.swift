@@ -112,7 +112,6 @@ class SocketManager {
 			dataCenterM.roomData.myMoney = json["points"].int!;
 			noticeMsgMianThread(MONEY_CHANGE, nil);
 		case MSG_11002: // 进入房间
-			LogHttp("MSG_11002---dictionaryObject=\(json.dictionaryObject)");
 			DataCenterModel.sharedInstance.roomData.uid = (json["uid"].int32?.description)!;
 			let playerMode = deserilObjectWithDictonary(json.dictionaryObject! as NSDictionary, cls: playInfoModel.self) as! playInfoModel! ;
 			dataCenterM.roomData.changPlayerList([playerMode!]);
@@ -124,7 +123,7 @@ class SocketManager {
 		case MSG_11008: // 获取管理员列表
 			fallthrough;
 		case MSG_11001: // 获取用户列表
-			var sarray = json["items"].arrayObject as? NSArray;
+			let sarray = json["items"].arrayObject as? NSArray;
 			if (sarray != nil) && ((sarray?.count)! > 0)
 			{
 				let dataList: [playInfoModel] = deserilObjectsWithArray(json["items"].arrayObject! as NSArray, cls: playInfoModel.self) as! [playInfoModel];
@@ -136,15 +135,28 @@ class SocketManager {
 			fallthrough;
 		case MSG_15002:
 			let dataList = json["items"].arrayObject;
+			var newModeList: [RankGiftModel]?;
 			if (dataList != nil)
 			{
-				let newModeList = deserilObjectsWithArray(dataList! as NSArray, cls: RankGiftModel.classForCoder()) as? [RankGiftModel];
+				newModeList = deserilObjectsWithArray(dataList! as NSArray, cls: RankGiftModel.classForCoder()) as? [RankGiftModel];
+			}
+			else {
+				let mode = deserilObjectWithDictonary((json.dictionaryObject! as NSDictionary), cls: RankGiftModel.classForCoder()) as? RankGiftModel;
+				if (mode != nil)
+				{
+					newModeList = [mode!];
+				}
+
+			}
+			if (newModeList != nil)
+			{
+
 				for newItem in newModeList! {
 					var isAdd = true;
 					for data in dataCenterM.roomData.rankGifList {
 						if (data.uid == newItem.uid)
 						{
-							data.score = NSNumber(value: ((data.score?.floatValue)! + (newItem.score?.floatValue)!));
+							data.score = NSNumber(value: (newItem.score?.floatValue)!);
 							isAdd = false;
 							break;
 						}

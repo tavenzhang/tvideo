@@ -26,24 +26,24 @@ class GiftShopCell: UICollectionViewCell {
 		addSubview(nameLabel);
 		addSubview(priceLabel);
 		addSubview(newLabel);
-		backImageView.snp_makeConstraints { (make) in
-			make.centerX.equalTo(0);
+		backImageView.snp.makeConstraints { (make) in
+			make.centerX.equalTo(self);
 			make.top.equalTo(5);
 			make.width.height.equalTo(40);
 		}
-		nameLabel.snp_makeConstraints { (make) in
-			make.top.equalTo(backImageView.snp_bottom).offset(-1);
-			make.centerX.equalTo(0);
+		nameLabel.snp.makeConstraints { (make) in
+			make.top.equalTo(backImageView.snp.bottom).offset(-1);
+			make.centerX.equalTo(self);
 
 		}
-		priceLabel.snp_makeConstraints { (make) in
-			make.top.equalTo(nameLabel.snp_bottom).offset(1);
-			make.centerX.equalTo(0);
+		priceLabel.snp.makeConstraints { (make) in
+			make.top.equalTo(nameLabel.snp.bottom).offset(1);
+			make.centerX.equalTo(self);
 
 		}
-		newLabel.snp_makeConstraints { (make) in
-			make.top.equalTo(self.snp_top).offset(1);
-			make.right.equalTo(self.snp_right).offset(-2)
+		newLabel.snp.makeConstraints { (make) in
+			make.top.equalTo(self.snp.top).offset(1);
+			make.right.equalTo(self.snp.right).offset(-2)
 		}
 		self.layer.borderWidth = 1;
 		self.layer.borderColor = UIColor.gray.cgColor;

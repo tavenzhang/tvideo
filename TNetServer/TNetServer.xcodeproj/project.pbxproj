@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		03B545F80E06F458EBB5E864 /* Pods_TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED2259AFD5A6ECD075A324D /* Pods_TAmf3Socket.framework */; };
-		DEB1AA1D1DB1B9AB0018AF45 /* Pods_TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB1AA1C1DB1B9AB0018AF45 /* Pods_TAmf3Socket.framework */; };
 		DEC943FE1D3F2E4A006884CF /* TAmf3Socket.h in Headers */ = {isa = PBXBuildFile; fileRef = DEC943FD1D3F2E4A006884CF /* TAmf3Socket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEC9441D1D3F2E77006884CF /* AMF.h in Headers */ = {isa = PBXBuildFile; fileRef = DEC944061D3F2E77006884CF /* AMF.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEC9441E1D3F2E77006884CF /* AMF.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC944071D3F2E77006884CF /* AMF.m */; };
@@ -86,7 +85,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEB1AA1D1DB1B9AB0018AF45 /* Pods_TAmf3Socket.framework in Frameworks */,
 				03B545F80E06F458EBB5E864 /* Pods_TAmf3Socket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

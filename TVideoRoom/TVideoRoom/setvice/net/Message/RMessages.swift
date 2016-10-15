@@ -30,14 +30,10 @@ class r_msg_10000: r_msg_noBody {
 	}
 
 	func getAesk() -> String {
-		// var aes3=RNCryptor.EncryptorV3
 		let IV: String = "0102030405060708";
-		// let encrypted = try! input.encrypt(AES(key: aesKey, iv:IV))
-		// let input: [UInt8] = [0,1,2,3,4,5,6,7,8,9]
-		// input.encrypt(AES(key: "secret0key000000", iv:"0123456789012345", blockMode: .CBC));
-		let base64String: String = try! data.encrypt(cipher: AES(key: aesKey, iv: IV));
-		LogSocket("base64String=\(base64String)");
-		return base64String.toBase64();
+		let myData = data.data(using: .utf8);
+		let base64String: String = try! (myData?.encrypt(cipher: AES(key: aesKey, iv: IV)).base64EncodedString())!;
+		return base64String;
 	}
 
 }

@@ -54,16 +54,12 @@ func LogMessageToF(_ logger: OpaquePointer, filename: UnsafePointer<Int8>, lineN
 
 extension String {
 
-    
-    func toBase64() -> String {
-        
-        let data = self.data(using: String.Encoding.utf8)
-        return data!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-        
-    }
-    
+	func toBase64() -> String {
 
-    
+		let data = self.data(using: String.Encoding.utf8)
+		return data!.base64EncodedString();
+
+	}
 	subscript (_ r: Range<Int>) -> String {
 
 		get {
@@ -74,19 +70,19 @@ extension String {
 	}
 
 	func substring(_ s: Int, _ e: Int? = nil) -> String {
-        
-        let start = s >= 0 ?  self.index(self.startIndex, offsetBy: s):   self.index(self.endIndex, offsetBy: s);
-        
-        let end =  e == nil ? self.endIndex : (e >= 0 ? self.index(self.startIndex, offsetBy: e!) : self.index(self.endIndex, offsetBy: e!))
-    
-       // let index1: Int = self.distance(from: self.startIndex, to: start);
-        //var index2: Int = self.distance(from: self.startIndex, to: end );
-        var dim:Int = self.distance(from: start, to: end );
 
-        var  range = dim>0 ? Range<String.Index>(start..<end):Range<String.Index>(end..<start);
-        return self.substring(with: range);
-//        
-//        
+		let start = s >= 0 ? self.index(self.startIndex, offsetBy: s) : self.index(self.endIndex, offsetBy: s);
+
+		let end = e == nil ? self.endIndex : (e >= 0 ? self.index(self.startIndex, offsetBy: e!) : self.index(self.endIndex, offsetBy: e!))
+
+		// let index1: Int = self.distance(from: self.startIndex, to: start);
+		// var index2: Int = self.distance(from: self.startIndex, to: end );
+		var dim: Int = self.distance(from: start, to: end);
+
+		var range = dim > 0 ? Range<String.Index>(start..<end) : Range<String.Index>(end..<start);
+		return self.substring(with: range);
+//
+//
 //		let startIndex = self.index(start, offsetBy: s);// start.advancedBy(s)
 //		var end: String.Index
 //		var endIndex: String.Index

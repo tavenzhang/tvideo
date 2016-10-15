@@ -72,7 +72,6 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +97,10 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 
 	func searchHostVideo() {
 		serachViewVC.parentNVC = self.navigationController;
-		self.view.addSubview(serachViewVC.view);
+		if (serachViewVC.view.superview == nil)
+		{
+			self.view.addSubview(serachViewVC.view);
+		}
 	}
 
 	func loadDataEvent() -> Void {

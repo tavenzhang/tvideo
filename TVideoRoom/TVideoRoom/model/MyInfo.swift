@@ -8,16 +8,36 @@
 
 import Foundation
 
-class MyInfo: NSObject {
-	var userId: String?
-	var sex: String?
-	var area: String?
-	var email: String?
-	var niceName: String?
-	var nextExp: String?;
-	var myFocus: String?;
-	var myItem: String?;
-	var myConsume: String?;
-	var titleName: String?;
+class LoginModel: NSObject, DictModelProtocol {
+	var ret: Bool = false;
+	// var myres:[]?
+	// var gg:[]?
+	var room_url: String?;
+	var js_url: String?;
+	var downloadUrl: String?;
+	var img_url: String?;
+	var info: PersonInfoModel?;
+	var myfav: [Activity]?
+
+	static func customClassMapping() -> [String: String]? {
+		return ["myfav": "\(Activity.self)", "info": "\(PersonInfoModel.self)"];
+	}
+}
+class PersonInfoModel: NSObject {
+	// var description: String?;
+	var vip: NSNumber?;
+	var uid: NSNumber?;
+	var sex: NSNumber?;
+	var point: NSNumber?;
+	var vip_end: String?;
+	var safemail: String?;
+	var rid: NSNumber?;
+	var mails: NSNumber?;
+	var icon_id: NSNumber?;
+	var headimg: String?;
+	var roled: NSNumber?;
+	var lv_rich: NSNumber?;
+	var nickname: String?;
+	var lv_exp: NSNumber?;
 }
 

@@ -7,7 +7,7 @@ import SnapKit
 class InfoView: UIView {
 
 	var myVC: UIViewController?;
-	var defaultInfo: MyInfo = MyInfo();
+	var defaultInfo: PersonInfoModel = PersonInfoModel();
 	var txtName: UILabel?;
 	var txtId: UILabel?;
 	var txtSex: UILabel?;
@@ -18,13 +18,13 @@ class InfoView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame);
-		defaultInfo.niceName = "你是游客,请登录~";
-		defaultInfo.email = "???";
-		defaultInfo.sex = "?";
-		defaultInfo.titleName = "???";
-		defaultInfo.nextExp = "?????";
-		defaultInfo.area = "???";
-		defaultInfo.userId = "???";
+		defaultInfo.nickname = "你是游客,请登录~";
+		defaultInfo.safemail = "???";
+		defaultInfo.sex = NSNumber(value: -1);
+		// defaultInfo.titleName = "???";
+		defaultInfo.lv_exp = NSNumber(value: 000000);
+		defaultInfo.lv_rich = NSNumber(value: 0);
+		defaultInfo.uid = NSNumber(value: 000);
 		setup()
 	}
 
@@ -83,35 +83,35 @@ class InfoView: UIView {
 		txtLv = crateUILable(self);
 
 		txtName?.snp.makeConstraints { (make) in
-			make.top.equalTo(img.snp_bottom).offset(10);
-			make.left.equalTo(img.snp_left).offset(10);
+			make.top.equalTo(img.snp.bottom).offset(10);
+			make.left.equalTo(img.snp.left).offset(10);
 		}
-		txtId?.snp_makeConstraints { (make) in
-			make.top.equalTo ((txtName?.snp_bottom)!).offset(10);
-			make.left.equalTo((txtName?.snp_left)!);
+		txtId?.snp.makeConstraints { (make) in
+			make.top.equalTo ((txtName?.snp.bottom)!).offset(10);
+			make.left.equalTo((txtName?.snp.left)!);
 		}
-		txtMail?.snp_makeConstraints { (make) in
-			make.top.equalTo ((txtId?.snp_bottom)!).offset(10);
-			make.left.equalTo((txtId?.snp_left)!);
+		txtMail?.snp.makeConstraints { (make) in
+			make.top.equalTo ((txtId?.snp.bottom)!).offset(10);
+			make.left.equalTo((txtId?.snp.left)!);
 		}
-		txtTitle?.snp_makeConstraints { (make) in
-			make.top.equalTo ((txtMail?.snp_bottom)!).offset(10);
-			make.left.equalTo((txtMail?.snp_left)!);
-		}
-
-		txtSex?.snp_makeConstraints { (make) in
-			make.top.equalTo ((txtId?.snp_top)!);
-			make.left.equalTo((txtId?.snp_right)!).offset(20);
+		txtTitle?.snp.makeConstraints { (make) in
+			make.top.equalTo ((txtMail?.snp.bottom)!).offset(10);
+			make.left.equalTo((txtMail?.snp.left)!);
 		}
 
-		txtArea?.snp_makeConstraints { (make) in
-			make.top.equalTo ((txtSex?.snp_top)!);
-			make.left.equalTo((txtSex?.snp_right)!).offset(20);
+		txtSex?.snp.makeConstraints { (make) in
+			make.top.equalTo ((txtId?.snp.top)!);
+			make.left.equalTo((txtId?.snp.right)!).offset(20);
 		}
 
-		txtLv?.snp_makeConstraints { (make) in
-			make.top.equalTo ((txtTitle?.snp_top)!);
-			make.left.equalTo((txtTitle?.snp_right)!).offset(20);
+		txtArea?.snp.makeConstraints { (make) in
+			make.top.equalTo ((txtSex?.snp.top)!);
+			make.left.equalTo((txtSex?.snp.right)!).offset(20);
+		}
+
+		txtLv?.snp.makeConstraints { (make) in
+			make.top.equalTo ((txtTitle?.snp.top)!);
+			make.left.equalTo((txtTitle?.snp.right)!).offset(20);
 		}
 		updateMyInfo(defaultInfo);
 	}
@@ -130,13 +130,13 @@ class InfoView: UIView {
 		return lb;
 	}
 
-	func updateMyInfo(_ info: MyInfo) {
-		txtName?.text = info.niceName!;
-		txtId?.text = "ID:\(info.userId!)";
-		txtArea?.text = "地区:\(info.area!)"
-		txtMail?.text = "邮箱:\(info.email!)";
-		txtTitle?.text = "头衔:\(info.titleName!)";
-		txtLv?.text = "下一级:\(info.nextExp!)";
+	func updateMyInfo(_ info: PersonInfoModel) {
+		txtName?.text = info.nickname!;
+		txtId?.text = "ID:\(info.uid)";
+		txtArea?.text = "地区:秘密基地"
+		txtMail?.text = "邮箱:\(info.safemail)";
+		// txtTitle?.text = "头衔:\(info.titleName!)";
+		txtLv?.text = "等级:\(info.lv_rich!)";
 		txtSex?.text = "性别:\(info.sex!)";
 	}
 
@@ -162,18 +162,18 @@ class InfoView: UIView {
 				{
 					let key = httpResult.dataJson!["msg"].string!;
 					DataCenterModel.sharedInstance.roomData.key = key;
-					showSimplpAlertView(self.myVC!, tl: "登陆成功", msg: "", btnHiht: "确定", okHandle: {
-						[weak self] in
-						self?.myVC!.tabBarController?.selectedIndex = 0;
-					});
-//					HttpTavenService.requestJson(getWWWHttp(HTTP_GETUSR_INFO), completionHadble: { (httpResult) in
-//						LogHttp("get info");
-//					})
+					HttpTavenService.requestJson(getWWWHttp(HTTP_GETUSR_INFO), completionHadble: { [weak self](httpResult) in
+						let result = deserilObjectWithDictonary(httpResult.dataJson?.dictionaryObject as! NSDictionary, cls: LoginModel.classForCoder()) as! LoginModel;
+						self?.defaultInfo = result.info!;
+						self?.updateMyInfo((self?.defaultInfo)!);
+						// LoginModel
+						LogHttp("get info");
+					})
 				}
 				else {
 					showSimplpAlertView(self.myVC!, tl: "登陆失败", msg: "用户名密码错误", btnHiht: "重试", okHandle: {
 						[weak self] in
-						showLoginlert(self!.myVC!) { (name, pwd) in
+						var _ = showLoginlert(self!.myVC!) { (name, pwd) in
 							self?.validLogin(name, pwd: pwd);
 						}
 					})

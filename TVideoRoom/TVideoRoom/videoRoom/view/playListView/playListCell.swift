@@ -23,19 +23,19 @@ class playListCell: UITableViewCell {
 		self.accessoryType = .none;
 		self.addSubview(vipImageView);
 		self.addSubview(lvImageView)
-		self.lvImageView.snp_makeConstraints { (make) in
-			make.centerY.equalTo(0);
-			make.left.equalTo(self.snp_left).offset(30);
+		self.lvImageView.snp.makeConstraints { (make) in
+			make.centerY.equalTo(self);
+			make.left.equalTo(self.snp.left).offset(30);
 		}
-		self.txtName.snp_makeConstraints { (make) in
-			make.centerX.equalTo(0);
-			make.centerY.equalTo(0);
+		self.txtName.snp.makeConstraints { (make) in
+			make.centerX.equalTo(self);
+			make.centerY.equalTo(self);
 			// make.left.equalTo(self.width / 2 - 50);
 		}
 
 		self.vipImageView.snp_makeConstraints { (make) in
-			make.centerY.equalTo(0);
-			make.right.equalTo(self.snp_right).offset(-30);
+			make.centerY.equalTo(self);
+			make.right.equalTo(self.snp.right).offset(-30);
 		}
 	}
 

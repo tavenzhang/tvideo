@@ -63,13 +63,14 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		self.view.addSubview(bottomView!);
 		self.bottomView!.layer.borderWidth = 1;
 		self.bottomView!.layer.borderColor = UIColor.gray.cgColor;
-		bottomView?.snp_makeConstraints { (make) in
-			// make.width.equalTo(self.view.snp_width).offset(2);
+		bottomView?.snp.makeConstraints { (make) in
 			make.height.equalTo(45);
-			make.bottom.equalTo(self.view.snp_bottom);
+			make.bottom.equalTo(self.view.snp.bottom);
 			make.left.equalTo(-1);
-			make.right.equalTo(self.view.snp_right).offset(1);
+			make.right.equalTo(self.view.snp.right).offset(1);
 		}
+		// 强制先渲染一下
+
 		self.tableView = UITableView();
 		self.tableView?.delegate = self;
 		self.tableView?.dataSource = self;
@@ -81,31 +82,13 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		self.tableView!.addGestureRecognizer(tapGesture);
 		self.tableView!.backgroundColor = UIColor.clear;
 		self.view.addSubview(self.tableView!);
-		self.tableView!.snp_makeConstraints { (make) in
+		self.tableView!.snp.makeConstraints { (make) in
 			make.width.equalTo(self.view.width);
-			make.top.equalTo(self.view.snp_top);
-			make.bottom.equalTo(self.bottomView!.snp_top);
+			make.top.equalTo(self.view.snp.top);
+			make.bottom.equalTo(self.bottomView!.snp.top);
 		}
 
-		let giftImage = UIImage.resizableImageWithName("giftBtnNew");
-		btnGift = UIButton.BtnSimple("", titleColor: UIColor.clear, image: giftImage, hightLightImage: giftImage, target: self, action: #selector(self.giftClick));
-
-		self.btnGift?.scale(2, ySclae: 2);
-		self.bottomView!.addSubview(btnGift!);
-		self.btnGift?.snp_makeConstraints({ (make) in
-			make.right.equalTo(self.bottomView!.snp_right).offset(-10);
-			make.centerY.equalTo(self.bottomView!);
-		})
-		let faceImage = UIImage(named: "facebtn");
-		btnFace = UIButton.BtnSimple("", titleColor: UIColor.clear, image: faceImage, hightLightImage: faceImage, target: self, action: #selector(self.emtionClick));
-		self.bottomView!.addSubview(btnFace!);
-		// 强制先渲染一下
 		self.view.layoutIfNeeded()
-		btnFace?.snp_makeConstraints({ (make) in
-			make.left.equalTo(self.bottomView!.snp_left).offset(10);
-			make.centerY.equalTo(self.bottomView!);
-		})
-
 		self.textField = UITextField();
 		self.textField?.returnKeyType = .send;
 		self.textField!.delegate = self;
@@ -119,13 +102,39 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 
 		self.bottomView!.addSubview(faceTield);
 		self.bottomView!.addSubview(textField!);
+
 		faceTield.isHidden = true;
 		textField?.snp.makeConstraints { (make) in
-			make.left.equalTo((btnFace?.snp_right)!).offset(12);
-			make.centerY.equalTo(0);
-			make.right.equalTo((btnGift?.snp_left)!).offset(-20);
+			make.centerX.equalTo(self.bottomView!).offset(-5);
+			make.centerY.equalTo(self.bottomView!);
+
+			make.width.equalTo(self.view.snp.width).offset(-85);
 			make.height.equalTo(30);
+
 		}
+
+		let giftImage = UIImage(named: "giftBtnNew");
+		btnGift = UIButton.BtnSimple("", titleColor: UIColor.clear, image: giftImage, hightLightImage: giftImage, target: self, action: #selector(self.giftClick));
+		// btnGift?.backgroundColor = UIColor.red;
+		// self.btnGift?.imageView?.contentMode = .;
+		self.btnGift?.scale(2, ySclae: 2);
+		self.bottomView!.addSubview(btnGift!);
+		//self.bottomView!.backgroundColor = UIColor.brown;
+		self.btnGift?.snp.makeConstraints({ (make) in
+			make.width.height.equalTo(40);
+			make.left.equalTo((self.textField?.snp.right)!).offset(10);
+			make.centerY.equalTo(self.bottomView!);
+		})
+
+		let faceImage = UIImage(named: "facebtn");
+		btnFace = UIButton.BtnSimple("", titleColor: UIColor.clear, image: faceImage, hightLightImage: faceImage, target: self, action: #selector(self.emtionClick));
+		self.bottomView!.addSubview(btnFace!);
+
+		btnFace?.snp.makeConstraints({ (make) in
+			make.right.equalTo((self.textField?.snp.left)!).offset(-5);
+			make.centerY.equalTo(self.bottomView!);
+		})
+
 		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil);
 		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil);
 

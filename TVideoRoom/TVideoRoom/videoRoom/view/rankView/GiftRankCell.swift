@@ -26,19 +26,19 @@ class RankGiftCell: UITableViewCell {
 		super.init(style: style, reuseIdentifier: reuseIdentifier);
 		self.backgroundColor = UIColor.clear;
 		self.accessoryType = .none;
-		self.txtRank.snp_makeConstraints { (make) in
+		self.txtRank.snp.makeConstraints { (make) in
 			make.top.equalTo(10);
-			make.left.equalTo(self.snp_left).offset(20);
+			make.left.equalTo(self.snp.left).offset(20);
 		}
-		self.txtName.snp_makeConstraints { (make) in
+		self.txtName.snp.makeConstraints { (make) in
 			make.top.equalTo(10);
-			make.centerX.equalTo(0);
+			make.centerX.equalTo(self);
 			// make.left.equalTo(self.width / 2 - 50);
 		}
 
-		self.txtMoeny.snp_makeConstraints { (make) in
+		self.txtMoeny.snp.makeConstraints { (make) in
 			make.top.equalTo(10);
-			make.right.equalTo(self.snp_right).offset(-20);
+			make.right.equalTo(self.snp.right).offset(-20);
 		}
 	}
 

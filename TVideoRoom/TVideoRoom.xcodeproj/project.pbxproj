@@ -65,13 +65,23 @@
 		DE7DAF571DA3795400AB51FC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7DAF551DA3795400AB51FC /* Reachability.m */; };
 		DE7DAF5B1DA3810100AB51FC /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7DAF5A1DA3810100AB51FC /* MenuBar.swift */; };
 		DE9655A01DA6264400095146 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96559F1DA6264400095146 /* InfoView.swift */; };
+		DE9937C71DB26A8300D0B326 /* TRtmpPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937C61DB26A8300D0B326 /* TRtmpPlay.framework */; };
 		DE9D50E91DA637850029C06E /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D50E81DA637850029C06E /* MyInfo.swift */; };
 		DEA01EC41DA5DAE60075411D /* ResourceString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA01EC31DA5DAE60075411D /* ResourceString.swift */; };
 		DEA7D8AD1DA4920F00978ECA /* UISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7D8AC1DA4920F00978ECA /* UISearchViewController.swift */; };
 		DEAC0DB21DAC6EBB0069DDF9 /* GiftInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DAF1DAC6EBB0069DDF9 /* GiftInfoModel.m */; };
 		DEAC0DB31DAC6EBB0069DDF9 /* GiftSendBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DB11DAC6EBB0069DDF9 /* GiftSendBar.m */; };
-		DEB1AA1F1DB1BB110018AF45 /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB1AA1E1DB1BB110018AF45 /* TAmf3Socket.framework */; };
-		DEB1AA211DB1BD8A0018AF45 /* TRtmpPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB1AA201DB1BD8A0018AF45 /* TRtmpPlay.framework */; };
+		DEBC69131DB26CD900258004 /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC69121DB26CD900258004 /* TAmf3Socket.framework */; };
+		DEBC69141DB26D9E00258004 /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */; };
+		DEBC69151DB26D9E00258004 /* TAmf3Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DEBC69181DB26DA900258004 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC69171DB26DA900258004 /* Alamofire.framework */; };
+		DEBC69191DB26DA900258004 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC69171DB26DA900258004 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DEBC69241DB26DA900258004 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC69231DB26DA900258004 /* SwiftyJSON.framework */; };
+		DEBC69251DB26DA900258004 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC69231DB26DA900258004 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DEBC69261DB26E1400258004 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937D41DB26AAD00D0B326 /* CryptoSwift.framework */; };
+		DEBC69271DB26E1400258004 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937D41DB26AAD00D0B326 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DEBC692B1DB26FD400258004 /* Pods_TVideoRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A05038CEC7076ADA61914DD /* Pods_TVideoRoom.framework */; };
+		DEBC692C1DB26FD400258004 /* Pods_TVideoRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A05038CEC7076ADA61914DD /* Pods_TVideoRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DEBE43941D1EB33F00178DA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */; };
 		DEBE43961D1EB56100178DA7 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43951D1EB56100178DA7 /* GlobalConfig.swift */; };
 		DEBE439B1D1EB75F00178DA7 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE439A1D1EB75F00178DA7 /* UIExtension.swift */; };
@@ -144,6 +154,24 @@
 		DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE870D81D579A3D004103F5 /* libFlurry_7.6.6.a */; };
 		DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF400B81D1D55770093A883 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DEBC69161DB26D9E00258004 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DEBC69271DB26E1400258004 /* CryptoSwift.framework in Embed Frameworks */,
+				DEBC69151DB26D9E00258004 /* TAmf3Socket.framework in Embed Frameworks */,
+				DEBC69191DB26DA900258004 /* Alamofire.framework in Embed Frameworks */,
+				DEBC69251DB26DA900258004 /* SwiftyJSON.framework in Embed Frameworks */,
+				DEBC692C1DB26FD400258004 /* Pods_TVideoRoom.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1EE51B3F6D104878284E83C0 /* GiftEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftEffectView.swift; sourceTree = "<group>"; };
@@ -220,6 +248,32 @@
 		DE7DAF551DA3795400AB51FC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DE7DAF5A1DA3810100AB51FC /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuBar.swift; path = view/MenuBar.swift; sourceTree = "<group>"; };
 		DE96559F1DA6264400095146 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TAmf3Socket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE99378A1DB268FD00D0B326 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE99378D1DB268FD00D0B326 /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937901DB268FD00D0B326 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937931DB268FD00D0B326 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937961DB268FD00D0B326 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937991DB2691E00D0B326 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE99379C1DB2691E00D0B326 /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE99379F1DB2691E00D0B326 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937A21DB2691E00D0B326 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937A51DB2691E00D0B326 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937AB1DB269A900D0B326 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937AE1DB269A900D0B326 /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937B11DB269A900D0B326 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937B41DB269A900D0B326 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937B71DB269A900D0B326 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937BA1DB269E100D0B326 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937BD1DB269E100D0B326 /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937C01DB269E100D0B326 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937C31DB269E100D0B326 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937C61DB26A8300D0B326 /* TRtmpPlay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TRtmpPlay.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TVideoRoom-bqgnmehkrpgrzedsjleuqhycztqi/Build/Products/Debug-iphoneos/TRtmpPlay.framework"; sourceTree = "<group>"; };
+		DE9937CB1DB26AAD00D0B326 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937CE1DB26AAD00D0B326 /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937D11DB26AAD00D0B326 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937D41DB26AAD00D0B326 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE9937D71DB26AAD00D0B326 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9D50E81DA637850029C06E /* MyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyInfo.swift; path = model/MyInfo.swift; sourceTree = "<group>"; };
 		DEA01EC31DA5DAE60075411D /* ResourceString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceString.swift; sourceTree = "<group>"; };
 		DEA7D8AC1DA4920F00978ECA /* UISearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISearchViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +292,14 @@
 		DEB1AA1E1DB1BB110018AF45 /* TAmf3Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TAmf3Socket.framework; path = "../TNetServer/build/Debug-iphoneos/TAmf3Socket.framework"; sourceTree = "<group>"; };
 		DEB1AA201DB1BD8A0018AF45 /* TRtmpPlay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TRtmpPlay.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TVideoRoom-hicjdaepkknulwdnesnrpcspezua/Build/Products/Debug-iphonesimulator/TRtmpPlay.framework"; sourceTree = "<group>"; };
 		DEB6F09A1D0133D400C7DD6C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DEBC69121DB26CD900258004 /* TAmf3Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TAmf3Socket.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TVideoRoom-bqgnmehkrpgrzedsjleuqhycztqi/Build/Products/Debug-iphonesimulator/TAmf3Socket.framework"; sourceTree = "<group>"; };
+		DEBC69171DB26DA900258004 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEBC691A1DB26DA900258004 /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEBC691D1DB26DA900258004 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEBC69201DB26DA900258004 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEBC69231DB26DA900258004 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEBC69281DB26EE500258004 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEBC692F1DB2704B00258004 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DEBE43951D1EB56100178DA7 /* GlobalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
 		DEBE439A1D1EB75F00178DA7 /* UIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
@@ -316,16 +378,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEB1AA211DB1BD8A0018AF45 /* TRtmpPlay.framework in Frameworks */,
-				DEB1AA1F1DB1BB110018AF45 /* TAmf3Socket.framework in Frameworks */,
+				DEBC69131DB26CD900258004 /* TAmf3Socket.framework in Frameworks */,
+				DE9937C71DB26A8300D0B326 /* TRtmpPlay.framework in Frameworks */,
+				DEBC692B1DB26FD400258004 /* Pods_TVideoRoom.framework in Frameworks */,
+				DEBC69181DB26DA900258004 /* Alamofire.framework in Frameworks */,
+				DEBC69261DB26E1400258004 /* CryptoSwift.framework in Frameworks */,
 				DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */,
 				DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */,
 				DEBE43B01D1EF24100178DA7 /* UIKit.framework in Frameworks */,
+				DEBC69141DB26D9E00258004 /* TAmf3Socket.framework in Frameworks */,
 				DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */,
 				DEDF8C771D1A5CB4005A7AC4 /* VideoToolbox.framework in Frameworks */,
 				DEDF8C751D1A5C96005A7AC4 /* libbz2.tbd in Frameworks */,
 				DEDF8C731D1A5C8C005A7AC4 /* libiconv.tbd in Frameworks */,
 				DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */,
+				DEBC69241DB26DA900258004 /* SwiftyJSON.framework in Frameworks */,
 				7DBB9D16531A4CADF8844B03 /* Pods_TVideoRoom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -861,6 +928,40 @@
 		F10C0C13BDD90EA4BB0D6ED7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEBC692F1DB2704B00258004 /* CocoaAsyncSocket.framework */,
+				DEBC69281DB26EE500258004 /* CryptoSwift.framework */,
+				DEBC69231DB26DA900258004 /* SwiftyJSON.framework */,
+				DEBC69201DB26DA900258004 /* CryptoSwift.framework */,
+				DEBC691D1DB26DA900258004 /* CocoaAsyncSocket.framework */,
+				DEBC691A1DB26DA900258004 /* BBSZLib.framework */,
+				DEBC69171DB26DA900258004 /* Alamofire.framework */,
+				DE9937D71DB26AAD00D0B326 /* SwiftyJSON.framework */,
+				DE9937D41DB26AAD00D0B326 /* CryptoSwift.framework */,
+				DE9937D11DB26AAD00D0B326 /* CocoaAsyncSocket.framework */,
+				DE9937CE1DB26AAD00D0B326 /* BBSZLib.framework */,
+				DE9937CB1DB26AAD00D0B326 /* Alamofire.framework */,
+				DE9937C31DB269E100D0B326 /* SwiftyJSON.framework */,
+				DE9937C01DB269E100D0B326 /* CocoaAsyncSocket.framework */,
+				DE9937BD1DB269E100D0B326 /* BBSZLib.framework */,
+				DE9937BA1DB269E100D0B326 /* Alamofire.framework */,
+				DE9937B71DB269A900D0B326 /* SwiftyJSON.framework */,
+				DE9937B41DB269A900D0B326 /* CryptoSwift.framework */,
+				DE9937B11DB269A900D0B326 /* CocoaAsyncSocket.framework */,
+				DE9937AE1DB269A900D0B326 /* BBSZLib.framework */,
+				DE9937AB1DB269A900D0B326 /* Alamofire.framework */,
+				DE9937A51DB2691E00D0B326 /* SwiftyJSON.framework */,
+				DE9937A21DB2691E00D0B326 /* CryptoSwift.framework */,
+				DE99379F1DB2691E00D0B326 /* CocoaAsyncSocket.framework */,
+				DE99379C1DB2691E00D0B326 /* BBSZLib.framework */,
+				DE9937991DB2691E00D0B326 /* Alamofire.framework */,
+				DE9937961DB268FD00D0B326 /* SwiftyJSON.framework */,
+				DE9937931DB268FD00D0B326 /* CryptoSwift.framework */,
+				DE9937901DB268FD00D0B326 /* CocoaAsyncSocket.framework */,
+				DE99378D1DB268FD00D0B326 /* BBSZLib.framework */,
+				DE99378A1DB268FD00D0B326 /* Alamofire.framework */,
+				DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */,
+				DEBC69121DB26CD900258004 /* TAmf3Socket.framework */,
+				DE9937C61DB26A8300D0B326 /* TRtmpPlay.framework */,
 				DEB1AA201DB1BD8A0018AF45 /* TRtmpPlay.framework */,
 				DEB1AA1E1DB1BB110018AF45 /* TAmf3Socket.framework */,
 				DEB1AA181DB1B6B50018AF45 /* BBSZLib.framework */,
@@ -903,6 +1004,7 @@
 				6DC4DB5F94FF043F3CE45998 /* [CP] Embed Pods Frameworks */,
 				7BB65991FC5302439623D2F9 /* [CP] Copy Pods Resources */,
 				DE05D44A1D2BAB300015FE5A /* Run Script */,
+				DEBC69161DB26D9E00258004 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1265,6 +1367,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7DB479574F5ACCE894A1A69B /* Pods-TVideoRoom.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1317,6 +1420,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 99C9714B582FE9324A3F6698 /* Pods-TVideoRoom.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";

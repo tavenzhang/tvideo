@@ -34,7 +34,7 @@ let MSG_500 = 500;
 ///聊天消息
 let MSG_30001 = 30001;
 
-///聊天消息
+///送礼信息
 let MSG_40001 = 40001
 
 //玩家进入
@@ -53,6 +53,7 @@ let MSG_20001 = 20001;
 
 ///  服务器错误提醒 alert
 let MSG_15555 = 15555;
+
 
 let E_SOCKERT_CONNECT_SUCCESS: String = "SOCKERT_CONNECT_SUCCESS";
 ///
