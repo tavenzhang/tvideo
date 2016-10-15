@@ -7,11 +7,31 @@
 //
 
 import UIKit
-import SnapKit;
+import SnapKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l < r
+	case (nil, _?):
+		return true
+	default:
+		return false
+	}
+}
+
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l <= r
+	default:
+		return !(rhs < lhs)
+	}
+}
+;
 
 class GiftViewControl: UIViewController {
 
-	private var giftCollectionView: LFBCollectionView!;
+	fileprivate var giftCollectionView: LFBCollectionView!;
 	var giftDataList: [GiftDetailModel] = [];
 	var dataRoom: RoomData?;
 	// 礼物数量选择
@@ -25,17 +45,17 @@ class GiftViewControl: UIViewController {
 		buildCollectionView();
 		buildGiftSendBar();
 		prepareData();
-		self.view.backgroundColor = UIColor.whiteColor();
+		self.view.backgroundColor = UIColor.white;
 		self.view.height = 20;
 	}
 
 	deinit {
 		giftMenuBar = nil;
-		NSNotificationCenter.defaultCenter().removeObserver(self);
+		NotificationCenter.default.removeObserver(self);
 	}
 
 	func addNSNotification() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.moneyChangeHandle), name: MONEY_CHANGE, object: nil);
+		NotificationCenter.default.addObserver(self, selector: #selector(self.moneyChangeHandle), name: NSNotification.Name(rawValue: MONEY_CHANGE), object: nil);
 	}
 
 	func prepareData() {
@@ -48,9 +68,9 @@ class GiftViewControl: UIViewController {
 						let dataList = dataResult.dataJson?.array;
 						self!.dataRoom?.giftDataManager = [GiftCateoryModel]();
 
-						if dataList?.count > 0 {
+						if (dataList?.count)! > 0 {
 							for item in dataList! {
-								let model: GiftCateoryModel = deserilObjectWithDictonary(item.dictionaryObject!, cls: GiftCateoryModel.classForCoder()) as! GiftCateoryModel;
+								let model: GiftCateoryModel = deserilObjectWithDictonary(item.dictionaryObject! as NSDictionary, cls: GiftCateoryModel.classForCoder()) as! GiftCateoryModel;
 								self!.dataRoom?.giftDataManager.append(model);
 							}
 						}
@@ -73,13 +93,13 @@ class GiftViewControl: UIViewController {
 		}
 		giftMenuBar = TabBarMenu();
 		self.view.addSubview(giftMenuBar!);
-		giftMenuBar?.snp_makeConstraints(closure: { (make) in
+		giftMenuBar?.snp_makeConstraints { (make) in
 			make.bottom.equalTo(giftCollectionView.snp_top);
 			make.height.equalTo(25);
 			make.width.equalTo(self.view.width * 3 / 4);
-		})
+		}
 		self.view.layoutIfNeeded();
-		giftMenuBar?.creatBtnByList(menuNameList, txtSize: 14, color: UIColor.colorWithCustom(225, g: 50, b: 125), underLinColor: UIColor.grayColor());
+		giftMenuBar?.creatBtnByList(menuNameList, txtSize: 14, color: UIColor.colorWithCustom(225, g: 50, b: 125), underLinColor: UIColor.gray);
 		giftMenuBar?.regClickHandle({ [weak self](tag) in
 			let index = Int(tag);
 			self?.giftDataList = (self?.dataRoom?.giftDataManager[index].items)!;
@@ -97,16 +117,16 @@ class GiftViewControl: UIViewController {
 	// 建立集合
 	func buildCollectionView() -> Void {
 		let layout = UICollectionViewFlowLayout()
-		layout.scrollDirection = .Horizontal;
+		layout.scrollDirection = .horizontal;
 		layout.minimumInteritemSpacing = 0;
 		layout.minimumLineSpacing = -1;
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
-		giftCollectionView = LFBCollectionView(frame: CGRectMake(0, self.view.width, self.view.width, 150), collectionViewLayout: layout)
+		giftCollectionView = LFBCollectionView(frame: CGRect(x: 0, y: self.view.width, width: self.view.width, height: 150), collectionViewLayout: layout)
 		giftCollectionView.delegate = self
 		giftCollectionView.dataSource = self
 		giftCollectionView.showsHorizontalScrollIndicator = false;
 		giftCollectionView.backgroundColor = LFBGlobalBackgroundColor;
-		giftCollectionView.registerClass(GiftShopCell.self, forCellWithReuseIdentifier: "Cell");
+		giftCollectionView.register(GiftShopCell.self, forCellWithReuseIdentifier: "Cell");
 		view.addSubview(giftCollectionView);
 
 		giftCollectionView.snp_makeConstraints { (make) in
@@ -135,7 +155,7 @@ class GiftViewControl: UIViewController {
 			make.left.equalTo(self.view.snp_left).offset(5);
 			make.width.equalTo(60);
 		}
-		btnSend = UIButton.BtnSimple("赠送", titleColor: UIColor.whiteColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sSendGift));
+		btnSend = UIButton.BtnSimple("赠送", titleColor: UIColor.white, image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sSendGift));
 		btnSend!.backgroundColor = UIColor.colorWithCustom(225, g: 50, b: 125);
 		btnSend!.layer.cornerRadius = 10;
 		btnSend!.layer.masksToBounds = true;
@@ -146,10 +166,10 @@ class GiftViewControl: UIViewController {
 			make.width.equalTo(60);
 		}
 
-		btnNum = UIButton.BtnSimple("X1  >", titleColor: UIColor.brownColor(), image: nil, hightLightImage: nil, target: self, action: #selector(self.showChooseView));
+		btnNum = UIButton.BtnSimple("X1  >", titleColor: UIColor.brown, image: nil, hightLightImage: nil, target: self, action: #selector(self.showChooseView));
 		// btnSend!.backgroundColor = UIColor.colorWithCustom(225, g: 50, b: 125);
 		btnNum!.layer.borderWidth = 1;
-		btnNum!.layer.borderColor = UIColor.grayColor().CGColor;
+		btnNum!.layer.borderColor = UIColor.gray.cgColor;
 		btnNum!.layer.cornerRadius = 10;
 		btnNum!.layer.masksToBounds = true;
 
@@ -160,7 +180,7 @@ class GiftViewControl: UIViewController {
 			make.width.equalTo(60);
 		}
 
-		txtChangeLB = UILabel.lableSimple("余额:", corlor: UIColor.blackColor(), size: 10);
+		txtChangeLB = UILabel.lableSimple("余额:", corlor: UIColor.black, size: 10);
 		view.addSubview(txtChangeLB!);
 		txtChangeLB!.snp_makeConstraints { (make) in
 			make.centerY.equalTo(btnMoney!.snp_centerY);
@@ -180,7 +200,7 @@ class GiftViewControl: UIViewController {
 	func c2sSendGift() {
 		if (curSelectGift != nil && curShopNum > 0)
 		{
-			let totalMoney = (curSelectGift?.price?.integerValue)! * curShopNum;
+			let totalMoney = (curSelectGift?.price?.intValue)! * curShopNum;
 			if (totalMoney > DataCenterModel.sharedInstance.roomData.myMoney) {
 				showSimplpAlertView(self, tl: "", msg: "您的余额不足无法赠送该礼物！")
 			}
@@ -205,75 +225,75 @@ class GiftViewControl: UIViewController {
 			chooseView = GiftNumChooseViewController();
 			chooseView?.callFun = chooseNumFuc;
 		};
-		chooseView!.preferredContentSize = CGSizeMake(150, 300)
-		chooseView!.modalPresentationStyle = .Popover;
+		chooseView!.preferredContentSize = CGSize(width: 150, height: 300)
+		chooseView!.modalPresentationStyle = .popover;
 		let pvc = chooseView!.popoverPresentationController! as UIPopoverPresentationController;
-		pvc.permittedArrowDirections = .Up;
+		pvc.permittedArrowDirections = .up;
 		pvc.sourceView = btnNum;
 		pvc.sourceRect = btnNum!.bounds;
 		pvc.delegate = self;
-		presentViewController(chooseView!, animated: true, completion: nil);
+		present(chooseView!, animated: true, completion: nil);
 	}
 
-	func chooseNumFuc(data: AnyObject?) {
+	func chooseNumFuc(_ data: AnyObject?) {
 		let model = data as! GiftChooseModel;
 		chooseNumLB(model.data);
 	}
 
-	func chooseNumLB(num: Int) {
+	func chooseNumLB(_ num: Int) {
 		curShopNum = num;
-		btnNum?.setTitle("X\(num)  >", forState: .Normal);
+		btnNum?.setTitle("X\(num)  >", for: UIControlState());
 	}
 
-	func moneyChangeHandle(notice: NSNotification?) {
+	func moneyChangeHandle(_ notice: Notification?) {
 		let moneyNum = DataCenterModel.sharedInstance.roomData.myMoney;
 		let attStr = NSMutableAttributedString(string: "余额: ");
-		let attrDic = [NSForegroundColorAttributeName: UIColor.purpleColor()];
+		let attrDic = [NSForegroundColorAttributeName: UIColor.purple];
 		let nameStr = NSAttributedString(string: moneyNum.description, attributes: attrDic);
-		attStr.appendAttributedString(nameStr);
+		attStr.append(nameStr);
 		self.txtChangeLB?.attributedText = attStr;
 	}
 }
 
 extension GiftViewControl: UIPopoverPresentationControllerDelegate
 {
-	func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
+	func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle
 	{
-		return UIModalPresentationStyle.None;
+		return UIModalPresentationStyle.none;
 	}
 
 }
 
 extension GiftViewControl: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return (giftDataList.count);
 	}
 
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! GiftShopCell
-		cell.shopGiftModel = giftDataList[indexPath.row];
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GiftShopCell
+		cell.shopGiftModel = giftDataList[(indexPath as NSIndexPath).row];
 		return cell;
 	}
 
 	// 设置item 宽
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-		var itemSize = CGSizeZero
-		itemSize = CGSizeMake(65, 70)
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		var itemSize = CGSize.zero
+		itemSize = CGSize(width: 65, height: 70)
 		return itemSize
 	}
 
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 
-		return CGSizeZero
+		return CGSize.zero
 	}
 
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-		return CGSizeZero
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+		return CGSize.zero
 	}
 
-	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		let shopGiftModel = giftDataList[indexPath.row];
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let shopGiftModel = giftDataList[(indexPath as NSIndexPath).row];
 		curSelectGift = shopGiftModel;
 	}
 

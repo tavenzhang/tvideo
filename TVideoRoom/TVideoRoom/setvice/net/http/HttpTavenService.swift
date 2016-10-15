@@ -3,7 +3,7 @@
 
 import Alamofire
 import SwiftyJSON
-
+import Alamofire
 //var domain = "www.lgfxiu.com";
 //var domain = "www.kiynd.net";
 //var vdomain = "v.kiynd.net";
@@ -54,17 +54,17 @@ var HTTP_RANK_DATA: String = "http://%@/videolist.json";
 
 //http: // www.lgfxiu.com/flash/image/gift_material/310014.png
 
-func getWWWHttp(src: String) -> String {
-	return NSString(format: src, domain) as String;
+func getWWWHttp(_ src: String) -> String {
+	return NSString(format: src as NSString, domain) as String;
 }
 
-func getGiftImagUrl(gidStr: String) -> String {
+func getGiftImagUrl(_ gidStr: String) -> String {
 	let imageUrl = getWWWHttp(HTTP_GIFT_ICO_URL) + gidStr + ".png";
 	return imageUrl;
 }
 
-func getVHttp(src: String) -> String {
-	return NSString(format: src, vdomain) as String;
+func getVHttp(_ src: String) -> String {
+	return NSString(format: src as NSString, vdomain) as String;
 }
 
 var HTTP_VIDEO_ROOM: String {
@@ -103,11 +103,11 @@ class HttpResult: NSObject {
 
 	var dataJson: JSON?;
 
-	var data: NSData?;
+	var data: Data?;
 
 	var isSuccess: Bool = false;
 
-	init(dataR: NSData?, reuslt: Bool) {
+	init(dataR: Data?, reuslt: Bool) {
 		super.init();
 		if (dataR != nil)
 		{
@@ -126,32 +126,34 @@ class HttpResult: NSObject {
 
 class HttpTavenService {
 
-	class func requestJson(url: String, isGet: Bool = true, para: [String: AnyObject]? = nil, completionHadble: (HttpResult) -> Void) -> Void {
+	class func requestJson(_ url: String, isGet: Bool = true, para: [String: AnyObject]? = nil, completionHadble: @escaping (HttpResult) -> Void) -> Void {
 		LogHttp("http send----->%@", args: url);
-		let method: Alamofire.Method = isGet ? .GET : .POST;
-		Alamofire.request(method, url, parameters: para).responseData() {
-			(Res: Response<NSData, NSError>) in
+		let methodType: HTTPMethod = isGet ? .get : .post;
+		// Alamofire.request(<#T##url: URLConvertible##URLConvertible#>, method: HTTPMethod, parameters: Parameters?, encoding: nil, headers: <#T##HTTPHeaders?#>)
+		// Alamofire.request(URLConvertible, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?)
+
+		Alamofire.request(url, method: methodType, parameters: para, encoding: JSONEncoding.default, headers: nil).responseData { (Res: DataResponse<Data>) in
 			var reulstH: HttpResult?
 			switch Res.result {
-			case .Success(let data):
-				reulstH = HttpResult(dataR: data, reuslt: true)
+			case .success(let dataM):
+				reulstH = HttpResult(dataR: dataM, reuslt: true)
 				if ((reulstH!.dataJson) != nil)
 				{
 					LogHttp("http  recive<------Success data ==: %@", args: ((reulstH!.dataJson)?.description)!);
 				}
 				else {
-					LogHttp("http  recive<------Success data ==: %@", args: data.toUtf8String());
+					LogHttp("http  recive<------Success data ==: %@", args: dataM.toUtf8String());
 				}
-			case .Failure(let error):
-				LogHttp("http  recive<------Request failed with error: %@", args: error);
+			case .failure(let error):
+				LogHttp("http  recive<------Request failed with error: %@", args: error as CVarArg);
 				reulstH = HttpResult(dataR: nil, reuslt: false)
 			}
 			completionHadble(reulstH!);
 		}
 	}
 
-	static func requestDetail(method: Alamofire.Method, url: URLStringConvertible, parameters: [String: AnyObject]?, encoding: ParameterEncoding, headers: [String: String]?) -> Void {
-		Alamofire.request(method, url, parameters: parameters, encoding: encoding, headers: headers);
-	}
+	// static func requestDetail(_ method: Alamofire.Method, url: URLStringConvertible, parameters: [String: AnyObject]?, encoding: ParameterEncoding, headers: [String: String]?) -> Void {
+	// Alamofire.request(method, url, parameters: parameters, encoding: encoding, headers: headers);
+	// }
 
 }

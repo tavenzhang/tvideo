@@ -11,28 +11,28 @@ import SVProgressHUD
 
 class ProgressHUDManager {
     
-    class func setBackgroundColor(color: UIColor) {
+    class func setBackgroundColor(_ color: UIColor) {
         SVProgressHUD.setBackgroundColor(color)
     }
     
-    class func setForegroundColor(color: UIColor) {
+    class func setForegroundColor(_ color: UIColor) {
         SVProgressHUD.setForegroundColor(color)
     }
     
-    class func setSuccessImage(image: UIImage) {
+    class func setSuccessImage(_ image: UIImage) {
         SVProgressHUD.setSuccessImage(image)
     }
     
-    class func setErrorImage(image: UIImage) {
+    class func setErrorImage(_ image: UIImage) {
         SVProgressHUD.setErrorImage(image)
     }
     
-    class func setFont(font: UIFont) {
-        SVProgressHUD.setFont(UIFont.systemFontOfSize(16))
+    class func setFont(_ font: UIFont) {
+        SVProgressHUD.setFont(UIFont.systemFont(ofSize: 16))
     }
     
-    class func showImage(image: UIImage, status: String) {
-        SVProgressHUD.showImage(image, status: status)
+    class func showImage(_ image: UIImage, status: String) {
+        SVProgressHUD.show(image, status: status)
     }
     
     class func show() {
@@ -43,16 +43,16 @@ class ProgressHUDManager {
         SVProgressHUD.dismiss()
     }
     
-    class func showWithStatus(status: String) {
-        SVProgressHUD.showWithStatus(status)
+    class func showWithStatus(_ status: String) {
+        SVProgressHUD.show(withStatus: status)
     }
     
     class func isVisible() -> Bool {
         return SVProgressHUD.isVisible()
     }
     
-    class func showSuccessWithStatus(string: String) {
-        SVProgressHUD.showSuccessWithStatus(string)
+    class func showSuccessWithStatus(_ string: String) {
+        SVProgressHUD.showSuccess(withStatus: string)
     }
 }
 

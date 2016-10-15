@@ -2,27 +2,26 @@
 //  GiftShopCell.swift
 //  TVideoRoom
 //
-import SnapKit
 
 class GiftShopCell: UICollectionViewCell {
 	// MARK: - 初始化子空间
-	private lazy var backImageView: UIImageView = {
+	fileprivate lazy var backImageView: UIImageView = {
 		let backImageView = UIImageView()
 		return backImageView
 	}()
 
-	var nameLabel = UILabel.lableSimple("", corlor: UIColor.blackColor(), size: 10, align: NSTextAlignment.Center);
+	var nameLabel = UILabel.lableSimple("", corlor: UIColor.black, size: 10, align: NSTextAlignment.center);
 
-	var priceLabel: UILabel = UILabel.lableSimple("", corlor: UIColor.grayColor(), size: 8, align: NSTextAlignment.Center);
+	var priceLabel: UILabel = UILabel.lableSimple("", corlor: UIColor.gray, size: 8, align: NSTextAlignment.center);
 
-	var newLabel: UILabel = UILabel.lableSimple("new!", corlor: UIColor.redColor(), size: 9, align: NSTextAlignment.Center);
+	var newLabel: UILabel = UILabel.lableSimple("new!", corlor: UIColor.red, size: 9, align: NSTextAlignment.center);
 
-	var addButtonClick: ((imageView: UIImageView) -> ())?
+	var addButtonClick: ((_ imageView: UIImageView) -> ())?
 
 	// MARK: - 便利构造方法
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		backgroundColor = UIColor.whiteColor()
+		backgroundColor = UIColor.white
 		addSubview(backImageView);
 		addSubview(nameLabel);
 		addSubview(priceLabel);
@@ -47,13 +46,13 @@ class GiftShopCell: UICollectionViewCell {
 			make.right.equalTo(self.snp_right).offset(-2)
 		}
 		self.layer.borderWidth = 1;
-		self.layer.borderColor = UIColor.grayColor().CGColor;
+		self.layer.borderColor = UIColor.gray.cgColor;
 
 	}
-	override var selected: Bool {
+	override var isSelected: Bool {
 		didSet {
-			super.selected = selected;
-			self.backgroundColor = selected ? UIColor.redColor().colorWithAlphaComponent(0.5) : UIColor.whiteColor();
+			super.isSelected = isSelected;
+			self.backgroundColor = isSelected ? UIColor.red.withAlphaComponent(0.5) : UIColor.white;
 		}
 	}
 
@@ -64,13 +63,13 @@ class GiftShopCell: UICollectionViewCell {
 	// MARK: - 模型set方法
 	var shopGiftModel: GiftDetailModel? {
 		didSet {
-			let gidId = shopGiftModel!.gid!.intValue;
+			let gidId = shopGiftModel!.gid!.int32Value;
 			let imageUrl = getGiftImagUrl(gidId.description);
-			backImageView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: r_home_videoImgPlaceholder));
+			backImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: r_home_videoImgPlaceholder));
 			nameLabel.text = shopGiftModel?.name;
 			priceLabel.text = (shopGiftModel?.price?.description)! + "钻石";
-			nameLabel.hidden = false;
-			newLabel.hidden = shopGiftModel!.isNew == "0" ;
+			nameLabel.isHidden = false;
+			newLabel.isHidden = shopGiftModel!.isNew == "0" ;
 
 		}
 	}

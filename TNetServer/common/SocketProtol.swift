@@ -4,32 +4,32 @@
 
  protocol netSocketProtol {
     
-    func readMsgHead(data: NSMutableData) -> Int;
+    func readMsgHead(_ data: NSMutableData) -> Int;
     
-    func readMsgBody(data: NSMutableData) -> Bool;
+    func readMsgBody(_ data: NSMutableData) -> Bool;
     
     func sendHeartMsg() -> Void;
     
-    func sendMessage(msgData: AnyObject?) -> Void;
+    func sendMessage(_ msgData: AnyObject?) -> Void;
 
 }
 
  protocol netWebSocketProtol {
     
-    func onOpen(para: AnyObject,sucessHandle:connectSucessHandle?) -> Void;
+    func onOpen(_ para: AnyObject,sucessHandle:connectSucessHandle?) -> Void;
     
-    func onMessageReceive(data: AnyObject) -> Void;
+    func onMessageReceive(_ data: AnyObject) -> Void;
     
-    func onSendMessage(msgData: AnyObject?) -> Void;
+    func onSendMessage(_ msgData: AnyObject?) -> Void;
 }
 
 public typealias connectSucessHandle = () -> Void
 
-public typealias SockeLogBlock = (log: String) -> Void
+public typealias SockeLogBlock = (_ log: String) -> Void
 
-public typealias messageDictionaryBlock = (msgKey:AnyObject) -> AnyObject
+public typealias messageDictionaryBlock = (_ msgKey:AnyObject) -> AnyObject
 
-public typealias messageResultHandleBlock = (mesage: AnyObject) -> Void
+public typealias messageResultHandleBlock = (_ mesage: AnyObject) -> Void
 
 
 

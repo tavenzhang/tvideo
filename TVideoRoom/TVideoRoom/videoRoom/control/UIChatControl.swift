@@ -17,50 +17,50 @@ class UIChatControl: UIViewController {
 	}
 
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self);
+		NotificationCenter.default.removeObserver(self);
 		chatVc?.sendBlock = nil;
 	}
 
 	func addNSNotification() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.chatReceiveMessage30001), name: E_SOCKERT_Chat_30001, object: nil);
+		NotificationCenter.default.addObserver(self, selector: #selector(self.chatReceiveMessage30001), name: NSNotification.Name(rawValue: E_SOCKERT_Chat_30001), object: nil);
 	}
 
 	func initView() {
 		chatVc = TChatViewControl();
-		chatVc!.view.frame = CGRectMake(0, 0, self.view.width, self.view.height);
-		chatVc?.view.backgroundColor = UIColor.clearColor();
+		chatVc!.view.frame = CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height);
+		chatVc?.view.backgroundColor = UIColor.clear;
 		chatVc?.sendBlock = chatSendChatMessage;
 		view?.addSubview(chatVc!.view);
 		chatVc?.view.backgroundColor = ROOM_SCROOL_BG_COLOR;
 		giftVc = GiftViewControl();
 		view?.addSubview(giftVc!.view);
 		// giftVc?.view.frame = CGRectMake(0, self.view.height, self.view.width, 200)
-		giftVc?.view.snp_makeConstraints(closure: { (make) in
+		giftVc?.view.snp_makeConstraints{ (make) in
 			make.bottom.equalTo(self.view.snp_bottom);
 			make.width.equalTo(self.view);
 			make.height.equalTo(200);
-		})
+		}
 		chatVc?.chatGiftBlock = clickGiftBtnHandle;
 		chatVc?.chatCancelBlock = chatCancel;
-		giftVc?.view.hidden = true;
+		giftVc?.view.isHidden = true;
 	}
 
 	func clickGiftBtnHandle() {
-		giftVc?.view.hidden = false;
+		giftVc?.view.isHidden = false;
 		self.giftVc?.view.top = self.view.height;
-		UIView.animateWithDuration(0.3) {
+		UIView.animate(withDuration: 0.3, animations: {
 			self.giftVc?.view.top = self.view.height - (self.giftVc?.view.height)!;
-		}
+		}) 
 	}
 
 	func chatCancel() {
 		// giftVc?.view.hidden = true;
-		UIView.animateWithDuration(0.3) {
+		UIView.animate(withDuration: 0.3, animations: {
 			self.giftVc?.view.top = self.view.height;
-		}
+		}) 
 	}
 
-	func adjust(w: CGFloat, h: CGFloat) -> Void {
+	func adjust(_ w: CGFloat, h: CGFloat) -> Void {
 //		chatVc?.view.width = w;
 //		chatVc?.view.height = h;
 	}
@@ -68,7 +68,7 @@ class UIChatControl: UIViewController {
 	/**
      接收到聊天信息
      */
-	func chatReceiveMessage30001(notification: NSNotification) {
+	func chatReceiveMessage30001(_ notification: Notification) {
 		let message = notification.object as! ChatMessage;
 		chatVc?.receiveMessage(message);
 	}
@@ -76,7 +76,7 @@ class UIChatControl: UIViewController {
 	/**
      发送聊天消息
      */
-	func chatSendChatMessage(msg: String!) -> Void {
+	func chatSendChatMessage(_ msg: String!) -> Void {
 //		let mees = ChatMessage();
 //		mees.messageType = .Text;
 //		mees.content = msg;

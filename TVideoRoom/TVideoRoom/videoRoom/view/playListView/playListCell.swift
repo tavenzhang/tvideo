@@ -2,12 +2,12 @@
 
 class playListCell: UITableViewCell {
 
-	class func cellFormTablView(tableView: UITableView, _ indexPath: NSIndexPath) -> playListCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier("cell") as? playListCell ;
+	class func cellFormTablView(_ tableView: UITableView, _ indexPath: IndexPath) -> playListCell {
+		var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? playListCell ;
 		if (cell == nil)
 		{
-			tableView.registerClass(playListCell.self, forCellReuseIdentifier: "cell");
-			cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? playListCell ;
+			tableView.register(playListCell.self, forCellReuseIdentifier: "cell");
+			cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? playListCell ;
 		}
 		return cell!;
 
@@ -19,8 +19,8 @@ class playListCell: UITableViewCell {
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier);
-		self.backgroundColor = UIColor.clearColor();
-		self.accessoryType = .None;
+		self.backgroundColor = UIColor.clear;
+		self.accessoryType = .none;
 		self.addSubview(vipImageView);
 		self.addSubview(lvImageView)
 		self.lvImageView.snp_makeConstraints { (make) in
@@ -41,38 +41,38 @@ class playListCell: UITableViewCell {
 
 	lazy var vipImageView = UIImageView();
 	lazy var txtName: UILabel = {
-		var lb: UILabel = self.createLB("天下第一天下第一", corlor: UIColor.blackColor());
+		var lb: UILabel = self.createLB("天下第一天下第一", corlor: UIColor.black);
 		self.contentView.addSubview(lb);
 		return lb;
 	}()
 	lazy var lvImageView = UIImageView();
 
-	func createLB(title: String, corlor: UIColor) -> UILabel {
+	func createLB(_ title: String, corlor: UIColor) -> UILabel {
 		let lb = UILabel();
 		lb.textColor = corlor;
 		lb.text = title;
-		lb.font = UIFont.boldSystemFontOfSize(14);
-		lb.textAlignment = NSTextAlignment.Left;
+		lb.font = UIFont.boldSystemFont(ofSize: 14);
+		lb.textAlignment = NSTextAlignment.left;
 		lb.adjustsFontSizeToFitWidth = false;
 		return lb;
 	}
 
 	var dataModel: playInfoModel? {
 		didSet {
-			vipImageView.image = UIImage(named: lvIcoNameGet((dataModel?.icon?.intValue)!, type: .VipIcoLv))
+			vipImageView.image = UIImage(named: lvIcoNameGet((dataModel?.icon?.int32Value)!, type: .vipIcoLv))
 
 			// lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.icon?.intValue)!, type: .VipIcoLv))
-			if (dataModel?.ruled?.intValue == 3)
+			if (dataModel?.ruled?.int32Value == 3)
 			{
 				txtName.text = "\(dataModel!.name!) (主播)";
-				txtName.textColor = UIColor.purpleColor();
-				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.lv?.intValue)!, type: .HostIcoLV))
+				txtName.textColor = UIColor.purple;
+				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.lv?.int32Value)!, type: .hostIcoLV))
 				lvImageView.scale(1.5, ySclae: 1.5)
 			}
 			else {
 				txtName.text = dataModel?.name;
-				txtName.textColor = UIColor.blackColor();
-				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.richLv.intValue)!, type: .UserIcoLv))
+				txtName.textColor = UIColor.black;
+				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.richLv.int32Value)!, type: .userIcoLv))
 				lvImageView.scale(1.5, ySclae: 1.5)
 			}
 

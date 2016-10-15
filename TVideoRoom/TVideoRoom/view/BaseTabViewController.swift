@@ -10,7 +10,7 @@ import UIKit
 
 class BaseUIViewController: UIViewController {
 
-	let loadProgressAnimationView: LoadProgressAnimationView = LoadProgressAnimationView(frame: CGRectMake(0, 0, ScreenWidth, 3))
+	let loadProgressAnimationView: LoadProgressAnimationView = LoadProgressAnimationView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 3))
 
 	override func viewDidLoad() {
 		super.viewDidLoad();
@@ -19,7 +19,7 @@ class BaseUIViewController: UIViewController {
 	}
 
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}
 

@@ -1,0 +1,10 @@
+framework module TAmf3Socket {
+  umbrella header "TAmf3Socket.h"
+
+  export *
+  module * { export * }
+}
+
+module TAmf3Socket.Swift {
+    header "TAmf3Socket-Swift.h"
+}

@@ -33,43 +33,43 @@ class ChatCell: UITableViewCell {
 		// [self.contentView addSubview:_faceImageView];
 		// 发送名初始化
 		self.nameLable = UILabel()
-		self.nameLable!.frame = CGRectMake(kPadding, kPadding, ScreenWidth, 20)
-		self.nameLable!.font = UIFont.systemFontOfSize(kContentFontSize)
-		self.nameLable!.textColor = UIColor.purpleColor()
+		self.nameLable!.frame = CGRect(x: kPadding, y: kPadding, width: ScreenWidth, height: 20)
+		self.nameLable!.font = UIFont.systemFont(ofSize: kContentFontSize)
+		self.nameLable!.textColor = UIColor.purple
 		self.contentView.addSubview(nameLable!);
 		// nameLable ＝ [UILabel alloc]int;
 		// 初始化正文视图
-		self.bgButton = UIButton(frame: CGRectZero)
+		self.bgButton = UIButton(frame: CGRect.zero)
 		self.contentView.addSubview(bgButton!)
 		// 初始化正文视图
-		self.contentLabel = UILabel(frame: CGRectZero)
-		self.contentLabel!.font = UIFont.systemFontOfSize(kContentFontSize)
+		self.contentLabel = UILabel(frame: CGRect.zero)
+		self.contentLabel!.font = UIFont.systemFont(ofSize: kContentFontSize)
 		self.contentLabel!.numberOfLines = 0
 		bgButton!.addSubview(contentLabel!);
 	}
 
-	class func cellWithTableView(tableView: UITableView) -> ChatCell {
+	class func cellWithTableView(_ tableView: UITableView) -> ChatCell {
 		let identifier = "chatCell"
-		var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ChatCell;
+		var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatCell;
 		if cell == nil {
-			tableView.registerClass(RankGiftCell.self, forCellReuseIdentifier: identifier);
-			cell = ChatCell(style: .Default, reuseIdentifier: identifier);
-			cell?.backgroundColor = UIColor.clearColor()
-			cell?.contentView.backgroundColor = UIColor.clearColor()
+			tableView.register(RankGiftCell.self, forCellReuseIdentifier: identifier);
+			cell = ChatCell(style: .default, reuseIdentifier: identifier);
+			cell?.backgroundColor = UIColor.clear
+			cell?.contentView.backgroundColor = UIColor.clear
 		}
 		return cell!;
 	}
 
 	/** 计算cell 的高度 */
-	class func heightOfCellWithMessage(message: ChatMessage) -> CGFloat {
+	class func heightOfCellWithMessage(_ message: ChatMessage) -> CGFloat {
 		var height: CGFloat = 0
 		let textMaxWidth: CGFloat = ScreenWidth - 40 - kPadding * 2
 		// 60是消息框体距离右侧或者左侧的距离
 		// NSMutableAttributedString *attrStr = [Utility emotionStrWithString:message.content];
 		let attrStr = Utility.emotionStr(with: message.content, faceDataList: FaceData.faceDataList, y: -8);
-		attrStr.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(kContentFontSize), range: NSMakeRange(0, attrStr.length));
+		attrStr.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: kContentFontSize), range: NSMakeRange(0, attrStr.length));
 
-		let textSize = attrStr.boundingRectWithSize(CGSizeMake(textMaxWidth, CGFloat(NSIntegerMax)), options: [.UsesLineFragmentOrigin], context: nil).size
+		let textSize = attrStr.boundingRect(with: CGSize(width: textMaxWidth, height: CGFloat(NSIntegerMax)), options: [.usesLineFragmentOrigin], context: nil).size
 		height += (textSize.height + kEdgeInsetsWidth + 4);
 		return height;
 	}
@@ -111,10 +111,10 @@ class ChatCell: UITableViewCell {
 		// 60是消息框体距离右侧或者左侧的距离
 		// NSMutableAttributedString *attrStr = [Utility emotionStrWithString:_message.content];
 		let attrStr = Utility.emotionStr(with: message!.content, faceDataList: FaceData.faceDataList, y: -3);
-		attrStr.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(kContentFontSize), range: NSMakeRange(0, attrStr.length))
-		let textSize = attrStr.boundingRectWithSize(CGSizeMake(textMaxWidth, 9999999), options: .UsesLineFragmentOrigin, context: nil).size
+		attrStr.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: kContentFontSize), range: NSMakeRange(0, attrStr.length))
+		let textSize = attrStr.boundingRect(with: CGSize(width: textMaxWidth, height: 9999999), options: .usesLineFragmentOrigin, context: nil).size
 		self.contentLabel!.attributedText = attrStr
-		self.contentLabel!.frame = CGRectMake(0, 0, textSize.width, textSize.height);
+		self.contentLabel!.frame = CGRect(x: 0, y: 0, width: textSize.width, height: textSize.height);
 		self.contentLabel!.top = self.nameLable!.bottom ;
 		self.contentLabel!.left = self.nameLable!.left + 5;
 		if ((message?.sendName) != nil) {

@@ -14,14 +14,14 @@ class PlayeListViewControl: UIViewController, UITableViewDelegate, UITableViewDa
 
 	var dataList: [playInfoModel]? = [];
 
-	var segmentedClick: ((index: Int) -> Void)?;
+	var segmentedClick: ((_ index: Int) -> Void)?;
 	var segmentVC: TSegmentedControl?;
 	var curTableStyle: playTableStyle = .users;
 
 	var tableView: UITableView = UITableView();
 
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self);
+		NotificationCenter.default.removeObserver(self);
 		segmentedClick = nil;
 		segmentedClick = nil;
 	}
@@ -30,14 +30,14 @@ class PlayeListViewControl: UIViewController, UITableViewDelegate, UITableViewDa
 		addNotifycation();
 		self.view.backgroundColor = ROOM_SCROOL_BG_COLOR;
 
-		self.tableView.separatorStyle = .None;
+		self.tableView.separatorStyle = .none;
 		self.view.addSubview(tableView);
 		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
 		self.tableView.rowHeight = self.view.width / 9;
-		self.tableView.backgroundColor = UIColor.clearColor();
+		self.tableView.backgroundColor = UIColor.clear;
 		self.tableView.allowsSelection = false;
-		segmentVC = TSegmentedControl(items: ["观众", "管理员"], didSelectedIndex: { [weak self](index) -> () in
+		segmentVC = TSegmentedControl(items: ["观众" as AnyObject, "管理员" as AnyObject], didSelectedIndex: { [weak self](index) -> () in
 			if 0 == index {
 				self?.curTableStyle = .users;
 			} else if 1 == index {
@@ -46,11 +46,11 @@ class PlayeListViewControl: UIViewController, UITableViewDelegate, UITableViewDa
 			self?.flushListView(DataCenterModel.sharedInstance.roomData.playerList);
 		})
 		self.view.addSubview(segmentVC!);
-		segmentVC?.snp_makeConstraints(closure: { (make) in
+		segmentVC?.snp_makeConstraints { (make) in
 			make.top.equalTo(self.view.snp_top).offset(5);
 			make.width.equalTo(self.view.width * 2 / 3);
 			make.centerX.equalTo(0);
-		})
+		}
 		self.tableView.snp_makeConstraints { (make) in
 			make.width.equalTo(self.view.snp_width);
 			make.top.equalTo((segmentVC?.snp_bottom)!).offset(5);
@@ -60,54 +60,54 @@ class PlayeListViewControl: UIViewController, UITableViewDelegate, UITableViewDa
 	}
 
 	func addNotifycation() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updataListView), name: PlayLIST_CHANGE, object: nil);
+		NotificationCenter.default.addObserver(self, selector: #selector(self.updataListView), name: NSNotification.Name(rawValue: PlayLIST_CHANGE), object: nil);
 		self.tableView.reloadData();
 	}
 
 	// 刷新列表
-	func updataListView(notice: NSNotification) -> Void {
+	func updataListView(_ notice: Notification) -> Void {
 		flushListView(DataCenterModel.sharedInstance.roomData.playerList)
 	}
 
-	func flushListView(dataModelArr: [playInfoModel]) {
+	func flushListView(_ dataModelArr: [playInfoModel]) {
 
 		if (curTableStyle == .users)
 		{
 			dataList = dataModelArr.filter({ (playInfoModel) -> Bool in
-				return (playInfoModel.ruled?.intValue == 0 && playInfoModel.name != "");
+				return (playInfoModel.ruled?.int32Value == 0 && playInfoModel.name != "");
 			})
-			dataList = dataList?.sort({ (a, b) -> Bool in
+			dataList = dataList?.sorted(by: { (a, b) -> Bool in
 				var result = false;
-				if (a.vip?.intValue > b.vip?.intValue)
+				if ((a.vip?.int32Value)! > (b.vip?.int32Value)!)
 				{
 					result = true;
 				}
-				else if (a.vip?.intValue < b.vip?.intValue) {
+				else if ((a.vip?.int32Value)! < (b.vip?.int32Value)!) {
 
 					result = false;
 				}
 				else {
-					result = a.richLv.intValue > b.richLv.intValue;
+					result = a.richLv.int32Value > b.richLv.int32Value;
 				}
 				return result;
 			});
 		}
 		else {
 			dataList = dataModelArr.filter({ (playInfoModel) -> Bool in
-				return (playInfoModel.ruled?.intValue > 0 && playInfoModel.name != "");
+				return ((playInfoModel.ruled?.int32Value)! > 0 && playInfoModel.name != "");
 			});
-			dataList = dataList?.sort({ (a, b) -> Bool in
+			dataList = dataList?.sorted(by: { (a, b) -> Bool in
 				var result = false;
-				if (a.ruled?.intValue > b.ruled?.intValue)
+				if ((a.ruled?.int32Value)! > (b.ruled?.int32Value)!)
 				{
 					result = true;
 				}
-				else if (a.ruled?.intValue < b.ruled?.intValue) {
+				else if ((a.ruled?.int32Value)! < (b.ruled?.int32Value)!) {
 
 					result = false;
 				}
 				else {
-					result = a.richLv.intValue > b.richLv.intValue;
+					result = a.richLv.int32Value > b.richLv.int32Value;
 				}
 				return result;
 			});
@@ -115,15 +115,15 @@ class PlayeListViewControl: UIViewController, UITableViewDelegate, UITableViewDa
 		self.tableView.reloadData();
 	}
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
 		return (dataList?.count)!;
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = playListCell.cellFormTablView(tableView, indexPath) ;
-		cell.dataModel = (dataList?[indexPath.row])!;
+		cell.dataModel = (dataList?[(indexPath as NSIndexPath).row])!;
 		return cell;
 	}
 }

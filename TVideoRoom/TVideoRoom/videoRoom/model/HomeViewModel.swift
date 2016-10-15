@@ -48,9 +48,9 @@ class Activity: NSObject {
 
 	var hostImg: String? {
 		// var str= /video_gs/video/img/get_cover?uid=1842653&v=1466860291999
-		if ((headimg! as NSString).containsString("&v=")) {
-			var tempArr = self.headimg?.componentsSeparatedByString("&v=");
-			let newStr = String(format: "http://p1.1room1.co/public/images/anchorimg/%@.jpg", (String(uid!) + "_" + String(tempArr![1])));
+		if ((headimg! as NSString).contains("&v=")) {
+			var tempArr = self.headimg?.components(separatedBy: "&v=");
+			let newStr = String(format: "http://p1.1room1.co/public/images/anchorimg/%@.jpg", (String(describing: uid!) + "_" + String(tempArr![1])));
 			return newStr;
 		}
 		else {

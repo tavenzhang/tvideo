@@ -13,12 +13,12 @@ class Utility {
 		// 匹配表情
 		var re: NSRegularExpression?;
 		do {
-			re = try NSRegularExpression(pattern: regex_emoji, options: .CaseInsensitive);
+			re = try NSRegularExpression(pattern: regex_emoji, options: .caseInsensitive);
 		} catch {
 			LogHttp("NSRegularExpression eer=");
 		}
 
-		let resultArray = re?.matchesInString(text, options: [], range: NSMakeRange(0, text.characters.count));
+		let resultArray = re?.matches(in: text, options: [], range: NSMakeRange(0, text.characters.count));
 		// 3、获取所有的表情以及位置
 		// 用来存放字典，字典中存储的是图片和图片对应的位置
 		var imageArray = [AnyObject]()
@@ -36,34 +36,34 @@ class Utility {
 					let name = faceDataList[i].faceIco;
 					textAttachment.image = UIImage.bundleImageName(name);
 					// 调整一下图片的位置,如果你的图片偏上或者偏下，调整一下bounds的y值即可
-					textAttachment.bounds = CGRectMake(0, y, textAttachment.image!.size.width, textAttachment.image!.size.height)
+					textAttachment.bounds = CGRect(x: 0, y: y, width: textAttachment.image!.size.width, height: textAttachment.image!.size.height)
 					// 把附件转换成可变字符串，用于替换掉源字符串中的表情文字
 					let imageStr = NSAttributedString(attachment: textAttachment)
 					// 把图片和图片对应的位置存入字典中
 					var imageDic = [String: AnyObject](minimumCapacity: 2)
 					imageDic["image"] = imageStr
-					imageDic["range"] = range
+					imageDic["range"] = range as AnyObject?
 					// 把字典存入数组中
-					imageArray.append(imageDic);
+					imageArray.append(imageDic as AnyObject);
 				}
 			}
 		}
 		var i = imageArray.count - 1;
 		while i >= 0 {
 			// 进行替换
-			attributeString.replaceCharactersInRange(imageArray[i]["range"] as! NSRange, withAttributedString: imageArray[i]["image"] as! NSAttributedString);
+			attributeString.replaceCharacters(in: imageArray[i]["range"] as! NSRange, with: imageArray[i]["image"] as! NSAttributedString);
 			i -= 1
 		}
 		return attributeString;
 	}
 
-	class func exchangeString(pattenStr: String, withText text: String, imageName: String) -> NSMutableAttributedString {
+	class func exchangeString(_ pattenStr: String, withText text: String, imageName: String) -> NSMutableAttributedString {
 		// 1、创建一个可变的属性字符串
 		let attributeString = NSMutableAttributedString(string: text)
 		// 2、匹配字符串
-		let re = try! NSRegularExpression(pattern: pattenStr, options: .CaseInsensitive);
+		let re = try! NSRegularExpression(pattern: pattenStr, options: .caseInsensitive);
 		// The output below is limited by 1 KB.
-		let resultArray = re.matchesInString(text, options: [], range: NSMakeRange(0, text.characters.count));
+		let resultArray = re.matches(in: text, options: [], range: NSMakeRange(0, text.characters.count));
 		// 3、获取所有的图片以及位置
 		// 用来存放字典，字典中存储的是图片和图片对应的位置
 		var imageArray = [AnyObject]() /* capacity: resultArray.count */
@@ -76,21 +76,21 @@ class Utility {
 			// 给附件添加图片
 			textAttachment.image! = UIImage.bundleImageName(imageName);
 			// 修改一下图片的位置,y为负值，表示向下移动
-			textAttachment.bounds = CGRectMake(0, -2, textAttachment.image!.size.width, textAttachment.image!.size.height)
+			textAttachment.bounds = CGRect(x: 0, y: -2, width: textAttachment.image!.size.width, height: textAttachment.image!.size.height)
 			// 把附件转换成可变字符串，用于替换掉源字符串中的表情文字
 			let imageStr = NSAttributedString(attachment: textAttachment)
 			// 把图片和图片对应的位置存入字典中
 			var imageDic = [String: AnyObject](minimumCapacity: 2);
 			imageDic["image"] = imageStr
-			imageDic["range"] = range;
+			imageDic["range"] = range as AnyObject?;
 			// 把字典存入数组中
-			imageArray.append(imageDic);
+			imageArray.append(imageDic as AnyObject);
 		}
 		// 4、从后往前替换，否则会引起位置问题
 		var i = imageArray.count - 1;
 		while i >= 0 {
 			// 进行替换
-			attributeString.replaceCharactersInRange(imageArray[i]["range"] as! NSRange, withAttributedString: imageArray[i]["image"] as! NSAttributedString);
+			attributeString.replaceCharacters(in: imageArray[i]["range"] as! NSRange, with: imageArray[i]["image"] as! NSAttributedString);
 			i -= 1
 		}
 		return attributeString;

@@ -13,7 +13,7 @@ class LoadProgressAnimationView: UIView {
     override var frame: CGRect {
         willSet {
             if frame.size.width == viewWidth {
-                self.hidden = true
+                self.isHidden = true
             }
             super.frame = frame
         }
@@ -33,33 +33,33 @@ class LoadProgressAnimationView: UIView {
     
     func startLoadProgressAnimation() {
         self.frame.size.width = 0
-        hidden = false
+        isHidden = false
         weak var tmpSelf = self
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
+        UIView.animate(withDuration: 0.4, animations: { () -> Void in
             tmpSelf!.frame.size.width = tmpSelf!.viewWidth * 0.6
             
-        }) { (finish) -> Void in
+        }, completion: { (finish) -> Void in
             
-            let time = dispatch_time(DISPATCH_TIME_NOW,Int64(0.4 * Double(NSEC_PER_SEC)))
-            dispatch_after(time, dispatch_get_main_queue(), { () -> Void in
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
+            let time = DispatchTime.now() + Double(Int64(0.4 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: time, execute: { () -> Void in
+                UIView.animate(withDuration: 0.3, animations: { () -> Void in
                     tmpSelf!.frame.size.width = tmpSelf!.viewWidth * 0.8
                 })
             })
-        }
+        }) 
     }
     
     func endLoadProgressAnimation() {
         weak var tmpSelf = self
         
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
             tmpSelf!.frame.size.width = tmpSelf!.viewWidth
-        }) { (finish) -> Void in
+        }, completion: { (finish) -> Void in
             if tmpSelf != nil
             {
-                tmpSelf!.hidden = true
+                tmpSelf!.isHidden = true
             }
             
-        }
+        }) 
     }
 }

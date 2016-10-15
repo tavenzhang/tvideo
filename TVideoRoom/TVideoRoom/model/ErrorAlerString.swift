@@ -12,7 +12,7 @@ class ErrAlertManger {
 
 	static let instance: ErrAlertManger = ErrAlertManger();
 	var errorArray = [Int: String]()
-	private init() {
+	fileprivate init() {
 		errorArray[1801] = "被踢的玩家不存在";
 		errorArray[1802] = "不能踢管理员";
 		errorArray[1803] = "该用户已不在当前房间，操作失败!";
@@ -54,7 +54,7 @@ class ErrAlertManger {
 		errorArray[4001] = "当前身份不能增送贵族礼物,先成为贵族吧!"
 	}
 
-	func getDescByError(error: Int) -> String {
+	func getDescByError(_ error: Int) -> String {
 		var result = errorArray[error] ;
 
 		if (result == nil) || (result == "")

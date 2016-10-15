@@ -2,6 +2,44 @@
 //  GiftEffectVC.swift
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class GiftEffectVC: UIView {
 
@@ -18,19 +56,19 @@ class GiftEffectVC: UIView {
 	var gifsendBarThreeUid_giftid: UInt32 = 0;
 
 	var giftStructureArray = [GiftInfoModel]();
-	var giftSendTimer: NSTimer?;
+	var giftSendTimer: Timer?;
 	// 送礼累计个数
 	static var giftCount: UInt32 = 0;
 
 	override init(frame: CGRect) {
 		super.init(frame: frame);
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.removesendGiftbar), name: "removegistSendbar", object: nil);
-		self.multipleTouchEnabled = false;
-		self.userInteractionEnabled = false;
+		NotificationCenter.default.addObserver(self, selector: #selector(self.removesendGiftbar), name: NSNotification.Name(rawValue: "removegistSendbar"), object: nil);
+		self.isMultipleTouchEnabled = false;
+		self.isUserInteractionEnabled = false;
 	}
 	deinit
 	{
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+		NotificationCenter.default.removeObserver(self)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -38,7 +76,7 @@ class GiftEffectVC: UIView {
 	}
 
 	// 添加礼物
-	func addEffectGift(gift: GiftInfoModel) {
+	func addEffectGift(_ gift: GiftInfoModel) {
 		gift.selfIconStr = GiftEffectVC.giftCount % 2 == 0 ? "giftHead1" : "giftHead2";
 		GiftEffectVC.giftCount = GiftEffectVC.giftCount + 1;
 		gift.send_user_id = GiftEffectVC.giftCount;
@@ -49,7 +87,7 @@ class GiftEffectVC: UIView {
 	}
 
 	func giftTimerStart() {
-		giftSendTimer = NSTimer.scheduledTimerWithTimeInterval(1.25, target: self, selector: #selector(self.giftAnimationSHow), userInfo: nil, repeats: true)
+		giftSendTimer = Timer.scheduledTimer(timeInterval: 1.25, target: self, selector: #selector(self.giftAnimationSHow), userInfo: nil, repeats: true)
 		// 1.65s //2.65
 		giftSendTimer!.fire()
 	}
@@ -57,14 +95,14 @@ class GiftEffectVC: UIView {
 	func isAlreadyIsExit() -> Bool {
 		var isExit = false
 		let giftShowInfoStructure = giftStructureArray[0];
-		if (giftShowInfoStructure.send_user_id == gifsendBarOneUid) && (self.giftSendBarOne != nil) && giftSendBarOne!.timer.valid && (gifsendBarOneUid_giftid == giftShowInfoStructure.gift_uid) {
+		if (giftShowInfoStructure.send_user_id == gifsendBarOneUid) && (self.giftSendBarOne != nil) && giftSendBarOne!.timer.isValid && (gifsendBarOneUid_giftid == giftShowInfoStructure.gift_uid) {
 			self.giftSendBarOne?.gifBig = (giftSendBarOne?.gifBig)! + Int64(giftShowInfoStructure.giftCounts);
 			if giftSendBarOne?.gifBig >= 11 && (giftSendBarOne?.gifBig)! - 10 > giftSendBarOne!.countAdd {
 				self.giftSendBarOne?.countAdd = (giftSendBarOne?.gifBig)! - 10
 			}
 			isExit = true
 		}
-		else if (giftShowInfoStructure.send_user_id == gifsendBarTWoUid) && (giftSendBarTwo != nil) && (giftSendBarTwo?.timer.valid)! && (gifsendBarTWoUid_giftid == giftShowInfoStructure.gift_uid)
+		else if (giftShowInfoStructure.send_user_id == gifsendBarTWoUid) && (giftSendBarTwo != nil) && (giftSendBarTwo?.timer.isValid)! && (gifsendBarTWoUid_giftid == giftShowInfoStructure.gift_uid)
 		{
 			self.giftSendBarTwo?.gifBig = (giftSendBarTwo?.gifBig)! + Int64(giftShowInfoStructure.giftCounts)
 			if giftSendBarTwo?.gifBig >= 11 && (giftSendBarTwo?.gifBig)! - 10 > giftSendBarTwo!.countAdd {
@@ -72,7 +110,7 @@ class GiftEffectVC: UIView {
 			}
 			isExit = true
 		}
-		else if (giftShowInfoStructure.send_user_id == gifsendBarThreeUid) && (giftSendBarThree != nil) && (giftSendBarThree?.timer.valid)! && gifsendBarThreeUid_giftid == giftShowInfoStructure.gift_uid {
+		else if (giftShowInfoStructure.send_user_id == gifsendBarThreeUid) && (giftSendBarThree != nil) && (giftSendBarThree?.timer.isValid)! && gifsendBarThreeUid_giftid == giftShowInfoStructure.gift_uid {
 			self.giftSendBarThree!.gifBig = giftSendBarThree!.gifBig + Int64(giftShowInfoStructure.giftCounts);
 			if giftSendBarThree!.gifBig >= 11 && giftSendBarThree!.gifBig - 10 > giftSendBarThree!.countAdd {
 				self.giftSendBarThree!.countAdd = giftSendBarThree!.gifBig - 10
@@ -85,13 +123,13 @@ class GiftEffectVC: UIView {
 		return isExit
 	}
 
-	func initGiftSendbarwithtag(tag: Int) {
+	func initGiftSendbarwithtag(_ tag: Int) {
 		// 初始化礼物赠送条
 		let giftShowInfoStructure = giftStructureArray[0];
-		giftStructureArray.removeAtIndex(0);
+		giftStructureArray.remove(at: 0);
 		var yPos: CGFloat = 0
 		yPos = ScreenHeight - 200 - 75 - 10
-		let giftsendbar = GiftSendBar(frame: CGRectMake(10 - ScreenWidth, yPos, ScreenWidth - 20, 75))
+		let giftsendbar = GiftSendBar(frame: CGRect(x: 10 - ScreenWidth, y: yPos, width: ScreenWidth - 20, height: 75))
 		if tag == 0 {
 			self.giftSendBarOne = giftsendbar
 			self.gifsendBarOneUid = giftShowInfoStructure.send_user_id
@@ -139,83 +177,83 @@ class GiftEffectVC: UIView {
 
 	func giftTimerStop() {
 		if giftSendTimer != nil {
-			if giftSendTimer!.valid {
+			if giftSendTimer!.isValid {
 				giftSendTimer!.invalidate()
 			}
 			giftSendTimer = nil
 		}
 	}
 
-	func giftSendbarAnimation(giftsendbar: GiftSendBar) {
+	func giftSendbarAnimation(_ giftsendbar: GiftSendBar) {
 		// UIView.animationsEnabled = true
-		UIView.animateWithDuration(0.7, animations: { () -> Void in
+		UIView.animate(withDuration: 0.7, animations: { () -> Void in
 			if self.giftStructureArray.count > 1 {
 				self.adjustGiftSendBar(giftsendbar)
 			}
 			}, completion: { _ in })
 	}
 
-	func adjustGiftSendBar(giftsendbar: GiftSendBar) {
+	func adjustGiftSendBar(_ giftsendbar: GiftSendBar) {
 		// 向上滚动坐标调整
 		let yPos: CGFloat = ScreenHeight - 200 - 75 - 10
 		if giftsendbar == giftSendBarTwo {
 			if (giftSendBarOne != nil) && giftSendBarOne?.frame.origin.y <= yPos && giftSendBarOne?.frame.origin.y > (yPos - 75 - 10) {
-				self.giftSendBarOne!.frame = CGRectMake(10, yPos - 75 - 10, ScreenWidth - 20, 75)
+				self.giftSendBarOne!.frame = CGRect(x: 10, y: yPos - 75 - 10, width: ScreenWidth - 20, height: 75)
 				if (giftSendBarThree != nil) && giftSendBarThree!.frame.origin.y <= (yPos - 75 - 10) && giftSendBarThree!.frame.origin.y > (yPos - 75 - 10 - 75 - 10) {
-					self.giftSendBarThree!.frame = CGRectMake(10, (yPos - 75 - 10) - 75 - 10, ScreenWidth - 20, 75)
+					self.giftSendBarThree!.frame = CGRect(x: 10, y: (yPos - 75 - 10) - 75 - 10, width: ScreenWidth - 20, height: 75)
 				}
 			}
 			else if (giftSendBarThree != nil) && giftSendBarThree!.frame.origin.y <= yPos && giftSendBarThree!.frame.origin.y > (yPos - 75 - 10) {
 				if yPos - 75 - 10 == giftSendBarTwo!.frame.origin.y {
 					return
 				}
-				self.giftSendBarThree!.frame = CGRectMake(10, yPos - 75 - 10, ScreenWidth - 20, 75)
+				self.giftSendBarThree!.frame = CGRect(x: 10, y: yPos - 75 - 10, width: ScreenWidth - 20, height: 75)
 			}
 		}
 		else if (giftsendbar == giftSendBarThree) {
 			if (giftSendBarTwo != nil) && yPos <= giftSendBarTwo!.frame.origin.y && giftSendBarTwo!.frame.origin.y > (yPos - 75 - 10) {
-				self.giftSendBarTwo!.frame = CGRectMake(10, yPos - 75 - 10, ScreenWidth - 20, 75)
+				self.giftSendBarTwo!.frame = CGRect(x: 10, y: yPos - 75 - 10, width: ScreenWidth - 20, height: 75)
 				if (giftSendBarOne != nil) && (yPos - 75 - 10) >= giftSendBarOne!.frame.origin.y && giftSendBarOne!.frame.origin.y > (yPos - 75 - 10 - 75 - 10) {
-					self.giftSendBarOne!.frame = CGRectMake(10, yPos - 75 - 10 - 75 - 10, ScreenWidth - 20, 75)
+					self.giftSendBarOne!.frame = CGRect(x: 10, y: yPos - 75 - 10 - 75 - 10, width: ScreenWidth - 20, height: 75)
 				}
 			}
 			else if (giftSendBarOne != nil) && yPos >= giftSendBarOne!.frame.origin.y && giftSendBarOne!.frame.origin.y > (yPos - 75 - 10) {
 				if yPos - 75 - 10 == giftSendBarThree!.frame.origin.y {
 					return
 				}
-				self.giftSendBarOne!.frame = CGRectMake(10, yPos - 75 - 10, ScreenWidth - 20, 75)
+				self.giftSendBarOne!.frame = CGRect(x: 10, y: yPos - 75 - 10, width: ScreenWidth - 20, height: 75)
 			}
 		}
 		else if giftsendbar == giftSendBarOne {
 			if (giftSendBarThree != nil) && giftSendBarThree!.frame.origin.y <= yPos && giftSendBarThree!.frame.origin.y > (yPos - 75 - 10) {
-				self.giftSendBarThree!.frame = CGRectMake(10, yPos - 75 - 10, ScreenWidth - 20, 75)
+				self.giftSendBarThree!.frame = CGRect(x: 10, y: yPos - 75 - 10, width: ScreenWidth - 20, height: 75)
 				if (giftSendBarTwo != nil) && (yPos - 75 - 10) >= giftSendBarThree!.frame.origin.y && giftSendBarThree!.frame.origin.y > (yPos - 75 - 10 - 75 - 10) {
-					self.giftSendBarTwo!.frame = CGRectMake(10, (yPos - 75 - 10) - 75 - 10, ScreenWidth - 20, 75)
+					self.giftSendBarTwo!.frame = CGRect(x: 10, y: (yPos - 75 - 10) - 75 - 10, width: ScreenWidth - 20, height: 75)
 				}
 			}
 			else if (giftSendBarTwo != nil) && giftSendBarTwo!.frame.origin.y <= yPos && giftSendBarTwo!.frame.origin.y > (yPos - 75 - 10) {
 				if yPos - 75 - 10 == giftSendBarOne!.frame.origin.y {
 					return
 				}
-				self.giftSendBarTwo!.frame = CGRectMake(10, yPos - 75 - 10, ScreenWidth - 20, 75);
+				self.giftSendBarTwo!.frame = CGRect(x: 10, y: yPos - 75 - 10, width: ScreenWidth - 20, height: 75);
 			}
 		}
 	}
 
-	func giftSendBarAppear(giftsendbar: GiftSendBar) {
+	func giftSendBarAppear(_ giftsendbar: GiftSendBar) {
 		// 出场动画
-		UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
+		UIView.animate(withDuration: 0.7, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions(), animations: { () -> Void in
 			self.adjustGiftSendBar(giftsendbar)
 			let yPos: CGFloat = ScreenHeight - 200 - 75 - 10
-			giftsendbar.frame = CGRectMake(10, yPos, ScreenWidth - 20, 75)
+			giftsendbar.frame = CGRect(x: 10, y: yPos, width: ScreenWidth - 20, height: 75)
 			}, completion: { (finished: Bool) -> Void in
-			self.performSelector(#selector(self.giftSendbarAnimation), withObject: giftsendbar, afterDelay: 1.5)
+			self.perform(#selector(self.giftSendbarAnimation), with: giftsendbar, afterDelay: 1.5)
 		})
 	}
 
-	func removesendGiftbar(notify: NSNotification) {
+	func removesendGiftbar(_ notify: Notification) {
 		// 通知动画播放结束，重置用户uid以及礼物id
-		var dict = notify.userInfo!
+		var dict = (notify as NSNotification).userInfo!
 		let gifesendBar = (dict["gifensendbar"] as! GiftSendBar)
 		if gifesendBar == giftSendBarOne {
 			self.giftSendBarOne = nil

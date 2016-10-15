@@ -10,37 +10,37 @@ import Foundation
 import SwiftyJSON
 
 enum icoLvType: Int {
-	case HostIcoLV;
-	case UserIcoLv;
-	case VipIcoLv;
+	case hostIcoLV;
+	case userIcoLv;
+	case vipIcoLv;
 }
 
-func lvIcoNameGet(ico: Int32, type: icoLvType) -> String
+func lvIcoNameGet(_ ico: Int32, type: icoLvType) -> String
 {
 	var resultStr: String = "";
 	switch type
 	{
-	case .HostIcoLV:
+	case .hostIcoLV:
 		resultStr = "hlvr\(ico)";
-	case .UserIcoLv:
+	case .userIcoLv:
 		resultStr = "rlv\(ico)";
-		case.VipIcoLv:
+		case.vipIcoLv:
 		resultStr = "vip\(ico)";
 	}
 	return resultStr;
 }
 
-func deserilObjectWithDictonary(json: NSDictionary, cls: AnyClass) -> AnyObject?
+func deserilObjectWithDictonary(_ json: NSDictionary, cls: AnyClass) -> AnyObject?
 {
 	let modelTool = DictModelManager.sharedManager
-	let model = modelTool.objectWithDictionary(json, cls: cls);
+	let model = modelTool.objectWithDictionary(json, cls);
 	return model;
 }
 
-func deserilObjectsWithArray(array: NSArray, cls: AnyClass) -> NSArray?
+func deserilObjectsWithArray(_ array: NSArray, cls: AnyClass) -> NSArray?
 {
 	let modelTool = DictModelManager.sharedManager
-	let arr = modelTool.objectsWithArray(array, cls: cls);
+	let arr = modelTool.objectsWithArray(array, cls);
 	return arr
 }
 
@@ -48,7 +48,7 @@ func deserilObjectsWithArray(array: NSArray, cls: AnyClass) -> NSArray?
 class DataCenterModel {
 
 	internal static let sharedInstance = DataCenterModel()
-	private init() { }
+	fileprivate init() { }
 	var isOneRoom: Bool = false;
 	// 主页数据；
 	var homeData: HomeData = HomeData();

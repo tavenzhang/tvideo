@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F75DBB3581EDF18967978CA /* Pods_TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED2259AFD5A6ECD075A324D /* Pods_TAmf3Socket.framework */; };
+		03B545F80E06F458EBB5E864 /* Pods_TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED2259AFD5A6ECD075A324D /* Pods_TAmf3Socket.framework */; };
+		DEB1AA1D1DB1B9AB0018AF45 /* Pods_TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB1AA1C1DB1B9AB0018AF45 /* Pods_TAmf3Socket.framework */; };
 		DEC943FE1D3F2E4A006884CF /* TAmf3Socket.h in Headers */ = {isa = PBXBuildFile; fileRef = DEC943FD1D3F2E4A006884CF /* TAmf3Socket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEC9441D1D3F2E77006884CF /* AMF.h in Headers */ = {isa = PBXBuildFile; fileRef = DEC944061D3F2E77006884CF /* AMF.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEC9441E1D3F2E77006884CF /* AMF.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC944071D3F2E77006884CF /* AMF.m */; };
@@ -39,12 +40,12 @@
 
 /* Begin PBXFileReference section */
 		0ED2259AFD5A6ECD075A324D /* Pods_TAmf3Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAmf3Socket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FB209D1306AA82B3B0B6FED /* Pods-TNetServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TNetServer.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TNetServer/Pods-TNetServer.release.xcconfig"; sourceTree = "<group>"; };
 		2DDF8576090D68167DDF858F /* Pods-TAmf3Socket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAmf3Socket.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TAmf3Socket/Pods-TAmf3Socket.release.xcconfig"; sourceTree = "<group>"; };
-		6C7DC808E122FD33625071B6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		78B4144D4AE72249E4B6D049 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		959C1B317EDE757BBD56E6EC /* Pods_TNetServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TNetServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		978BA21FFE052F93160F1A12 /* Pods-TNetServer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TNetServer.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TNetServer/Pods-TNetServer.debug.xcconfig"; sourceTree = "<group>"; };
+		DE37E6BD1DB15321005DC5AD /* Pods_TAmf3Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_TAmf3Socket.framework; path = "/Users/zhangxinhua/Desktop/video/webWork/tvideo/Pods/../build/Debug-iphoneos/Pods_TAmf3Socket.framework"; sourceTree = "<absolute>"; };
+		DE37E6BF1DB153A1005DC5AD /* BBSZLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BBSZLib.framework; path = "/Users/zhangxinhua/Desktop/video/webWork/tvideo/Pods/../build/Debug-iphoneos/BBSZLib/BBSZLib.framework"; sourceTree = "<absolute>"; };
+		DE37E6C01DB153A1005DC5AD /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "/Users/zhangxinhua/Desktop/video/webWork/tvideo/Pods/../build/Debug-iphoneos/CocoaAsyncSocket/CocoaAsyncSocket.framework"; sourceTree = "<absolute>"; };
+		DEB1AA1C1DB1B9AB0018AF45 /* Pods_TAmf3Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_TAmf3Socket.framework; path = "/Users/zhangxinhua/Desktop/video/webWork/tvideo副本 2/Pods/../build/Debug-iphoneos/Pods_TAmf3Socket.framework"; sourceTree = "<absolute>"; };
 		DEB6F0951D01331A00C7DD6C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEC943FB1D3F2E4A006884CF /* TAmf3Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TAmf3Socket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC943FD1D3F2E4A006884CF /* TAmf3Socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAmf3Socket.h; sourceTree = "<group>"; };
@@ -85,7 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F75DBB3581EDF18967978CA /* Pods_TAmf3Socket.framework in Frameworks */,
+				DEB1AA1D1DB1B9AB0018AF45 /* Pods_TAmf3Socket.framework in Frameworks */,
+				03B545F80E06F458EBB5E864 /* Pods_TAmf3Socket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +97,10 @@
 		59C5EB0320D43FD413DBC155 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEB1AA1C1DB1B9AB0018AF45 /* Pods_TAmf3Socket.framework */,
+				DE37E6BF1DB153A1005DC5AD /* BBSZLib.framework */,
+				DE37E6C01DB153A1005DC5AD /* CocoaAsyncSocket.framework */,
+				DE37E6BD1DB15321005DC5AD /* Pods_TAmf3Socket.framework */,
 				DEF4868F1D2F82ED00CE650E /* BBSZLib.framework */,
 				DEF486901D2F82ED00CE650E /* CocoaAsyncSocket.framework */,
 				DEB6F0951D01331A00C7DD6C /* Foundation.framework */,
@@ -107,10 +113,6 @@
 		753FA0C250B1EA4A4DA27394 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				78B4144D4AE72249E4B6D049 /* Pods.debug.xcconfig */,
-				6C7DC808E122FD33625071B6 /* Pods.release.xcconfig */,
-				978BA21FFE052F93160F1A12 /* Pods-TNetServer.debug.xcconfig */,
-				1FB209D1306AA82B3B0B6FED /* Pods-TNetServer.release.xcconfig */,
 				E2386F3D0459B957BE1AFEC1 /* Pods-TAmf3Socket.debug.xcconfig */,
 				2DDF8576090D68167DDF858F /* Pods-TAmf3Socket.release.xcconfig */,
 			);
@@ -239,12 +241,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DEC944021D3F2E4A006884CF /* Build configuration list for PBXNativeTarget "TAmf3Socket" */;
 			buildPhases = (
-				1B465F70F352F4B27E4D151D /* Check Pods Manifest.lock */,
+				1B465F70F352F4B27E4D151D /* [CP] Check Pods Manifest.lock */,
 				DEC943F61D3F2E4A006884CF /* Sources */,
 				DEC943F71D3F2E4A006884CF /* Frameworks */,
 				DEC943F81D3F2E4A006884CF /* Headers */,
 				DEC943F91D3F2E4A006884CF /* Resources */,
-				0A70326C9943311990B0DFED /* Copy Pods Resources */,
+				0A70326C9943311990B0DFED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,7 +268,9 @@
 				TargetAttributes = {
 					DEC943FA1D3F2E4A006884CF = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 23DN84VL44;
+						DevelopmentTeam = ZBE9R237M6;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -298,14 +302,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A70326C9943311990B0DFED /* Copy Pods Resources */ = {
+		0A70326C9943311990B0DFED /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,19 +317,19 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TAmf3Socket/Pods-TAmf3Socket-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1B465F70F352F4B27E4D151D /* Check Pods Manifest.lock */ = {
+		1B465F70F352F4B27E4D151D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -459,6 +463,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZBE9R237M6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -467,8 +472,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = taven.TAmf3Socket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "96c7ed66-197f-48dc-bb6e-5e3934ac9fb1";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -477,8 +484,9 @@
 			baseConfigurationReference = 2DDF8576090D68167DDF858F /* Pods-TAmf3Socket.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZBE9R237M6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -487,8 +495,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = taven.TAmf3Socket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "96c7ed66-197f-48dc-bb6e-5e3934ac9fb1";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

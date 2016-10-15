@@ -1918,6 +1918,7 @@
 				TargetAttributes = {
 					DEDF8C4B1D1A4D5F005A7AC4 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = ZBE9R237M6;
 					};
 				};
 			};
@@ -2060,6 +2061,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZBE9R237M6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2090,6 +2092,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 23DN84VL44;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

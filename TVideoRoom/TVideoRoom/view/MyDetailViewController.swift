@@ -12,7 +12,7 @@ import SnapKit
 class MyDetailViewController: BaseUIViewController {
 
 	lazy var infoView: InfoView = {
-		var info = InfoView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight));
+		var info = InfoView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight));
 		info.myVC = self;
 		return info;
 	}();
@@ -20,15 +20,15 @@ class MyDetailViewController: BaseUIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad();
-		self.view.backgroundColor = UIColor.whiteColor();
-		self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor();
+		self.view.backgroundColor = UIColor.white;
+		self.navigationController?.navigationBar.barTintColor = UIColor.white;
 		navigationItem.title = "个人信息";
 		self.view.addSubview(infoView);
 	
 	}
 
-	override func viewDidAppear(animated: Bool) {
-		self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor();
+	override func viewDidAppear(_ animated: Bool) {
+		self.navigationController?.navigationBar.barTintColor = UIColor.white;
 	}
 
 }

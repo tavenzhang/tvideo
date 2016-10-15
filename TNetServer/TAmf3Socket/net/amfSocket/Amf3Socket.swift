@@ -8,21 +8,21 @@
 
 import BBSZLib
 
-public class Amf3SocketManager: TSocketGCDServer {
+open class Amf3SocketManager: TSocketGCDServer {
 
 
 	/**
 	 解析消息头
 	 - parameter data: <#data description#>
 	 */
-	override public func readMsgHead(data: NSMutableData) -> Int {
+	override open func readMsgHead(_ data: NSMutableData) -> Int {
         let len = data.getShort(_isByteBigEndian)
 		return len ;
 	}
 
 	// 解析消息体
-	override public func readMsgBody(data: NSMutableData) -> Bool {
-		var objNSData: NSData?
+	override open func readMsgBody(_ data: NSMutableData) -> Bool {
+		var objNSData: Data?
 		do {
 			objNSData = try data.getBytesByLength(curMsgBodyLength).bbs_dataByInflating();
 		} catch {
@@ -30,10 +30,10 @@ public class Amf3SocketManager: TSocketGCDServer {
 			return false;
 		}
 		var amf3Unarchiver: AMFUnarchiver?;
-		if (objNSData!.length > 0)
+		if (objNSData!.count > 0)
 		{
 
-			amf3Unarchiver = AMFUnarchiver(forReadingWithData: objNSData, encoding: kAMF3Encoding);
+			amf3Unarchiver = AMFUnarchiver(forReadingWith: objNSData, encoding: kAMF3Encoding);
 			var obj: NSObject?;
 			if (amf3Unarchiver != nil)
 			{
@@ -42,7 +42,7 @@ public class Amf3SocketManager: TSocketGCDServer {
 
 			if self.onMsgResultHandle != nil && obj != nil
 			{
-				self.onMsgResultHandle!(mesage: obj!);
+				self.onMsgResultHandle!(obj!);
 			}
 		}
 		return true;
@@ -53,17 +53,17 @@ public class Amf3SocketManager: TSocketGCDServer {
 	 - author: taven
 	 - date: 16-07-13 14:07:48
 	 */
-	override public func sendMessage(msgData: AnyObject?) -> Void {
+	override open func sendMessage(_ msgData: AnyObject?) -> Void {
         
         let message = msgData as! S_msg_base;
         do {
             let amf3 = AMF3Archiver()
             let dic = message.toDictionary()
             TLog("send:--->%@", args: dic);
-            amf3.encodeObject(dic);
+            amf3.encode(dic);
             let amfData = try amf3.archiverData().bbs_dataByDeflating() as! NSMutableData;
             amfData.appendString("\r\n");
-            self.socket?.writeData(amfData, withTimeout: 1, tag: 1);
+            self.socket?.write(amfData as Data, withTimeout: 1, tag: 1);
         }
         catch {
             TLog("message send error!");
@@ -76,7 +76,7 @@ public class Amf3SocketManager: TSocketGCDServer {
 	 - author: taven
 	 - date: 16-07-13 13:07:32
 	 */
-	 override public func sendHeartMsg() -> Void {
+	 override open func sendHeartMsg() -> Void {
         
         super.sendHeartMsg();
         

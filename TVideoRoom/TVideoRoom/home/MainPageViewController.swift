@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 typealias loadDataFun = () -> Void;
 
 class MainPageViewController: UIViewController, UIScrollViewDelegate {
@@ -21,19 +20,19 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 	lazy var serachViewVC: UISearchViewController = {
 		LogHttp("create serachViewVC");
 		var svc = UISearchViewController() ;
-		svc.view.frame = UIScreen.mainScreen().bounds;
+		svc.view.frame = UIScreen.main.bounds;
 		return svc;
 	}();
 
 	func createView() {
-		let view = UIScrollView(frame: UIScreen.mainScreen().bounds)
-		view.contentSize = CGSizeMake(ScreenWidth * 3, 0);
-		view.backgroundColor = UIColor.whiteColor()
+		let view = UIScrollView(frame: UIScreen.main.bounds)
+		view.contentSize = CGSize(width: ScreenWidth * 3, height: 0);
+		view.backgroundColor = UIColor.white
 		// 去掉滚动条
 		view.showsVerticalScrollIndicator = false
 		view.showsHorizontalScrollIndicator = false
 		// 设置分页
-		view.pagingEnabled = true
+		view.isPagingEnabled = true
 		// 设置代理
 		view.delegate = self
 		// 去掉弹簧效果
@@ -42,21 +41,21 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 		// 添加子视图
 		hotliveVC = HotViewController();
 		hotliveVC?.loadFunHandl = loadDataEvent;
-		hotliveVC!.view.frame = UIScreen.mainScreen().bounds
+		hotliveVC!.view.frame = UIScreen.main.bounds
 		hotliveVC!.view.height = height;
 		self.addChildViewController(hotliveVC!);
 		view.addSubview(hotliveVC!.view)
 
 		homeVC = VideoListViewController();
 		homeVC?.loadFunHandl = loadDataEvent;
-		homeVC!.view.frame = UIScreen.mainScreen().bounds
+		homeVC!.view.frame = UIScreen.main.bounds
 		homeVC!.view.x = ScreenWidth;
 		homeVC!.view.height = height
 		self.addChildViewController(homeVC!)
 		view.addSubview(homeVC!.view);
 
 		careVC = VideoListViewController()
-		careVC!.view.frame = UIScreen.mainScreen().bounds;
+		careVC!.view.frame = UIScreen.main.bounds;
 		careVC!.view.x = ScreenWidth * 2;
 		careVC?.loadFunHandl = loadDataEvent;
 		self.addChildViewController(careVC!);
@@ -76,7 +75,7 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 		// Dispose of any resources that can be recreated.
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated);
 		if (self.menuBar == nil)
 		{
@@ -85,8 +84,8 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 	}
 
 	func setup() {
-		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: r_home_btnSrarch)!, style: .Done, target: self, action: #selector(self.searchHostVideo));
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: r_home_btnRank)!, style: .Done, target: self, action: #selector(self.rankCrown));
+		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: r_home_btnSrarch)!, style: .done, target: self, action: #selector(self.searchHostVideo));
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: r_home_btnRank)!, style: .done, target: self, action: #selector(self.rankCrown));
 		self.setupTopMenu();
 	}
 
@@ -108,8 +107,8 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 			return;
 		}
 		isRequestIng = true;
-		let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-		dispatch_async(queue) {
+		let queue = DispatchQueue.global(qos: .default);
+		queue.async {
 			LogHttp("open---getData");
 			HttpTavenService.requestJson(getWWWHttp(HTTP_HOME_LIST)) {
 				(dataResutl: HttpResult) in
@@ -127,9 +126,9 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 
 					if ((genData) != nil)
 					{
-						homeData.totalList = deserilObjectsWithArray(genData!, cls: Activity.classForCoder()) as? [Activity];
-						homeData.totalList = homeData.totalList?.sort({ Int($0.total!) > Int($1.total!) });
-						homeData.homeList = homeData.totalList?.sort({ Int($0.live_status!) > Int($1.live_status!) });
+						homeData.totalList = deserilObjectsWithArray(genData! as NSArray, cls: Activity.classForCoder()) as? [Activity];
+						homeData.totalList = homeData.totalList?.sorted(by: { Int($0.total!) > Int($1.total!) });
+						homeData.homeList = homeData.totalList?.sorted(by: { Int($0.live_status!) > Int($1.live_status!) });
 						// 大厅在线主播
 						homeData.hotList = homeData.homeList?.filter({ (item: Activity) -> Bool in
 							return item.live_status != 0;
@@ -141,7 +140,7 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 					}
 				}
 
-				dispatch_async(dispatch_get_main_queue()) {
+				DispatchQueue.main.async {
 					let homeData = DataCenterModel.sharedInstance.homeData;
 					self.hotliveVC?.loadDataFinished(homeData.hotList!);
 					self.careVC?.loadDataFinished(homeData.oneByOneList!);
@@ -159,12 +158,12 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 		menuBar!.width = ScreenWidth - 45 * 2;
 
 		menuBar!.selectedBlock = { (type: Int) -> Void in
-			self.scrollView!.setContentOffset(CGPointMake(CGFloat(type) * ScreenWidth, 0), animated: true)
+			self.scrollView!.setContentOffset(CGPoint(x: CGFloat(type) * ScreenWidth, y: 0), animated: true)
 		}
 		self.navigationController!.navigationBar.addSubview(self.menuBar!)
 	}
 
-	func scrollViewDidScroll(scrollView: UIScrollView) {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		let page: CGFloat = scrollView.contentOffset.x / ScreenWidth
 		if ((self.menuBar) != nil)
 		{

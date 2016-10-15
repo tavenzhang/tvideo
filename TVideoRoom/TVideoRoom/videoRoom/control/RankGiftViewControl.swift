@@ -7,7 +7,7 @@ class RankGiftViewControl: UITableViewController {
 	var dataList: [RankGiftModel]? = [];
 
 	override func viewDidLoad() {
-		self.tableView.separatorStyle = .None;
+		self.tableView.separatorStyle = .none;
 		addNotifycation();
 		self.tableView.rowHeight = self.view.width / 10;
 		self.tableView.backgroundColor = ROOM_SCROOL_BG_COLOR;
@@ -15,18 +15,18 @@ class RankGiftViewControl: UITableViewController {
 	}
 
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self);
+		NotificationCenter.default.removeObserver(self);
 	}
 
 	func addNotifycation() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updataListView), name: RANK_GIft_UPTA, object: nil);
+		NotificationCenter.default.addObserver(self, selector: #selector(self.updataListView), name: NSNotification.Name(rawValue: RANK_GIft_UPTA), object: nil);
 		self.tableView.reloadData();
 	}
 
-	func updataListView(notice: NSNotification) -> Void {
+	func updataListView(_ notice: Notification) -> Void {
 		dataList = notice.object as? [RankGiftModel];
-		dataList = dataList?.sort({ $0.score?.intValue > $1.score?.intValue })
-		for (index, item) in (dataList?.enumerate())!
+		dataList = dataList?.sorted(by: { ($0.score?.int32Value)! > ($1.score?.int32Value)! })
+		for (index, item) in (dataList?.enumerated())!
 		{
 			let indexT = index + 1;
 			item.rankStr = indexT > 9 ? indexT.description : "0\(indexT)";
@@ -34,15 +34,15 @@ class RankGiftViewControl: UITableViewController {
 		self.tableView.reloadData();
 	}
 
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
 		return (dataList?.count)!;
 	}
 
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = RankGiftCell.cellFormTablView(tableView, indexPath) ;
-		cell.dataModel = dataList?[indexPath.row];
+		cell.dataModel = dataList?[(indexPath as NSIndexPath).row];
 
 		return cell;
 	}

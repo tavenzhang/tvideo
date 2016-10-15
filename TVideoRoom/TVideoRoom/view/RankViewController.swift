@@ -16,7 +16,7 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 
 	var dataList = [rankInfoModel]();
 	var userDataList = [rankInfoModel]();
-	var segmentedClick: ((index: Int) -> Void)?;
+	var segmentedClick: ((_ index: Int) -> Void)?;
 	var segmentVC: TSegmentedControl?;
 	var curTableStyle: RankType = .rankDay;
 	var tableView: UITableView = UITableView();
@@ -24,22 +24,22 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 	var useRankDic = [RankType: [rankInfoModel]]() ;
 
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self);
+		NotificationCenter.default.removeObserver(self);
 		segmentedClick = nil;
 	}
 
 	override func viewDidLoad() {
 		self.view.backgroundColor = ROOM_SCROOL_BG_COLOR;
-		self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor();
+		self.navigationController?.navigationBar.barTintColor = UIColor.white;
 		navigationItem.title = "排行榜";
-		self.tableView.separatorStyle = .None;
+		self.tableView.separatorStyle = .none;
 		self.view.addSubview(tableView);
 		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
 		self.tableView.rowHeight = self.view.width / 9;
-		self.tableView.backgroundColor = UIColor.clearColor();
+		self.tableView.backgroundColor = UIColor.clear;
 		self.tableView.allowsSelection = false;
-		segmentVC = TSegmentedControl(items: ["日榜", "周榜", "月榜", "总榜"], didSelectedIndex: { [weak self](index) -> () in
+		segmentVC = TSegmentedControl(items: ["日榜" as AnyObject, "周榜" as AnyObject, "月榜" as AnyObject, "总榜" as AnyObject], didSelectedIndex: { [weak self](index) -> () in
 			switch index {
 			case 0:
 				self?.curTableStyle = .rankDay;
@@ -56,17 +56,17 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 		})
 
 		self.view.addSubview(segmentVC!);
-		segmentVC?.snp_makeConstraints(closure: { (make) in
+		segmentVC?.snp_makeConstraints{ (make) in
 			make.top.equalTo(self.view.snp_top).offset(5);
 			make.width.equalTo(self.view.width * 3 / 4);
 			make.centerX.equalTo(0);
-		})
+		}
 		self.tableView.snp_makeConstraints { (make) in
 			make.width.equalTo(self.view.snp_width);
 			make.top.equalTo((segmentVC?.snp_bottom)!).offset(5);
 			make.bottom.equalTo(self.view.snp_bottom);
 		}
-		self.view.bringSubviewToFront(self.loadProgressAnimationView);
+		self.view.bringSubview(toFront: self.loadProgressAnimationView);
 		self.loadProgressAnimationView.startLoadProgressAnimation();
 		HttpTavenService.requestJson(getWWWHttp(HTTP_RANK_DATA)) { [weak self](dataResult) in
 			self?.loadProgressAnimationView.endLoadProgressAnimation();
@@ -85,45 +85,45 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 		}
 	}
 
-	func flushListView(dataModelArr: [rankInfoModel], _ uDataList: [rankInfoModel]) {
+	func flushListView(_ dataModelArr: [rankInfoModel], _ uDataList: [rankInfoModel]) {
 		dataList = dataModelArr;
 		userDataList = uDataList;
-		for (index, item) in (dataList.enumerate()) {
+		for (index, item) in (dataList.enumerated()) {
 			item.rankId = Int(index) + 1;
 			item.isHost = true;
 		}
-		for (index, item) in (userDataList.enumerate()) {
+		for (index, item) in (userDataList.enumerated()) {
 			item.rankId = Int(index) + 1;
 			item.isHost = false;
 		}
 		self.tableView.reloadData();
 	}
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
 		return section == 0 ? (dataList.count) : (userDataList.count);
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = RankViewCell.cellFormTablView(tableView, indexPath) ;
-		if (indexPath.section == 0)
+		if ((indexPath as NSIndexPath).section == 0)
 		{
-			cell.dataModel = (dataList[indexPath.row]);
+			cell.dataModel = (dataList[(indexPath as NSIndexPath).row]);
 		}
 		else {
-			cell.dataModel = (userDataList[indexPath.row]);
+			cell.dataModel = (userDataList[(indexPath as NSIndexPath).row]);
 		}
 
 		return cell;
 	}
 
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int // Default is 1 if not implemente
+	func numberOfSections(in tableView: UITableView) -> Int // Default is 1 if not implemente
 	{
 		return 2;
 	}
 
-	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if (section == 0)
 		{
 			return "主播排行"

@@ -9,7 +9,7 @@
 import UIKit;
 import SnapKit;
 
-typealias SendMessageBlock = (msg: String) -> Void
+typealias SendMessageBlock = (_ msg: String) -> Void
 typealias ChatGiftBlock = () -> Void
 
 enum KeyBoardType: Int {
@@ -36,7 +36,7 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 	var sendBlock: SendMessageBlock?;
 
 	var isShowFace = false
-	var nsBund: NSBundle!
+	var nsBund: Bundle!
 
 	var keyBoardNeedLayout = true
 
@@ -49,7 +49,7 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 	override func viewDidLoad() {
 		self.view.autoresizesSubviews = false
 		initView();
-		self.view.backgroundColor = UIColor.whiteColor();
+		self.view.backgroundColor = UIColor.white;
 	}
 	deinit {
 		chatGiftBlock = nil;
@@ -62,7 +62,7 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		self.bottomView = UIView();
 		self.view.addSubview(bottomView!);
 		self.bottomView!.layer.borderWidth = 1;
-		self.bottomView!.layer.borderColor = UIColor.grayColor().CGColor;
+		self.bottomView!.layer.borderColor = UIColor.gray.cgColor;
 		bottomView?.snp_makeConstraints { (make) in
 			// make.width.equalTo(self.view.snp_width).offset(2);
 			make.height.equalTo(45);
@@ -73,13 +73,13 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		self.tableView = UITableView();
 		self.tableView?.delegate = self;
 		self.tableView?.dataSource = self;
-		self.tableView!.separatorStyle = .None
-		self.tableView!.backgroundColor = UIColor.grayColor();
+		self.tableView!.separatorStyle = .none
+		self.tableView!.backgroundColor = UIColor.gray;
 		self.view.addSubview(tableView!);
 		self.tableView!.showsVerticalScrollIndicator = false
 		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.cancelFocus))
 		self.tableView!.addGestureRecognizer(tapGesture);
-		self.tableView!.backgroundColor = UIColor.clearColor();
+		self.tableView!.backgroundColor = UIColor.clear;
 		self.view.addSubview(self.tableView!);
 		self.tableView!.snp_makeConstraints { (make) in
 			make.width.equalTo(self.view.width);
@@ -88,46 +88,46 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		}
 
 		let giftImage = UIImage.resizableImageWithName("giftBtnNew");
-		btnGift = UIButton.BtnSimple("", titleColor: UIColor.clearColor(), image: giftImage, hightLightImage: giftImage, target: self, action: #selector(self.giftClick));
+		btnGift = UIButton.BtnSimple("", titleColor: UIColor.clear, image: giftImage, hightLightImage: giftImage, target: self, action: #selector(self.giftClick));
 
 		self.btnGift?.scale(2, ySclae: 2);
 		self.bottomView!.addSubview(btnGift!);
-		self.btnGift?.snp_makeConstraints(closure: { (make) in
+		self.btnGift?.snp_makeConstraints({ (make) in
 			make.right.equalTo(self.bottomView!.snp_right).offset(-10);
 			make.centerY.equalTo(self.bottomView!);
 		})
 		let faceImage = UIImage(named: "facebtn");
-		btnFace = UIButton.BtnSimple("", titleColor: UIColor.clearColor(), image: faceImage, hightLightImage: faceImage, target: self, action: #selector(self.emtionClick));
+		btnFace = UIButton.BtnSimple("", titleColor: UIColor.clear, image: faceImage, hightLightImage: faceImage, target: self, action: #selector(self.emtionClick));
 		self.bottomView!.addSubview(btnFace!);
 		// 强制先渲染一下
 		self.view.layoutIfNeeded()
-		btnFace?.snp_makeConstraints(closure: { (make) in
+		btnFace?.snp_makeConstraints({ (make) in
 			make.left.equalTo(self.bottomView!.snp_left).offset(10);
 			make.centerY.equalTo(self.bottomView!);
 		})
 
 		self.textField = UITextField();
-		self.textField?.returnKeyType = .Send;
+		self.textField?.returnKeyType = .send;
 		self.textField!.delegate = self;
 		self.bottomView!.addSubview(textField!);
 		self.textField?.text = "";
 		self.textField?.placeholder = " 在这里互动吧！"
 		self.textField?.layer.cornerRadius = 5;
 		self.textField?.layer.borderWidth = 1;
-		self.textField?.layer.borderColor = UIColor.grayColor().CGColor;
-		self.textField?.layer.masksToBounds;
+		self.textField?.layer.borderColor = UIColor.gray.cgColor;
+		self.textField?.layer.masksToBounds = true;
 
 		self.bottomView!.addSubview(faceTield);
 		self.bottomView!.addSubview(textField!);
-		faceTield.hidden = true;
-		textField?.snp_makeConstraints(closure: { (make) in
+		faceTield.isHidden = true;
+		textField?.snp.makeConstraints { (make) in
 			make.left.equalTo((btnFace?.snp_right)!).offset(12);
 			make.centerY.equalTo(0);
 			make.right.equalTo((btnGift?.snp_left)!).offset(-20);
 			make.height.equalTo(30);
-		})
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil);
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil);
+		}
+		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil);
+		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil);
 
 	}
 
@@ -138,28 +138,28 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		}
 	}
 
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil);
+		NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil);
 	}
 
 	// 接收 消息格式
 
-	func receiveMessage(msg: ChatMessage) {
+	func receiveMessage(_ msg: ChatMessage) {
 		messages.append(msg)
 		tableView!.reloadData()
 		self.tableViewScrollToBottom()
 	}
 
 	// 发送消息
-	func sendMessage(text: String) {
+	func sendMessage(_ text: String) {
 
-		let textNew = text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet());
+		let textNew = text.trimmingCharacters(in: CharacterSet.whitespaces);
 		if textNew.characters.count == 0 {
 			return
 		}
 		if sendBlock != nil {
-			sendBlock!(msg: textNew);
+			sendBlock!(textNew);
 		}
 		else {
 			let chatMessage = ChatMessage()
@@ -188,10 +188,10 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 	/**滚动table 到底部*/
 	func tableViewScrollToBottom() {
 		let numberOfSections = tableView!.numberOfSections
-		let numberOfRows = tableView!.numberOfRowsInSection(numberOfSections - 1)
+		let numberOfRows = tableView!.numberOfRows(inSection: numberOfSections - 1)
 		if numberOfRows > 0 {
-			let indexPath = NSIndexPath(forRow: numberOfRows - 1, inSection: (numberOfSections - 1))
-			tableView!.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+			let indexPath = IndexPath(row: numberOfRows - 1, section: (numberOfSections - 1))
+			tableView!.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: true)
 		}
 	}
 
@@ -206,7 +206,7 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 				weak var this = self
 				self.faceView = YYFaceScrollView(selectBlock: { (faceName: String) -> Void in
 					let text = this!.textField!.text
-					let appendText = text!.stringByAppendingString(faceName)
+					let appendText = text! + faceName
 					this?.textField!.text = appendText
 				})
 				self.faceView?.backgroundColor = UIColor.colorWithCustom(220, g: 220, b: 220, a: 1) ;
@@ -225,18 +225,18 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 		}
 	}
 
-	func textFieldDidBeginEditing(textField: UITextField) // became first responder
+	func textFieldDidBeginEditing(_ textField: UITextField) // became first responder
 	{
 		curKeyBordType = .txtBoard;
 	}
 	// MARK: - UITextFieldDelegate 关闭键盘;
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		self.sendMessage(textField.text!)
 		return true
 	}
 
 	// MARK: - Notification event
-	func keyboardWillShow(notification: NSNotification) {
+	func keyboardWillShow(_ notification: Notification) {
 
 		if (curKeyBordType == .txtBoard)
 		{
@@ -261,36 +261,36 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 //						})
 //					}
 //			}
-			UIView.animateWithDuration(0.5, animations: {
-				self.view.frame = CGRectMake(0, -258, self.view.bounds.width, self.view.bounds.height)
+			UIView.animate(withDuration: 0.5, animations: {
+				self.view.frame = CGRect(x: 0, y: -258, width: self.view.bounds.width, height: self.view.bounds.height)
 				self.keyBoardNeedLayout = false
 				self.view.layoutIfNeeded()
 			});
 		}
 		else {
-			UIView.animateWithDuration(0.5, animations: {
-				self.view.frame = CGRectMake(0, -185, self.view.bounds.width, self.view.bounds.height)
+			UIView.animate(withDuration: 0.5, animations: {
+				self.view.frame = CGRect(x: 0, y: -185, width: self.view.bounds.width, height: self.view.bounds.height)
 				self.keyBoardNeedLayout = false
 				self.view.layoutIfNeeded()
 			})
 		}
 	}
 	// 键盘闭合
-	func keyboardWillHide(notification: NSNotification) {
-		if let userInfo = notification.userInfo,
-			value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
-			duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-			curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+	func keyboardWillHide(_ notification: Notification) {
+		if let userInfo = (notification as NSNotification).userInfo,
+			let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+			let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+			let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
 
-				let frame = value.CGRectValue()
-				let intersection = CGRectIntersection(frame, self.view.frame)
+				let frame = value.cgRectValue
+				let intersection = frame.intersection(self.view.frame)
 
-				let deltaY = CGRectGetHeight(intersection)
+				let deltaY = intersection.height
 
-				UIView.animateWithDuration(duration, delay: 0.0,
+				UIView.animate(withDuration: duration, delay: 0.0,
 					options: UIViewAnimationOptions(rawValue: curve),
 					animations: { _ in
-						self.view.frame = CGRectMake(0, deltaY, self.view.bounds.width, self.view.bounds.height)
+						self.view.frame = CGRect(x: 0, y: deltaY, width: self.view.bounds.width, height: self.view.bounds.height)
 						self.keyBoardNeedLayout = true
 						self.view.layoutIfNeeded()
 					}, completion: nil);
@@ -302,19 +302,19 @@ extension TChatViewControl: UITableViewDataSource, UITableViewDelegate
 {
 
 	// MARK: - UITableViewDataSource
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		LogHttp("message counet=%d", args: [messages.count])
 		return messages.count
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = ChatCell.cellWithTableView(tableView)
-		cell.message = messages[indexPath.row]
+		cell.message = messages[(indexPath as NSIndexPath).row]
 		return cell
 	}
 
-	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		let message = messages[indexPath.row]
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		let message = messages[(indexPath as NSIndexPath).row]
 		return ChatCell.heightOfCellWithMessage(message)
 	}
 }

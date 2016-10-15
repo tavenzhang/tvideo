@@ -9,7 +9,7 @@
 #import "UIViewController+SLExtension.h"
 #import "UIImageView+Extension.h"
 #import <objc/message.h>
-#import <Masonry/Masonry.h>
+#import <objc/message.h>
 
 static const void *GifKey = &GifKey;
 @implementation UIViewController (SLExtension)
@@ -34,11 +34,7 @@ static const void *GifKey = &GifKey;
         view = self.view;
     }
     [view addSubview:gifView];
-    [gifView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(@0);
-        make.width.equalTo(@60);
-        make.height.equalTo(@70);
-    }];
+    gifView.frame = CGRectMake(self.view.center.x, self.view.center.y, 60, 70);
     self.gifView = gifView;
     [gifView playGifAnim:images];
     

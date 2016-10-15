@@ -15,14 +15,14 @@ class FreshHot: NSObject, DictModelProtocol {
     var msg: String?
     var data: [Goods]?
     
-    class func loadFreshHotData(completion:(data: FreshHot?, error: NSError?) -> Void) {
-        let path = NSBundle.mainBundle().pathForResource("首页新鲜热卖", ofType: nil)
-        let data = NSData(contentsOfFile: path!)
+    class func loadFreshHotData(_ completion:(_ data: FreshHot?, _ error: NSError?) -> Void) {
+        let path = Bundle.main.path(forResource: "首页新鲜热卖", ofType: nil)
+        let data = try? Data(contentsOf: URL(fileURLWithPath: path!))
         if data != nil {
-            let dict: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)) as! NSDictionary
+            let dict: NSDictionary = (try! JSONSerialization.jsonObject(with: data!, options: .allowFragments)) as! NSDictionary
             let modelTool = DictModelManager.sharedManager
-            let data = modelTool.objectWithDictionary(dict, cls: FreshHot.self) as? FreshHot
-            completion(data: data, error: nil)
+            let data = modelTool.objectWithDictionary(dict, FreshHot.self) as? FreshHot
+            completion(data, nil)
         }
     }
     

@@ -20,7 +20,7 @@ class MenuBarView: UIView {
 	// 延迟初始化
 	lazy var underLine: UIView = {
         let underLineView = UIView(frame: CGRect(x: 15.0, y: self.height - 4, width: Home_Seleted_Item_W + DefaultMargin, height: 2.0));
-		underLineView.backgroundColor = UIColor.whiteColor();
+		underLineView.backgroundColor = UIColor.white;
 		self.addSubview(underLineView)
 		return underLineView
 	}()
@@ -63,27 +63,27 @@ class MenuBarView: UIView {
 		self.click(hotBtn);
 	}
 
-	override class func layerClass() -> AnyClass {
-		return super.layerClass()
+	override class var layerClass : AnyClass {
+		return super.layerClass
 	}
 
-	func createBtn(title: String, tag: Int) -> UIButton {
+	func createBtn(_ title: String, tag: Int) -> UIButton {
 		let btn = UIButton()
-		btn.titleLabel!.font = UIFont.systemFontOfSize(17)
-		btn.setTitle(title, forState: .Normal)
-		btn.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.6), forState: .Normal)
-		btn.setTitleColor(UIColor.whiteColor(), forState: .Selected)
+		btn.titleLabel!.font = UIFont.systemFont(ofSize: 17)
+		btn.setTitle(title, for: UIControlState())
+		btn.setTitleColor(UIColor.white.withAlphaComponent(0.6), for: UIControlState())
+		btn.setTitleColor(UIColor.white, for: .selected)
 		btn.tag = tag;
-		btn.addTarget(self, action: #selector(self.click), forControlEvents: .TouchUpInside)
+		btn.addTarget(self, action: #selector(self.click), for: .touchUpInside)
 		return btn
 	}
 
 	// 点击事件
-	func click(btn: UIButton) {
-		self.selectedBtn?.selected = false
-		btn.selected = true
+	func click(_ btn: UIButton) {
+		self.selectedBtn?.isSelected = false
+		btn.isSelected = true
 		self.selectedBtn = btn
-        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             () -> Void in
             self.underLine.x = CGFloat(btn.x - DefaultMargin * 0.5);
             }, completion: nil)
@@ -93,17 +93,17 @@ class MenuBarView: UIView {
 //		})
 
 		if (self.selectedBlock != nil) {
-			self.selectedBlock!(tag: btn.tag)
+			self.selectedBlock!(btn.tag)
 		}
 	}
 
-	func setSelectedType(selectedType: Int) {
+	func setSelectedType(_ selectedType: Int) {
 		_selectedType = selectedType
-		self.selectedBtn?.selected = false
+		self.selectedBtn?.isSelected = false
 		for view: UIView in self.subviews {
 			if (view is UIButton) && view.tag == selectedType {
 				self.selectedBtn = (view as! UIButton)
-				(view as! UIButton).selected = true
+				(view as! UIButton).isSelected = true
 			}
 		}
 	}

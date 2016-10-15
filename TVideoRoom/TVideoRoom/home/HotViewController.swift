@@ -5,17 +5,35 @@
 //  Created by 张新华 on 16/10/3.
 //  Copyright © 2016年 张新华. All rights reserved.
 //
-
 import UIKit
 import TAmf3Socket
 import TRtmpPlay
 import SwiftyJSON
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l < r
+	case (nil, _?):
+		return true
+	default:
+		return false
+	}
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l > r
+	default:
+		return rhs < lhs
+	}
+}
 
 class HotViewController: BaseUIViewController {
 
-	private var flag: Int = -1
-	private var collectionView: LFBCollectionView!
-	private var lastContentOffsetY: CGFloat = 0;
+	fileprivate var flag: Int = -1
+	fileprivate var collectionView: LFBCollectionView!
+	fileprivate var lastContentOffsetY: CGFloat = 0;
 
 	// 热播列表
 	var hotList: [Activity]?;
@@ -30,15 +48,15 @@ class HotViewController: BaseUIViewController {
 	}
 
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self);
+		NotificationCenter.default.removeObserver(self);
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated);
 		headRefresh();
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated);
 		Flurry.logEvent("enter home");
 	}
@@ -87,9 +105,9 @@ class HotViewController: BaseUIViewController {
 	}
 
 	// 数据加载完成刷新
-	func loadDataFinished(dataList: [Activity]) -> Void {
+	func loadDataFinished(_ dataList: [Activity]) -> Void {
 		self.collectionView.mj_header.endRefreshing();
-		self.collectionView.hidden = false;
+		self.collectionView.isHidden = false;
 		self.loadProgressAnimationView.endLoadProgressAnimation();
 		hotList = dataList;
 		self.collectionView.reloadData();
@@ -101,26 +119,26 @@ class HotViewController: BaseUIViewController {
 		layout.minimumInteritemSpacing = 5
 		layout.minimumLineSpacing = 8
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-		layout.headerReferenceSize = CGSizeMake(0, 22);
-		collectionView = LFBCollectionView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64), collectionViewLayout: layout)
+		layout.headerReferenceSize = CGSize(width: 0, height: 22);
+		collectionView = LFBCollectionView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - 64), collectionViewLayout: layout)
 		collectionView.delegate = self
 		collectionView.dataSource = self
 		collectionView.backgroundColor = LFBGlobalBackgroundColor
-		collectionView.registerNib(UINib(nibName: "HotLiveCell", bundle: nil), forCellWithReuseIdentifier: "Cell");
-		collectionView.registerClass(AdBannerView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "adHeaderView")
+		collectionView.register(UINib(nibName: "HotLiveCell", bundle: nil), forCellWithReuseIdentifier: "Cell");
+		collectionView.register(AdBannerView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "adHeaderView")
 		view.addSubview(collectionView)
 		let refreshHeadView = LFBRefreshHeader(refreshingTarget: self, refreshingAction: #selector(VideoListViewController.headRefresh));
 		collectionView.mj_header = refreshHeadView;
 		let refreshFootView = LFBRefreshFooter(refreshingTarget: self, refreshingAction: #selector(VideoListViewController.headRefresh));
 		collectionView.mj_footer = refreshFootView;
 		self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0);
-		collectionView.hidden = true;
+		collectionView.isHidden = true;
 	}
 
 }
 // MARK:- HomeHeadViewDelegate TableHeadViewAction
 extension HotViewController: HomeTableHeadViewDelegate {
-	func tableHeadView(headView: AdBannerView, focusImageViewClick index: Int) {
+	func tableHeadView(_ headView: AdBannerView, focusImageViewClick index: Int) {
 		if adList?.count > 0 {
 			// let path = NSBundle.mainBundle().pathForResource("FocusURL", ofType: "plist")
 			// let array = NSArray(contentsOfFile: path!)
@@ -129,7 +147,7 @@ extension HotViewController: HomeTableHeadViewDelegate {
 		}
 	}
 
-	func tableHeadView(headView: AdBannerView, iconClick index: Int) {
+	func tableHeadView(_ headView: AdBannerView, iconClick index: Int) {
 		// if adList?.icons?.count > 0 {
 		// let webVC = WebViewController(navigationTitle: headData!.data!.icons![index].username!, urlStr: headData!.data!.icons![index].customURL!)
 		// navigationController?.pushViewController(webVC, animated: true)
@@ -139,7 +157,7 @@ extension HotViewController: HomeTableHeadViewDelegate {
 
 extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		if (hotList != nil)
 		{
 			return (hotList?.count)! ;
@@ -147,43 +165,43 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
 		return 0;
 	}
 
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! HotLiveCell
-		cell.hotData = hotList?[indexPath.row];
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HotLiveCell
+		cell.hotData = hotList?[(indexPath as NSIndexPath).row];
 		return cell
 	}
 
-	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
 
 		return 1
 	}
 	// 设置item 宽
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let w = ScreenWidth;
 		let h = (320 / ScreenWidth) * 400
-		let itemSize = CGSizeMake(w, h);
+		let itemSize = CGSize(width: w, height: h);
 
 		return itemSize
 	}
 
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 		if section == 0 {
-			return CGSizeMake(AdBannerView.bannerFrame.width, AdBannerView.bannerFrame.height);
+			return CGSize(width: AdBannerView.bannerFrame.width, height: AdBannerView.bannerFrame.height);
 		}
-		return CGSizeZero
+		return CGSize.zero
 	}
 
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
 
-		return CGSizeZero
+		return CGSize.zero
 	}
 
-	func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		var headView: AdBannerView?;
 		if kind == UICollectionElementKindSectionHeader {
-			if (indexPath.section == 0)
+			if ((indexPath as NSIndexPath).section == 0)
 			{
-				headView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "adHeaderView", forIndexPath: indexPath) as? AdBannerView
+				headView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "adHeaderView", for: indexPath) as? AdBannerView
 				headView!.data = adList;
 				headView!.delegate = self;
 				return headView!;
@@ -192,9 +210,9 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
 		return headView!;
 	}
 
-	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		var itemAcive: Activity;
-		itemAcive = (hotList?[indexPath.row])!;
+		itemAcive = (hotList?[(indexPath as NSIndexPath).row])!;
 		let roomId = itemAcive.uid as! Int;
 		let roomview = VideoRoomUIViewVC();
 		roomview.roomId = roomId;

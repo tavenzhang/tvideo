@@ -10,13 +10,13 @@ import UIKit
 
 class GiftChooseCell: UITableViewCell {
 
-	class func cellFormTablView(tableView: UITableView, _ indexPath: NSIndexPath) -> GiftChooseCell {
+	class func cellFormTablView(_ tableView: UITableView, _ indexPath: IndexPath) -> GiftChooseCell {
 
-		var cell = tableView.dequeueReusableCellWithIdentifier("cell") as? GiftChooseCell ;
+		var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? GiftChooseCell ;
 		if (cell == nil)
 		{
-			tableView.registerClass(RankGiftCell.self, forCellReuseIdentifier: "cell");
-			cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? GiftChooseCell ;
+			tableView.register(RankGiftCell.self, forCellReuseIdentifier: "cell");
+			cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? GiftChooseCell ;
 		}
 		return cell!;
 
@@ -24,8 +24,8 @@ class GiftChooseCell: UITableViewCell {
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier);
-		self.backgroundColor = UIColor.clearColor();
-		self.accessoryType = .None;
+		self.backgroundColor = UIColor.clear;
+		self.accessoryType = .none;
 		self.addSubview(txtLable);
 		self.txtLable.snp_makeConstraints { (make) in
 			make.left.equalTo(self.snp_left).offset(20);
@@ -37,21 +37,21 @@ class GiftChooseCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	override func setSelected(selected: Bool, animated: Bool) {
+	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 
 		// Configure the view for the selected state
 	}
 
-	var txtLable: UILabel = UILabel.lableSimple("title", corlor: UIColor.blackColor(), size: 14, align: NSTextAlignment.Center) ;
+	var txtLable: UILabel = UILabel.lableSimple("title", corlor: UIColor.black, size: 14, align: NSTextAlignment.center) ;
 
 	var dataModel: GiftChooseModel? {
 
 		didSet {
-			let attrDic = [NSForegroundColorAttributeName: UIColor.purpleColor()];
+			let attrDic = [NSForegroundColorAttributeName: UIColor.purple];
 			let numStr = NSMutableAttributedString(string: "\(dataModel!.data)个   ", attributes: attrDic);
 			let lbStr = NSAttributedString(string: dataModel!.label);
-			numStr.appendAttributedString(lbStr);
+			numStr.append(lbStr);
 			txtLable.attributedText = numStr;
 		}
 	}

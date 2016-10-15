@@ -12,10 +12,10 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 
 	var dataActives: [Activity] = [];
 	weak var parentNVC: UINavigationController?;
-	private var flag: Int = -1
-	private var collectionView: LFBCollectionView!;
-	private var lastContentOffsetY: CGFloat = 0
-	private var isAnimation: Bool = false;
+	fileprivate var flag: Int = -1
+	fileprivate var collectionView: LFBCollectionView!;
+	fileprivate var lastContentOffsetY: CGFloat = 0
+	fileprivate var isAnimation: Bool = false;
 	var resultSrarchController = UISearchController(searchResultsController: nil);
 
 	override func viewDidLoad() {
@@ -27,15 +27,15 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 		resultSrarchController.hidesNavigationBarDuringPresentation = false;
 		resultSrarchController.dimsBackgroundDuringPresentation = false;
 
-		resultSrarchController.searchBar.searchBarStyle = .Default;
+		resultSrarchController.searchBar.searchBarStyle = .default;
 		resultSrarchController.searchBar.placeholder = "请输入主播名字"
-		self.view.backgroundColor = UIColor.whiteColor();
+		self.view.backgroundColor = UIColor.white;
 		self.definesPresentationContext = true;
 		buildCollectionView();
 		// Do any additional setup after loading the view.
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated);
 		resultSrarchController.searchBar.text = "";
 		dataActives.removeAll();
@@ -52,8 +52,8 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 	/**
      设置状态栏风格
      */
-	override func preferredStatusBarStyle() -> UIStatusBarStyle {
-		return UIStatusBarStyle.LightContent;
+	override var preferredStatusBarStyle : UIStatusBarStyle {
+		return UIStatusBarStyle.lightContent;
 	}
 
 	// 建立集合
@@ -62,17 +62,17 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 		layout.minimumInteritemSpacing = 5
 		layout.minimumLineSpacing = 8
 		layout.sectionInset = UIEdgeInsets(top: 0, left: HomeCollectionViewCellMargin, bottom: 0, right: HomeCollectionViewCellMargin)
-		layout.headerReferenceSize = CGSizeMake(0, 22);
-		collectionView = LFBCollectionView(frame: CGRectMake(0, resultSrarchController.searchBar.height, ScreenWidth, ScreenHeight - resultSrarchController.searchBar.height), collectionViewLayout: layout)
+		layout.headerReferenceSize = CGSize(width: 0, height: 22);
+		collectionView = LFBCollectionView(frame: CGRect(x: 0, y: resultSrarchController.searchBar.height, width: ScreenWidth, height: ScreenHeight - resultSrarchController.searchBar.height), collectionViewLayout: layout)
 		collectionView.delegate = self
 		collectionView.dataSource = self
 		collectionView.backgroundColor = LFBGlobalBackgroundColor
-		collectionView.registerClass(HomeCell.self, forCellWithReuseIdentifier: "Cell");
+		collectionView.register(HomeCell.self, forCellWithReuseIdentifier: "Cell");
 		view.addSubview(collectionView)
 		self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
 	}
 
-	func updateSearchResultsForSearchController(searchController: UISearchController) {
+	func updateSearchResults(for searchController: UISearchController) {
 
 		dataActives.removeAll();
 		let homeData = DataCenterModel.sharedInstance.homeData;
@@ -82,7 +82,7 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 		{
 			for item in homeData.totalList!
 			{
-				if item.username!.containsString(keyText!) {
+				if item.username!.contains(keyText!) {
 					dataActives.append(item);
 				}
 			}
@@ -90,12 +90,12 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 		collectionView.reloadData();
 	}
 
-	func searchBarCancelButtonClicked(searchBar: UISearchBar) // called when
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) // called when
 	{
 		self.view.removeFromSuperview();
 	}
 
-	func willDismissSearchController(searchController: UISearchController)
+	func willDismissSearchController(_ searchController: UISearchController)
 	{
 		self.view.removeFromSuperview();
 	}
@@ -104,39 +104,39 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 
 extension UISearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return (dataActives.count);
 	}
 
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! HomeCell
-		cell.activities = dataActives[indexPath.row];
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HomeCell
+		cell.activities = dataActives[(indexPath as NSIndexPath).row];
 		return cell
 	}
 
-	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
 	}
 
 	// 设置item 宽
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-		var itemSize = CGSizeZero;
-		itemSize = CGSizeMake((ScreenWidth - HomeCollectionViewCellMargin * 2) * 0.5 - 4, 130)
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		var itemSize = CGSize.zero;
+		itemSize = CGSize(width: (ScreenWidth - HomeCollectionViewCellMargin * 2) * 0.5 - 4, height: 130)
 		return itemSize
 	}
 
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 
-		return CGSizeZero
+		return CGSize.zero
 	}
 
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-		return CGSizeZero
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+		return CGSize.zero
 	}
 
-	func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 
-		if indexPath.section == 0 && (indexPath.row == 0 || indexPath.row == 1) {
+		if (indexPath as NSIndexPath).section == 0 && ((indexPath as NSIndexPath).row == 0 || (indexPath as NSIndexPath).row == 1) {
 			return
 		}
 
@@ -145,31 +145,31 @@ extension UISearchViewController: UICollectionViewDelegate, UICollectionViewData
 		}
 	}
 
-	private func startAnimation(view: UIView, offsetY: CGFloat, duration: NSTimeInterval) {
+	fileprivate func startAnimation(_ view: UIView, offsetY: CGFloat, duration: TimeInterval) {
 
-		view.transform = CGAffineTransformMakeTranslation(0, offsetY);
-		UIView.animateWithDuration(duration, animations: { () -> Void in
-			view.transform = CGAffineTransformIdentity
+		view.transform = CGAffineTransform(translationX: 0, y: offsetY);
+		UIView.animate(withDuration: duration, animations: { () -> Void in
+			view.transform = CGAffineTransform.identity
 		})
 	}
 
-	func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
+	func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
 		if dataActives.count > 0 && isAnimation {
 			startAnimation(view, offsetY: 60, duration: 0.2)
 		}
 	}
 	// TODO MARK: 查看更多商品被点击
 	// MARK: - ScrollViewDelegate
-	func scrollViewDidScroll(scrollView: UIScrollView) {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if scrollView.contentOffset.y <= scrollView.contentSize.height {
 			isAnimation = lastContentOffsetY < scrollView.contentOffset.y
 			lastContentOffsetY = scrollView.contentOffset.y;
 		}
 	}
 
-	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		var itemAcive: Activity;
-		itemAcive = dataActives[indexPath.row];
+		itemAcive = dataActives[(indexPath as NSIndexPath).row];
 		let roomId = itemAcive.uid as! Int;
 		let roomview: VideoRoomUIViewVC = VideoRoomUIViewVC();
 		roomview.roomId = roomId;

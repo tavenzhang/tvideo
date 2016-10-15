@@ -46,25 +46,28 @@ class InfoView: UIView {
 		imgHead.scale(scaleNum, ySclae: scaleNum);
 		reyBtn.scale(scaleNum, ySclae: scaleNum);
 		logBtn.scale(scaleNum, ySclae: scaleNum);
-		img.snp_makeConstraints { (make) in
+        
+		img.snp.makeConstraints { (make) in
 			make.width.equalTo(self.width);
 			let h = (self.width / 720) * 267;
 			make.height.equalTo(h);
 		}
-		imgHead.snp_makeConstraints { (make) in
-			make.center.equalTo(img).offset(CGPoint(x: 0, y: -20));
+        self.layoutIfNeeded();
+		imgHead.snp.makeConstraints { (make) in
+            make.centerX.equalTo(img.snp.centerX);
+            make.centerY.equalTo(img.snp.centerY).offset(-20);
 		}
-		reyBtn.snp_makeConstraints { (make) in
-			make.right.equalTo(imgHead.snp_left).offset(2);
-			make.top.equalTo(imgHead.snp_bottom).offset(23);
+		reyBtn.snp.makeConstraints { (make) in
+			make.right.equalTo(imgHead.snp.left).offset(2);
+			make.top.equalTo(imgHead.snp.bottom).offset(23);
 		}
-		logBtn.snp_makeConstraints { (make) in
-			make.left.equalTo(imgHead.snp_right).offset(-2);
-			make.top.equalTo(imgHead.snp_bottom).offset(23);
+		logBtn.snp.makeConstraints { (make) in
+			make.left.equalTo(imgHead.snp.right).offset(-2);
+			make.top.equalTo(imgHead.snp.bottom).offset(23);
 		}
 
 		txtName = UILabel();
-		txtName?.textAlignment = NSTextAlignment.Left;
+		txtName?.textAlignment = NSTextAlignment.left;
 		self.addSubview(txtName!);
 
 		txtId = crateUILable(self);
@@ -110,11 +113,11 @@ class InfoView: UIView {
 		updateMyInfo(defaultInfo);
 	}
 
-	func crateUILable(container: UIView?) -> UILabel {
+	func crateUILable(_ container: UIView?) -> UILabel {
 		let lb: UILabel = UILabel();
 		lb.font = UIFont(name: "Arial", size: 12);
 		lb.adjustsFontSizeToFitWidth = true;
-		lb.textAlignment = NSTextAlignment.Left;
+		lb.textAlignment = NSTextAlignment.left;
 		let color = UIColor.colorWithCustom(100, g: 100, b: 100);
 		lb.textColor = color;
 		if (container != nil)
@@ -124,7 +127,7 @@ class InfoView: UIView {
 		return lb;
 	}
 
-	func updateMyInfo(info: MyInfo) {
+	func updateMyInfo(_ info: MyInfo) {
 		txtName?.text = info.niceName!;
 		txtId?.text = "ID:\(info.userId!)";
 		txtArea?.text = "地区:\(info.area!)"
@@ -146,9 +149,9 @@ class InfoView: UIView {
 		}
 	}
 
-	func validLogin(name: String, pwd: String) -> Void {
+	func validLogin(_ name: String, pwd: String) -> Void {
 		let passStr = encodeStr(pwd);
-		let paraList = ["uname": name, "password": passStr, "sCode": "", "v_remember": 0];
+		let paraList = ["uname": name, "password": passStr, "sCode": "", "v_remember": 0] as [String: Any];
 		HttpTavenService.requestJson(getWWWHttp(HTTP_LOGIN), isGet: false, para: paraList as? [String: AnyObject]) { (httpResult) in
 			if (httpResult.isSuccess)
 			{
@@ -177,30 +180,30 @@ class InfoView: UIView {
 		}
 	}
 
-	func dec2hex(num: Int) -> String {
+	func dec2hex(_ num: Int) -> String {
 		return String(format: "%0X", num)
 	}
 
-	func encodeStr(str: String) -> String {
+	func encodeStr(_ str: String) -> String {
 		var es = [String]();
 		var s = str.characters.map { String($0) }
 		let lenth = s.count;
 		for i in 0 ..< lenth
 		{
 			let c = s[i];
-			var ec = c.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet());
+			var ec = c.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed);
 			if (c == ec)
 			{
-				let ucodeNum = (c as NSString).characterAtIndex(0)
+				let ucodeNum = (c as NSString).character(at: 0)
 				let st = "00" + dec2hex(Int(ucodeNum));
-				ec = st.substring(-2, st.characters.count);
+				ec = st.substring(st.characters.count, -2);
 			}
 			es.append(ec!);
 		}
-		let resutStr = es.joinWithSeparator("");
-		let regular = try! NSRegularExpression(pattern: "/%/g", options: .CaseInsensitive)
+		let resutStr = es.joined(separator: "");
+		let regular = try! NSRegularExpression(pattern: "/%/g", options: .caseInsensitive)
 		let nsNew = NSMutableString(string: resutStr);
-		regular.replaceMatchesInString(nsNew, options: .ReportProgress, range: NSMakeRange(0, resutStr.characters.count), withTemplate: "");
+		regular.replaceMatches(in: nsNew, options: .reportProgress, range: NSMakeRange(0, resutStr.characters.count), withTemplate: "");
 		return nsNew as String;
 
 	}

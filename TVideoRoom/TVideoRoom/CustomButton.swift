@@ -16,11 +16,11 @@ class UpImageDownTextButton: UIButton {
         super.layoutSubviews()
         
         titleLabel?.sizeToFit()
-        titleLabel?.frame = CGRectMake(0, height - 15, width, (titleLabel?.height)!)
-        titleLabel?.textAlignment = .Center
+        titleLabel?.frame = CGRect(x: 0, y: height - 15, width: width, height: (titleLabel?.height)!)
+        titleLabel?.textAlignment = .center
         
-        imageView?.frame = CGRectMake(0, 0, width, height - 15)
-        imageView?.contentMode = UIViewContentMode.Center
+        imageView?.frame = CGRect(x: 0, y: 0, width: width, height: height - 15)
+        imageView?.contentMode = UIViewContentMode.center
     }
     
 }
@@ -32,11 +32,11 @@ class ItemLeftButton: UIButton {
         let Offset: CGFloat = 15
         
         titleLabel?.sizeToFit()
-        titleLabel?.frame = CGRectMake(-Offset, height - 15, width - Offset, (titleLabel?.height)!)
-        titleLabel?.textAlignment = .Center
+        titleLabel?.frame = CGRect(x: -Offset, y: height - 15, width: width - Offset, height: (titleLabel?.height)!)
+        titleLabel?.textAlignment = .center
         
-        imageView?.frame = CGRectMake(-Offset, 0, width - Offset, height - 15)
-        imageView?.contentMode = UIViewContentMode.Center
+        imageView?.frame = CGRect(x: -Offset, y: 0, width: width - Offset, height: height - 15)
+        imageView?.contentMode = UIViewContentMode.center
     }
 }
 
@@ -48,11 +48,11 @@ class ItemRightButton: UIButton {
         let Offset: CGFloat = 15
         
         titleLabel?.sizeToFit()
-        titleLabel?.frame = CGRectMake(Offset, height - 15, width + Offset, (titleLabel?.height)!)
-        titleLabel?.textAlignment = .Center
+        titleLabel?.frame = CGRect(x: Offset, y: height - 15, width: width + Offset, height: (titleLabel?.height)!)
+        titleLabel?.textAlignment = .center
         
-        imageView?.frame = CGRectMake(Offset, 0, width + Offset, height - 15)
-        imageView?.contentMode = UIViewContentMode.Center
+        imageView?.frame = CGRect(x: Offset, y: 0, width: width + Offset, height: height - 15)
+        imageView?.contentMode = UIViewContentMode.center
     }
 }
 

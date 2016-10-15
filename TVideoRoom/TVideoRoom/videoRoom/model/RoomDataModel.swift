@@ -30,18 +30,18 @@ class RoomData: NSObject {
 	var playerList = [playInfoModel]();
 
 	// 调整用户主播列表数据
-	func changPlayerList(newList: [playInfoModel], isDelete: Bool = false) -> Void {
+	func changPlayerList(_ newList: [playInfoModel], isDelete: Bool = false) -> Void {
 
 		for item in newList {
 			var isNew: Bool = true;
 			for oldItem in playerList
 			{
-				if (item.uid?.intValue == oldItem.uid?.intValue)
+				if (item.uid?.int32Value == oldItem.uid?.int32Value)
 				{
 					isNew = false;
 					if (isDelete)
 					{
-						playerList.removeAtIndex(playerList.indexOf(oldItem)!);
+						playerList.remove(at: playerList.index(of: oldItem)!);
 					}
 					break;
 				}

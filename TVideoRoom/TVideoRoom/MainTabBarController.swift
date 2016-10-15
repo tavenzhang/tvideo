@@ -9,8 +9,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
-	private var fristLoadMainTabBarController: Bool = true
-	private var adImageView: UIImageView?
+	fileprivate var fristLoadMainTabBarController: Bool = true
+	fileprivate var adImageView: UIImageView?
 	var adImage: UIImage? {
 		didSet {
 			weak var tmpSelf = self
@@ -18,13 +18,13 @@ class MainTabBarController: UITabBarController {
 			adImageView!.image = adImage!
 			self.view.addSubview(adImageView!)
 
-			UIImageView.animateWithDuration(3, animations: { () -> Void in
-				tmpSelf!.adImageView!.transform = CGAffineTransformMakeScale(1.2, 1.2)
+			UIImageView.animate(withDuration: 3, animations: { () -> Void in
+				tmpSelf!.adImageView!.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
 				tmpSelf!.adImageView!.alpha = 0
-			}) { (finsch) -> Void in
+			}, completion: { (finsch) -> Void in
 				tmpSelf!.adImageView!.removeFromSuperview()
 				tmpSelf!.adImageView = nil
-			}
+			}) 
 		}
 	}
 
@@ -41,15 +41,15 @@ class MainTabBarController: UITabBarController {
 		self.delegate = self;
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated);
 	}
 
-	func getView(name: String) -> UIViewController {
-		return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(name);
+	func getView(_ name: String) -> UIViewController {
+		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name);
 	}
 
-	private func buildMainTabBarChildViewController() {
+	fileprivate func buildMainTabBarChildViewController() {
 		let manView = MainPageViewController();
 		tabBarControllerAddChildViewController(manView, title: "大厅", imageName: r_tabBtn_home, selectedImageName: r_tabBtn_home_r, tag: 0)
 		tabBarControllerAddChildViewController(RankViewController(), title: "排行", imageName: r_tabBtn_rank, selectedImageName: r_tabBtn_rank_r, tag: 1)
@@ -57,7 +57,7 @@ class MainTabBarController: UITabBarController {
 		tabBarControllerAddChildViewController(MyDetailViewController(), title: "我", imageName: r_btn_me, selectedImageName: r_btn_me_r, tag: 3);
 	}
 
-	private func tabBarControllerAddChildViewController(childVC: UIViewController, title: String, imageName: String, selectedImageName: String, tag: Int) {
+	fileprivate func tabBarControllerAddChildViewController(_ childVC: UIViewController, title: String, imageName: String, selectedImageName: String, tag: Int) {
 		let vcItem = UITabBarItem(title: title, image: UIImage(named: imageName), selectedImage: UIImage(named: selectedImageName))
 		vcItem.tag = tag
 		// vcItem.animation = RAMBounceAnimation()
@@ -69,7 +69,7 @@ class MainTabBarController: UITabBarController {
 
 }
 extension MainTabBarController: UITabBarControllerDelegate {
-	func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+	func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
 	}
 

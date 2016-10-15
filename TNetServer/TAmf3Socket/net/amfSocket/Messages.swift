@@ -8,16 +8,16 @@
 
 import Foundation
 
-func getKeysArray(anyClass:AnyClass)->[String]
+func getKeysArray(_ anyClass:AnyClass)->[String]
 {
     var count: UInt32 = 0
     var keyArr=[String]();
     let properties = class_copyPropertyList(anyClass, &count)
     for i in 0..<count {
-        let property = properties[Int(i)]
+        let property = properties?[Int(i)]
         // 属性名称
         let cname = property_getName(property)
-        let name = String.fromCString(cname)!
+        let name = String(cString: cname!)
         keyArr.append(name);
     }
     free(properties)
@@ -25,27 +25,27 @@ func getKeysArray(anyClass:AnyClass)->[String]
 }
 
 
-public class R_msg_base:NSObject {
+open class R_msg_base:NSObject {
     
-   public var cmd:Int=0;
+   open var cmd:Int=0;
     
 }
 
 
-public class S_msg_base:NSObject {
-   public  var cmd:Int=0;
+open class S_msg_base:NSObject {
+   open  var cmd:Int=0;
    public init(_cmd:Int) {
         cmd = _cmd;
     }
     
- public  func toDictionary() ->  NSDictionary {
+ open  func toDictionary() ->  NSDictionary {
         // 拷贝属性列表 用于转化成 dictionary
         var keyArr = getKeysArray(self.classForCoder);
-        if keyArr.indexOf("cmd") == nil
+        if keyArr.index(of: "cmd") == nil
         {
             keyArr.append("cmd");
         }
-        return self.dictionaryWithValuesForKeys(keyArr);
+        return self.dictionaryWithValues(forKeys: keyArr) as NSDictionary;
     }
 }
 

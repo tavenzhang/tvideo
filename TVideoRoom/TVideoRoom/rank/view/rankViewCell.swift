@@ -3,12 +3,12 @@
 
 class RankViewCell: UITableViewCell {
 
-	class func cellFormTablView(tableView: UITableView, _ indexPath: NSIndexPath) -> RankViewCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier("cell") as? RankViewCell ;
+	class func cellFormTablView(_ tableView: UITableView, _ indexPath: IndexPath) -> RankViewCell {
+		var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? RankViewCell ;
 		if (cell == nil)
 		{
-			tableView.registerClass(RankViewCell.self, forCellReuseIdentifier: "cell");
-			cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? RankViewCell ;
+			tableView.register(RankViewCell.self, forCellReuseIdentifier: "cell");
+			cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? RankViewCell ;
 		}
 		return cell!;
 
@@ -21,71 +21,71 @@ class RankViewCell: UITableViewCell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier);
 
-		self.backgroundColor = UIColor.clearColor();
-		self.accessoryType = .None;
+		self.backgroundColor = UIColor.clear;
+		self.accessoryType = .none;
 		self.addSubview(lbRank);
 		self.addSubview(lvImageView)
 		self.addSubview(txtName);
 		self.addSubview(imgHeadView);
-		self.lbRank.snp_makeConstraints { (make) in
+		self.lbRank.snp.makeConstraints { (make) in
 			make.centerY.equalTo(0);
-			make.left.equalTo(self.snp_left).offset(30);
+			make.left.equalTo(self.snp.left).offset(30);
 		}
-		self.txtName.snp_makeConstraints { (make) in
+		self.txtName.snp.makeConstraints { (make) in
 			make.centerY.equalTo(0);
 			make.left.equalTo(self.width / 2 - 20);
 		}
 
-		self.lvImageView.snp_makeConstraints { (make) in
+		self.lvImageView.snp.makeConstraints { (make) in
 			make.centerY.equalTo(0);
-			make.right.equalTo(self.snp_right).offset(-30);
+			make.right.equalTo(self.snp.right).offset(-30);
 		}
-		imgHeadView.snp_makeConstraints { (make) in
-			make.right.equalTo(self.txtName.snp_left).offset(-10);
+		imgHeadView.snp.makeConstraints { (make) in
+			make.right.equalTo(self.txtName.snp.left).offset(-10);
 			make.width.height.equalTo(40);
 		}
 	}
 
-	lazy var lbRank = UILabel.lableSimple("", corlor: UIColor.purpleColor(), size: 14);
+	lazy var lbRank = UILabel.lableSimple("", corlor: UIColor.purple, size: 14);
 
-	lazy var txtName: UILabel = self.createLB("天下第一天下第一", corlor: UIColor.blackColor());
+	lazy var txtName: UILabel = self.createLB("天下第一天下第一", corlor: UIColor.black);
 
 	lazy var lvImageView = UIImageView();
 	var imgHeadView = UIImageView();
 
-	func createLB(title: String, corlor: UIColor) -> UILabel {
+	func createLB(_ title: String, corlor: UIColor) -> UILabel {
 		let lb = UILabel();
 		lb.textColor = corlor;
 		lb.text = title;
-		lb.font = UIFont.boldSystemFontOfSize(14);
-		lb.textAlignment = NSTextAlignment.Left;
+		lb.font = UIFont.boldSystemFont(ofSize: 14);
+		lb.textAlignment = NSTextAlignment.left;
 		lb.adjustsFontSizeToFitWidth = false;
 		return lb;
 	}
 
 	var dataModel: rankInfoModel? {
 		didSet {
-			lbRank.text = dataModel?.rankId <= 9 ? "0\(dataModel!.rankId)" : "\(dataModel!.rankId )";
-			if (dataModel?.rankId > 3)
+			lbRank.text = (dataModel?.rankId)! <= 9 ? "0\(dataModel!.rankId)" : "\(dataModel!.rankId )";
+			if ((dataModel?.rankId)! > 3)
 			{
-				lbRank.textColor = UIColor.grayColor();
+				lbRank.textColor = UIColor.gray;
 			}
 			else {
-				lbRank.textColor = UIColor.purpleColor();
+				lbRank.textColor = UIColor.purple;
 			}
 			txtName.text = dataModel?.username;
-			let imageUrl = NSString(format: HTTP_SMALL_IMAGE, dataModel!.headimg!) as String;
-			self.imgHeadView.sd_setImageWithURL(NSURL(string: imageUrl), placeholderImage: UIImage(named: "v2_placeholder_full_size"));
+			let imageUrl = NSString(format: HTTP_SMALL_IMAGE as NSString, dataModel!.headimg!) as String;
+			self.imgHeadView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "v2_placeholder_full_size"));
 			self.imgHeadView.layer.cornerRadius = 20;
 			self.imgHeadView.layer.masksToBounds = true;
 			if (dataModel!.isHost)
 			{
-				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.lv_exp?.intValue)!, type: .HostIcoLV))
+				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.lv_exp?.int32Value)!, type: .hostIcoLV))
 				lvImageView.scale(2, ySclae: 2)
 			}
 			else {
-				txtName.textColor = UIColor.blackColor();
-				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.lv_rich!.intValue)!, type: .UserIcoLv))
+				txtName.textColor = UIColor.black;
+				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.lv_rich!.int32Value)!, type: .userIcoLv))
 				lvImageView.scale(1.5, ySclae: 1.5)
 			}
 

@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-typealias tabClickBlock = (tag: Int) -> Void;
+typealias tabClickBlock = (_ tag: Int) -> Void;
 
 class TabBarMenu: UIView {
 
@@ -40,27 +40,27 @@ class TabBarMenu: UIView {
 	}
 
 	/// 注册点击回调
-	func regClickHandle(blcok: tabClickBlock)
+	func regClickHandle(_ blcok: @escaping tabClickBlock)
 	{
 		selectedBlock = blcok;
 	}
 
-	func creatBtnByList(btnNameList: [String], txtSize: CGFloat, color: UIColor, underLinColor: UIColor = UIColor.purpleColor()) {
+	func creatBtnByList(_ btnNameList: [String], txtSize: CGFloat, color: UIColor, underLinColor: UIColor = UIColor.purple) {
 		// self.backgroundColor = UIColor.redColor();
 		btnList.removeAll();
 		let count: CGFloat = CGFloat(btnNameList.count);
 		itemSize = self.width / count;
-		for (index, title) in btnNameList.enumerate()
+		for (index, title) in btnNameList.enumerated()
 		{
 			let btn = createBtn(title, tag: index, size: txtSize, color: color);
-			btn.frame = CGRectMake(CGFloat(index) * itemSize, 0, itemSize, self.height);
+			btn.frame = CGRect(x: CGFloat(index) * itemSize, y: 0, width: itemSize, height: self.height);
 			// btn.centenY = 0;
 			btnList.append(btn);
 			self.addSubview(btn);
 
 		}
 		underLine = UIView(frame: CGRect(x: 15.0, y: self.height - 4, width: itemSize / 2, height: 2.0));
-		underLine!.backgroundColor = UIColor.purpleColor();
+		underLine!.backgroundColor = UIColor.purple;
 		self.addSubview(underLine!);
 		if (btnList.count > 0)
 		{
@@ -69,32 +69,32 @@ class TabBarMenu: UIView {
 		self.layoutIfNeeded();
 	}
 
-	func createBtn(title: String, tag: Int, size: CGFloat = 14, color: UIColor? = UIColor.brownColor()) -> UIButton {
+	func createBtn(_ title: String, tag: Int, size: CGFloat = 14, color: UIColor? = UIColor.brown) -> UIButton {
 		let btn = UIButton()
 		// let fsize:CGFloat = size as! CGFloat
-		btn.titleLabel!.font = UIFont.systemFontOfSize(size);
-		btn.setTitle(title, forState: .Normal)
-		btn.setTitleColor(color?.colorWithAlphaComponent(0.6), forState: .Selected)
-		btn.setTitleColor(color, forState: .Normal)
+		btn.titleLabel!.font = UIFont.systemFont(ofSize: size);
+		btn.setTitle(title, for: UIControlState())
+		btn.setTitleColor(color?.withAlphaComponent(0.6), for: .selected)
+		btn.setTitleColor(color, for: UIControlState())
 		btn.tag = tag;
-		btn.addTarget(self, action: #selector(self.click), forControlEvents: .TouchUpInside)
+		btn.addTarget(self, action: #selector(self.click), for: .touchUpInside)
 		return btn
 	}
 
 // 点击事件
-	func click(btn: UIButton) {
-		self.selectedBtn?.selected = false
-		btn.selected = true
+	func click(_ btn: UIButton) {
+		self.selectedBtn?.isSelected = false
+		btn.isSelected = true
 		self.selectedBtn = btn
 		isBtnClickAnimation = true;
 		moveBtn(btn);
 		if (self.selectedBlock != nil) {
-			self.selectedBlock!(tag: btn.tag);
+			self.selectedBlock!(btn.tag);
 		}
 	}
 
-	func moveBtn(btn: UIButton) {
-		UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+	func moveBtn(_ btn: UIButton) {
+		UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
 			() -> Void in
 			self.underLine!.x = CGFloat(btn.tag) * (self.itemSize) + self.itemSize / 4;
 			}, completion: {
@@ -104,18 +104,18 @@ class TabBarMenu: UIView {
 		);
 	}
 
-	func setSelectedType(selectedType: Int) {
+	func setSelectedType(_ selectedType: Int) {
 		_selectedType = selectedType
-		self.selectedBtn?.selected = false
+		self.selectedBtn?.isSelected = false
 		for view: UIView in self.subviews {
 			if (view is UIButton) && view.tag == selectedType {
 				self.selectedBtn = (view as! UIButton)
-				(view as! UIButton).selected = true;
+				(view as! UIButton).isSelected = true;
 			}
 		}
 	}
 
-	func movebtnByTag(selectedType: Int) {
+	func movebtnByTag(_ selectedType: Int) {
 		for btn in btnList
 		{
 			if (btn.tag == selectedType)

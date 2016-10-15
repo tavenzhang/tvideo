@@ -9,27 +9,26 @@
 import UIKit
 import TRtmpPlay
 
-
 class UIVideoPlayControl: UIViewController {
 
-	private var vc: KxMovieViewController?;
+	fileprivate var vc: KxMovieViewController?;
 	var lastRtmpUrl: String = "";
 
 	override func viewDidLoad() {
 		super.viewDidLoad();
 		addNSNotification();
 		initView();
-		self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.9);
+		self.view.backgroundColor = UIColor.black.withAlphaComponent(0.9);
 	}
 
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self);
+		NotificationCenter.default.removeObserver(self);
 		vc?.close();
 		vc = nil;
 	}
 
 	func addNSNotification() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.rtmpStartPlay), name: RTMP_START_PLAY, object: nil);
+		NotificationCenter.default.addObserver(self, selector: #selector(self.rtmpStartPlay), name: NSNotification.Name(rawValue: RTMP_START_PLAY), object: nil);
 	}
 
 	func initView() {
@@ -37,7 +36,7 @@ class UIVideoPlayControl: UIViewController {
 	}
 
 	// 测试rtmp 播放
-	func rtmpStartPlay(notification: NSNotification) {
+	func rtmpStartPlay(_ notification: Notification) {
 		// [-] 正常播放模式 式正常播放模式 30043581144191618|15526D99B51B7DAA0CF99539B82F013B rtmp://119.63.47.233:9945/proxypublish
 		let roomData = DataCenterModel.sharedInstance.roomData;
 		roomData.lastRtmpUrl = notification.object as! String;
@@ -49,16 +48,17 @@ class UIVideoPlayControl: UIViewController {
 			// vc?.view.removeGestureRecognizer(ges!);
 			vc = nil;
 		}
-		if (lastRtmpUrl.containsString("rtmp"))
+		if (lastRtmpUrl.contains("rtmp"))
 		{
 			print("rtmp filepath=\(lastRtmpUrl)");
-			let parametersD = NSMutableDictionary();
+			var parametersD = [AnyHashable: Any]();
 			parametersD[KxMovieParameterMinBufferedDuration] = 2;
 			parametersD[KxMovieParameterMaxBufferedDuration] = 10;
-			vc = KxMovieViewController.movieViewControllerWithContentPath(lastRtmpUrl, parameters: parametersD as [NSObject: AnyObject]) as? KxMovieViewController ;
-			vc!.view.frame = CGRectMake(0, 0, self.view.width, self.view.height);
+			// KxMovieViewController.movieViewController(withContentPath: <#T##String!#>, parameters: [AnyHashable: Any]!)
+			vc = KxMovieViewController.movieViewController(withContentPath: lastRtmpUrl, parameters: parametersD) as! KxMovieViewController?;
+			vc!.view.frame = CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height);
 			self.view.addSubview(vc!.view);
-			self.view.bringSubviewToFront(vc!.view);
+			self.view.bringSubview(toFront: vc!.view);
 			// self.view.bringSubviewToFront(backBtn);
 			// vc!.view.addGestureRecognizer(ges!);
 		}
@@ -68,31 +68,31 @@ class UIVideoPlayControl: UIViewController {
 	}
 
 	// 切换线路
-	func showChangSheetView(tag: Int)
+	func showChangSheetView(_ tag: Int)
 	{
-		let alert = UIAlertController(title: "视频卡顿 请换线试试", message: nil, preferredStyle: .ActionSheet);
-		alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: self.selectNewLine));
+		let alert = UIAlertController(title: "视频卡顿 请换线试试", message: nil, preferredStyle: .actionSheet);
+		alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: self.selectNewLine));
 		let rtmpList = DataCenterModel.sharedInstance.roomData.rtmpList;
 		for item in rtmpList
 		{
-			let isNow = lastRtmpUrl.containsString(item.rtmpUrl);
+			let isNow = lastRtmpUrl.contains(item.rtmpUrl);
 			if (item.isEnable && !isNow)
 			{
-				alert.addAction(UIAlertAction(title: item.rtmpName, style: .Destructive, handler: selectNewLine));
+				alert.addAction(UIAlertAction(title: item.rtmpName, style: .destructive, handler: selectNewLine));
 			}
 
 		}
-		presentViewController(alert, animated: true, completion: nil);
+		present(alert, animated: true, completion: nil);
 	}
 
 	// 最终选择线路
-	func selectNewLine(action: UIAlertAction) {
+	func selectNewLine(_ action: UIAlertAction) {
 		let rtmpList = DataCenterModel.sharedInstance.roomData.rtmpList;
 		for item in rtmpList
 		{
 			if (action.title! == item.rtmpName)
 			{
-				let ns = NSNotification(name: RTMP_START_PLAY, object: item.rtmpUrl);
+				let ns = Notification(name: Notification.Name(rawValue: RTMP_START_PLAY), object: item.rtmpUrl);
 				rtmpStartPlay(ns);
 				return;
 			}

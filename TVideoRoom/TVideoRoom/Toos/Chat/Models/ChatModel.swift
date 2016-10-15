@@ -9,15 +9,15 @@
 import Foundation
 
 enum MessageType: Int {
-	case Text
-	case Audio
-	case Picture
-	case Video
+	case text
+	case audio
+	case picture
+	case video
 }
 
 class ChatMessage: NSObject {
 	var content = "";
-	var messageType: MessageType = .Text;
+	var messageType: MessageType = .text;
 	var isSender = false
 	var sendName = ""
 }
@@ -55,7 +55,7 @@ class FaceData: NSObject {
 		self.faceIco = faceIco;
 	}
 
-	class func voWithFaceName(faceName: String, faceIco: String) -> FaceData {
+	class func voWithFaceName(_ faceName: String, faceIco: String) -> FaceData {
 		return FaceData(faceName: faceName, faceIco: faceIco);
 	}
 
