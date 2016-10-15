@@ -56,15 +56,15 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 		})
 
 		self.view.addSubview(segmentVC!);
-		segmentVC?.snp_makeConstraints{ (make) in
-			make.top.equalTo(self.view.snp_top).offset(5);
+		segmentVC?.snp.makeConstraints { (make) in
+			make.top.equalTo(self.view.snp.top).offset(5);
 			make.width.equalTo(self.view.width * 3 / 4);
-			make.centerX.equalTo(0);
+			make.centerX.equalTo(self.view);
 		}
-		self.tableView.snp_makeConstraints { (make) in
-			make.width.equalTo(self.view.snp_width);
-			make.top.equalTo((segmentVC?.snp_bottom)!).offset(5);
-			make.bottom.equalTo(self.view.snp_bottom);
+		self.tableView.snp.makeConstraints { (make) in
+			make.width.equalTo(self.view.snp.width);
+			make.top.equalTo((segmentVC?.snp.bottom)!).offset(5);
+			make.bottom.equalTo(self.view.snp.bottom);
 		}
 		self.view.bringSubview(toFront: self.loadProgressAnimationView);
 		self.loadProgressAnimationView.startLoadProgressAnimation();

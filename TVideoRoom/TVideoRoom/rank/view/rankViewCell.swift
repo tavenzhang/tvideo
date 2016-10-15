@@ -28,16 +28,16 @@ class RankViewCell: UITableViewCell {
 		self.addSubview(txtName);
 		self.addSubview(imgHeadView);
 		self.lbRank.snp.makeConstraints { (make) in
-			make.centerY.equalTo(0);
+			make.centerY.equalTo(self);
 			make.left.equalTo(self.snp.left).offset(30);
 		}
 		self.txtName.snp.makeConstraints { (make) in
-			make.centerY.equalTo(0);
+			make.centerY.equalTo(self);
 			make.left.equalTo(self.width / 2 - 20);
 		}
 
 		self.lvImageView.snp.makeConstraints { (make) in
-			make.centerY.equalTo(0);
+			make.centerY.equalTo(self);
 			make.right.equalTo(self.snp.right).offset(-30);
 		}
 		imgHeadView.snp.makeConstraints { (make) in

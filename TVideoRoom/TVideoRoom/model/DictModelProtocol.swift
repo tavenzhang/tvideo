@@ -60,7 +60,7 @@ open class DictModelManager {
 						}
 
 					} else {
-						let type = "\(value.classForCoder)"
+						let type = "\(value.classForCoder!)"
 
 						if type == "NSDictionary" {
 

@@ -33,6 +33,7 @@ class InfoView: UIView {
 	}
 
 	func setup() -> Void {
+
 		let img = UIImageView(image: UIImage(named: "userBg"));
 		img.sizeToFit();
 		let imgHead = UIImageView(image: UIImage(named: "headHolder"));
@@ -46,16 +47,18 @@ class InfoView: UIView {
 		imgHead.scale(scaleNum, ySclae: scaleNum);
 		reyBtn.scale(scaleNum, ySclae: scaleNum);
 		logBtn.scale(scaleNum, ySclae: scaleNum);
-        
+
 		img.snp.makeConstraints { (make) in
 			make.width.equalTo(self.width);
 			let h = (self.width / 720) * 267;
 			make.height.equalTo(h);
+			make.left.equalTo(self.snp.left);
+			make.top.equalTo(self.snp.top);
 		}
-        self.layoutIfNeeded();
+		self.layoutIfNeeded();
 		imgHead.snp.makeConstraints { (make) in
-            make.centerX.equalTo(img.snp.centerX);
-            make.centerY.equalTo(img.snp.centerY).offset(-20);
+			make.centerX.equalTo(img.snp.centerX);
+			make.centerY.equalTo(img.snp.centerY).offset(-20);
 		}
 		reyBtn.snp.makeConstraints { (make) in
 			make.right.equalTo(imgHead.snp.left).offset(2);
@@ -79,7 +82,7 @@ class InfoView: UIView {
 		txtTitle = crateUILable(self);
 		txtLv = crateUILable(self);
 
-		txtName?.snp_makeConstraints { (make) in
+		txtName?.snp.makeConstraints { (make) in
 			make.top.equalTo(img.snp_bottom).offset(10);
 			make.left.equalTo(img.snp_left).offset(10);
 		}
@@ -142,17 +145,17 @@ class InfoView: UIView {
 	}
 
 	func clickLogin() {
-
 		LogHttp("clickLogin");
-		showLoginlert(myVC) { (name, pwd) in
+		var _ = showLoginlert(myVC) { (name, pwd) in
 			self.validLogin(name, pwd: pwd);
 		}
 	}
 
-	func validLogin(_ name: String, pwd: String) -> Void {
+	func
+	validLogin(_ name: String, pwd: String) -> Void {
 		let passStr = encodeStr(pwd);
 		let paraList = ["uname": name, "password": passStr, "sCode": "", "v_remember": 0] as [String: Any];
-		HttpTavenService.requestJson(getWWWHttp(HTTP_LOGIN), isGet: false, para: paraList as? [String: AnyObject]) { (httpResult) in
+		var _ = HttpTavenService.requestJson(getWWWHttp(HTTP_LOGIN), isGet: false, para: paraList as? [String: AnyObject]) { (httpResult) in
 			if (httpResult.isSuccess)
 			{
 				if (httpResult.dataJson?["status"].int! == 1)

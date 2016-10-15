@@ -21,10 +21,10 @@ class MainTabBarController: UITabBarController {
 			UIImageView.animate(withDuration: 3, animations: { () -> Void in
 				tmpSelf!.adImageView!.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
 				tmpSelf!.adImageView!.alpha = 0
-			}, completion: { (finsch) -> Void in
+				}, completion: { (finsch) -> Void in
 				tmpSelf!.adImageView!.removeFromSuperview()
 				tmpSelf!.adImageView = nil
-			}) 
+			})
 		}
 	}
 
@@ -39,6 +39,12 @@ class MainTabBarController: UITabBarController {
 		#endif
 		print("aaaaaaaaaaa===\(a)")
 		self.delegate = self;
+
+		var data: NSMutableData = NSMutableData();
+		data.appendString("\r\n");
+		// data.appendInt(13, isBigEndian: true)
+
+		print("aaaaaaaaaaa===\(a)")
 	}
 
 	override func viewDidAppear(_ animated: Bool) {

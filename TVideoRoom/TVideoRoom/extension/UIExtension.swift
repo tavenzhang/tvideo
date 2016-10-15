@@ -137,22 +137,6 @@ extension UIButton {
 
 }
 
-extension String {
-
-	/**
-     Encode a String to Base64
-     
-     :returns:
-     */
-	func toBase64() -> String {
-
-		let data = self.data(using: String.Encoding.utf8)
-		return data!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-
-	}
-
-}
-
 extension UIBarButtonItem {
 
 	class func barButton(_ title: String, titleColor: UIColor, image: UIImage, hightLightImage: UIImage?, target: AnyObject?, action: Selector, type: ItemButtonType) -> UIBarButtonItem {

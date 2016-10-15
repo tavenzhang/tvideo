@@ -35,8 +35,9 @@ class r_msg_10000: r_msg_noBody {
 		// let encrypted = try! input.encrypt(AES(key: aesKey, iv:IV))
 		// let input: [UInt8] = [0,1,2,3,4,5,6,7,8,9]
 		// input.encrypt(AES(key: "secret0key000000", iv:"0123456789012345", blockMode: .CBC));
-		let base64String: String = try! data.encrypt(cipher: AES(key: aesKey, iv: IV)).toBase64();
-		return base64String;
+		let base64String: String = try! data.encrypt(cipher: AES(key: aesKey, iv: IV));
+		LogSocket("base64String=\(base64String)");
+		return base64String.toBase64();
 	}
 
 }

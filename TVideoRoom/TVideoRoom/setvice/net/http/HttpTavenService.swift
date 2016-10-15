@@ -132,7 +132,7 @@ class HttpTavenService {
 		// Alamofire.request(<#T##url: URLConvertible##URLConvertible#>, method: HTTPMethod, parameters: Parameters?, encoding: nil, headers: <#T##HTTPHeaders?#>)
 		// Alamofire.request(URLConvertible, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?)
 
-		Alamofire.request(url, method: methodType, parameters: para, encoding: JSONEncoding.default, headers: nil).responseData { (Res: DataResponse<Data>) in
+		Alamofire.request(url, method: methodType, parameters: para, encoding: URLEncoding.default, headers: nil).responseData { (Res: DataResponse<Data>) in
 			var reulstH: HttpResult?
 			switch Res.result {
 			case .success(let dataM):

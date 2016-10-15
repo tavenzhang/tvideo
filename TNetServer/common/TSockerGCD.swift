@@ -66,29 +66,28 @@ open class TSocketGCDServer: NSObject, netSocketProtol {
 		super.init();
 		buffMutableData = NSMutableData();
 
-		socket = TGCDSocker(delegate: self, delegateQueue: DispatchQueue.global());
+		let que = DispatchQueue(label: "socket", qos: .default, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil);
+		socket = TGCDSocker(delegate: self, delegateQueue: que);
 		self.updataSocketParams(heartTime, msgheadLength: msgHeadSize, isByteBigEndian: isByteBigEndian);
 	}
 
 	deinit {
+		TLog("denit host=\(_host)--port=\(_port)");
 		heartNSTimer?.invalidate();
 	}
 
 	/**
      日志打印
      - author: taven
-     - date: 16-07-18 15:07:20
-     
-     - parameter cont: <#cont description#>
-     - parameter args: <#args description#>
      */
 	func TLog(_ cont: String, args: CVarArg...) -> Void {
+		let log = NSString(format: cont, arguments: getVaList(args));
 		if ((onTLogHandle) != nil)
 		{
-			let log = NSString(format: cont, arguments: getVaList(args));
+
 			onTLogHandle!(log as String);
 		} else {
-			// NSLogv(cont,  getVaList(args));
+			print("socket <----\(log)");
 		}
 	}
 
@@ -162,10 +161,10 @@ open class TSocketGCDServer: NSObject, netSocketProtol {
 
 	open func closeSocket()
 	{
-		TLog("host closeSocket")
 		if socket!.isConnected
 		{
 			socket!.disconnect();
+
 		}
 	}
 	// 判断一下是否已经正常连接好
@@ -231,25 +230,9 @@ extension TSocketGCDServer: GCDAsyncSocketDelegate {
 
 	public func socketDidCloseReadStream(_ sock: GCDAsyncSocket) {
 
-		TLog("socketDidCloseReadStream")
+		TLog("socketDidCloseReadStream  host=\(_host)--port=\(_port)")
 	}
 
-	@nonobjc public func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: NSError?) {
-
-		if (err != nil)
-		{
-			TLog("socketDidDisconnect --err=%@!", args: err!.localizedDescription)
-		}
-		else {
-			TLog("socketDidDisconnect");
-		}
-
-		if (onCloseHandle != nil)
-		{
-			onCloseHandle!();
-		}
-
-	}
 	public func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16)
 	{
 		TLog("host=%@-port=%d  connect Successful!", args: host, port);
@@ -261,7 +244,12 @@ extension TSocketGCDServer: GCDAsyncSocketDelegate {
 	}
 
 	// 可以通过sock.userData 来区分是由于什么原因断线
-	public func socketDidDisconnect(_ sock: GCDAsyncSocket!) {
+	public func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+		TLog("socketDidDisconnect host=\(_host)--port=\(_port)");
+		if (err != nil)
+		{
+			TLog("socketDidDisconnect --err=%@!", args: err!.localizedDescription)
+		}
 		if (onWillColseHandle != nil)
 		{
 			onWillColseHandle!(sock.userData! as AnyObject);
@@ -293,7 +281,7 @@ extension TSocketGCDServer: GCDAsyncSocketDelegate {
 				break;
 			}
 			let data = buffMutableData!.getBytesByLength(curMsgBodyLength);
-			readMsgBody(data);
+			var _ = readMsgBody(data);
 			curMsgBodyLength = 0;
 		}
 		// TLog("处理后 curAmfMsgLen==%d －－－－－buffMutableData＝%d", args:curMsgBodyLength,buffMutableData!.length);

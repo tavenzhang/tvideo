@@ -13,12 +13,16 @@ public extension NSMutableData {
 
 	// 整型
 	public func appendShort(_ value: Int, isBigEndian: Bool = true) {
+
 		let networkOrderVal = UInt16(value);
 		var data = isBigEndian ? networkOrderVal.bigEndian : networkOrderVal.littleEndian;
 		self.append(&data, length: MemoryLayout<UInt16>.size);
 	}
 
 	public func appendInt(_ value: Int, isBigEndian: Bool = true) {
+		var a = 1;
+		var b = 2;
+
 		let networkOrderVal = UInt32(value)
 		var data = isBigEndian ? networkOrderVal.bigEndian : networkOrderVal.littleEndian;
 		self.append(&data, length: MemoryLayout<UInt32>.size);

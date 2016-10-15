@@ -10,10 +10,11 @@ class SocketManager {
 	// 消息处理函数
 	var socketM: Amf3SocketManager?;
 
-	fileprivate init() {
+	private init() {
 		socketM = Amf3SocketManager(heartTime: 10, msgHeadSize: 2, isByteBigEndian: true);
-		socketM!.onMsgResultHandle = onMsghandle;
-		socketM!.onTLogHandle = self.socketlog;
+		socketM?.onMsgResultHandle = onMsghandle;
+		socketM?.onTLogHandle = self.socketlog;
+
 	}
 	deinit
 	{
@@ -26,14 +27,15 @@ class SocketManager {
 		DataCenterModel.sharedInstance.roomData.socketIp = nil;
 		DataCenterModel.sharedInstance.roomData.port = 0;
 		for item in ipList {
-			let queue = DispatchQueue(label: "testSocket", attributes: DispatchQueue.Attributes.concurrent);
-			queue.async {
-				let as3Socket: Amf3SocketManager = Amf3SocketManager(heartTime: 10, msgHeadSize: 2, isByteBigEndian: true);
+			DispatchQueue.global().async {
+				var as3Socket: Amf3SocketManager? = Amf3SocketManager(heartTime: 10, msgHeadSize: 2, isByteBigEndian: true);
+				// as3Socket?.onTLogHandle = self.socketlog;
 				let ip = item.components(separatedBy: ":")[0];
 				let port = Int(item.components(separatedBy: ":")[1]);
-				LogSocket("test ip=\(ip)---port--\(port)---start");
-				as3Socket.onConnectSocket(ip, port: port!, timeOut: 0) {
-					as3Socket.closeSocket();
+				LogSocket("test ip=\(ip)---port--\(port!)---start");
+				as3Socket?.onConnectSocket(ip, port: port!, timeOut: 0) {
+					as3Socket?.closeSocket();
+					as3Socket = nil;
 					DispatchQueue.main.async {
 						[weak self] in
 						if (DataCenterModel.sharedInstance.roomData.socketIp == nil)

@@ -93,8 +93,8 @@ class GiftViewControl: UIViewController {
 		}
 		giftMenuBar = TabBarMenu();
 		self.view.addSubview(giftMenuBar!);
-		giftMenuBar?.snp_makeConstraints { (make) in
-			make.bottom.equalTo(giftCollectionView.snp_top);
+		giftMenuBar?.snp.makeConstraints { (make) in
+			make.bottom.equalTo(giftCollectionView.snp.top);
 			make.height.equalTo(25);
 			make.width.equalTo(self.view.width * 3 / 4);
 		}
@@ -109,9 +109,11 @@ class GiftViewControl: UIViewController {
 			self?.txtChangeLB?.attributedText = attStr;
 			self?.curSelectGift = nil;
 		})
-		self.giftDataList = (self.dataRoom?.giftDataManager[0].items)!;
-		self.giftCollectionView.reloadData();
-
+		if ((self.dataRoom?.giftDataManager.count)! > 0)
+		{
+			self.giftDataList = (self.dataRoom?.giftDataManager[0].items)!;
+			self.giftCollectionView.reloadData();
+		}
 	}
 
 	// 建立集合
