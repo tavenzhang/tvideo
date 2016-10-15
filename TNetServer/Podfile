@@ -1,0 +1,7 @@
+use_frameworks! # Add this if you are targeting iOS 8+ or using Swift
+target :TAmf3Socket do
+pod 'BBSZLib'
+pod 'CocoaAsyncSocket'
+end
+
+

@@ -7,7 +7,7 @@ target :TVideoRoom do
 xcodeproj 'TVideoRoom/TVideoRoom.xcodeproj'
 pod 'SwiftyJSON', '~>2.4.0'
 pod 'CryptoSwift','~>0.5.2'
-pod 'NSLogger/NoStrip'
+pod 'NSLogger/NoStrip'，'~>1.7.0'
 pod 'SVProgressHUD'
 pod 'SDWebImage'
 pod 'Alamofire', '~> 3.4'
