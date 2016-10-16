@@ -48,6 +48,7 @@ extension Data {
 }
 
 extension UILabel {
+
 	class func lableSimple(_ title: String, corlor: UIColor, size: CGFloat, align: NSTextAlignment = .left) -> UILabel {
 		let lb = UILabel();
 		lb.textColor = corlor;
@@ -58,6 +59,25 @@ extension UILabel {
 		return lb;
 	}
 
+	class func labelSimpleToView(_ container: UIView?, _ size: CGFloat = 12, _ color: UIColor = UIColor.black, _ fontName: String? = nil) -> UILabel {
+		let lb: UILabel = UILabel();
+		if (fontName == nil) {
+			lb.font = UIFont.boldSystemFont(ofSize: size);
+		}
+		else {
+			lb.font = UIFont(name: fontName!, size: size);
+		}
+
+		lb.adjustsFontSizeToFitWidth = true;
+		lb.textAlignment = NSTextAlignment.left;
+		let color = color;
+		lb.textColor = color;
+		if (container != nil)
+		{
+			container?.addSubview(lb);
+		}
+		return lb;
+	}
 }
 extension UIColor {
 

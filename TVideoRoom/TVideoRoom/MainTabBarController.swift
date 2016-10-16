@@ -37,14 +37,8 @@ class MainTabBarController: UITabBarController {
 		#else
 			let a = 3;
 		#endif
-		print("aaaaaaaaaaa===\(a)")
+		print("aaaaaaaaaaa===\(a)");
 		self.delegate = self;
-
-		var data: NSMutableData = NSMutableData();
-		data.appendString("\r\n");
-		// data.appendInt(13, isBigEndian: true)
-
-		print("aaaaaaaaaaa===\(a)")
 	}
 
 	override func viewDidAppear(_ animated: Bool) {

@@ -29,6 +29,7 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 	}
 
 	override func viewDidLoad() {
+		super.viewDidLoad();
 		self.view.backgroundColor = ROOM_SCROOL_BG_COLOR;
 		self.navigationController?.navigationBar.barTintColor = UIColor.white;
 		navigationItem.title = "排行榜";
@@ -66,8 +67,13 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 			make.top.equalTo((segmentVC?.snp.bottom)!).offset(5);
 			make.bottom.equalTo(self.view.snp.bottom);
 		}
-		self.view.bringSubview(toFront: self.loadProgressAnimationView);
+		self.tableView.isHidden = true;
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated);
 		self.loadProgressAnimationView.startLoadProgressAnimation();
+
 		HttpTavenService.requestJson(getWWWHttp(HTTP_RANK_DATA)) { [weak self](dataResult) in
 			self?.loadProgressAnimationView.endLoadProgressAnimation();
 			if (dataResult.isSuccess) {
@@ -81,6 +87,7 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 				self?.useRankDic[.rankMonth] = deserilObjectsWithArray(dataResult.dataJson!["rank_rich_month"].arrayObject! as NSArray, cls: rankInfoModel.self) as? [rankInfoModel] ;
 				self?.useRankDic[.rankHistory] = deserilObjectsWithArray(dataResult.dataJson!["rank_rich_his"].arrayObject! as NSArray, cls: rankInfoModel.self) as? [rankInfoModel] ;
 				self!.flushListView((self?.hrankDic[(self?.curTableStyle)!])!, (self?.useRankDic[(self?.curTableStyle)!])!)
+				self?.tableView.isHidden = false;
 			}
 		}
 	}

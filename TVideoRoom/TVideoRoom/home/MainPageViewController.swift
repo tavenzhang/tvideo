@@ -111,7 +111,6 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 		isRequestIng = true;
 		let queue = DispatchQueue.global(qos: .default);
 		queue.async {
-			LogHttp("open---getData");
 			HttpTavenService.requestJson(getWWWHttp(HTTP_HOME_LIST)) {
 				(dataResutl: HttpResult) in
 				let homeData = DataCenterModel.sharedInstance.homeData;

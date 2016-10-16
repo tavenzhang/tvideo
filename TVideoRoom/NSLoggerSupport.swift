@@ -29,8 +29,16 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 var soketQuque = DispatchQueue(label: "socket", attributes: DispatchQueue.Attributes.concurrent);
 
+func LogSocket(_ format: String!) {
+	LogMessage_va("socket", 3, format, getVaList([]))
+}
+
 func LogSocket(_ format: String!, args: CVarArg...) {
 	LogMessage_va("socket", 3, format, getVaList(args))
+}
+
+func LogHttp(_ format: String!) {
+	LogMessage_va("Http", 3, format, getVaList([]))
 }
 
 func LogHttp(_ format: String!, args: CVarArg...) {

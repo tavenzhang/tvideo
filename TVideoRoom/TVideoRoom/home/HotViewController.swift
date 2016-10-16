@@ -31,9 +31,9 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class HotViewController: BaseUIViewController {
 
-	fileprivate var flag: Int = -1
-	fileprivate var collectionView: LFBCollectionView!
-	fileprivate var lastContentOffsetY: CGFloat = 0;
+	var flag: Int = -1
+	var collectionView: LFBCollectionView!
+	var lastContentOffsetY: CGFloat = 0;
 
 	// 热播列表
 	var hotList: [Activity]?;
@@ -41,7 +41,6 @@ class HotViewController: BaseUIViewController {
 	var loadFunHandl: loadDataFun?;
 
 	override func viewDidLoad() {
-		// addNotification()
 		super.viewDidLoad();
 		buildCollectionView();
 		buildTableData();
@@ -72,8 +71,6 @@ class HotViewController: BaseUIViewController {
 	}
 	/**
      下拉获取
-     - author: taven
-     - date: 16-06-28 10:06:20
      */
 	func buildTableData() -> Void {
 		var testData = [Activity]();
@@ -92,11 +89,8 @@ class HotViewController: BaseUIViewController {
 
 	/**
      获取数据
-     - author: taven
-     - date: 16-06-28 09:06:33
      */
 	func headRefresh() {
-		loadProgressAnimationView.startLoadProgressAnimation();
 		loadProgressAnimationView.startLoadProgressAnimation();
 		if (loadFunHandl != nil)
 		{

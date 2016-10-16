@@ -8,6 +8,14 @@
 
 import Foundation
 
+class MyinfoItemModel {
+	var icoName: String = "";
+	var editName: String = "";
+	var msgNum: Int = 0;
+	var targeData: AnyObject? ;
+	var actionKey: String = "" ;
+}
+
 class LoginModel: NSObject, DictModelProtocol {
 	var ret: Bool = false;
 	// var myres:[]?
@@ -28,7 +36,7 @@ class PersonInfoModel: NSObject {
 	var vip: NSNumber?;
 	var uid: NSNumber?;
 	var sex: NSNumber?;
-	var point: NSNumber?;
+	var points: NSNumber?;
 	var vip_end: String?;
 	var safemail: String?;
 	var rid: NSNumber?;
@@ -39,5 +47,22 @@ class PersonInfoModel: NSObject {
 	var lv_rich: NSNumber?;
 	var nickname: String?;
 	var lv_exp: NSNumber?;
+	var sexName: String {
+		get {
+			var nameSex: String = "";
+
+			if (sex == nil || sex?.intValue == -1) {
+				nameSex = "未知"
+			}
+			else if (sex?.intValue == 0)
+			{
+				nameSex = "男"
+			}
+			else {
+				nameSex = "女"
+			}
+			return nameSex;
+		}
+	}
 }
 

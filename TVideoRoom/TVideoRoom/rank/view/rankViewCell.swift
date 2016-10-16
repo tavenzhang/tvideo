@@ -81,12 +81,12 @@ class RankViewCell: UITableViewCell {
 			if (dataModel!.isHost)
 			{
 				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.lv_exp?.int32Value)!, type: .hostIcoLV))
-				lvImageView.scale(2, ySclae: 2)
+				lvImageView.scale(2.2, ySclae: 2.2)
 			}
 			else {
 				txtName.textColor = UIColor.black;
 				lvImageView.image = UIImage(named: lvIcoNameGet((dataModel?.lv_rich!.int32Value)!, type: .userIcoLv))
-				lvImageView.scale(1.5, ySclae: 1.5)
+				lvImageView.scale(2, ySclae: 2)
 			}
 
 		}

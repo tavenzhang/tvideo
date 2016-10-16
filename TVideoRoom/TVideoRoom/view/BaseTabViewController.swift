@@ -14,10 +14,10 @@ class BaseUIViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad();
-		// buildNavigationItem();
 		self.view.addSubview(loadProgressAnimationView);
+		self.view.backgroundColor = UIColor.white;
+		self.navigationController?.navigationBar.barTintColor = UIColor.white;
 	}
-
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
