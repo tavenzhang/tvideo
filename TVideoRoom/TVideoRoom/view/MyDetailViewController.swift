@@ -41,8 +41,12 @@ class MyDetailViewController: BaseUIViewController, UITableViewDelegate, UITable
 
 		tableView.separatorInset = UIEdgeInsetsMake(0, 50, 0, 0);
 		// tableView.allowsSelection = false;
-		tableView.reloadData();
+		flushTable();
 
+	}
+
+	func flushTable() {
+		tableView.reloadData();
 	}
 
 	func initData() {

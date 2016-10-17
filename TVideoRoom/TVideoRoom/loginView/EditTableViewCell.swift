@@ -53,13 +53,11 @@ class EditTableViewCell: UITableViewCell {
 		didSet {
 			imgIco.image = UIImage(named: (dataModel?.icoName)!);
 			lbname.text = dataModel?.editName;
-			lbNum.text = (dataModel?.msgNum)! > 0 ? "(\(dataModel?.msgNum))" : "";
+			lbNum.text = (dataModel?.msgNum)! > 0 ? "(\(dataModel!.msgNum))" : "";
 		}
 	}
 
-    
-    
-    override func awakeFromNib() {
+	override func awakeFromNib() {
 		super.awakeFromNib()
 		// Initialization code
 	}

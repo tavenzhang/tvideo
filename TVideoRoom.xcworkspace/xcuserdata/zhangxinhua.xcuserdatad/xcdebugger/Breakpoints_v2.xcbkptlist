@@ -1514,11 +1514,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/setvice/net/SocketManager.swift"
-            timestampString = "498235121.851485"
+            timestampString = "498330242.011605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "onMsghandle(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1530,27 +1530,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/setvice/net/SocketManager.swift"
-            timestampString = "498235216.810426"
+            timestampString = "498330242.011605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "onMsghandle(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/setvice/net/SocketManager.swift"
+            timestampString = "498330242.011605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "160"
             endingLineNumber = "160"
-            landmarkName = "onMsghandle(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TVideoRoom/TVideoRoom/setvice/net/SocketManager.swift"
-            timestampString = "498235233.122838"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
             landmarkName = "onMsghandle(_:)"
             landmarkType = "7">
             <Locations>
@@ -1594,11 +1594,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/setvice/net/SocketManager.swift"
-            timestampString = "498235239.287929"
+            timestampString = "498330242.011605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "onMsghandle(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2040,11 +2040,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/view/MyDetailViewController.swift"
-            timestampString = "498307281.893211"
+            timestampString = "498330984.025123"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2056,11 +2056,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/view/MyDetailViewController.swift"
-            timestampString = "498306697.597291"
+            timestampString = "498330984.025123"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2072,12 +2072,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TVideoRoom/TVideoRoom/view/MyDetailViewController.swift"
-            timestampString = "498307234.45031"
+            timestampString = "498330984.025123"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TVideoRoom/TVideoRoom/LoginView.swift"
+            timestampString = "498332906.596738"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "validLogin(_:pwd:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

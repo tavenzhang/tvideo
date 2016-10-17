@@ -191,7 +191,12 @@ class LoginView: UIView {
 
 	func clickLogin() {
 		LogHttp("clickLogin");
-		var _ = showLoginlert(parentViewVC) { (name, pwd) in
+		var myName = UserDefaults.standard.string(forKey: "login_name");
+		var mypwd = UserDefaults.standard.string(forKey: "login_pwd");
+		myName = myName == nil ? "" : myName;
+		mypwd = mypwd == nil ? "" : mypwd;
+		showLoginlert(parentViewVC, txtName: myName!, pwd: mypwd!)
+		{ (name, pwd) in
 			self.validLogin(name, pwd: pwd);
 		}
 	}
@@ -214,15 +219,22 @@ class LoginView: UIView {
 						let imageUrl = NSString(format: HTTP_SMALL_IMAGE as NSString, (self?.defaultInfo.headimg!)!) as String;
 						self?.imgHeadView?.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "v2_placeholder_full_size"));
 						self?.isLoginSucess = true;
+						self?.parentViewVC?.focusModel?.msgNum = (result.myfav?.count)!;
+						self?.parentViewVC?.focusModel?.targeData = result.myfav as AnyObject?;
+						self?.parentViewVC?.flushTable();
+						UserDefaults.standard.set(name, forKey: "login_name");
+						UserDefaults.standard.set(pwd, forKey: "login_pwd");
+						UserDefaults.standard.synchronize();
+						// self?.parentViewVC?.privateMail?.msgNum = result
 					})
 					// showAlertHandle(self.myVC!, tl: "", cont: "登陆成功", okHint: "ok", cancelHint: "cancel")
 				}
 				else {
 					showSimplpAlertView(self.parentViewVC!, tl: "登陆失败", msg: "用户名密码错误", btnHiht: "重试", okHandle: {
 						[weak self] in
-						var _ = showLoginlert(self!.parentViewVC!) { (name, pwd) in
+						showLoginlert(self!.parentViewVC!, txtName: "", pwd: "", loginHandle: { (name, pwd) in
 							self?.validLogin(name, pwd: pwd);
-						}
+						})
 					})
 				}
 

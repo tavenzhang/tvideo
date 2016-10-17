@@ -123,6 +123,7 @@ class SocketManager {
 		case MSG_11008: // 获取管理员列表
 			fallthrough;
 		case MSG_11001: // 获取用户列表
+			dataCenterM.roomData.playerList.removeAll();
 			let sarray = json["items"].arrayObject as? NSArray;
 			if (sarray != nil) && ((sarray?.count)! > 0)
 			{

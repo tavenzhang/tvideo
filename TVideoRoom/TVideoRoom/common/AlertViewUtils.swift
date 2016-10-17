@@ -61,19 +61,19 @@ func showAlertHandle(_ uiCtrol: UIViewController?, tl: String, cont: String, okH
 	uiCtrol?.present(alertCtr, animated: true, completion: nil);
 }
 
-func showLoginlert(_ uiCtrol: UIViewController?, loginHandle: loginAlertHandle? = nil) -> UIAlertController {
+func showLoginlert(_ uiCtrol: UIViewController?, txtName: String, pwd: String, loginHandle: loginAlertHandle? = nil) -> UIAlertController {
 	let alertCtr = UIAlertController(title: "login", message: "", preferredStyle: UIAlertControllerStyle.alert);
 	alertCtr.addTextField() {
 		(textF: UITextField) in
 		textF.placeholder = "用户名";
-		textF.text = "258333601@163.com"
+		textF.text = txtName;
 	}
 
 	alertCtr.addTextField() {
 		(textF: UITextField) in
 		textF.placeholder = "密码";
 		textF.isSecureTextEntry = true;
-		textF.text = "111111"
+		textF.text = pwd;
 	}
 
 	let canelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.destructive) {

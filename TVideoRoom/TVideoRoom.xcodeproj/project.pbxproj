@@ -64,18 +64,7 @@
 		DE7DAF571DA3795400AB51FC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7DAF551DA3795400AB51FC /* Reachability.m */; };
 		DE7DAF5B1DA3810100AB51FC /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7DAF5A1DA3810100AB51FC /* MenuBar.swift */; };
 		DE7EC1F71DB36EDF000F051F /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7EC1F61DB36EDF000F051F /* EditTableViewCell.swift */; };
-		DE7EC1F91DB38BD4000F051F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE7BA7291DB3395500EA031F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DE7EC1FB1DB38BD4000F051F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC1FA1DB38BD4000F051F /* Alamofire.framework */; };
-		DE7EC1FE1DB38BD4000F051F /* BBSZLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC1FD1DB38BD4000F051F /* BBSZLib.framework */; };
-		DE7EC1FF1DB38BD4000F051F /* BBSZLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC1FD1DB38BD4000F051F /* BBSZLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DE7EC2011DB38BD4000F051F /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC2001DB38BD4000F051F /* CocoaAsyncSocket.framework */; };
-		DE7EC2021DB38BD4000F051F /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC2001DB38BD4000F051F /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DE7EC2041DB38BD4000F051F /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC2031DB38BD4000F051F /* CryptoSwift.framework */; };
-		DE7EC2051DB38BD4000F051F /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC2031DB38BD4000F051F /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DE7EC2071DB38BD4000F051F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC2061DB38BD4000F051F /* SwiftyJSON.framework */; };
-		DE7EC2081DB38BD4000F051F /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC2061DB38BD4000F051F /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DE7EC20A1DB38BD9000F051F /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */; };
-		DE7EC20B1DB38BD9000F051F /* TAmf3Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DE9655A01DA6264400095146 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96559F1DA6264400095146 /* LoginView.swift */; };
 		DE9937C71DB26A8300D0B326 /* TRtmpPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937C61DB26A8300D0B326 /* TRtmpPlay.framework */; };
 		DE9D50E91DA637850029C06E /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D50E81DA637850029C06E /* MyInfo.swift */; };
@@ -157,25 +146,6 @@
 		DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE870D81D579A3D004103F5 /* libFlurry_7.6.6.a */; };
 		DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF400B81D1D55770093A883 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		DE7EC2091DB38BD4000F051F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				DE7EC1F91DB38BD4000F051F /* Alamofire.framework in Embed Frameworks */,
-				DE7EC20B1DB38BD9000F051F /* TAmf3Socket.framework in Embed Frameworks */,
-				DE7EC2081DB38BD4000F051F /* SwiftyJSON.framework in Embed Frameworks */,
-				DE7EC2021DB38BD4000F051F /* CocoaAsyncSocket.framework in Embed Frameworks */,
-				DE7EC2051DB38BD4000F051F /* CryptoSwift.framework in Embed Frameworks */,
-				DE7EC1FF1DB38BD4000F051F /* BBSZLib.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1EE51B3F6D104878284E83C0 /* GiftEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftEffectView.swift; sourceTree = "<group>"; };
@@ -404,13 +374,8 @@
 				DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */,
 				DEDF8C771D1A5CB4005A7AC4 /* VideoToolbox.framework in Frameworks */,
 				DEDF8C751D1A5C96005A7AC4 /* libbz2.tbd in Frameworks */,
-				DE7EC20A1DB38BD9000F051F /* TAmf3Socket.framework in Frameworks */,
-				DE7EC1FE1DB38BD4000F051F /* BBSZLib.framework in Frameworks */,
-				DE7EC2011DB38BD4000F051F /* CocoaAsyncSocket.framework in Frameworks */,
 				DEDF8C731D1A5C8C005A7AC4 /* libiconv.tbd in Frameworks */,
-				DE7EC2071DB38BD4000F051F /* SwiftyJSON.framework in Frameworks */,
 				DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */,
-				DE7EC2041DB38BD4000F051F /* CryptoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,7 +998,6 @@
 				6DC4DB5F94FF043F3CE45998 /* [CP] Embed Pods Frameworks */,
 				7BB65991FC5302439623D2F9 /* [CP] Copy Pods Resources */,
 				DE05D44A1D2BAB300015FE5A /* Run Script */,
-				DE7EC2091DB38BD4000F051F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
