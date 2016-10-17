@@ -100,6 +100,7 @@ class GiftViewControl: UIViewController {
 		}
 		self.view.layoutIfNeeded();
 		giftMenuBar?.creatBtnByList(menuNameList, txtSize: 14, color: UIColor.colorWithCustom(225, g: 50, b: 125), underLinColor: UIColor.gray);
+
 		giftMenuBar?.regClickHandle({ [weak self](tag) in
 			let index = Int(tag);
 			self?.giftDataList = (self?.dataRoom?.giftDataManager[index].items)!;
@@ -131,11 +132,11 @@ class GiftViewControl: UIViewController {
 		giftCollectionView.register(GiftShopCell.self, forCellWithReuseIdentifier: "Cell");
 		view.addSubview(giftCollectionView);
 
-		giftCollectionView.snp_makeConstraints { (make) in
-			make.bottom.equalTo(self.view.snp_bottom).offset(-35);
+		giftCollectionView.snp.makeConstraints { (make) in
+			make.bottom.equalTo(self.view.snp.bottom).offset(-40);
 			make.width.equalTo(self.view.width);
 			make.height.equalTo(141);
-			make.left.equalTo(self.view.snp_left);
+			make.left.equalTo(self.view.snp.left);
 		}
 
 	}
@@ -148,27 +149,31 @@ class GiftViewControl: UIViewController {
 
 	func buildGiftSendBar() {
 		btnMoney = UIButton.BtnSimple("充值 |", titleColor: UIColor.colorWithCustom(225, g: 50, b: 125), image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sAddMoneyClick));
+		btnMoney?.titleLabel?.font = UIFont.systemFont(ofSize: 14);
 		// btnMoney!.backgroundColor = UIColor.colorWithCustom(225, g: 50, b: 125);
 		// btnMoney!.layer.cornerRadius = 10;
 		// btnMoney!.layer.masksToBounds = true;
 		view.addSubview(btnMoney!);
-		btnMoney!.snp_makeConstraints { (make) in
-			make.bottom.equalTo(self.view.snp_bottom).offset(-5);
-			make.left.equalTo(self.view.snp_left).offset(5);
+		btnMoney!.snp.makeConstraints { (make) in
+			make.bottom.equalTo(self.view.snp.bottom).offset(-5);
+			make.left.equalTo(self.view.snp.left).offset(5);
 			make.width.equalTo(60);
 		}
+
 		btnSend = UIButton.BtnSimple("赠送", titleColor: UIColor.white, image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sSendGift));
+		btnSend?.titleLabel?.font = UIFont.systemFont(ofSize: 14);
 		btnSend!.backgroundColor = UIColor.colorWithCustom(225, g: 50, b: 125);
 		btnSend!.layer.cornerRadius = 10;
 		btnSend!.layer.masksToBounds = true;
 		view.addSubview(btnSend!);
-		btnSend!.snp_makeConstraints { (make) in
-			make.centerY.equalTo(btnMoney!.snp_centerY);
-			make.right.equalTo(self.view.snp_right).offset(-5);
+		btnSend!.snp.makeConstraints { (make) in
+			make.centerY.equalTo(btnMoney!.snp.centerY);
+			make.right.equalTo(self.view.snp.right).offset(-5);
 			make.width.equalTo(60);
 		}
 
 		btnNum = UIButton.BtnSimple("X1  >", titleColor: UIColor.brown, image: nil, hightLightImage: nil, target: self, action: #selector(self.showChooseView));
+		btnNum?.titleLabel?.font = UIFont.systemFont(ofSize: 14);
 		// btnSend!.backgroundColor = UIColor.colorWithCustom(225, g: 50, b: 125);
 		btnNum!.layer.borderWidth = 1;
 		btnNum!.layer.borderColor = UIColor.gray.cgColor;
@@ -176,25 +181,25 @@ class GiftViewControl: UIViewController {
 		btnNum!.layer.masksToBounds = true;
 
 		view.addSubview(btnNum!);
-		btnNum!.snp_makeConstraints { (make) in
-			make.centerY.equalTo(btnSend!.snp_centerY);
-			make.right.equalTo(btnSend!.snp_left).offset(-5);
+		btnNum!.snp.makeConstraints { (make) in
+			make.centerY.equalTo(btnSend!.snp.centerY);
+			make.right.equalTo(btnSend!.snp.left).offset(-5);
 			make.width.equalTo(60);
 		}
 
-		txtChangeLB = UILabel.lableSimple("余额:", corlor: UIColor.black, size: 10);
+		txtChangeLB = UILabel.lableSimple("余额:", corlor: UIColor.black, size: 14);
 		view.addSubview(txtChangeLB!);
-		txtChangeLB!.snp_makeConstraints { (make) in
-			make.centerY.equalTo(btnMoney!.snp_centerY);
-			make.left.equalTo((self.btnMoney?.snp_right)!).offset(2);
+		txtChangeLB!.snp.makeConstraints { (make) in
+			make.centerY.equalTo(btnMoney!.snp.centerY);
+			make.left.equalTo((self.btnMoney?.snp.right)!).offset(2);
 			// make.width.equalTo(60);
 		}
 		icoMoneImg = UIImageView(image: UIImage(named: "money"));
 		icoMoneImg?.scale(2, ySclae: 2);
 		view.addSubview(icoMoneImg!);
-		icoMoneImg!.snp_makeConstraints { (make) in
-			make.centerY.equalTo(btnMoney!.snp_centerY);
-			make.left.equalTo((txtChangeLB?.snp_right)!).offset(9);
+		icoMoneImg!.snp.makeConstraints { (make) in
+			make.centerY.equalTo(btnMoney!.snp.centerY);
+			make.left.equalTo((txtChangeLB?.snp.right)!).offset(9);
 		}
 		chooseNumLB(1);
 	}

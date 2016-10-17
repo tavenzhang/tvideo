@@ -1,48 +1,54 @@
 //
-//  UISearchViewController.swift
+//  ShowVideoViewController.swift
 //  TVideoRoom
 //
-//  Created by 张新华 on 16/10/5.
+//  Created by 张新华 on 16/10/17.
 //  Copyright © 2016年 张新华. All rights reserved.
 //
 
 import UIKit
 
-class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
+class ShowVideoViewController: BaseUIViewController {
 
-	var dataActives: [Activity] = [];
 	weak var parentNVC: UINavigationController?;
 	fileprivate var flag: Int = -1
 	fileprivate var collectionView: LFBCollectionView!;
 	fileprivate var lastContentOffsetY: CGFloat = 0
 	fileprivate var isAnimation: Bool = false;
-	var resultSrarchController = UISearchController(searchResultsController: nil);
+
+	var dataActives: [Activity] = [Activity]() {
+		didSet {
+			collectionView.reloadData();
+		}
+	}
+
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
+	}
+
+	convenience init(title: String, dataList: [Activity]) {
+		self.init(nibName: nil, bundle: nil)
+		dataActives = dataList;
+		self.navigationItem.title = title;
+
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		resultSrarchController.delegate = self;
-		resultSrarchController.searchBar.delegate = self;
-		resultSrarchController.searchResultsUpdater = self;
-		resultSrarchController.searchBar.sizeToFit();
-		resultSrarchController.hidesNavigationBarDuringPresentation = false;
-		resultSrarchController.dimsBackgroundDuringPresentation = false;
-
-		resultSrarchController.searchBar.searchBarStyle = .default;
-		resultSrarchController.searchBar.placeholder = "请输入主播名字"
-		self.view.backgroundColor = UIColor.white;
-		self.definesPresentationContext = true;
 		buildCollectionView();
-		// Do any additional setup after loading the view.
 	}
 
+	deinit {
+		parentNVC = nil;
+		dataActives.removeAll();
+
+	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated);
-		resultSrarchController.searchBar.text = "";
-		dataActives.removeAll();
-		collectionView.reloadData();
-		resultSrarchController.searchBar.becomeFirstResponder();
-		self.view.addSubview(resultSrarchController.searchBar);
-
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -63,7 +69,7 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 		layout.minimumLineSpacing = 8
 		layout.sectionInset = UIEdgeInsets(top: 0, left: HomeCollectionViewCellMargin, bottom: 0, right: HomeCollectionViewCellMargin)
 		layout.headerReferenceSize = CGSize(width: 0, height: 22);
-		collectionView = LFBCollectionView(frame: CGRect(x: 0, y: resultSrarchController.searchBar.height, width: ScreenWidth, height: ScreenHeight - resultSrarchController.searchBar.height), collectionViewLayout: layout)
+		collectionView = LFBCollectionView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), collectionViewLayout: layout);
 		collectionView.delegate = self
 		collectionView.dataSource = self
 		collectionView.backgroundColor = LFBGlobalBackgroundColor
@@ -71,38 +77,9 @@ class UISearchViewController: UIViewController, UISearchResultsUpdating, UISearc
 		view.addSubview(collectionView)
 		self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
 	}
-
-	func updateSearchResults(for searchController: UISearchController) {
-
-		dataActives.removeAll();
-		let homeData = DataCenterModel.sharedInstance.homeData;
-		let keyText = resultSrarchController.searchBar.text;
-		LogHttp("resultSrarchController---\(keyText)");
-		if (homeData.totalList != nil)
-		{
-			for item in homeData.totalList!
-			{
-				if item.username!.contains(keyText!) {
-					dataActives.append(item);
-				}
-			}
-		}
-		collectionView.reloadData();
-	}
-
-	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) // called when
-	{
-		self.view.removeFromSuperview();
-	}
-
-	func willDismissSearchController(_ searchController: UISearchController)
-	{
-		self.view.removeFromSuperview();
-	}
-
 }
 
-extension UISearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ShowVideoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return (dataActives.count);
@@ -170,13 +147,12 @@ extension UISearchViewController: UICollectionViewDelegate, UICollectionViewData
 		var itemAcive: Activity;
 		itemAcive = dataActives[(indexPath as NSIndexPath).row];
 		let roomId = itemAcive.uid as! Int;
-		let roomview: VideoRoomUIViewVC = VideoRoomUIViewVC();
-		roomview.roomId = roomId;
-		self.view.removeFromSuperview();
-		resultSrarchController.searchBar.resignFirstResponder();
-		resultSrarchController.searchBar.removeFromSuperview();
-		parentNVC?.pushViewController(roomview, animated: true);
-		Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
+//		let roomview: VideoRoomUIViewVC = VideoRoomUIViewVC();
+//		roomview.roomId = roomId;
+//		self.navigationController?.pushViewController(roomview, animated: true);
+//		Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
+		DataCenterModel.enterVideoRoom(rid: roomId, vc: self.navigationController!)
+
 	}
 }
 

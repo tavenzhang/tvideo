@@ -35,14 +35,19 @@ class UIChatControl: UIViewController {
 		giftVc = GiftViewControl();
 		view?.addSubview(giftVc!.view);
 		// giftVc?.view.frame = CGRectMake(0, self.view.height, self.view.width, 200)
-		giftVc?.view.snp_makeConstraints{ (make) in
+		giftVc?.view.snp_makeConstraints { (make) in
 			make.bottom.equalTo(self.view.snp_bottom);
 			make.width.equalTo(self.view);
-			make.height.equalTo(200);
+			make.height.equalTo(210);
 		}
 		chatVc?.chatGiftBlock = clickGiftBtnHandle;
 		chatVc?.chatCancelBlock = chatCancel;
 		giftVc?.view.isHidden = true;
+//		let msgVo = ChatMessage();
+//		msgVo.sendName = "小兰提醒";
+//		msgVo.content = "视频顿不流程，或者出现openfire，请尝试一下切换线路！";
+//		msgVo.isSender = false;
+//		msgVo.messageType = .text;
 	}
 
 	func clickGiftBtnHandle() {
@@ -50,14 +55,14 @@ class UIChatControl: UIViewController {
 		self.giftVc?.view.top = self.view.height;
 		UIView.animate(withDuration: 0.3, animations: {
 			self.giftVc?.view.top = self.view.height - (self.giftVc?.view.height)!;
-		}) 
+		})
 	}
 
 	func chatCancel() {
 		// giftVc?.view.hidden = true;
 		UIView.animate(withDuration: 0.3, animations: {
 			self.giftVc?.view.top = self.view.height;
-		}) 
+		})
 	}
 
 	func adjust(_ w: CGFloat, h: CGFloat) -> Void {
@@ -81,10 +86,11 @@ class UIChatControl: UIViewController {
 //		mees.messageType = .Text;
 //		mees.content = msg;
 //		chatVc?.receiveMessage(mees);
-		if (DataCenterModel.sharedInstance.roomData.key == "")
+		if (!DataCenterModel.isLogin)
 		{
-			showSimplpAlertView(self, tl: "", msg: "您还未登录不能发言", btnHiht: "登录", okHandle: {
-				self.tabBarController?.selectedIndex = 3;
+			showSimplpAlertView(self, tl: "", msg: "您还未登录不能发言", btnHiht: "登录", okHandle: { [weak self] in
+				self?.tabBarController?.selectedIndex = 3;
+				self?.navigationController?.popViewController(animated: true);
 			})
 		}
 		else {

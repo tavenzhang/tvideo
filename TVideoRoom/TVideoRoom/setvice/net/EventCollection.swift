@@ -54,7 +54,6 @@ let MSG_20001 = 20001;
 ///  服务器错误提醒 alert
 let MSG_15555 = 15555;
 
-
 let E_SOCKERT_CONNECT_SUCCESS: String = "SOCKERT_CONNECT_SUCCESS";
 ///
 let E_SOCKERT_80002: String = "E_SOCKERT_80002";
@@ -77,3 +76,6 @@ let PlayLIST_CHANGE: String = "PlayLIST_CHANGE";
 
 //登陆异常 重新登陆
 let LOGIN_ERROR_SOCET: String = "LOGIN_ERROR_SOCET";
+
+// 切换到登陆界面
+let SHOW_LOGOM_VIEW: String = "SHOW_LOGOM_VIEW";

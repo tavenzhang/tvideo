@@ -28,20 +28,17 @@ class LoginView: UIView {
 			reyBtn?.isHidden = isLoginSucess;
 			logBtn?.isHidden = isLoginSucess;
 			moneyTitle?.isHidden = !isLoginSucess;
-			if (!isLoginSucess)
-			{
-				resetData();
-			}
 		}
 	}
 	override init(frame: CGRect) {
 		isLoginSucess = false;
 		super.init(frame: frame);
-		resetData();
 		setup();
+		resetDataView();
 	}
 
-	func resetData() {
+	func resetDataView() {
+		isLoginSucess = false;
 		defaultInfo.nickname = "你是游客,请先登录~";
 		defaultInfo.safemail = "???";
 		defaultInfo.sex = NSNumber(value: -1);
@@ -49,6 +46,9 @@ class LoginView: UIView {
 		defaultInfo.lv_rich = NSNumber(value: 0);
 		defaultInfo.uid = NSNumber(value: 000);
 		defaultInfo.points = NSNumber(value: 0);
+		imgViewLv?.isHidden = true;
+		DataCenterModel.sharedInstance.roomData.key = "";
+		updateMyInfo(defaultInfo);
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -148,7 +148,6 @@ class LoginView: UIView {
 			make.centerY.equalTo((txtLv?.snp.centerY)!);
 			make.left.equalTo((txtLv?.snp.right)!).offset(20);
 		})
-		updateMyInfo(defaultInfo);
 	}
 
 	func crateUILable(_ container: UIView?, _ size: Int = 12, _ color: UIColor = UIColor.colorWithCustom(100, g: 100, b: 100)) -> UILabel {
@@ -176,16 +175,19 @@ class LoginView: UIView {
 		if (info.roled?.intValue == 3)
 		{
 			imgViewLv!.image = UIImage(named: lvIcoNameGet((info.lv_exp!.int32Value), type: .hostIcoLV));
-			imgViewLv!.scale(2, ySclae: 2)
+			imgViewLv!.scale(2, ySclae: 2);
+			imgViewLv?.isHidden = false;
 		}
 		else {
 			imgViewLv!.image = UIImage(named: lvIcoNameGet((info.lv_rich!.int32Value), type: .userIcoLv));
 			imgViewLv!.scale(2, ySclae: 2)
+			imgViewLv?.isHidden = false;
 		}
 		moneyTitle?.text = "余额:\(info.points!.intValue) 钻";
 	}
 
 	func clickReg() {
+		showSimplpAlertView(parentViewVC, tl: "", msg: "注册功能暂未开放!");
 		LogHttp("clickReg");
 	}
 
@@ -195,7 +197,7 @@ class LoginView: UIView {
 		var mypwd = UserDefaults.standard.string(forKey: "login_pwd");
 		myName = myName == nil ? "" : myName;
 		mypwd = mypwd == nil ? "" : mypwd;
-		showLoginlert(parentViewVC, txtName: myName!, pwd: mypwd!)
+		var _ = showLoginlert(parentViewVC, txtName: myName!, pwd: mypwd!)
 		{ (name, pwd) in
 			self.validLogin(name, pwd: pwd);
 		}
@@ -212,27 +214,45 @@ class LoginView: UIView {
 					let key = httpResult.dataJson!["msg"].string!;
 					DataCenterModel.sharedInstance.roomData.key = key;
 					HttpTavenService.requestJson(getWWWHttp(HTTP_GETUSR_INFO), completionHadble: { [weak self](httpResult) in
-						let result = deserilObjectWithDictonary(httpResult.dataJson?.dictionaryObject
-							as! NSDictionary, cls: LoginModel.classForCoder()) as! LoginModel;
-						self?.defaultInfo = result.info!;
-						self?.updateMyInfo((self?.defaultInfo)!);
-						let imageUrl = NSString(format: HTTP_SMALL_IMAGE as NSString, (self?.defaultInfo.headimg!)!) as String;
-						self?.imgHeadView?.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "v2_placeholder_full_size"));
-						self?.isLoginSucess = true;
-						self?.parentViewVC?.focusModel?.msgNum = (result.myfav?.count)!;
-						self?.parentViewVC?.focusModel?.targeData = result.myfav as AnyObject?;
-						self?.parentViewVC?.flushTable();
-						UserDefaults.standard.set(name, forKey: "login_name");
-						UserDefaults.standard.set(pwd, forKey: "login_pwd");
-						UserDefaults.standard.synchronize();
-						// self?.parentViewVC?.privateMail?.msgNum = result
-					})
-					// showAlertHandle(self.myVC!, tl: "", cont: "登陆成功", okHint: "ok", cancelHint: "cancel")
+						if (httpResult.isSuccess) {
+							let result = deserilObjectWithDictonary(httpResult.dataJson?.dictionaryObject
+								as! NSDictionary, cls: LoginModel.classForCoder()) as! LoginModel;
+							self?.defaultInfo = result.info!;
+							self?.updateMyInfo((self?.defaultInfo)!);
+							let imageUrl = NSString(format: HTTP_SMALL_IMAGE as NSString, (self?.defaultInfo.headimg!)!) as String;
+							self?.imgHeadView?.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "v2_placeholder_full_size"));
+							// 设置关注数据
+							self?.isLoginSucess = true;
+							if (result.myfav != nil) {
+								self?.parentViewVC?.focusModel?.msgNum = (result.myfav?.count)!;
+								self?.parentViewVC?.focusModel?.targeData = result.myfav as AnyObject?;
+							}
+							if (result.gg != nil)
+							{
+								self?.parentViewVC?.oneByoneData?.msgNum = (result.gg?.count)!;
+								self?.parentViewVC?.oneByoneData?.targeData = result.gg as AnyObject?;
+							}
+							// 设置私信
+							self?.parentViewVC?.privateMail?.msgNum = (result.myres?.count)!;
+							self?.parentViewVC?.privateMail?.targeData = result.myres as AnyObject?;
+							self?.parentViewVC?.flushTable();
+							UserDefaults.standard.set(name, forKey: "login_name");
+							UserDefaults.standard.set(pwd, forKey: "login_pwd");
+							UserDefaults.standard.synchronize();
+						}
+						else {
+							var _ = showSimplpAlertView(self?.parentViewVC!, tl: "个人信息获取失败", msg: "请重新登陆试试", btnHiht: "重试", okHandle: {
+								[weak self] in
+								var _ = showLoginlert(self!.parentViewVC!, txtName: "", pwd: "", loginHandle: { (name, pwd) in
+									self?.validLogin(name, pwd: pwd);
+								})
+							})
+						} })
 				}
 				else {
 					showSimplpAlertView(self.parentViewVC!, tl: "登陆失败", msg: "用户名密码错误", btnHiht: "重试", okHandle: {
 						[weak self] in
-						showLoginlert(self!.parentViewVC!, txtName: "", pwd: "", loginHandle: { (name, pwd) in
+						var _ = showLoginlert(self!.parentViewVC!, txtName: "", pwd: "", loginHandle: { (name, pwd) in
 							self?.validLogin(name, pwd: pwd);
 						})
 					})

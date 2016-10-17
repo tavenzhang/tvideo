@@ -116,7 +116,7 @@ class ChatCell: UITableViewCell {
 		self.contentLabel!.attributedText = attrStr
 		self.contentLabel!.frame = CGRect(x: 0, y: 0, width: textSize.width, height: textSize.height);
 		self.contentLabel!.top = self.nameLable!.bottom ;
-		self.contentLabel!.left = self.nameLable!.left + 5;
+		self.contentLabel!.left = self.nameLable!.left + 15;
 		if ((message?.sendName) != nil) {
 			self.nameLable!.text = message!.sendName
 		}

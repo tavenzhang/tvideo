@@ -14,7 +14,6 @@ class SocketManager {
 		socketM = Amf3SocketManager(heartTime: 10, msgHeadSize: 2, isByteBigEndian: true);
 		socketM?.onMsgResultHandle = onMsghandle;
 		socketM?.onTLogHandle = self.socketlog;
-
 	}
 	deinit
 	{
@@ -270,6 +269,7 @@ class SocketManager {
 			giftInfo.giftNameString = "";
 			giftInfo.giftCounts = json["gnum"].uInt32!;
 			giftInfo.giftThumbnailPath = getGiftImagUrl(json["gid"].int32!.description);
+			giftInfo.giftNameString = dataCenterM.roomData.getGiftNameById(gidtId: json["gid"].int!);
 			noticeMsgMianThread(GIFT_EFFECT_START, giftInfo);
 		case MSG_500: // 多处登陆。
 			dataCenterM.roomData.reset();
@@ -278,14 +278,16 @@ class SocketManager {
 			let msg = ErrAlertManger.instance.getDescByError(json["errorCode"].intValue);
 			showMainThreatAlert("", content: msg);
 		default:
-			break
+			break;
 		}
 	}
+
 	func showMainThreatAlert(_ title: String, content: String) {
 		DispatchQueue.main.async {
 			showSimplpAlertView(UIApplication.shared.keyWindow?.rootViewController, tl: title, msg: content);
 		}
 	}
+
 	func noticeMsgMianThread(_ msg: String, _ data: AnyObject?) {
 		DispatchQueue.main.async {
 			NotificationCenter.default.post(name: Notification.Name(rawValue: msg), object: data);

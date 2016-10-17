@@ -29,7 +29,7 @@ public let HotViewMargin: CGFloat = 10
 public let HomeCollectionViewCellMargin: CGFloat = 10
 public let HomeCollectionTextFont = UIFont.systemFont(ofSize: 14)
 public let HomeCollectionCellAnimationDuration: TimeInterval = 1.0
-
+public let isPlusDevice = UIDevice.current.modelName.contains("Plus");
 /****************************** 颜色 ********************************/
 
 // MARK: - 通知

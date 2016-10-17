@@ -49,6 +49,8 @@
 		DE383B971DAF36F600EFB767 /* TSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE383B961DAF36F600EFB767 /* TSegmentedControl.swift */; };
 		DE68250B1DAD178000930197 /* StringUitls.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68250A1DAD178000930197 /* StringUitls.swift */; };
 		DE696B131D2E3B66007F69F7 /* AlertViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE696B121D2E3B66007F69F7 /* AlertViewUtils.swift */; };
+		DE6E00101DB4C58200E768A8 /* MyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6E000F1DB4C58200E768A8 /* MyExtension.swift */; };
+		DE6EFFFA1DB4681D00E768A8 /* ShowVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6EFFF91DB4681D00E768A8 /* ShowVideoViewController.swift */; };
 		DE77865C1DAD0B7C0004AB29 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE77865B1DAD0B7C0004AB29 /* ChatView.swift */; };
 		DE77865E1DAD0BB20004AB29 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE77865D1DAD0BB20004AB29 /* ChatModel.swift */; };
 		DE7A27A81D1AD22100DAAD8C /* NSLoggerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7A27A71D1AD22100DAAD8C /* NSLoggerSupport.swift */; };
@@ -66,13 +68,11 @@
 		DE7EC1F71DB36EDF000F051F /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7EC1F61DB36EDF000F051F /* EditTableViewCell.swift */; };
 		DE7EC1FB1DB38BD4000F051F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7EC1FA1DB38BD4000F051F /* Alamofire.framework */; };
 		DE9655A01DA6264400095146 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE96559F1DA6264400095146 /* LoginView.swift */; };
-		DE9937C71DB26A8300D0B326 /* TRtmpPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937C61DB26A8300D0B326 /* TRtmpPlay.framework */; };
 		DE9D50E91DA637850029C06E /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D50E81DA637850029C06E /* MyInfo.swift */; };
 		DEA01EC41DA5DAE60075411D /* ResourceString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA01EC31DA5DAE60075411D /* ResourceString.swift */; };
 		DEA7D8AD1DA4920F00978ECA /* UISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7D8AC1DA4920F00978ECA /* UISearchViewController.swift */; };
 		DEAC0DB21DAC6EBB0069DDF9 /* GiftInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DAF1DAC6EBB0069DDF9 /* GiftInfoModel.m */; };
 		DEAC0DB31DAC6EBB0069DDF9 /* GiftSendBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAC0DB11DAC6EBB0069DDF9 /* GiftSendBar.m */; };
-		DEBC69131DB26CD900258004 /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBC69121DB26CD900258004 /* TAmf3Socket.framework */; };
 		DEBC692B1DB26FD400258004 /* Pods_TVideoRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A05038CEC7076ADA61914DD /* Pods_TVideoRoom.framework */; };
 		DEBE43941D1EB33F00178DA7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43931D1EB33F00178DA7 /* MainTabBarController.swift */; };
 		DEBE43961D1EB56100178DA7 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE43951D1EB56100178DA7 /* GlobalConfig.swift */; };
@@ -133,6 +133,19 @@
 		DEC726931DAE856500C5E5A5 /* ScreenShot3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC726611DAE856500C5E5A5 /* ScreenShot3.png */; };
 		DEC726951DAE889300C5E5A5 /* 05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC726941DAE889300C5E5A5 /* 05@2x.png */; };
 		DEC8B3631D58CEFD000ACEBF /* EventCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC8B3621D58CEFD000ACEBF /* EventCollection.swift */; };
+		DECBFB031DB4CDE400B19A8B /* TAmf3Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFAFE1DB4CC4500B19A8B /* TAmf3Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DECBFB061DB4CE0700B19A8B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB051DB4CE0700B19A8B /* Alamofire.framework */; };
+		DECBFB071DB4CE0700B19A8B /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB051DB4CE0700B19A8B /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DECBFB091DB4CE0700B19A8B /* BBSZLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB081DB4CE0700B19A8B /* BBSZLib.framework */; };
+		DECBFB0A1DB4CE0700B19A8B /* BBSZLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB081DB4CE0700B19A8B /* BBSZLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DECBFB0C1DB4CE0700B19A8B /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB0B1DB4CE0700B19A8B /* CocoaAsyncSocket.framework */; };
+		DECBFB0D1DB4CE0700B19A8B /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB0B1DB4CE0700B19A8B /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DECBFB0F1DB4CE0800B19A8B /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB0E1DB4CE0700B19A8B /* CryptoSwift.framework */; };
+		DECBFB101DB4CE0800B19A8B /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB0E1DB4CE0700B19A8B /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DECBFB121DB4CE0800B19A8B /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB111DB4CE0800B19A8B /* SwiftyJSON.framework */; };
+		DECBFB131DB4CE0800B19A8B /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB111DB4CE0800B19A8B /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DECBFB181DB4E15F00B19A8B /* TRtmpPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB171DB4E15F00B19A8B /* TRtmpPlay.framework */; };
+		DECBFB191DB4E20900B19A8B /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFAFE1DB4CC4500B19A8B /* TAmf3Socket.framework */; };
 		DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECCBC1D2B606C0030939E /* libsqlite3.tbd */; };
 		DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C701D1A5C7C005A7AC4 /* libz.tbd */; };
 		DEDF8C731D1A5C8C005A7AC4 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C721D1A5C8C005A7AC4 /* libiconv.tbd */; };
@@ -146,6 +159,25 @@
 		DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE870D81D579A3D004103F5 /* libFlurry_7.6.6.a */; };
 		DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF400B81D1D55770093A883 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DECBFB041DB4CDE400B19A8B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DECBFB031DB4CDE400B19A8B /* TAmf3Socket.framework in Embed Frameworks */,
+				DECBFB071DB4CE0700B19A8B /* Alamofire.framework in Embed Frameworks */,
+				DECBFB131DB4CE0800B19A8B /* SwiftyJSON.framework in Embed Frameworks */,
+				DECBFB0D1DB4CE0700B19A8B /* CocoaAsyncSocket.framework in Embed Frameworks */,
+				DECBFB101DB4CE0800B19A8B /* CryptoSwift.framework in Embed Frameworks */,
+				DECBFB0A1DB4CE0700B19A8B /* BBSZLib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1EE51B3F6D104878284E83C0 /* GiftEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftEffectView.swift; sourceTree = "<group>"; };
@@ -201,6 +233,13 @@
 		DE696AF31D2CBC1F007F69F7 /* libFlurry_7.6.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_7.6.4.a; path = ../libs/libFlurry_7.6.4.a; sourceTree = "<group>"; };
 		DE696AF71D2CE820007F69F7 /* libFlurryWatch_7.6.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryWatch_7.6.4.a; path = ../libs/libFlurryWatch_7.6.4.a; sourceTree = "<group>"; };
 		DE696B121D2E3B66007F69F7 /* AlertViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewUtils.swift; sourceTree = "<group>"; };
+		DE6E00001DB48ADB00E768A8 /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE6E00031DB48ADB00E768A8 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE6E00061DB48ADB00E768A8 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE6E00091DB48ADB00E768A8 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE6E000F1DB4C58200E768A8 /* MyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtension.swift; sourceTree = "<group>"; };
+		DE6EFFF91DB4681D00E768A8 /* ShowVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowVideoViewController.swift; sourceTree = "<group>"; };
+		DE6EFFFD1DB48ADB00E768A8 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE77865B1DAD0B7C0004AB29 /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		DE77865D1DAD0BB20004AB29 /* ChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		DE7A27A71D1AD22100DAAD8C /* NSLoggerSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSLoggerSupport.swift; path = ../../NSLoggerSupport.swift; sourceTree = "<group>"; };
@@ -345,6 +384,19 @@
 		DEC726611DAE856500C5E5A5 /* ScreenShot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScreenShot3.png; sourceTree = "<group>"; };
 		DEC726941DAE889300C5E5A5 /* 05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05@2x.png"; sourceTree = "<group>"; };
 		DEC8B3621D58CEFD000ACEBF /* EventCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollection.swift; sourceTree = "<group>"; };
+		DECBFAEE1DB4CAB100B19A8B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFAF11DB4CAB100B19A8B /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFAF41DB4CAB100B19A8B /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFAF71DB4CAB100B19A8B /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFAFA1DB4CAB100B19A8B /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFAFE1DB4CC4500B19A8B /* TAmf3Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TAmf3Socket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFB051DB4CE0700B19A8B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFB081DB4CE0700B19A8B /* BBSZLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBSZLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFB0B1DB4CE0700B19A8B /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFB0E1DB4CE0700B19A8B /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFB111DB4CE0800B19A8B /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFB141DB4CE6D00B19A8B /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECBFB171DB4E15F00B19A8B /* TRtmpPlay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TRtmpPlay.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TVideoRoom-bqgnmehkrpgrzedsjleuqhycztqi/Build/Products/Release-iphoneos/TRtmpPlay.framework"; sourceTree = "<group>"; };
 		DECECCBC1D2B606C0030939E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DEDF8C701D1A5C7C005A7AC4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DEDF8C721D1A5C8C005A7AC4 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
@@ -364,8 +416,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEBC69131DB26CD900258004 /* TAmf3Socket.framework in Frameworks */,
-				DE9937C71DB26A8300D0B326 /* TRtmpPlay.framework in Frameworks */,
+				DECBFB181DB4E15F00B19A8B /* TRtmpPlay.framework in Frameworks */,
+				DECBFB121DB4CE0800B19A8B /* SwiftyJSON.framework in Frameworks */,
+				DECBFB0F1DB4CE0800B19A8B /* CryptoSwift.framework in Frameworks */,
+				DECBFB0C1DB4CE0700B19A8B /* CocoaAsyncSocket.framework in Frameworks */,
 				DE7EC1FB1DB38BD4000F051F /* Alamofire.framework in Frameworks */,
 				DEBC692B1DB26FD400258004 /* Pods_TVideoRoom.framework in Frameworks */,
 				DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */,
@@ -373,9 +427,12 @@
 				DEBE43B01D1EF24100178DA7 /* UIKit.framework in Frameworks */,
 				DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */,
 				DEDF8C771D1A5CB4005A7AC4 /* VideoToolbox.framework in Frameworks */,
+				DECBFB191DB4E20900B19A8B /* TAmf3Socket.framework in Frameworks */,
 				DEDF8C751D1A5C96005A7AC4 /* libbz2.tbd in Frameworks */,
 				DEDF8C731D1A5C8C005A7AC4 /* libiconv.tbd in Frameworks */,
+				DECBFB061DB4CE0700B19A8B /* Alamofire.framework in Frameworks */,
 				DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */,
+				DECBFB091DB4CE0700B19A8B /* BBSZLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +609,14 @@
 			name = framework;
 			sourceTree = "<group>";
 		};
+		DE6EFFF81DB467FB00E768A8 /* control */ = {
+			isa = PBXGroup;
+			children = (
+				DE6EFFF91DB4681D00E768A8 /* ShowVideoViewController.swift */,
+			);
+			path = control;
+			sourceTree = "<group>";
+		};
 		DE7B34A91DAA677300562AA2 /* giftView */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,6 +700,7 @@
 		DE7DAEA11DA154F200AB51FC /* myDetail */ = {
 			isa = PBXGroup;
 			children = (
+				DE6EFFF81DB467FB00E768A8 /* control */,
 				DE9655A21DA6318000095146 /* model */,
 				DEA01EC61DA625A70075411D /* loginView */,
 				DE16451E1D1F7C7F00E21B4A /* MyDetailViewController.swift */,
@@ -803,6 +869,7 @@
 				DE32A2E31DAC6D2200A97020 /* UIViewEx.swift */,
 				DE7A27A71D1AD22100DAAD8C /* NSLoggerSupport.swift */,
 				DEBE439A1D1EB75F00178DA7 /* UIExtension.swift */,
+				DE6E000F1DB4C58200E768A8 /* MyExtension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -911,6 +978,24 @@
 		F10C0C13BDD90EA4BB0D6ED7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DECBFB171DB4E15F00B19A8B /* TRtmpPlay.framework */,
+				DECBFB141DB4CE6D00B19A8B /* SwiftyJSON.framework */,
+				DECBFB111DB4CE0800B19A8B /* SwiftyJSON.framework */,
+				DECBFB0E1DB4CE0700B19A8B /* CryptoSwift.framework */,
+				DECBFB0B1DB4CE0700B19A8B /* CocoaAsyncSocket.framework */,
+				DECBFB081DB4CE0700B19A8B /* BBSZLib.framework */,
+				DECBFB051DB4CE0700B19A8B /* Alamofire.framework */,
+				DECBFAFE1DB4CC4500B19A8B /* TAmf3Socket.framework */,
+				DECBFAFA1DB4CAB100B19A8B /* SwiftyJSON.framework */,
+				DECBFAF71DB4CAB100B19A8B /* CryptoSwift.framework */,
+				DECBFAF41DB4CAB100B19A8B /* CocoaAsyncSocket.framework */,
+				DECBFAF11DB4CAB100B19A8B /* BBSZLib.framework */,
+				DECBFAEE1DB4CAB100B19A8B /* Alamofire.framework */,
+				DE6E00091DB48ADB00E768A8 /* SwiftyJSON.framework */,
+				DE6E00061DB48ADB00E768A8 /* CryptoSwift.framework */,
+				DE6E00031DB48ADB00E768A8 /* CocoaAsyncSocket.framework */,
+				DE6E00001DB48ADB00E768A8 /* BBSZLib.framework */,
+				DE6EFFFD1DB48ADB00E768A8 /* Alamofire.framework */,
 				DE7EC2061DB38BD4000F051F /* SwiftyJSON.framework */,
 				DE7EC2031DB38BD4000F051F /* CryptoSwift.framework */,
 				DE7EC2001DB38BD4000F051F /* CocoaAsyncSocket.framework */,
@@ -998,6 +1083,7 @@
 				6DC4DB5F94FF043F3CE45998 /* [CP] Embed Pods Frameworks */,
 				7BB65991FC5302439623D2F9 /* [CP] Copy Pods Resources */,
 				DE05D44A1D2BAB300015FE5A /* Run Script */,
+				DECBFB041DB4CDE400B19A8B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1192,7 +1278,9 @@
 				DE16451F1D1F7C7F00E21B4A /* MyDetailViewController.swift in Sources */,
 				DE3641791D00507A00A3FE24 /* DataCenter.swift in Sources */,
 				DE7DAE9C1DA150D900AB51FC /* HomeViewModel.swift in Sources */,
+				DE6E00101DB4C58200E768A8 /* MyExtension.swift in Sources */,
 				DEAC0DB31DAC6EBB0069DDF9 /* GiftSendBar.m in Sources */,
+				DE6EFFFA1DB4681D00E768A8 /* ShowVideoViewController.swift in Sources */,
 				DE1645271D1F8F4000E21B4A /* PageScrollView.swift in Sources */,
 				DE9655A01DA6264400095146 /* LoginView.swift in Sources */,
 				DE383B971DAF36F600EFB767 /* TSegmentedControl.swift in Sources */,
@@ -1366,7 +1454,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 23DN84VL44;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1377,7 +1465,7 @@
 					../FFmpeg,
 				);
 				INFOPLIST_FILE = TVideoRoom/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = ../libs;
 				OTHER_LDFLAGS = (
@@ -1419,12 +1507,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 23DN84VL44;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/**",
 					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -1432,7 +1519,7 @@
 					../FFmpeg,
 				);
 				INFOPLIST_FILE = TVideoRoom/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = ../libs;
 				ONLY_ACTIVE_ARCH = YES;

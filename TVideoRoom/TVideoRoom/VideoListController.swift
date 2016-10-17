@@ -7,25 +7,24 @@ import TAmf3Socket
 import TRtmpPlay
 import SwiftyJSON
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l < r
+	case (nil, _?):
+		return true
+	default:
+		return false
+	}
 }
 
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l > r
+	default:
+		return rhs < lhs
+	}
 }
-
 
 class VideoListViewController: BaseUIViewController {
 
@@ -75,8 +74,7 @@ class VideoListViewController: BaseUIViewController {
 		collectionView.dataSource = self
 		collectionView.backgroundColor = LFBGlobalBackgroundColor
 		collectionView.register(HomeCell.self, forCellWithReuseIdentifier: "Cell")
-		collectionView.register(HomeCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView")
-		// collectionView.registerClass(HomeCollectionFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
+		collectionView.register(HomeCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView");
 		view.addSubview(collectionView)
 		let refreshHeadView = LFBRefreshHeader(refreshingTarget: self, refreshingAction: #selector(VideoListViewController.headRefresh));
 		collectionView.mj_header = refreshHeadView;
@@ -88,8 +86,6 @@ class VideoListViewController: BaseUIViewController {
 
 	/**
      获取数据
-     - author: taven
-     - date: 16-06-28 09:06:33
      */
 	func headRefresh() {
 		loadProgressAnimationView.startLoadProgressAnimation();
@@ -103,6 +99,7 @@ class VideoListViewController: BaseUIViewController {
 	func loadDataFinished(_ dataList: [Activity]) -> Void {
 		self.collectionView.mj_header.endRefreshing();
 		self.collectionView.isHidden = false;
+		self.collectionView.mj_footer.endRefreshing();
 		self.loadProgressAnimationView.endLoadProgressAnimation();
 		videoList = dataList;
 		self.collectionView.reloadData();
@@ -110,8 +107,6 @@ class VideoListViewController: BaseUIViewController {
 
 	/**
      下拉获取
-     - author: taven
-     - date: 16-06-28 10:06:20
      */
 	func buildTableData() -> Void {
 		// var titleHash: [Int: String] = [Int: String]();
@@ -200,27 +195,6 @@ extension VideoListViewController: UICollectionViewDelegate, UICollectionViewDat
 		}
 	}
 
-//	func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-//		if kind == UICollectionElementKindSectionHeader {
-//
-//			let headView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView", forIndexPath: indexPath) as! HomeCollectionHeaderView;
-//			headView.titleLabel.text = titleHash[indexPath.section + 1];
-//			return headView;
-//		}
-//
-//		let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView", forIndexPath: indexPath) as! HomeCollectionFooterView
-//
-//		if indexPath.section == 1 && kind == UICollectionElementKindSectionFooter {
-//			footerView.showLabel()
-//			footerView.tag = 100
-//		} else {
-//			footerView.hideLabel()
-//			footerView.tag = 1
-//		}
-//
-//		return footerView
-//	}
-
 	// MARK: - ScrollViewDelegate
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if scrollView.contentOffset.y <= scrollView.contentSize.height {
@@ -235,10 +209,7 @@ extension VideoListViewController: UICollectionViewDelegate, UICollectionViewDat
 		let roomId = itemAcive.uid as! Int;
 		if (roomId > 0)
 		{
-			let roomview: VideoRoomUIViewVC = VideoRoomUIViewVC();
-			roomview.roomId = roomId;
-			self.navigationController?.pushViewController(roomview, animated: true);
-			Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
+			DataCenterModel.enterVideoRoom(rid: roomId, vc: self.navigationController!)
 		}
 		else {
 			showSimplpAlertView(self, tl: "房间不存在", msg: "该房间id错误！");

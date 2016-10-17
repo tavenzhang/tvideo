@@ -28,6 +28,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 	var giftEffectView: GiftEffectVC?;
 
 	lazy var backBtn: UIButton = {
+
 		// 设置返回按钮属性
 		let backBtn2 = UIButton(type: UIButtonType.custom)
 		backBtn2.setImage(UIImage(named: r_nav_btnBack_9x16), for: UIControlState());
@@ -42,6 +43,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 
 	override func viewDidLoad() {
 		addNSNotification();
+		Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
 		self.view.frame = ScreenBounds;
 		self.view.backgroundColor = UIColor.white;
 		self.navigationController?.setNavigationBarHidden(true, animated: false);
@@ -56,7 +58,6 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		scrollView!.showsVerticalScrollIndicator = false
 		scrollView!.showsHorizontalScrollIndicator = false
 		// 去掉滚动条
-
 		// 设置分页
 		scrollView!.isPagingEnabled = true
 		// 设置代理
@@ -119,9 +120,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		giftEffectView?.snp.makeConstraints({ (make) in
 			make.edges.equalTo(self.view);
 		})
-
 	}
-
 	deinit {
 		SocketManager.sharedInstance.closeSocket();
 		NotificationCenter.default.removeObserver(self);
@@ -151,8 +150,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 		let data = notice.object as! GiftInfoModel;
 		giftEffectView?.addEffectGift(data);
 	}
-
-// 测速并连接socket
+	// 测速并连接socket
 	fileprivate func c2sGetSocket(_ roomId: Int) {
 		let pathHttp = NSString(format: HTTP_VIDEO_ROOM as NSString, roomId, "false") as String;
 		DataCenterModel.sharedInstance.roomData.roomId = roomId;
@@ -175,6 +173,7 @@ class VideoRoomUIViewVC: UIViewController, UIScrollViewDelegate {
 								serverList.append("\(item):\(port)") ;
 							}
 						}
+						DataCenterModel.sharedInstance.roomData.rtmpList.removeAll();
 						SocketManager.sharedInstance.testFastSocket(serverList);
 					}
 					else {

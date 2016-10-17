@@ -5,6 +5,7 @@
 import UIKit
 
 class ActiveViewController: WebViewController {
+
 	override func viewDidLoad() {
 		super.viewDidLoad();
 

@@ -101,6 +101,7 @@ class HotViewController: BaseUIViewController {
 	// 数据加载完成刷新
 	func loadDataFinished(_ dataList: [Activity]) -> Void {
 		self.collectionView.mj_header.endRefreshing();
+		self.collectionView.mj_footer.endRefreshing();
 		self.collectionView.isHidden = false;
 		self.loadProgressAnimationView.endLoadProgressAnimation();
 		hotList = dataList;
@@ -172,7 +173,7 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
 	// 设置item 宽
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let w = ScreenWidth;
-		let h = (320 / ScreenWidth) * 400
+		let h = isPlusDevice ? (320 / ScreenWidth) * 450: (320 / ScreenWidth) * 400;
 		let itemSize = CGSize(width: w, height: h);
 
 		return itemSize
@@ -201,6 +202,7 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
 				return headView!;
 			}
 		}
+
 		return headView!;
 	}
 
@@ -208,9 +210,10 @@ extension HotViewController: UICollectionViewDelegate, UICollectionViewDataSourc
 		var itemAcive: Activity;
 		itemAcive = (hotList?[(indexPath as NSIndexPath).row])!;
 		let roomId = itemAcive.uid as! Int;
-		let roomview = VideoRoomUIViewVC();
-		roomview.roomId = roomId;
-		self.navigationController?.pushViewController(roomview, animated: true);
-		Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
+		DataCenterModel.enterVideoRoom(rid: roomId, vc: self.navigationController!)
+//		let roomview = VideoRoomUIViewVC();
+//		roomview.roomId = roomId;
+//		self.navigationController?.pushViewController(roomview, animated: true);
+//		Flurry.logEvent("enter videoRoom", withParameters: ["roomId": roomId], timed: false);
 	}
 }

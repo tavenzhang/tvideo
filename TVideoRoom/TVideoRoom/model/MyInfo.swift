@@ -13,13 +13,13 @@ class MyinfoItemModel {
 	var editName: String = "";
 	var msgNum: Int = 0;
 	var targeData: AnyObject? ;
-	var actionKey: String = "" ;
+	var actionKey: MyDtailTableItemType = .focus ;
 }
 
 class LoginModel: NSObject, DictModelProtocol {
 	var ret: Bool = false;
-	// var myres:[]?
-	// var gg:[]?
+	var myres: [AnyObject]?
+	var gg: [Activity]?;
 	var room_url: String?;
 	var js_url: String?;
 	var downloadUrl: String?;
@@ -28,7 +28,7 @@ class LoginModel: NSObject, DictModelProtocol {
 	var myfav: [Activity]?
 
 	static func customClassMapping() -> [String: String]? {
-		return ["myfav": "\(Activity.self)", "info": "\(PersonInfoModel.self)"];
+		return ["myfav": "\(Activity.self)", "info": "\(PersonInfoModel.self)", "gg": "\(Activity.self)"];
 	}
 }
 class PersonInfoModel: NSObject {

@@ -103,7 +103,7 @@
     [mutableString addAttribute:NSShadowAttributeName value:shadow range:NSMakeRange(0,mutableString.length)];
     [_giftNumlabel setAttributedText:mutableString];
     _nameLabel.text = userName;
-    _sendgitNumlabel.text = [NSString stringWithFormat:@"送了%lld个%@",_countAdd,_quntyty];
+    _sendgitNumlabel.text = [NSString stringWithFormat:@"送了%lld个%@",_countAdd,_giftname];
     //NSString *thumString = [thumbnailPath lastPathComponent];//拿到该地址的最后一个组件（不去掉后缀名的）
    // _giftImageView.image = [UIImage imageNamed:thumbnailPath];
     [_giftImageView sd_setImageWithURL:[NSURL URLWithString:thumbnailPath] placeholderImage:[UIImage imageNamed:@"v2_placeholder_full_size"]];

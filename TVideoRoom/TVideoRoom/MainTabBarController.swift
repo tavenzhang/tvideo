@@ -37,7 +37,7 @@ class MainTabBarController: UITabBarController {
 		#else
 			let a = 3;
 		#endif
-		print("aaaaaaaaaaa===\(a)");
+		addNotifycation();
 		self.delegate = self;
 	}
 
@@ -49,6 +49,13 @@ class MainTabBarController: UITabBarController {
 		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name);
 	}
 
+	func addNotifycation() {
+		NotificationCenter.default.addObserver(self, selector: #selector(self.showLoginView), name: NSNotification.Name(rawValue: SHOW_LOGOM_VIEW), object: nil);
+	}
+
+	func showLoginView() {
+		self.selectedIndex = 3;
+	}
 	fileprivate func buildMainTabBarChildViewController() {
 		let manView = MainPageViewController();
 		tabBarControllerAddChildViewController(manView, title: "大厅", imageName: r_tabBtn_home, selectedImageName: r_tabBtn_home_r, tag: 0)

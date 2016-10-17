@@ -56,8 +56,6 @@ open class TSocketGCDServer: NSObject, netSocketProtol {
 
 	/**
      msgheadLength
-     - author: taven
-     - date: 16-07-14 09:07:34
      - parameter hearTime:      心跳包函数调用间隔 单位秒  <=0 则不开启心跳检测
      - parameter msgheadLength: 消息头长度 必须指定大小 headSize
      －isByteBigEndian 是否服务器cpu架构目标用大端模式
@@ -65,10 +63,10 @@ open class TSocketGCDServer: NSObject, netSocketProtol {
 	public init(heartTime: Double, msgHeadSize: Int, isByteBigEndian: Bool) {
 		super.init();
 		buffMutableData = NSMutableData();
-
 		let que = DispatchQueue(label: "socket", qos: .default, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil);
 		socket = TGCDSocker(delegate: self, delegateQueue: que);
 		self.updataSocketParams(heartTime, msgheadLength: msgHeadSize, isByteBigEndian: isByteBigEndian);
+		chectDateValid();
 	}
 
 	deinit {
@@ -76,6 +74,14 @@ open class TSocketGCDServer: NSObject, netSocketProtol {
 		heartNSTimer?.invalidate();
 	}
 
+	func chectDateValid() {
+//		var dataFormat = DateFormatter();
+//		dataFormat.dateFormat = "dd-MM-YYYY";
+//		var limitData = dataFormat.date(from: "18-11-2016");
+//		TLog("date limitData=\(limitData!.timeIntervalSince1970)");
+//		var dateM = Date()
+//		TLog("date limitData now=\(dateM.timeIntervalSince1970)------   \((limitData?.timeIntervalSince1970)! - dateM.timeIntervalSince1970)");
+	}
 	/**
      日志打印
      - author: taven
@@ -84,7 +90,6 @@ open class TSocketGCDServer: NSObject, netSocketProtol {
 		let log = NSString(format: cont, arguments: getVaList(args));
 		if ((onTLogHandle) != nil)
 		{
-
 			onTLogHandle!(log as String);
 		} else {
 			print("socket <----\(log)");

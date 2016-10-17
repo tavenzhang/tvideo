@@ -249,27 +249,6 @@ class TChatViewControl: UIViewController, UITextFieldDelegate {
 
 		if (curKeyBordType == .txtBoard)
 		{
-//			if let userInfo = notification.userInfo,
-//				value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
-//				duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-//				curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
-//					let frame = value.CGRectValue()
-//					let intersection = CGRectIntersection(frame, self.view.frame)
-//
-//					let deltaY = CGRectGetHeight(intersection)
-//					LogHttp("keyboardWillShow--\(deltaY)")
-//					if keyBoardNeedLayout {
-//						UIView.animateWithDuration(duration, delay: 0.0,
-//							options: UIViewAnimationOptions(rawValue: curve),
-//							animations: { _ in
-//								self.view.frame = CGRectMake(0, -deltaY, self.view.bounds.width, self.view.bounds.height)
-//								self.keyBoardNeedLayout = false
-//								self.view.layoutIfNeeded()
-//							}, completion: { (finished: Bool) -> Void in
-//								self.tableViewScrollToBottom()
-//						})
-//					}
-//			}
 			UIView.animate(withDuration: 0.5, animations: {
 				self.view.frame = CGRect(x: 0, y: -258, width: self.view.bounds.width, height: self.view.bounds.height)
 				self.keyBoardNeedLayout = false

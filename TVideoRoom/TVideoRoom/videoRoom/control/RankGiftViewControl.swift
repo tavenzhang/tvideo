@@ -25,7 +25,11 @@ class RankGiftViewControl: UITableViewController {
 
 	func updataListView(_ notice: Notification) -> Void {
 		dataList = notice.object as? [RankGiftModel];
-		dataList = dataList?.sorted(by: { ($0.score?.int32Value)! > ($1.score?.int32Value)! })
+		if ((dataList?.count)! > 1)
+		{
+			dataList = dataList?.sorted(by: { ($0.score?.int32Value)! > ($1.score?.int32Value)! });
+		}
+
 		for (index, item) in (dataList?.enumerated())!
 		{
 			let indexT = index + 1;

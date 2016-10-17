@@ -29,6 +29,19 @@ class RoomData: NSObject {
 	var giftDataManager: [GiftCateoryModel] = [];
 	var playerList = [playInfoModel]();
 
+	func getGiftNameById(gidtId: Int) -> String {
+		for item in giftDataManager {
+			if ((item.items?.count)! > 0) {
+				for info in item.items! {
+					if (info.gid?.intValue == gidtId) {
+						return info.name!;
+
+					}
+				}
+			}
+		}
+		return "";
+	}
 	// 调整用户主播列表数据
 	func changPlayerList(_ newList: [playInfoModel], isDelete: Bool = false) -> Void {
 

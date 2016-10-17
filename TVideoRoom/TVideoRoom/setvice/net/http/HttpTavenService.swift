@@ -41,6 +41,9 @@ var HTTP_BIG_SHOW_LIST: String = "http://%@/videolistsls.json";
 //获取个人数据 getUserInfo: { url : SERVERADDR + "/indexinfo", type : 'GET'},//用户数据
 var HTTP_GETUSR_INFO = "http://%@/indexinfo";
 
+//退出登陆
+var HTTP_LOGIN_OUT = "http://%@/logout";
+
 //login
 var HTTP_LOGIN = "http://%@/login";
 

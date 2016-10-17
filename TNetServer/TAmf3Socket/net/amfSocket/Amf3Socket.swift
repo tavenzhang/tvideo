@@ -1,10 +1,6 @@
 //
 //  Amf3Socket.swift
 //  TVideo
-//
-//  Created by 张新华 on 16/5/31.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
 
 import BBSZLib
 
@@ -12,7 +8,6 @@ open class Amf3SocketManager: TSocketGCDServer {
 
 	/**
 	 解析消息头
-	 - parameter data: <#data description#>
 	 */
 	override open func readMsgHead(_ data: NSMutableData) -> Int {
 		let len = data.getShort(_isByteBigEndian)
@@ -49,8 +44,6 @@ open class Amf3SocketManager: TSocketGCDServer {
 
 	/**
 	 发送消息
-	 - author: taven
-	 - date: 16-07-13 14:07:48
 	 */
 	override open func sendMessage(_ msgData: AnyObject?) -> Void {
 
