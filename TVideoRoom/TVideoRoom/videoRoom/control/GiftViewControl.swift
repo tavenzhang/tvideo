@@ -74,6 +74,7 @@ class GiftViewControl: UIViewController {
 								self!.dataRoom?.giftDataManager.append(model);
 							}
 						}
+						// LogHttp("giftDataList------\(self!.giftDataList)");
 					}
 				}
 				self?.buildGiftMenuBar();
@@ -104,7 +105,7 @@ class GiftViewControl: UIViewController {
 		giftMenuBar?.regClickHandle({ [weak self](tag) in
 			let index = Int(tag);
 			self?.giftDataList = (self?.dataRoom?.giftDataManager[index].items)!;
-			LogHttp("giftDataList------\(self!.giftDataList)");
+
 			self?.giftCollectionView.reloadData();
 			let attStr = NSMutableAttributedString(string: "礼物: ");
 			self?.txtChangeLB?.attributedText = attStr;

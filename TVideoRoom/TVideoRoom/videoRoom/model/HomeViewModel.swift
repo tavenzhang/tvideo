@@ -1,12 +1,8 @@
 //
 //  HomeViewData.swift
 //  TVideoRoom
-//
-//  Created by 张新华 on 16/6/27.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
 
-import Foundation
+
 import UIKit
 
 class HomeData: NSObject {
@@ -27,7 +23,7 @@ class RankGiftModel: NSObject {
 }
 
 class Activity: NSObject {
-    
+
 	var headimg: String?;
 	var live_time: String?;
 	var username: String? ;
@@ -58,3 +54,4 @@ class Activity: NSObject {
 		}
 	}
 }
+

@@ -44,6 +44,7 @@ func deserilObjectsWithArray(_ array: NSArray, cls: AnyClass) -> NSArray?
 	return arr
 }
 
+typealias versionCallFun = () -> Void;
 //数据管理中心
 class DataCenterModel {
 
@@ -78,7 +79,6 @@ class DataCenterModel {
 				vc?.pushViewController(roomview, animated: true);
 			})
 		}
-
 	}
 
 }

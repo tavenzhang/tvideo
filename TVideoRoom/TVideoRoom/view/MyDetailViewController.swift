@@ -30,6 +30,7 @@ class MyDetailViewController: BaseUIViewController, UITableViewDelegate, UITable
 	var myConsume: MyinfoItemModel?;
 	var configData: MyinfoItemModel?;
 	var loginOutData: MyinfoItemModel?;
+
 	var tableView: UITableView = UITableView();
 	var itemDetalTitle = "";
 
@@ -111,7 +112,6 @@ class MyDetailViewController: BaseUIViewController, UITableViewDelegate, UITable
 	}
 
 	func resetData() {
-
 		oneByoneData?.msgNum = 0;
 		oneByoneData?.targeData = nil;
 
@@ -173,8 +173,7 @@ class MyDetailViewController: BaseUIViewController, UITableViewDelegate, UITable
 		if (!isLoginSucess()) {
 			showAlertHandle(self, tl: "", cont: "请您先登录，再做此操作！", okHint: "去登录", cancelHint: "了解", okHandle: { [weak self] in
 				self?.infoView?.clickLogin();
-				}, canlHandle: nil)
-
+				}, canlHandle: nil);
 		}
 		else {
 			let data = tableData[indexPath.row];
@@ -204,7 +203,6 @@ class MyDetailViewController: BaseUIViewController, UITableViewDelegate, UITable
 						self?.infoView?.resetDataView();
 					})
 					}, canlHandle: nil);
-
 			}
 		}
 	}

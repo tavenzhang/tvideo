@@ -4,30 +4,92 @@
 import Alamofire
 import SwiftyJSON
 import Alamofire
-//var domain = "www.lgfxiu.com";
-//var domain = "www.kiynd.net";
-//var vdomain = "v.kiynd.net";
-//var pdomain = "p.lgfxiu.com";
 
-var domain: String {
+var HTTP_VERSION = "https://raw.githubusercontent.com/ataven2016/tvideo/master/verson.json";
+
+var Http_Domain: String = "";
+var Http_VDomain: String = "";
+var Http_PDomain: String = "";
+
+var HTTP_ACITVE_PAGE: String = "";
+
+var MyActivePage: String {
 	get {
-		return DataCenterModel.sharedInstance.isOneRoom ? "www.kiynd.net" : "www.lgfxiu.com";
+		if (HTTP_ACITVE_PAGE == "") {
+			let ret = UserDefaults.standard.string(forKey: default_Active);
+			if (ret != nil && ret != "")
+			{
+				HTTP_ACITVE_PAGE = ret!;
+				return ret!;
+			}
+			else {
+				return "";
+			}
+		}
+		else {
+			return HTTP_ACITVE_PAGE;
+		}
 	}
 }
-var vdomain: String {
+
+var MyDomain: String {
 	get {
-		return DataCenterModel.sharedInstance.isOneRoom ? "v.kiynd.net" : "v.lgfxiu.com";
+		if (Http_Domain == "") {
+			let ret = UserDefaults.standard.string(forKey: default_domain);
+			if (ret != nil && ret != "")
+			{
+				Http_Domain = ret!;
+				return ret!;
+			}
+			else {
+				return "";
+			}
+		}
+		else {
+			return Http_Domain;
+		}
 	}
 }
 
-var pdomain: String {
+var MyVdomain: String {
 	get {
-		return DataCenterModel.sharedInstance.isOneRoom ? "v.kiynd.net" : "p.lgfxiu.com";
+		if (Http_VDomain == "") {
+			let ret = UserDefaults.standard.string(forKey: default_vdomain);
+			if (ret != nil && ret != "")
+			{
+				Http_VDomain = ret!;
+				return ret!;
+			}
+			else {
+				return "";
+			}
+		}
+		else {
+			return Http_VDomain;
+		}
 	}
 }
 
+var MyPdomain: String {
+	get {
+		if (Http_PDomain == "") {
+			let ret = UserDefaults.standard.string(forKey: default_pdomain);
+			if (ret != nil && ret != "")
+			{
+				Http_PDomain = ret!;
+				return ret!;
+			}
+			else {
+				return "";
+			}
+		}
+		else {
+			return Http_PDomain;
+		}
+	}
+}
 //原始老接口
-let HTTP_HOST_LIST: String = "http://%@/videolist.json?_=1466990345519sJvR";
+let HTTP_HOST_LIST: String = "http://%@/videolist.json";
 //获取大厅
 var HTTP_HOME_LIST: String = "http://%@/videolistall.json";
 //一对一
@@ -49,16 +111,24 @@ var HTTP_LOGIN = "http://%@/login";
 
 //获取礼物数据
 var HTTP_GIFT_Table = "http://%@/video_gs/conf";
+
 //获取礼物ico
-var HTTP_GIFT_ICO_URL = "http://%@/flash/image/gift_material/";
+var HTTP_GIFT_ICO_URL: String {
+	get {
+		return DataCenterModel.sharedInstance.isOneRoom ? "http://s.mmbroadcast.net/flash/V2.4.21/image/gift_material/" : "http://%@/flash/image/gift_material/";
+	}
+}
 
 //获取排行榜数据
 var HTTP_RANK_DATA: String = "http://%@/videolist.json";
 
-//http: // www.lgfxiu.com/flash/image/gift_material/310014.png
-
-func getWWWHttp(_ src: String) -> String {
-	return NSString(format: src as NSString, domain) as String;
+func getWWWHttp(_ src: String, _ isRandom: Bool = false) -> String {
+	if (!isRandom) {
+		return NSString(format: src as NSString, MyDomain) as String;
+	}
+	else {
+		return (NSString(format: src as NSString, MyDomain) as String) + "?a=" + Date().timeIntervalSince1970.description;
+	}
 }
 
 func getGiftImagUrl(_ gidStr: String) -> String {
@@ -67,38 +137,23 @@ func getGiftImagUrl(_ gidStr: String) -> String {
 }
 
 func getVHttp(_ src: String) -> String {
-	return NSString(format: src as NSString, vdomain) as String;
+	return NSString(format: src as NSString, MyVdomain) as String;
 }
 
 var HTTP_VIDEO_ROOM: String {
 	get {
-		return "http://\(vdomain)/video_gs/socketServer?rid=%d&flag=%@";
+		return "http://\(MyVdomain)/video_gs/socketServer?rid=%d&flag=%@";
 	}
 }
 
 var HTTP_IMAGE: String {
 	get {
-		return DataCenterModel.sharedInstance.isOneRoom ? "http://\(vdomain)/%@" : "http://\(pdomain)/%@?w=356&h=266";
+		return DataCenterModel.sharedInstance.isOneRoom ? "http://\(MyVdomain)/%@" : "http://\(MyPdomain)/%@?w=356&h=266";
 	}
 }
 var HTTP_SMALL_IMAGE: String {
 	get {
-		return DataCenterModel.sharedInstance.isOneRoom ? "http://\(vdomain)/%@" : "http://\(pdomain)/%@?w=40&h=40";
-	}
-}
-
-var HTTP_RANK_PAGE: String {
-	get {
-		// return "http://\(domain)";
-		return "http://www.baidu.com"
-
-	}
-}
-
-var HTTP_ACITVE_PAGE: String {
-	get {
-
-		return "http://%@/act";
+		return DataCenterModel.sharedInstance.isOneRoom ? "http://\(MyVdomain)/%@" : "http://\(MyPdomain)/%@?w=40&h=40";
 	}
 }
 
@@ -122,7 +177,6 @@ class HttpResult: NSObject {
 				dataJson = nil;
 			}
 		}
-
 		isSuccess = reuslt
 	}
 }
@@ -132,8 +186,6 @@ class HttpTavenService {
 	class func requestJson(_ url: String, isGet: Bool = true, para: [String: AnyObject]? = nil, completionHadble: @escaping (HttpResult) -> Void) -> Void {
 		LogHttp("http send----->%@", args: url);
 		let methodType: HTTPMethod = isGet ? .get : .post;
-		// Alamofire.request(<#T##url: URLConvertible##URLConvertible#>, method: HTTPMethod, parameters: Parameters?, encoding: nil, headers: <#T##HTTPHeaders?#>)
-		// Alamofire.request(URLConvertible, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?)
 
 		Alamofire.request(url, method: methodType, parameters: para, encoding: URLEncoding.default, headers: nil).responseData { (Res: DataResponse<Data>) in
 			var reulstH: HttpResult?
@@ -145,7 +197,7 @@ class HttpTavenService {
 					LogHttp("http  recive<------Success data ==: %@", args: ((reulstH!.dataJson)?.description)!);
 				}
 				else {
-					LogHttp("http  recive<------Success data ==: %@", args: dataM.toUtf8String());
+					LogHttp("http  recive<------not json data ==: %@", args: dataM.toUtf8String());
 				}
 			case .failure(let error):
 				LogHttp("http  recive<------Request failed with error: %@", args: error as CVarArg);
@@ -155,8 +207,43 @@ class HttpTavenService {
 		}
 	}
 
-	// static func requestDetail(_ method: Alamofire.Method, url: URLStringConvertible, parameters: [String: AnyObject]?, encoding: ParameterEncoding, headers: [String: String]?) -> Void {
-	// Alamofire.request(method, url, parameters: parameters, encoding: encoding, headers: headers);
-	// }
-
+	static var flushCount = 0;
+	// 强制刷新域名
+	class func flushVersonData(callFun: versionCallFun?) -> Void {
+		HttpTavenService.requestJson(HTTP_VERSION + "?a=\(Date().timeIntervalSince1970)") { (dataResult) in
+			if (dataResult.dataJson != nil && dataResult.isSuccess) {
+				let versionMode = deserilObjectWithDictonary(dataResult.dataJson!.dictionaryObject! as NSDictionary, cls: VersionModel.self) as! VersionModel;
+				if (dataResult.isSuccess) {
+					HTTP_ACITVE_PAGE = versionMode.page_active!;
+					var oneDomainList = [DomainModel]();
+					var lgfDomainList = [DomainModel]();
+					for item in versionMode.domains! {
+						if (item.isOneRoom?.intValue != 1) {
+							lgfDomainList.append(item);
+						}
+						else {
+							oneDomainList.append(item);
+						}
+					}
+					var domainMode: DomainModel?;
+					if (flushCount > 10 && oneDomainList.count > 0) {
+						DataCenterModel.sharedInstance.isOneRoom = true;
+						domainMode = oneDomainList[Int(arc4random_uniform(UInt32(oneDomainList.count)))]
+					}
+					else {
+						let index = Int(arc4random_uniform(UInt32(lgfDomainList.count)));
+						domainMode = lgfDomainList[index];
+					}
+					Http_Domain = domainMode!.domain!;
+					Http_VDomain = domainMode!.vdomain!;
+					Http_PDomain = domainMode!.pdomain!;
+					if (callFun != nil) {
+						flushCount = flushCount + 1;
+						callFun!();
+					}
+				}
+			}
+		}
+	}
 }
+

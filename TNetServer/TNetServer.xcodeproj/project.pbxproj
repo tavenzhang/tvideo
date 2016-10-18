@@ -39,8 +39,9 @@
 
 /* Begin PBXFileReference section */
 		0ED2259AFD5A6ECD075A324D /* Pods_TAmf3Socket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAmf3Socket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DDF8576090D68167DDF858F /* Pods-TAmf3Socket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAmf3Socket.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TAmf3Socket/Pods-TAmf3Socket.release.xcconfig"; sourceTree = "<group>"; };
+		1774DA2489D76FE4BCE34AAE /* Pods-TAmf3Socket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAmf3Socket.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TAmf3Socket/Pods-TAmf3Socket.debug.xcconfig"; sourceTree = "<group>"; };
 		959C1B317EDE757BBD56E6EC /* Pods_TNetServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TNetServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0537567E5F9723DD18D5FB6 /* Pods-TAmf3Socket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAmf3Socket.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TAmf3Socket/Pods-TAmf3Socket.release.xcconfig"; sourceTree = "<group>"; };
 		DE37E6BD1DB15321005DC5AD /* Pods_TAmf3Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_TAmf3Socket.framework; path = "/Users/zhangxinhua/Desktop/video/webWork/tvideo/Pods/../build/Debug-iphoneos/Pods_TAmf3Socket.framework"; sourceTree = "<absolute>"; };
 		DE37E6BF1DB153A1005DC5AD /* BBSZLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BBSZLib.framework; path = "/Users/zhangxinhua/Desktop/video/webWork/tvideo/Pods/../build/Debug-iphoneos/BBSZLib/BBSZLib.framework"; sourceTree = "<absolute>"; };
 		DE37E6C01DB153A1005DC5AD /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "/Users/zhangxinhua/Desktop/video/webWork/tvideo/Pods/../build/Debug-iphoneos/CocoaAsyncSocket/CocoaAsyncSocket.framework"; sourceTree = "<absolute>"; };
@@ -77,7 +78,6 @@
 		DEC944381D3F2E8C006884CF /* TSockerGCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSockerGCD.swift; sourceTree = "<group>"; };
 		DEF4868F1D2F82ED00CE650E /* BBSZLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BBSZLib.framework; path = "../../../Library/Developer/Xcode/DerivedData/TWork-bvaedicxmznhtecvdmknxiicdypz/Build/Products/Debug-iphoneos/BBSZLib.framework"; sourceTree = "<group>"; };
 		DEF486901D2F82ED00CE650E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = "../../../Library/Developer/Xcode/DerivedData/TWork-bvaedicxmznhtecvdmknxiicdypz/Build/Products/Debug-iphoneos/CocoaAsyncSocket.framework"; sourceTree = "<group>"; };
-		E2386F3D0459B957BE1AFEC1 /* Pods-TAmf3Socket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAmf3Socket.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TAmf3Socket/Pods-TAmf3Socket.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +111,8 @@
 		753FA0C250B1EA4A4DA27394 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E2386F3D0459B957BE1AFEC1 /* Pods-TAmf3Socket.debug.xcconfig */,
-				2DDF8576090D68167DDF858F /* Pods-TAmf3Socket.release.xcconfig */,
+				1774DA2489D76FE4BCE34AAE /* Pods-TAmf3Socket.debug.xcconfig */,
+				B0537567E5F9723DD18D5FB6 /* Pods-TAmf3Socket.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -261,14 +261,14 @@
 		DE87992D1CFFF1D1003382BD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "张新华";
 				TargetAttributes = {
 					DEC943FA1D3F2E4A006884CF = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = ZBE9R237M6;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -372,8 +372,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
@@ -423,8 +425,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
@@ -447,6 +451,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "0cb009ff-224c-4d33-8d6d-9931a9c3e5e7";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -456,10 +461,10 @@
 		};
 		DEC944001D3F2E4A006884CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2386F3D0459B957BE1AFEC1 /* Pods-TAmf3Socket.debug.xcconfig */;
+			baseConfigurationReference = 1774DA2489D76FE4BCE34AAE /* Pods-TAmf3Socket.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZBE9R237M6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -480,10 +485,10 @@
 		};
 		DEC944011D3F2E4A006884CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DDF8576090D68167DDF858F /* Pods-TAmf3Socket.release.xcconfig */;
+			baseConfigurationReference = B0537567E5F9723DD18D5FB6 /* Pods-TAmf3Socket.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZBE9R237M6;
 				DYLIB_COMPATIBILITY_VERSION = 1;

@@ -89,10 +89,7 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 	}
 
 	func rankCrown() {
-		let web = WebViewController(navigationTitle: "排行", urlStr: "http://www.baidu.com");
-		self.menuBar!.removeFromSuperview()
-		self.menuBar = nil
-		self.navigationController!.pushViewController(web, animated: true)
+		HttpTavenService.flushVersonData(callFun: loadDataEvent);
 	}
 
 	func searchHostVideo() {
@@ -109,47 +106,66 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 			return;
 		}
 		isRequestIng = true;
+		requesHttpData();
+	}
+
+	func requesHttpData() {
 		let queue = DispatchQueue.global(qos: .default);
 		queue.async {
-			HttpTavenService.requestJson(getWWWHttp(HTTP_HOME_LIST)) {
+			HttpTavenService.requestJson(getWWWHttp(HTTP_HOME_LIST, true)) { [weak self]
 				(dataResutl: HttpResult) in
-				let homeData = DataCenterModel.sharedInstance.homeData;
-				if (dataResutl.dataJson == nil || !dataResutl.isSuccess)
+				self?.isRequestIng = false;
+				if (!dataResutl.isSuccess || MyVdomain == "" || MyDomain == "" || MyPdomain == "" || MyActivePage == "")
 				{
-					homeData.totalList = [Activity]();
-					homeData.homeList = [Activity]();
-					homeData.hotList = [Activity]();
-					homeData.oneByOneList = [Activity]();
+					HttpTavenService.flushVersonData(callFun: {
+						// 域名刷新成功 重新加载一遍数据
+						self?.requesHttpData();
+					})
 				}
 				else {
-					var data = dataResutl.dataJson!;
-					let genData = data["rooms"].arrayObject ;
-
-					if ((genData) != nil)
-					{
-						homeData.totalList = deserilObjectsWithArray(genData! as NSArray, cls: Activity.classForCoder()) as? [Activity];
-						homeData.totalList = homeData.totalList?.sorted(by: { Int($0.total!) > Int($1.total!) });
-						homeData.homeList = homeData.totalList?.sorted(by: { Int($0.live_status!) > Int($1.live_status!) });
-						// 大厅在线主播
-						homeData.hotList = homeData.homeList?.filter({ (item: Activity) -> Bool in
-							return item.live_status != 0;
-						})
-
-						homeData.oneByOneList = homeData.homeList?.filter({ (item: Activity) -> Bool in
-							return (item.lv_type == 3) && (item.live_status != 0);
-						})
-					}
-				}
-
-				DispatchQueue.main.async {
 					let homeData = DataCenterModel.sharedInstance.homeData;
-					self.hotliveVC?.loadDataFinished(homeData.hotList!);
-					self.careVC?.loadDataFinished(homeData.oneByOneList!);
-					self.homeVC?.loadDataFinished(homeData.homeList!);
-					self.isRequestIng = false;
+					if (dataResutl.dataJson == nil || !dataResutl.isSuccess)
+					{
+						homeData.totalList = [Activity]();
+						homeData.homeList = [Activity]();
+						homeData.hotList = [Activity]();
+						homeData.oneByOneList = [Activity]();
+					}
+					else {
+						var data = dataResutl.dataJson!;
+						let genData = data["rooms"].arrayObject ;
+						if ((genData) != nil)
+						{
+							homeData.totalList = deserilObjectsWithArray(genData! as NSArray, cls: Activity.classForCoder()) as? [Activity];
+							homeData.totalList = homeData.totalList?.sorted(by: { Int($0.total!) > Int($1.total!) });
+							homeData.homeList = homeData.totalList?.sorted(by: { Int($0.live_status!) > Int($1.live_status!) });
+							// 大厅在线主播
+							homeData.hotList = homeData.homeList?.filter({ (item: Activity) -> Bool in
+								return item.live_status != 0;
+							})
+
+							homeData.oneByOneList = homeData.homeList?.filter({ (item: Activity) -> Bool in
+								return (item.lv_type == 3) && (item.live_status != 0);
+							})
+						}
+					}
+					DispatchQueue.main.async {
+						let homeData = DataCenterModel.sharedInstance.homeData;
+						self?.hotliveVC?.loadDataFinished(homeData.hotList!);
+						self?.careVC?.loadDataFinished(homeData.oneByOneList!);
+						self?.homeVC?.loadDataFinished(homeData.homeList!);
+						if (!DataCenterModel.sharedInstance.isOneRoom) {
+							UserDefaults.standard.set(Http_Domain, forKey: default_domain);
+							UserDefaults.standard.set(Http_VDomain, forKey: default_vdomain);
+							UserDefaults.standard.set(Http_PDomain, forKey: default_pdomain);
+							UserDefaults.standard.set(HTTP_ACITVE_PAGE, forKey: default_Active);
+							UserDefaults.standard.synchronize();
+						}
+					}
 				}
 			}
 		}
+
 	}
 
 	func setupTopMenu() {

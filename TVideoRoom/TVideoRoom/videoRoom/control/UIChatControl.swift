@@ -35,19 +35,20 @@ class UIChatControl: UIViewController {
 		giftVc = GiftViewControl();
 		view?.addSubview(giftVc!.view);
 		// giftVc?.view.frame = CGRectMake(0, self.view.height, self.view.width, 200)
-		giftVc?.view.snp_makeConstraints { (make) in
-			make.bottom.equalTo(self.view.snp_bottom);
+		giftVc?.view.snp.makeConstraints { (make) in
+			make.bottom.equalTo(self.view.snp.bottom);
 			make.width.equalTo(self.view);
 			make.height.equalTo(210);
 		}
 		chatVc?.chatGiftBlock = clickGiftBtnHandle;
 		chatVc?.chatCancelBlock = chatCancel;
 		giftVc?.view.isHidden = true;
-//		let msgVo = ChatMessage();
-//		msgVo.sendName = "小兰提醒";
-//		msgVo.content = "视频顿不流程，或者出现openfire，请尝试一下切换线路！";
-//		msgVo.isSender = false;
-//		msgVo.messageType = .text;
+		let msgVo = ChatMessage();
+		msgVo.sendName = "[友情提醒]";
+		msgVo.content = "  黑屏视频卡顿，或者出现openfail 请善用【换线】功能！";
+		msgVo.isSender = false;
+		msgVo.messageType = .text;
+		chatReceiveMessage30001(Notification(name: Notification.Name(""), object: msgVo, userInfo: nil));
 	}
 
 	func clickGiftBtnHandle() {

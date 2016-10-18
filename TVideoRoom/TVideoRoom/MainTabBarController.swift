@@ -31,7 +31,8 @@ class MainTabBarController: UITabBarController {
 	// MARK:- view life circle
 	override func viewDidLoad() {
 		super.viewDidLoad();
-		buildMainTabBarChildViewController()
+		self.buildMainTabBarChildViewController();
+		// buildMainTabBarChildViewController()
 		#if DEBUG
 			let a = 2;
 		#else
@@ -39,6 +40,7 @@ class MainTabBarController: UITabBarController {
 		#endif
 		addNotifycation();
 		self.delegate = self;
+
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -56,11 +58,12 @@ class MainTabBarController: UITabBarController {
 	func showLoginView() {
 		self.selectedIndex = 3;
 	}
+
 	fileprivate func buildMainTabBarChildViewController() {
 		let manView = MainPageViewController();
 		tabBarControllerAddChildViewController(manView, title: "大厅", imageName: r_tabBtn_home, selectedImageName: r_tabBtn_home_r, tag: 0)
 		tabBarControllerAddChildViewController(RankViewController(), title: "排行", imageName: r_tabBtn_rank, selectedImageName: r_tabBtn_rank_r, tag: 1)
-		tabBarControllerAddChildViewController(ActiveViewController(navigationTitle: "活动", urlStr: getWWWHttp(HTTP_ACITVE_PAGE)), title: "活动", imageName: r_tabBtn_active, selectedImageName: r_tabBtn_active_r, tag: 2)
+		tabBarControllerAddChildViewController(ActiveViewController(navigationTitle: "活动", urlStr: getWWWHttp(MyActivePage), isOpenNow: false), title: "活动", imageName: r_tabBtn_active, selectedImageName: r_tabBtn_active_r, tag: 2)
 		tabBarControllerAddChildViewController(MyDetailViewController(), title: "我", imageName: r_btn_me, selectedImageName: r_btn_me_r, tag: 3);
 	}
 

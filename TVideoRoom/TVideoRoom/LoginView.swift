@@ -193,8 +193,8 @@ class LoginView: UIView {
 
 	func clickLogin() {
 		LogHttp("clickLogin");
-		var myName = UserDefaults.standard.string(forKey: "login_name");
-		var mypwd = UserDefaults.standard.string(forKey: "login_pwd");
+		var myName = UserDefaults.standard.string(forKey: default_login_name);
+		var mypwd = UserDefaults.standard.string(forKey: default_login_pwd);
 		myName = myName == nil ? "" : myName;
 		mypwd = mypwd == nil ? "" : mypwd;
 		var _ = showLoginlert(parentViewVC, txtName: myName!, pwd: mypwd!)
@@ -236,8 +236,8 @@ class LoginView: UIView {
 							self?.parentViewVC?.privateMail?.msgNum = (result.myres?.count)!;
 							self?.parentViewVC?.privateMail?.targeData = result.myres as AnyObject?;
 							self?.parentViewVC?.flushTable();
-							UserDefaults.standard.set(name, forKey: "login_name");
-							UserDefaults.standard.set(pwd, forKey: "login_pwd");
+							UserDefaults.standard.set(name, forKey: default_login_name);
+							UserDefaults.standard.set(pwd, forKey: default_login_pwd);
 							UserDefaults.standard.synchronize();
 						}
 						else {

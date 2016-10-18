@@ -19,11 +19,11 @@ pod 'BBSZLib'
 pod 'CocoaAsyncSocket'
 end
 
-#target :TAmf3Socket do
-#xcodeproj 'TNetServer/TNetServer.xcodeproj'
-#pod 'BBSZLib'
-#pod 'CocoaAsyncSocket'
-#end
+target :TAmf3Socket do
+xcodeproj 'TNetServer/TNetServer.xcodeproj'
+pod 'BBSZLib'
+pod 'CocoaAsyncSocket'
+end
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|

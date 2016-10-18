@@ -64,16 +64,12 @@ public let LFBGlobalBackgroundColor = UIColor.colorWithCustom(239, g: 239, b: 23
 public let LFBNavigationYellowColor = UIColor.colorWithCustom(253, g: 212, b: 49)
 public let LFBTextGreyColol = UIColor.colorWithCustom(130, g: 130, b: 130)
 public let LFBTextBlackColor = UIColor.colorWithCustom(50, g: 50, b: 50)
+//数据key
+public let default_login_name = "login_name";
+public let default_login_pwd = "login_pwd";
 
-// MARK: - 购物车管理工具通知
-public let LFBShopCarDidRemoveProductNSNotification = "LFBShopCarDidRemoveProductNSNotification"
-/// 购买商品数量发生改变
-public let LFBShopCarBuyProductNumberDidChangeNotification = "LFBShopCarBuyProductNumberDidChangeNotification"
-/// 购物车商品价格发送改变
-public let LFBShopCarBuyPriceDidChangeNotification = "LFBShopCarBuyPriceDidChangeNotification"
-// MARK: - 购物车ViewController
-public let ShopCartRowHeight: CGFloat = 50
-
-// MARK: - 搜索ViewController
-public let LFBSearchViewControllerHistorySearchArray = "LFBSearchViewControllerHistorySearchArray"
+public let default_domain = "default_domain";
+public let default_vdomain = "default_vdomain";
+public let default_pdomain = "default_pdomain";
+public let default_Active = "default_activePage";
 
