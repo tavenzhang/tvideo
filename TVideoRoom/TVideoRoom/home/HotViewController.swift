@@ -75,11 +75,11 @@ class HotViewController: BaseUIViewController {
 	func buildTableData() -> Void {
 		var testData = [Activity]();
 		let data1 = Activity();
-		data1.img = "http://p1.1room1.co/public/images/staticad/0039c7e66b7c9b933cc8f482286c52f9_1465799392.jpg";
+		data1.img = "http://p.lgfxc.net/43cadf050bb5ec86043a99343b2608ee";
 		let data2 = Activity()
-		data2.img = "http://p1.1room1.co/public/images/staticad/e486c9cae6dfd640aaf0396ada2bf09e_1465289179.jpg";
+		data2.img = "http://p.lgfxc.net/43cadf050bb5ec86043a99343b2608ee";
 		let data3 = Activity();
-		data3.img = "http://p1.1room1.co/public/images/staticad/d401dd628b19326b9f2ef7fcc3b125a8_1458632404.jpg";
+		data3.img = "http://p.lgfxc.net/43cadf050bb5ec86043a99343b2608ee";
 		testData.append(data1);
 		testData.append(data2);
 		testData.append(data3);

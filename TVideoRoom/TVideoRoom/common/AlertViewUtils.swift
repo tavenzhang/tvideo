@@ -10,14 +10,19 @@ import Foundation
 
 typealias alertHanld = () -> Void;
 typealias loginAlertHandle = (_ name: String, _ pwd: String) -> Void;
+typealias sinputAlertHandle = (_ data: String) -> Void;
 /**
  弹出一个按钮的 简单弹出框
  
  - author: taven
  - date: 16-07-07 16:07:55
  */
-func showSimplpAlertView(_ uiCtrol: UIViewController?, tl: String, msg: String, btnHiht: String = "确定", okHandle: alertHanld? = nil) -> Void {
+func showSimplpAlertView(_ ctrol: UIViewController?, tl: String, msg: String, btnHiht: String = "确定", okHandle: alertHanld? = nil) -> Void {
 
+	var uiCtrol = ctrol;
+	if (uiCtrol == nil) {
+		uiCtrol = UIApplication.shared.keyWindow?.rootViewController;
+	}
 	let alertCtr = UIAlertController(title: tl, message: msg, preferredStyle: UIAlertControllerStyle.alert)
 	let okAction = UIAlertAction(title: btnHiht, style: UIAlertActionStyle.destructive) {
 		(action) in
@@ -36,7 +41,11 @@ func showSimplpAlertView(_ uiCtrol: UIViewController?, tl: String, msg: String, 
  - author: taven
  - date: 16-07-07 16:07:26
  */
-func showAlertHandle(_ uiCtrol: UIViewController?, tl: String, cont: String, okHint: String?, cancelHint: String?, okHandle: alertHanld? = nil, canlHandle: alertHanld? = nil) -> Void {
+func showAlertHandle(_ ctrol: UIViewController?, tl: String, cont: String, okHint: String?, cancelHint: String?, canlHandle: alertHanld?, okHandle: alertHanld?) -> Void {
+	var uiCtrol = ctrol;
+	if (uiCtrol == nil) {
+		uiCtrol = UIApplication.shared.keyWindow?.rootViewController;
+	}
 	let alertCtr = UIAlertController(title: tl, message: cont, preferredStyle: UIAlertControllerStyle.alert);
 	let okAction = UIAlertAction(title: okHint, style: UIAlertActionStyle.destructive) {
 		(action) in
@@ -58,6 +67,27 @@ func showAlertHandle(_ uiCtrol: UIViewController?, tl: String, cont: String, okH
 	};
 	alertCtr.addAction(okAction);
 	alertCtr.addAction(canelAction);
+	uiCtrol?.present(alertCtr, animated: true, completion: nil);
+}
+
+func showSimpleInputAlert(_ ctrol: UIViewController?, title: String, placeholder: String, btnName: String, okHandle: sinputAlertHandle? = nil) {
+	var uiCtrol = ctrol;
+	if (uiCtrol == nil) {
+		uiCtrol = UIApplication.shared.keyWindow?.rootViewController;
+	}
+	let alertCtr = UIAlertController(title: title, message: "", preferredStyle: UIAlertControllerStyle.alert);
+	alertCtr.addTextField() {
+		(textF: UITextField) in
+		textF.placeholder = placeholder;
+		textF.text = "";
+	}
+	let okAction = UIAlertAction(title: btnName, style: UIAlertActionStyle.cancel) {
+		(action) in
+		let domain = (alertCtr.textFields![0] as UITextField).text!;
+		okHandle?(domain);
+		uiCtrol?.dismiss(animated: false, completion: nil);
+	};
+	alertCtr.addAction(okAction);
 	uiCtrol?.present(alertCtr, animated: true, completion: nil);
 }
 

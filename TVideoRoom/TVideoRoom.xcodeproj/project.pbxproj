@@ -133,11 +133,8 @@
 		DEC726951DAE889300C5E5A5 /* 05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC726941DAE889300C5E5A5 /* 05@2x.png */; };
 		DEC8B3631D58CEFD000ACEBF /* EventCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC8B3621D58CEFD000ACEBF /* EventCollection.swift */; };
 		DECBFB181DB4E15F00B19A8B /* TRtmpPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB171DB4E15F00B19A8B /* TRtmpPlay.framework */; };
-		DECBFB1C1DB4EEA300B19A8B /* Pods_TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB1B1DB4EEA300B19A8B /* Pods_TAmf3Socket.framework */; };
-		DECBFB1D1DB4EEC800B19A8B /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */; };
 		DECBFB201DB4F15200B19A8B /* BBSZLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB1E1DB4F15200B19A8B /* BBSZLib.framework */; };
 		DECBFB211DB4F15200B19A8B /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECBFB1F1DB4F15200B19A8B /* CocoaAsyncSocket.framework */; };
-		DECBFB531DB4FB3E00B19A8B /* TAmf3Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */; };
 		DECBFB541DB4FB3E00B19A8B /* TAmf3Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE9937861DB268EF00D0B326 /* TAmf3Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DECECCBC1D2B606C0030939E /* libsqlite3.tbd */; };
 		DEDF8C711D1A5C7C005A7AC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDF8C701D1A5C7C005A7AC4 /* libz.tbd */; };
@@ -409,13 +406,10 @@
 			files = (
 				DECBFB201DB4F15200B19A8B /* BBSZLib.framework in Frameworks */,
 				DECBFB211DB4F15200B19A8B /* CocoaAsyncSocket.framework in Frameworks */,
-				DECBFB1D1DB4EEC800B19A8B /* TAmf3Socket.framework in Frameworks */,
-				DECBFB1C1DB4EEA300B19A8B /* Pods_TAmf3Socket.framework in Frameworks */,
 				DECBFB181DB4E15F00B19A8B /* TRtmpPlay.framework in Frameworks */,
 				DEBC692B1DB26FD400258004 /* Pods_TVideoRoom.framework in Frameworks */,
 				DEE870D91D579A3D004103F5 /* libFlurry_7.6.6.a in Frameworks */,
 				DECECCBD1D2B606C0030939E /* libsqlite3.tbd in Frameworks */,
-				DECBFB531DB4FB3E00B19A8B /* TAmf3Socket.framework in Frameworks */,
 				DEBE43B01D1EF24100178DA7 /* UIKit.framework in Frameworks */,
 				DEF400B91D1D55770093A883 /* Accelerate.framework in Frameworks */,
 				DEDF8C771D1A5CB4005A7AC4 /* VideoToolbox.framework in Frameworks */,
@@ -1441,6 +1435,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EFE609236A8C8E3C3BA3A6DE /* Pods-TVideoRoom.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1493,6 +1488,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B08D853C6C5BBE67B30DDE00 /* Pods-TVideoRoom.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinhua Zhang (23DN84VL44)";

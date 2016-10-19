@@ -29,5 +29,5 @@ let r_home_live_img = "home_live_43x22"
 
 let r_home_btnSrarch = "search_15x14";
 
-let r_home_btnRank = "head_crown_24x24";
+let r_home_btnRank = "v2_refresh";
 

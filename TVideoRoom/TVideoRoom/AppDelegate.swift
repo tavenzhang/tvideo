@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let webView = UIWebView(frame: ScreenBounds);
 		let agent = webView.stringByEvaluatingJavaScript(from: "navigator.userAgent");
 		UserDefaults.standard.register(defaults: ["UserAgent": agent!]);
-		return true
+		return true;
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {

@@ -4,8 +4,9 @@
 import Alamofire
 import SwiftyJSON
 import Alamofire
+import SVProgressHUD;
 
-var HTTP_VERSION = "https://raw.githubusercontent.com/ataven2016/tvideo/master/verson.json";
+var HTTP_VERSION = "https://raw.githubusercontent.com/ataven2016/tvideo/master/verson.json1";
 
 var Http_Domain: String = "";
 var Http_VDomain: String = "";
@@ -88,6 +89,8 @@ var MyPdomain: String {
 		}
 	}
 }
+
+let HTTP_AD_IMG = "http://%@/"
 //原始老接口
 let HTTP_HOST_LIST: String = "http://%@/videolist.json";
 //获取大厅
@@ -128,6 +131,15 @@ func getWWWHttp(_ src: String, _ isRandom: Bool = false) -> String {
 	}
 	else {
 		return (NSString(format: src as NSString, MyDomain) as String) + "?a=" + Date().timeIntervalSince1970.description;
+	}
+}
+
+func getImgPHttp(_ src: String, _ isRandom: Bool = false) -> String {
+	if (!isRandom) {
+		return NSString(format: src as NSString, MyPdomain) as String;
+	}
+	else {
+		return (NSString(format: src as NSString, MyPdomain) as String) + "?a=" + Date().timeIntervalSince1970.description;
 	}
 }
 
@@ -184,10 +196,21 @@ class HttpResult: NSObject {
 class HttpTavenService {
 
 	class func requestJson(_ url: String, isGet: Bool = true, para: [String: AnyObject]? = nil, completionHadble: @escaping (HttpResult) -> Void) -> Void {
+		requestJsonWithHint(url, loadingHint: "", isGet: isGet, para: para, completionHadble: completionHadble);
+	}
+
+	class func requestJsonWithHint(_ url: String, loadingHint: String, isGet: Bool = true, para: [String: AnyObject]? = nil, completionHadble: @escaping (HttpResult) -> Void) {
 		LogHttp("http send----->%@", args: url);
 		let methodType: HTTPMethod = isGet ? .get : .post;
-
+		SVProgressHUD.setDefaultMaskType(.gradient)
+		if (loadingHint != "") {
+			SVProgressHUD.show(withStatus: "\(loadingHint) 请稍等...");
+		}
+		else {
+			SVProgressHUD.show(withStatus: "数据加载中 请稍等...");
+		}
 		Alamofire.request(url, method: methodType, parameters: para, encoding: URLEncoding.default, headers: nil).responseData { (Res: DataResponse<Data>) in
+			SVProgressHUD.dismiss();
 			var reulstH: HttpResult?
 			switch Res.result {
 			case .success(let dataM):
@@ -197,20 +220,22 @@ class HttpTavenService {
 					LogHttp("http  recive<------Success data ==: %@", args: ((reulstH!.dataJson)?.description)!);
 				}
 				else {
-					LogHttp("http  recive<------not json data ==: %@", args: dataM.toUtf8String());
+					reulstH?.isSuccess = false;
+					LogHttp("http  recive<------not json data ==dataM:\(dataM)");
 				}
 			case .failure(let error):
-				LogHttp("http  recive<------Request failed with error: %@", args: error as CVarArg);
+				LogHttp("http  recive<------Request failed with error: \(error)");
 				reulstH = HttpResult(dataR: nil, reuslt: false)
 			}
 			completionHadble(reulstH!);
 		}
 	}
 
-	static var flushCount = 0;
-	// 强制刷新域名
+	static var flushCount = 1;
+// 强制刷新域名
 	class func flushVersonData(callFun: versionCallFun?) -> Void {
-		HttpTavenService.requestJson(HTTP_VERSION + "?a=\(Date().timeIntervalSince1970)") { (dataResult) in
+
+		HttpTavenService.requestJsonWithHint(HTTP_VERSION + "?a=\(Date().timeIntervalSince1970)", loadingHint: "强制刷新第\(flushCount)次") { (dataResult) in
 			if (dataResult.dataJson != nil && dataResult.isSuccess) {
 				let versionMode = deserilObjectWithDictonary(dataResult.dataJson!.dictionaryObject! as NSDictionary, cls: VersionModel.self) as! VersionModel;
 				if (dataResult.isSuccess) {
@@ -225,24 +250,34 @@ class HttpTavenService {
 							oneDomainList.append(item);
 						}
 					}
+					flushCount = 1;
 					var domainMode: DomainModel?;
-					if (flushCount > 10 && oneDomainList.count > 0) {
-						DataCenterModel.sharedInstance.isOneRoom = true;
-						domainMode = oneDomainList[Int(arc4random_uniform(UInt32(oneDomainList.count)))]
-					}
-					else {
-						let index = Int(arc4random_uniform(UInt32(lgfDomainList.count)));
-						domainMode = lgfDomainList[index];
-					}
+					let index = Int(arc4random_uniform(UInt32(lgfDomainList.count)));
+					domainMode = lgfDomainList[index];
 					Http_Domain = domainMode!.domain!;
 					Http_VDomain = domainMode!.vdomain!;
 					Http_PDomain = domainMode!.pdomain!;
 					if (callFun != nil) {
-						flushCount = flushCount + 1;
 						callFun!();
 					}
 				}
 			}
+			else {
+
+				if (flushCount <= 3) {
+					showAlertHandle(nil, tl: "强制刷新第\(flushCount)次失败", cont: "请重刷几次看看！", okHint: "重刷", cancelHint: "放弃", canlHandle: nil, okHandle: {
+						HttpTavenService.flushVersonData(callFun: callFun);
+					});
+				}
+				else {
+					showSimpleInputAlert(nil, title: "手动域名更新", placeholder: "输入新域名", btnName: "刷新", okHandle: { (data: String) in
+						LogHttp("手动刷新了域名");
+					})
+
+				}
+				flushCount = flushCount + 1;
+			}
+
 		}
 	}
 }

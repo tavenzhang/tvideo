@@ -62,7 +62,7 @@ let E_SOCKERT_Chat_30001: String = "E_SOCKERT_Chat_30001";
 //rtmp 通知播放
 let E_SOCKERT_2001: String = "E_SOCKERT_2001";
 
-let RTMP_START_PLAY: String = "rtmp start play";
+let RTMP_START_PLAY: String = "rtmp_start_play";
 //更新贡献榜
 let RANK_GIft_UPTA: String = "rRANK_GIft_UPTA";
 //收到礼物播放特效

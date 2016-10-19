@@ -165,7 +165,6 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 				}
 			}
 		}
-
 	}
 
 	func setupTopMenu() {

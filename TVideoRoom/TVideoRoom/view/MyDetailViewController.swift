@@ -171,9 +171,9 @@ class MyDetailViewController: BaseUIViewController, UITableViewDelegate, UITable
 		let cell = tableView.cellForRow(at: indexPath) as! EditTableViewCell;
 		cell.setSelected(false, animated: true);
 		if (!isLoginSucess()) {
-			showAlertHandle(self, tl: "", cont: "请您先登录，再做此操作！", okHint: "去登录", cancelHint: "了解", okHandle: { [weak self] in
+			showAlertHandle(self, tl: "", cont: "请您先登录，再做此操作！", okHint: "去登录", cancelHint: "了解", canlHandle: nil, okHandle: { [weak self] in
 				self?.infoView?.clickLogin();
-				}, canlHandle: nil);
+			});
 		}
 		else {
 			let data = tableData[indexPath.row];
@@ -195,14 +195,14 @@ class MyDetailViewController: BaseUIViewController, UITableViewDelegate, UITable
 				let viewDetail = ShowVideoViewController(title: itemDetalTitle, dataList: data!);
 				self.navigationController?.pushViewController(viewDetail, animated: true)
 			default: // 退出
-				showAlertHandle(self, tl: "", cont: "您确定登出吗", okHint: "确定", cancelHint: "取消", okHandle: {
+				showAlertHandle(self, tl: "", cont: "您确定登出吗", okHint: "确定", cancelHint: "取消", canlHandle: nil, okHandle: {
 					HttpTavenService.requestJson(getWWWHttp(HTTP_LOGIN_OUT), isGet: false, para: nil, completionHadble: { [weak self](HttpResult) in
 						showSimplpAlertView(self, tl: "", msg: "退出成功!");
 						self?.resetData();
 						self?.infoView?.isLoginSucess = false;
 						self?.infoView?.resetDataView();
 					})
-					}, canlHandle: nil);
+				});
 			}
 		}
 	}
