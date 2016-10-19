@@ -75,9 +75,9 @@ class RankGiftCell: UITableViewCell {
 	var dataModel: RankGiftModel? {
 
 		didSet {
-			txtRank.text = dataModel!.rankStr;
-			txtName.text = dataModel!.name;
-			txtMoeny.text = "\(dataModel!.score!) ￥";
+			txtRank.text = dataModel?.rankStr;
+			txtName.text = dataModel?.name;
+			txtMoeny.text = "\(dataModel?.score!) ￥";
 		}
 	}
 

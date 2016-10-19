@@ -6,13 +6,13 @@ import SwiftyJSON
 import Alamofire
 import SVProgressHUD;
 
-var HTTP_VERSION = "https://raw.githubusercontent.com/ataven2016/tvideo/master/verson.json1";
+var HTTP_VERSION = "https://raw.githubusercontent.com/ataven2016/tvideo/master/verson.json";
 
-var Http_Domain: String = "";
-var Http_VDomain: String = "";
-var Http_PDomain: String = "";
+var Http_Domain: String = "www.lgfabcd.com";
+var Http_VDomain: String = "v.lgfabcd.com";
+var Http_PDomain: String = "p.lgfabcd.com";
 
-var HTTP_ACITVE_PAGE: String = "";
+var HTTP_ACITVE_PAGE: String = "http://%@/act";
 
 var MyActivePage: String {
 	get {
@@ -90,7 +90,7 @@ var MyPdomain: String {
 	}
 }
 
-let HTTP_AD_IMG = "http://%@/"
+let HTTP_AD_IMG = "http: // %@/"
 //原始老接口
 let HTTP_HOST_LIST: String = "http://%@/videolist.json";
 //获取大厅
@@ -206,10 +206,12 @@ class HttpTavenService {
 		if (loadingHint != "") {
 			SVProgressHUD.show(withStatus: "\(loadingHint) 请稍等...");
 		}
-		else {
-			SVProgressHUD.show(withStatus: "数据加载中 请稍等...");
-		}
-		Alamofire.request(url, method: methodType, parameters: para, encoding: URLEncoding.default, headers: nil).responseData { (Res: DataResponse<Data>) in
+		var request = URLRequest(url: URL(string: url)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10);
+		request.httpMethod = methodType.rawValue;
+		let encode = URLEncoding.default;
+		let newRequest = try! encode.encode(request, with: para);
+
+		Alamofire.request(newRequest).responseData { (Res: DataResponse<Data>) in
 			SVProgressHUD.dismiss();
 			var reulstH: HttpResult?
 			switch Res.result {
@@ -229,11 +231,12 @@ class HttpTavenService {
 			}
 			completionHadble(reulstH!);
 		}
+
 	}
 
 	static var flushCount = 1;
-// 强制刷新域名
-	class func flushVersonData(callFun: versionCallFun?) -> Void {
+	// 强制刷新域名
+	class func flushVersonData(callFun: loadDataFun?) -> Void {
 
 		HttpTavenService.requestJsonWithHint(HTTP_VERSION + "?a=\(Date().timeIntervalSince1970)", loadingHint: "强制刷新第\(flushCount)次") { (dataResult) in
 			if (dataResult.dataJson != nil && dataResult.isSuccess) {
@@ -258,7 +261,7 @@ class HttpTavenService {
 					Http_VDomain = domainMode!.vdomain!;
 					Http_PDomain = domainMode!.pdomain!;
 					if (callFun != nil) {
-						callFun!();
+						callFun!(true);
 					}
 				}
 			}
@@ -271,7 +274,9 @@ class HttpTavenService {
 				}
 				else {
 					showSimpleInputAlert(nil, title: "手动域名更新", placeholder: "输入新域名", btnName: "刷新", okHandle: { (data: String) in
-						LogHttp("手动刷新了域名");
+						let dataStr = data.trimmingCharacters(in: NSCharacterSet.whitespaces);
+						HTTP_VERSION = "http://\(dataStr)/flash/app/verson.json";
+						HttpTavenService.flushVersonData(callFun: callFun);
 					})
 
 				}

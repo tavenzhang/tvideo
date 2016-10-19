@@ -1,13 +1,8 @@
 //
-//  MainPageViewController.swift
-//  TVideoRoom
 //
-//  Created by 张新华 on 16/10/4.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
-
 import UIKit
-typealias loadDataFun = () -> Void;
+
+typealias loadDataFun = (Bool) -> Void;
 
 class MainPageViewController: UIViewController, UIScrollViewDelegate {
 
@@ -17,6 +12,7 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 	var homeVC: VideoListViewController?;
 	var careVC: VideoListViewController?;
 	var isRequestIng: Bool = false;
+	var isFirstLoad: Bool = false;
 	lazy var serachViewVC: UISearchViewController = {
 		LogHttp("create serachViewVC");
 		var svc = UISearchViewController() ;
@@ -100,26 +96,28 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 		}
 	}
 
-	func loadDataEvent() -> Void {
+	func loadDataEvent(_ isShowHint: Bool = false) -> Void {
 		if (isRequestIng)
 		{
 			return;
 		}
 		isRequestIng = true;
-		requesHttpData();
+		requesHttpData(isShowHint);
 	}
 
-	func requesHttpData() {
+	func requesHttpData(_ isShowHint: Bool) {
 		let queue = DispatchQueue.global(qos: .default);
 		queue.async {
-			HttpTavenService.requestJson(getWWWHttp(HTTP_HOME_LIST, true)) { [weak self]
+			let hintStr = (isShowHint || !self.isFirstLoad) ? "房间数据获取中" : "";
+			self.isFirstLoad = true;
+			HttpTavenService.requestJsonWithHint(getWWWHttp(HTTP_HOME_LIST, true), loadingHint: hintStr) { [weak self]
 				(dataResutl: HttpResult) in
 				self?.isRequestIng = false;
 				if (!dataResutl.isSuccess || MyVdomain == "" || MyDomain == "" || MyPdomain == "" || MyActivePage == "")
 				{
-					HttpTavenService.flushVersonData(callFun: {
+					HttpTavenService.flushVersonData(callFun: { (data: Bool) in
 						// 域名刷新成功 重新加载一遍数据
-						self?.requesHttpData();
+						self?.requesHttpData(true);
 					})
 				}
 				else {
@@ -163,10 +161,10 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 						}
 					}
 				}
+
 			}
 		}
 	}
-
 	func setupTopMenu() {
 		// 设置顶部选择视图
 		self.menuBar = MenuBarView(frame: self.navigationController!.navigationBar.bounds);

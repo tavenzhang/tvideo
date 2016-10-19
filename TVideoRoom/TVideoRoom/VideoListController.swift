@@ -91,7 +91,7 @@ class VideoListViewController: BaseUIViewController {
 		loadProgressAnimationView.startLoadProgressAnimation();
 		if (loadFunHandl != nil)
 		{
-			loadFunHandl?();
+			loadFunHandl?(false);
 		}
 	}
 

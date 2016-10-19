@@ -94,7 +94,7 @@ class HotViewController: BaseUIViewController {
 		loadProgressAnimationView.startLoadProgressAnimation();
 		if (loadFunHandl != nil)
 		{
-			loadFunHandl?();
+			loadFunHandl?(false);
 		}
 	}
 

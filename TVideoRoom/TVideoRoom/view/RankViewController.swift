@@ -40,6 +40,7 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 		self.tableView.rowHeight = self.view.width / 9;
 		self.tableView.backgroundColor = UIColor.clear;
 		self.tableView.allowsSelection = false;
+		self.tableView.isHidden = true;
 		segmentVC = TSegmentedControl(items: ["日榜" as AnyObject, "周榜" as AnyObject, "月榜" as AnyObject, "总榜" as AnyObject], didSelectedIndex: { [weak self](index) -> () in
 			switch index {
 			case 0:
@@ -53,7 +54,9 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 			default:
 				self?.curTableStyle = .rankDay;
 			}
-			self!.flushListView((self?.hrankDic[(self?.curTableStyle)!])!, (self?.useRankDic[(self?.curTableStyle)!])!)
+			if (self?.tableView.isHidden == false) {
+				self!.flushListView((self?.hrankDic[(self?.curTableStyle)!])!, (self?.useRankDic[(self?.curTableStyle)!])!)
+			}
 		})
 
 		self.view.addSubview(segmentVC!);
@@ -67,14 +70,14 @@ class RankViewController: BaseUIViewController, UITableViewDelegate, UITableView
 			make.top.equalTo((segmentVC?.snp.bottom)!).offset(5);
 			make.bottom.equalTo(self.view.snp.bottom);
 		}
-		self.tableView.isHidden = true;
+
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated);
 		self.loadProgressAnimationView.startLoadProgressAnimation();
 
-		HttpTavenService.requestJson(getWWWHttp(HTTP_RANK_DATA)) { [weak self](dataResult) in
+		HttpTavenService.requestJson(getWWWHttp(HTTP_RANK_DATA, true)) { [weak self](dataResult) in
 			self?.loadProgressAnimationView.endLoadProgressAnimation();
 			if (dataResult.isSuccess) {
 				self?.hrankDic[.rankDay] = deserilObjectsWithArray(dataResult.dataJson!["rank_exp_day"].arrayObject! as NSArray, cls: rankInfoModel.self) as? [rankInfoModel] ;
