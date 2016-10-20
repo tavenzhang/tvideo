@@ -1,5 +1,5 @@
-// Created by 张新华 on 16/5/30.
-//  Copyright © 2016年 张新华. All rights reserved.
+// Created by  on 16/5/30.
+//  Copyright © 2016年 . All rights reserved.
 //
 
 import Foundation

@@ -1,10 +1,3 @@
-//
-//  GiftViewControl.swift
-//  TVideoRoom
-//
-//  Created by 张新华 on 16/10/7.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
 
 import UIKit
 import SnapKit
@@ -95,7 +88,7 @@ class GiftViewControl: UIViewController {
 		giftMenuBar = TabBarMenu();
 		self.view.addSubview(giftMenuBar!);
 		giftMenuBar?.snp.makeConstraints { (make) in
-			make.bottom.equalTo(giftCollectionView.snp.top);
+			make.bottom.equalTo(giftCollectionView.snp.top).offset(-4);
 			make.height.equalTo(25);
 			make.width.equalTo(self.view.width * 3 / 4);
 		}
@@ -116,6 +109,8 @@ class GiftViewControl: UIViewController {
 			self.giftDataList = (self.dataRoom?.giftDataManager[0].items)!;
 			self.giftCollectionView.reloadData();
 		}
+		btnMoney = UIButton.BtnSimple("关闭", titleColor: UIColor.purple, image: nil, hightLightImage: nil, target: self, action: #selector(self.c2sAddMoneyClick));
+
 	}
 
 	// 建立集合

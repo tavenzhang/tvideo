@@ -2,7 +2,7 @@
 //  RtmpShare.h
 //  kxmovie
 //
-//  Created by 张新华 on 16/6/24.
+//  Created by  on 16/6/24.
 //
 //
 

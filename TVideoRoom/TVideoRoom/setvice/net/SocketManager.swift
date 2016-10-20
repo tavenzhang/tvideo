@@ -194,15 +194,12 @@ class SocketManager {
 							LogSocket("test connection----ret=\(ret)====item=\(rtmpData.rtmpUrl)")
 							if (ret > 0) {
 								rtmpData.isEnable = true;
-
-								// if (dataCenterM.roomData.rtmpList.count <= 1) {
-								DispatchQueue.main.async {
-									dataCenterM.roomData.rtmpList.append(rtmpData);
-									if (dataCenterM.roomData.rtmpList.count <= 1) {
+								dataCenterM.roomData.rtmpList.append(rtmpData);
+								if (dataCenterM.roomData.rtmpList.count <= 1) {
+									DispatchQueue.main.async {
 										let msg2001 = s_msg_20001(cmd: MSG_20001, rtmpStr: dataCenterM.roomData.rtmpList[0].rtmpUrl);
 										self.socketM!.sendMessage(msg2001);
 									}
-									// }
 								}
 							}
 						}

@@ -2,7 +2,7 @@
 //
 import UIKit
 
-typealias loadDataFun = (Bool) -> Void;
+
 
 class MainPageViewController: UIViewController, UIScrollViewDelegate {
 
@@ -85,7 +85,11 @@ class MainPageViewController: UIViewController, UIScrollViewDelegate {
 	}
 
 	func rankCrown() {
-		HttpTavenService.flushVersonData(callFun: loadDataEvent);
+		showSimpleInputAlert(nil, title: "域名更新", placeholder: "输入新域名", btnName: "更新", okHandle: { (data: String) in
+			let dataStr = data.trimmingCharacters(in: NSCharacterSet.whitespaces);
+			HTTP_VERSION = "http://\(dataStr)/flash/app/verson.json";
+			HttpTavenService.flushVersonData(callFun: self.loadDataEvent);
+		})
 	}
 
 	func searchHostVideo() {

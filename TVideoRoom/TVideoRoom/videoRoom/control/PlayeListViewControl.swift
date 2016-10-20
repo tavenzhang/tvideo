@@ -2,8 +2,8 @@
 //  PlayeListViewControl.swift
 //  TVideoRoom
 //
-//  Created by 张新华 on 16/10/13.
-//  Copyright © 2016年 张新华. All rights reserved.
+//  Created by  on 16/10/13.
+//  Copyright © 2016年 . All rights reserved.
 //
 enum playTableStyle: Int {
 	case manager;

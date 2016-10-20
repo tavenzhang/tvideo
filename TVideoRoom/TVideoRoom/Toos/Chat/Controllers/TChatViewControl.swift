@@ -1,16 +1,11 @@
 //
 //  TChatViewControl.swift
 //  TVideoRoom
-//
-//  Created by 张新华 on 16/10/12.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
 
 import UIKit;
 import SnapKit;
 
-typealias SendMessageBlock = (_ msg: String) -> Void
-typealias ChatGiftBlock = () -> Void
+
 
 enum KeyBoardType: Int {
 	case txtBoard

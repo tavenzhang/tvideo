@@ -1,11 +1,9 @@
-//
-//  RoolMenu.swift
-//  TVideoRoom
+
 
 import UIKit
 import SnapKit
 
-typealias tabClickBlock = (_ tag: Int) -> Void;
+
 
 class TabBarMenu: UIView {
 

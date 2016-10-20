@@ -2,8 +2,8 @@
 //  GiftRankCell.swift
 //  TVideoRoom
 //
-//  Created by 张新华 on 16/10/8.
-//  Copyright © 2016年 张新华. All rights reserved.
+//  Created by  on 16/10/8.
+//  Copyright © 2016年 . All rights reserved.
 //
 
 import SnapKit
@@ -75,9 +75,10 @@ class RankGiftCell: UITableViewCell {
 	var dataModel: RankGiftModel? {
 
 		didSet {
-			txtRank.text = dataModel?.rankStr;
-			txtName.text = dataModel?.name;
-			txtMoeny.text = "\(dataModel?.score!) ￥";
+
+			txtRank.text = (dataModel == nil) ? "" : dataModel!.rankStr;
+			txtName.text = (dataModel == nil) ? "" : dataModel!.name;
+			txtMoeny.text = (dataModel == nil) ? "" : "\(dataModel!.score!) ￥";
 		}
 	}
 

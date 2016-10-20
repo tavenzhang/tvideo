@@ -10,9 +10,9 @@ class GiftShopCell: UICollectionViewCell {
 		return backImageView
 	}()
 
-	var nameLabel = UILabel.lableSimple("", corlor: UIColor.black, size: 10, align: NSTextAlignment.center);
+	var nameLabel = UILabel.lableSimple("", corlor: UIColor.black, size: 12, align: NSTextAlignment.center);
 
-	var priceLabel: UILabel = UILabel.lableSimple("", corlor: UIColor.gray, size: 8, align: NSTextAlignment.center);
+	var priceLabel: UILabel = UILabel.lableSimple("", corlor: UIColor.gray, size: 10, align: NSTextAlignment.center);
 
 	var newLabel: UILabel = UILabel.lableSimple("new!", corlor: UIColor.red, size: 9, align: NSTextAlignment.center);
 
@@ -28,16 +28,16 @@ class GiftShopCell: UICollectionViewCell {
 		addSubview(newLabel);
 		backImageView.snp.makeConstraints { (make) in
 			make.centerX.equalTo(self);
-			make.top.equalTo(5);
+			make.top.equalTo(2);
 			make.width.height.equalTo(40);
 		}
 		nameLabel.snp.makeConstraints { (make) in
-			make.top.equalTo(backImageView.snp.bottom).offset(-1);
+			make.top.equalTo(backImageView.snp.bottom).offset(-2);
 			make.centerX.equalTo(self);
 
 		}
 		priceLabel.snp.makeConstraints { (make) in
-			make.top.equalTo(nameLabel.snp.bottom).offset(1);
+			make.top.equalTo(nameLabel.snp.bottom).offset(-2);
 			make.centerX.equalTo(self);
 
 		}

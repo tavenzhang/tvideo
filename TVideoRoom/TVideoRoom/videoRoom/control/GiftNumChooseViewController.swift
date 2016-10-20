@@ -2,13 +2,13 @@
 //  GiftNumChooseViewController.swift
 //  TVideoRoom
 //
-//  Created by 张新华 on 16/10/10.
-//  Copyright © 2016年 张新华. All rights reserved.
+//  Created by  on 16/10/10.
+//  Copyright © 2016年 . All rights reserved.
 //
 
 import UIKit
 
-typealias clickCallFun = (_ data: AnyObject) -> Void;
+
 
 class GiftNumChooseViewController: UITableViewController {
 	var dataList: [GiftChooseModel]? = [];

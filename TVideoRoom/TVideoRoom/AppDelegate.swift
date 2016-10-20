@@ -1,11 +1,6 @@
 //
 //  AppDelegate.swift
 //  TVideoRoom
-//
-//  Created by 张新华 on 16/6/2.
-//  Copyright © 2016年 张新华. All rights reserved.
-//
-
 import UIKit
 import NSLogger
 import SDWebImage

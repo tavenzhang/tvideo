@@ -2,7 +2,7 @@
 //  Rtmp.m
 //  kxmovie
 //
-//  Created by 张新华 on 16/6/6.
+//  Created by  on 16/6/6.
 //
 //
 

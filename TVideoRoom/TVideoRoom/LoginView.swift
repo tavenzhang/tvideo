@@ -206,7 +206,8 @@ class LoginView: UIView {
 	func validLogin(_ name: String, pwd: String) -> Void {
 		let passStr = encodeStr(pwd);
 		let paraList = ["uname": name, "password": passStr, "sCode": "", "v_remember": 0] as [String: Any];
-		var _ = HttpTavenService.requestJson(getWWWHttp(HTTP_LOGIN), isGet: false, para: paraList as [String: AnyObject]) { (httpResult) in
+
+		var _ = HttpTavenService.requestJsonWithHint(getWWWHttp(HTTP_LOGIN), loadingHint: "登陆验证中", isGet: false, para: paraList as [String: AnyObject]) { (httpResult) in
 			if (httpResult.isSuccess)
 			{
 				if (httpResult.dataJson?["status"].int! == 1)

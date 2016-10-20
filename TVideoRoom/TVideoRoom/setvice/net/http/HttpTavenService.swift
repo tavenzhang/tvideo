@@ -8,9 +8,9 @@ import SVProgressHUD;
 
 var HTTP_VERSION = "https://raw.githubusercontent.com/ataven2016/tvideo/master/verson.json";
 
-var Http_Domain: String = "www.lgfabcd.com";
-var Http_VDomain: String = "v.lgfabcd.com";
-var Http_PDomain: String = "p.lgfabcd.com";
+var Http_Domain: String = "www.lgfaa.com";
+var Http_VDomain: String = "v.lgfaa.com";
+var Http_PDomain: String = "p.lgfaa.com";
 
 var HTTP_ACITVE_PAGE: String = "http://%@/act";
 
@@ -182,7 +182,6 @@ class HttpResult: NSObject {
 		if (dataR != nil)
 		{
 			dataJson = JSON(data: dataR!);
-
 			if (((dataJson?.object as? NSNull) != nil))
 			{
 				data = dataR;
@@ -237,8 +236,7 @@ class HttpTavenService {
 	static var flushCount = 1;
 	// 强制刷新域名
 	class func flushVersonData(callFun: loadDataFun?) -> Void {
-
-		HttpTavenService.requestJsonWithHint(HTTP_VERSION + "?a=\(Date().timeIntervalSince1970)", loadingHint: "强制刷新第\(flushCount)次") { (dataResult) in
+		HttpTavenService.requestJsonWithHint(HTTP_VERSION + "?a=\(Date().timeIntervalSince1970)", loadingHint: "域名更新中") { (dataResult) in
 			if (dataResult.dataJson != nil && dataResult.isSuccess) {
 				let versionMode = deserilObjectWithDictonary(dataResult.dataJson!.dictionaryObject! as NSDictionary, cls: VersionModel.self) as! VersionModel;
 				if (dataResult.isSuccess) {
@@ -253,7 +251,6 @@ class HttpTavenService {
 							oneDomainList.append(item);
 						}
 					}
-					flushCount = 1;
 					var domainMode: DomainModel?;
 					let index = Int(arc4random_uniform(UInt32(lgfDomainList.count)));
 					domainMode = lgfDomainList[index];
@@ -266,21 +263,11 @@ class HttpTavenService {
 				}
 			}
 			else {
-
-				if (flushCount <= 3) {
-					showAlertHandle(nil, tl: "强制刷新第\(flushCount)次失败", cont: "请重刷几次看看！", okHint: "重刷", cancelHint: "放弃", canlHandle: nil, okHandle: {
-						HttpTavenService.flushVersonData(callFun: callFun);
-					});
-				}
-				else {
-					showSimpleInputAlert(nil, title: "手动域名更新", placeholder: "输入新域名", btnName: "刷新", okHandle: { (data: String) in
-						let dataStr = data.trimmingCharacters(in: NSCharacterSet.whitespaces);
-						HTTP_VERSION = "http://\(dataStr)/flash/app/verson.json";
-						HttpTavenService.flushVersonData(callFun: callFun);
-					})
-
-				}
-				flushCount = flushCount + 1;
+				showSimpleInputAlert(nil, title: "配置更新失败", placeholder: "重新输入新域名", btnName: "刷新", okHandle: { (data: String) in
+					let dataStr = data.trimmingCharacters(in: NSCharacterSet.whitespaces);
+					HTTP_VERSION = "http://\(dataStr)/flash/app/verson.json";
+					HttpTavenService.flushVersonData(callFun: callFun);
+				})
 			}
 
 		}

@@ -2,8 +2,8 @@
 //  NSMudatableDataExtension.swift
 //  TVideo
 //
-//  Created by 张新华 on 16/5/31.
-//  Copyright © 2016年 张新华. All rights reserved.
+//  Created by  on 16/5/31.
+//  Copyright © 2016年 . All rights reserved.
 
 import Foundation
 

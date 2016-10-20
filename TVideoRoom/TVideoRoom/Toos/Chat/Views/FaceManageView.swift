@@ -2,8 +2,8 @@
 //  FaceManageView.swift
 //  TVideoRoom
 //
-//  Created by 张新华 on 16/10/12.
-//  Copyright © 2016年 张新华. All rights reserved.
+//  Created by  on 16/10/12.
+//  Copyright © 2016年 . All rights reserved.
 //
 
 import Foundation
@@ -205,7 +205,7 @@ class YYFaceView: UIView {
 	}
 }
 
-typealias SendBtnClickBlock = () -> Void
+
 
 class YYFaceScrollView: UIView, UIScrollViewDelegate {
 	var scrollView: UIScrollView!
